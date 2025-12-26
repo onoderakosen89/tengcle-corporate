@@ -285,6 +285,7 @@ export default function Home() {
                     src="/images/hotel-lobby-realistic.jpg"
                     alt={t.portfolio.project1.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/30 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
@@ -313,6 +314,7 @@ export default function Home() {
                     src="/images/portfolio-it-realistic.jpg"
                     alt={t.portfolio.project2.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/30 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">

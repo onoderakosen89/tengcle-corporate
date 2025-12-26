@@ -99,6 +99,7 @@ export default function About() {
                   src="/images/about-team.jpg"
                   alt="Tengcle Team"
                   className="w-full aspect-[4/3] object-cover"
+                  loading="lazy"
                 />
               </motion.div>
             </AnimatedSection>

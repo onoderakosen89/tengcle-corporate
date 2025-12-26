@@ -169,6 +169,7 @@ export default function Portfolio() {
                       src={project.image}
                       alt={project.title}
                       className="w-full aspect-[4/3] object-cover"
+                      loading="lazy"
                     />
                     <div className="absolute top-4 left-4 bg-navy text-white px-4 py-2">
                       <p className={`text-gold text-xs ${getFontClass()}`}>{project.location}</p>

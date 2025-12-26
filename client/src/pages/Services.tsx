@@ -245,6 +245,7 @@ export default function Services() {
                         src={service.image}
                         alt={service.title}
                         className="w-full aspect-[4/3] object-cover"
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent" />
                     </div>
