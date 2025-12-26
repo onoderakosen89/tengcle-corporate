@@ -185,7 +185,7 @@ export default function Contact() {
       <section className="py-0">
         <div className="h-96 bg-gray-200">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.2!2d139.7!3d35.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDM2JzAwLjAiTiAxMznCsDQyJzAwLjAiRQ!5e0!3m2!1sen!2sjp!4v1234567890"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55415.8474323365!2d139.7193423820491!3d35.6604255788537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bad40cb61eb%3A0xb7e2811b057024ad!2z5pel5pys44CB44CSMTA4LTAwNzQg5p2x5Lqs6YO95riv5Yy66auY6Lyq77yS5LiB55uu77yR77yZ4oiS77yS77yQ!5e0!3m2!1sja!2smm!4v1766788226812!5m2!1sja!2smm"
             width="100%"
             height="100%"
             style={{ border: 0 }}

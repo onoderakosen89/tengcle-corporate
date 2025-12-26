@@ -248,6 +248,7 @@ export default function Home() {
         description={currentSeo.description}
         canonical={`https://www.tengcle.com/hk/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
+        ogImage="/images/og-image-hk.jpg"
       />
       <Header />
       
@@ -432,13 +433,13 @@ export default function Home() {
           <AnimatedSection>
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <p className="text-gold text-sm tracking-[0.3em] uppercase mb-4">
-                Trust & Compliance
+                {t.trust?.subtitle || "Trust & Compliance"}
               </p>
               <h2 className={`${getHeadingFontClass()} text-4xl md:text-5xl text-white mb-6`}>
-                Built on Integrity
+                {t.trust?.title || "Built on Integrity"}
               </h2>
               <p className={`text-gray-300 max-w-2xl mx-auto ${getFontClass()}`}>
-                As a fully licensed Hong Kong entity, we maintain the highest standards of corporate governance and regulatory compliance.
+                {t.trust?.description || "As a fully licensed Hong Kong entity, we maintain the highest standards of corporate governance and regulatory compliance."}
               </p>
             </motion.div>
           </AnimatedSection>
@@ -447,32 +448,32 @@ export default function Home() {
             {[
               {
                 icon: Shield,
-                title: "TCSP Licensed",
+                title: t.trust?.tcspLicensed || "TCSP Licensed",
                 value: "TC007820",
-                description: "Trust or Company Service Provider License",
+                description: t.trust?.tcspDesc || "Trust or Company Service Provider License",
               },
               {
                 icon: Building2,
-                title: "Business Registration",
+                title: t.trust?.businessReg || "Business Registration",
                 value: "65188837",
-                description: "Hong Kong Companies Registry",
+                description: t.trust?.businessRegDesc || "Hong Kong Companies Registry",
               },
               {
                 icon: Award,
-                title: "Quality Certified",
+                title: t.trust?.qualityCertified || "Quality Certified",
                 value: "ISO Standards",
-                description: "International quality management",
+                description: t.trust?.qualityDesc || "International quality management",
               },
               {
                 icon: Globe,
-                title: "Global Network",
+                title: t.trust?.globalNetwork || "Global Network",
                 value: 15,
-                suffix: "+ Countries",
-                description: "Supplier relationships worldwide",
+                suffix: t.trust?.countries || "+ Countries",
+                description: t.trust?.globalNetworkDesc || "Supplier relationships worldwide",
                 isAnimated: true,
               },
-            ].map((item) => (
-              <AnimatedSection key={item.title}>
+            ].map((item, index) => (
+              <AnimatedSection key={index}>
                 <motion.div
                   variants={fadeInUp}
                   className="text-center p-6 border border-gold/20 bg-white/5 backdrop-blur-sm hover:border-gold/40 transition-colors duration-300 hk-card-hover"

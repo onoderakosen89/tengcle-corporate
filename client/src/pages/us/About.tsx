@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import { Building2, MapPin, Globe, ArrowRight } from "lucide-react";
+import { Building2, MapPin, Globe, ArrowRight, ExternalLink } from "lucide-react";
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
@@ -96,7 +96,7 @@ export default function UsAbout() {
               <p className="text-slate leading-relaxed mb-6">
                 {t('about.description')}
               </p>
-              <div className="bg-light-gray p-6 mb-6">
+                <div className="bg-light-gray p-6 mb-6">
                 <h3 className="font-heading text-lg text-charcoal mb-4">Company Information</h3>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
@@ -112,6 +112,20 @@ export default function UsAbout() {
                       <p className="text-charcoal">17 Hamilton Ave</p>
                       <p className="text-charcoal">Weehawken, NJ 07086</p>
                       <p className="text-charcoal">United States</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Globe className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
+                    <div>
+                      <a 
+                        href="https://www.tengcle.com/us/en" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-purple hover:text-gold transition-colors flex items-center gap-1"
+                      >
+                        www.tengcle.com/us
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
                     </div>
                   </div>
                 </div>

@@ -183,6 +183,7 @@ export default function UsHome() {
         description={currentSeo.description}
         canonical={`https://www.tengcle.com/us/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
+        ogImage="/images/og-image-us.jpg"
       />
       <UsHeader />
 

@@ -199,16 +199,25 @@ export default function Contact() {
               </AnimatedSection>
             </div>
             
-            {/* Japan Link */}
+            {/* Group Site Links */}
             <AnimatedSection className="mt-12">
-              <motion.div variants={fadeInUp} className="text-center">
+              <motion.div variants={fadeInUp} className="text-center flex flex-wrap justify-center gap-6">
                 <a 
-                  href="https://www.tengcle.com" 
+                  href="https://www.tengcle.com/jp/ja" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className={`inline-flex items-center gap-2 text-navy hover:text-gold transition-colors ${getFontClass()}`}
                 >
                   <span>{t.footer.japan}</span>
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+                <a 
+                  href="https://www.tengcle.com/us/en" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-2 text-navy hover:text-gold transition-colors ${getFontClass()}`}
+                >
+                  <span>{t.footer.usa}</span>
                   <ExternalLink className="h-4 w-4" />
                 </a>
               </motion.div>

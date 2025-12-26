@@ -11,6 +11,11 @@ Sitemap: https://www.tengcle.com/sitemap.xml
 # Disallow admin and private directories (if any)
 Disallow: /api/
 Disallow: /_*
+Disallow: /.env
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /src/
+Disallow: /server/
 
 # Crawl delay for polite crawling (optional)
 Crawl-delay: 1

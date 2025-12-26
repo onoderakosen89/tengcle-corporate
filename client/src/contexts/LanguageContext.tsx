@@ -115,6 +115,20 @@ interface Translations {
     getInTouch: string;
     trustCompliance: string;
   };
+  trust: {
+    subtitle: string;
+    title: string;
+    description: string;
+    tcspLicensed: string;
+    tcspDesc: string;
+    businessReg: string;
+    businessRegDesc: string;
+    qualityCertified: string;
+    qualityDesc: string;
+    globalNetwork: string;
+    globalNetworkDesc: string;
+    countries: string;
+  };
 }
 
 const translations: Record<Language, Translations> = {
@@ -226,6 +240,20 @@ const translations: Record<Language, Translations> = {
       getInTouch: "Get in Touch",
       trustCompliance: "Trust & Compliance",
     },
+    trust: {
+      subtitle: "Trust & Compliance",
+      title: "Built on Integrity",
+      description: "As a fully licensed Hong Kong entity, we maintain high standards of corporate governance and regulatory compliance.",
+      tcspLicensed: "TCSP Licensed",
+      tcspDesc: "Trust or Company Service Provider License",
+      businessReg: "Business Registration",
+      businessRegDesc: "Hong Kong Companies Registry",
+      qualityCertified: "Quality Certified",
+      qualityDesc: "International quality management",
+      globalNetwork: "Global Network",
+      globalNetworkDesc: "Supplier relationships worldwide",
+      countries: "Countries",
+    },
   },
   ja: {
     nav: {
@@ -335,6 +363,20 @@ const translations: Record<Language, Translations> = {
       getInTouch: "お問い合わせ",
       trustCompliance: "信頼とコンプライアンス",
     },
+    trust: {
+      subtitle: "信頼とコンプライアンス",
+      title: "誠実な運営",
+      description: "香港で正式にライセンスを取得した法人として、企業統治と法令遵守の基準を維持しています。",
+      tcspLicensed: "TCSPライセンス取得",
+      tcspDesc: "信託・会社サービス提供者ライセンス",
+      businessReg: "商業登記",
+      businessRegDesc: "香港会社登記処",
+      qualityCertified: "品質認証",
+      qualityDesc: "国際品質管理基準",
+      globalNetwork: "グローバルネットワーク",
+      globalNetworkDesc: "世界各国のサプライヤー",
+      countries: "カ国以上",
+    },
   },
   zh: {
     nav: {
@@ -443,6 +485,20 @@ const translations: Record<Language, Translations> = {
       learnMore: "了解更多",
       getInTouch: "联系我们",
       trustCompliance: "信任与合规",
+    },
+    trust: {
+      subtitle: "信任与合规",
+      title: "诚信经营",
+      description: "作为香港正式持牌的法人实体，我们维护企业治理和法规遵循的标准。",
+      tcspLicensed: "TCSP持牌",
+      tcspDesc: "信托或公司服务提供者许可证",
+      businessReg: "商业登记",
+      businessRegDesc: "香港公司注册处",
+      qualityCertified: "质量认证",
+      qualityDesc: "国际质量管理标准",
+      globalNetwork: "全球网络",
+      globalNetworkDesc: "世界各地的供应商",
+      countries: "个国家以上",
     },
   },
 };
