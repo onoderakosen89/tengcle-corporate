@@ -57,16 +57,18 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 export default function Services() {
   const { t, language } = useLanguage();
   
+  // Get body font class based on language
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
-    return "";
+    return "font-body";
   };
 
-  const getSerifFontClass = () => {
-    if (language === "ja") return "font-jp-serif";
+  // Get heading font class based on language
+  const getHeadingFontClass = () => {
+    if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
-    return "font-display";
+    return "font-heading";
   };
 
   const services = [
@@ -194,7 +196,7 @@ export default function Services() {
               <p className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}>
                 {t.services.subtitle}
               </p>
-              <h1 className={`${getSerifFontClass()} text-4xl md:text-5xl lg:text-6xl text-navy mb-6`}>
+              <h1 className={`${getHeadingFontClass()} text-4xl md:text-5xl lg:text-6xl text-navy mb-6`}>
                 {t.services.title}
               </h1>
               <p className={`text-slate text-lg leading-relaxed ${getFontClass()}`}>
@@ -220,7 +222,7 @@ export default function Services() {
                   {/* Content */}
                   <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                     <service.icon className="h-12 w-12 text-gold mb-6" />
-                    <h2 className={`${getSerifFontClass()} text-3xl text-navy mb-4`}>
+                    <h2 className={`${getHeadingFontClass()} text-3xl text-navy mb-4`}>
                       {service.title}
                     </h2>
                     <p className={`text-slate leading-relaxed mb-8 ${getFontClass()}`}>
@@ -264,7 +266,7 @@ export default function Services() {
         <div className="container">
           <AnimatedSection className="text-center">
             <motion.div variants={fadeInUp}>
-              <h2 className={`${getSerifFontClass()} text-4xl text-white mb-6`}>
+              <h2 className={`${getHeadingFontClass()} text-4xl text-white mb-6`}>
                 {t.contact.title}
               </h2>
               <p className={`text-white/70 max-w-xl mx-auto mb-10 ${getFontClass()}`}>

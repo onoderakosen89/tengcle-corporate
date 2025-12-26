@@ -57,13 +57,13 @@ export default function About() {
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
-    return "";
+    return "font-body";
   };
 
-  const getSerifFontClass = () => {
-    if (language === "ja") return "font-jp-serif";
+  const getHeadingFontClass = () => {
+    if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
-    return "font-display";
+    return "font-heading";
   };
 
   return (
@@ -78,7 +78,7 @@ export default function About() {
               <p className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}>
                 {t.about.subtitle}
               </p>
-              <h1 className={`${getSerifFontClass()} text-4xl md:text-5xl lg:text-6xl text-navy mb-6`}>
+              <h1 className={`${getHeadingFontClass()} text-4xl md:text-5xl lg:text-6xl text-navy mb-6`}>
                 {t.about.title}
               </h1>
               <p className={`text-slate text-lg leading-relaxed ${getFontClass()}`}>
@@ -105,7 +105,7 @@ export default function About() {
             
             <AnimatedSection>
               <motion.div variants={fadeInUp}>
-                <h2 className={`${getSerifFontClass()} text-3xl text-navy mb-6`}>
+                <h2 className={`${getHeadingFontClass()} text-3xl text-navy mb-6`}>
                   {t.about.story.title}
                 </h2>
                 <p className={`text-slate leading-relaxed mb-6 ${getFontClass()}`}>
@@ -128,7 +128,7 @@ export default function About() {
               <p className={`text-gold text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}>
                 {t.common.trustCompliance}
               </p>
-              <h2 className={`${getSerifFontClass()} text-4xl text-white mb-6`}>
+              <h2 className={`${getHeadingFontClass()} text-4xl text-white mb-6`}>
                 {language === "ja" ? "コンプライアンスと信頼性" : language === "zh" ? "合规与信任" : "Compliance & Trust"}
               </h2>
             </motion.div>
@@ -170,7 +170,7 @@ export default function About() {
                   <p className={`text-white/60 text-xs tracking-wider uppercase mb-2 ${getFontClass()}`}>
                     {item.title}
                   </p>
-                  <p className="font-display text-2xl text-white mb-2">{item.value}</p>
+                  <p className="font-heading text-2xl text-white mb-2">{item.value}</p>
                   <p className={`text-white/60 text-sm ${getFontClass()}`}>{item.description}</p>
                 </motion.div>
               </AnimatedSection>
@@ -184,7 +184,7 @@ export default function About() {
         <div className="container">
           <AnimatedSection className="text-center mb-16">
             <motion.div variants={fadeInUp}>
-              <h2 className={`${getSerifFontClass()} text-4xl text-navy mb-6`}>
+              <h2 className={`${getHeadingFontClass()} text-4xl text-navy mb-6`}>
                 {language === "ja" ? "オフィス" : language === "zh" ? "办公室" : "Our Offices"}
               </h2>
             </motion.div>
@@ -198,7 +198,7 @@ export default function About() {
                 className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300"
               >
                 <MapPin className="h-8 w-8 text-gold mb-4" />
-                <h3 className={`${getSerifFontClass()} text-xl text-navy mb-2`}>
+                <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-2`}>
                   {t.contact.info.hkOffice}
                 </h3>
                 <p className="text-slate text-sm leading-relaxed">
@@ -216,7 +216,7 @@ export default function About() {
                 className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300"
               >
                 <MapPin className="h-8 w-8 text-gold mb-4" />
-                <h3 className={`${getSerifFontClass()} text-xl text-navy mb-2`}>
+                <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-2`}>
                   {t.contact.info.jpOffice1}
                 </h3>
                 <p className="text-slate text-sm leading-relaxed">
@@ -234,7 +234,7 @@ export default function About() {
                 className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300"
               >
                 <MapPin className="h-8 w-8 text-gold mb-4" />
-                <h3 className={`${getSerifFontClass()} text-xl text-navy mb-2`}>
+                <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-2`}>
                   {t.contact.info.jpOffice2}
                 </h3>
                 <p className="text-slate text-sm leading-relaxed">
@@ -255,7 +255,7 @@ export default function About() {
                   {language === "ja" ? "設立準備中" : language === "zh" ? "筹备中" : "Establishing"}
                 </div>
                 <MapPin className="h-8 w-8 text-gold mb-4" />
-                <h3 className={`${getSerifFontClass()} text-xl text-navy mb-2`}>
+                <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-2`}>
                   {t.contact.info.usOffice}
                 </h3>
                 <p className="text-slate text-sm leading-relaxed">
@@ -274,7 +274,7 @@ export default function About() {
         <div className="container">
           <AnimatedSection className="text-center">
             <motion.div variants={fadeInUp}>
-              <h2 className={`${getSerifFontClass()} text-4xl text-navy mb-6`}>
+              <h2 className={`${getHeadingFontClass()} text-4xl text-navy mb-6`}>
                 {t.contact.title}
               </h2>
               <p className={`text-slate max-w-xl mx-auto mb-10 ${getFontClass()}`}>

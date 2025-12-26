@@ -56,16 +56,18 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 export default function Home() {
   const { t, language } = useLanguage();
   
+  // Get body font class based on language
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
-    return "";
+    return "font-body";
   };
 
-  const getSerifFontClass = () => {
-    if (language === "ja") return "font-jp-serif";
+  // Get heading font class based on language
+  const getHeadingFontClass = () => {
+    if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
-    return "font-display";
+    return "font-heading";
   };
 
   return (
@@ -108,7 +110,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className={`${getSerifFontClass()} text-5xl md:text-6xl lg:text-7xl text-navy leading-tight mb-8`}
+              className={`${getHeadingFontClass()} text-5xl md:text-6xl lg:text-7xl text-navy leading-tight mb-8`}
             >
               {t.hero.headline1}
               <br />
@@ -187,7 +189,7 @@ export default function Home() {
               <p className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}>
                 {t.services.subtitle}
               </p>
-              <h2 className={`${getSerifFontClass()} text-4xl md:text-5xl text-navy mb-6`}>
+              <h2 className={`${getHeadingFontClass()} text-4xl md:text-5xl text-navy mb-6`}>
                 {t.services.title}
               </h2>
               <p className={`text-slate max-w-2xl mx-auto ${getFontClass()}`}>
@@ -230,7 +232,7 @@ export default function Home() {
                   className="group bg-white border border-gray-200 p-8 hover:border-gold/50 hover:shadow-lg transition-all duration-500 card-hover"
                 >
                   <service.icon className="h-10 w-10 text-gold mb-6" />
-                  <h3 className={`${getSerifFontClass()} text-xl text-navy mb-4`}>
+                  <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-4`}>
                     {service.title}
                   </h3>
                   <p className={`text-slate text-sm leading-relaxed ${getFontClass()}`}>
@@ -262,7 +264,7 @@ export default function Home() {
               <p className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}>
                 {t.portfolio.subtitle}
               </p>
-              <h2 className={`${getSerifFontClass()} text-4xl md:text-5xl text-navy mb-6`}>
+              <h2 className={`${getHeadingFontClass()} text-4xl md:text-5xl text-navy mb-6`}>
                 {t.portfolio.title}
               </h2>
               <p className={`text-slate max-w-2xl mx-auto ${getFontClass()}`}>
@@ -287,7 +289,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/30 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <p className="text-gold text-sm mb-1">{t.portfolio.project1.location}</p>
-                    <h3 className={`${getSerifFontClass()} text-2xl text-white`}>
+                    <h3 className={`${getHeadingFontClass()} text-2xl text-white`}>
                       {t.portfolio.project1.title}
                     </h3>
                   </div>
@@ -315,7 +317,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/30 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <p className="text-gold text-sm mb-1">{t.portfolio.project2.location}</p>
-                    <h3 className={`${getSerifFontClass()} text-2xl text-white`}>
+                    <h3 className={`${getHeadingFontClass()} text-2xl text-white`}>
                       {t.portfolio.project2.title}
                     </h3>
                   </div>
@@ -350,7 +352,7 @@ export default function Home() {
               <p className={`text-gold text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}>
                 {t.common.trustCompliance}
               </p>
-              <h2 className={`${getSerifFontClass()} text-4xl md:text-5xl text-white mb-6`}>
+              <h2 className={`${getHeadingFontClass()} text-4xl md:text-5xl text-white mb-6`}>
                 {language === "ja" ? "誠実さの上に構築" : language === "zh" ? "建立在诚信之上" : "Built on Integrity"}
               </h2>
               <p className={`text-white/70 max-w-2xl mx-auto ${getFontClass()}`}>
@@ -400,7 +402,7 @@ export default function Home() {
                   <p className={`text-white/60 text-xs tracking-wider uppercase mb-2 ${getFontClass()}`}>
                     {item.title}
                   </p>
-                  <p className="font-display text-2xl text-white mb-2">{item.value}</p>
+                  <p className="font-heading text-2xl text-white mb-2">{item.value}</p>
                   <p className={`text-white/60 text-sm ${getFontClass()}`}>{item.description}</p>
                 </motion.div>
               </AnimatedSection>
@@ -414,7 +416,7 @@ export default function Home() {
         <div className="container">
           <AnimatedSection className="text-center">
             <motion.div variants={fadeInUp}>
-              <h2 className={`${getSerifFontClass()} text-4xl md:text-5xl text-navy mb-6`}>
+              <h2 className={`${getHeadingFontClass()} text-4xl md:text-5xl text-navy mb-6`}>
                 {t.contact.title}
               </h2>
               <p className={`text-slate max-w-xl mx-auto mb-10 ${getFontClass()}`}>

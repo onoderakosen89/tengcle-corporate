@@ -54,13 +54,13 @@ export default function Contact() {
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
-    return "";
+    return "font-body";
   };
 
-  const getSerifFontClass = () => {
-    if (language === "ja") return "font-jp-serif";
+  const getHeadingFontClass = () => {
+    if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
-    return "font-display";
+    return "font-heading";
   };
 
   return (
@@ -75,7 +75,7 @@ export default function Contact() {
               <p className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}>
                 {t.contact.subtitle}
               </p>
-              <h1 className={`${getSerifFontClass()} text-4xl md:text-5xl lg:text-6xl text-navy mb-6`}>
+              <h1 className={`${getHeadingFontClass()} text-4xl md:text-5xl lg:text-6xl text-navy mb-6`}>
                 {t.contact.title}
               </h1>
               <p className={`text-slate text-lg leading-relaxed ${getFontClass()}`}>
@@ -97,12 +97,12 @@ export default function Contact() {
                 className="bg-light-gray border border-gray-200 p-8 md:p-12 text-center"
               >
                 <Mail className="h-12 w-12 text-gold mx-auto mb-6" />
-                <h2 className={`${getSerifFontClass()} text-2xl text-navy mb-4`}>
+                <h2 className={`${getHeadingFontClass()} text-2xl text-navy mb-4`}>
                   {t.contact.email}
                 </h2>
                 <a 
                   href="mailto:info@tengcle.com"
-                  className="text-2xl md:text-3xl text-navy hover:text-gold transition-colors font-display"
+                  className="text-2xl md:text-3xl text-navy hover:text-gold transition-colors font-heading"
                 >
                   info@tengcle.com
                 </a>
@@ -112,7 +112,7 @@ export default function Contact() {
             {/* Offices */}
             <AnimatedSection>
               <motion.div variants={fadeInUp} className="text-center mb-12">
-                <h2 className={`${getSerifFontClass()} text-3xl text-navy`}>
+                <h2 className={`${getHeadingFontClass()} text-3xl text-navy`}>
                   {language === "ja" ? "オフィス" : language === "zh" ? "办公室" : "Our Offices"}
                 </h2>
               </motion.div>
@@ -126,7 +126,7 @@ export default function Contact() {
                   className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300 h-full"
                 >
                   <MapPin className="h-8 w-8 text-gold mb-4" />
-                  <h3 className={`${getSerifFontClass()} text-xl text-navy mb-4`}>
+                  <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-4`}>
                     {t.contact.info.hkOffice}
                   </h3>
                   <p className="text-slate text-sm leading-relaxed">
@@ -144,7 +144,7 @@ export default function Contact() {
                   className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300 h-full"
                 >
                   <MapPin className="h-8 w-8 text-gold mb-4" />
-                  <h3 className={`${getSerifFontClass()} text-xl text-navy mb-4`}>
+                  <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-4`}>
                     {t.contact.info.jpOffice1}
                   </h3>
                   <p className="text-slate text-sm leading-relaxed">
@@ -162,7 +162,7 @@ export default function Contact() {
                   className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300 h-full"
                 >
                   <MapPin className="h-8 w-8 text-gold mb-4" />
-                  <h3 className={`${getSerifFontClass()} text-xl text-navy mb-4`}>
+                  <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-4`}>
                     {t.contact.info.jpOffice2}
                   </h3>
                   <p className="text-slate text-sm leading-relaxed">
@@ -183,7 +183,7 @@ export default function Contact() {
                     {language === "ja" ? "設立準備中" : language === "zh" ? "筹备中" : "Establishing"}
                   </div>
                   <MapPin className="h-8 w-8 text-gold mb-4" />
-                  <h3 className={`${getSerifFontClass()} text-xl text-navy mb-4`}>
+                  <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-4`}>
                     {t.contact.info.usOffice}
                   </h3>
                   <p className="text-slate text-sm leading-relaxed">

@@ -2,6 +2,13 @@
  * Tengcle Limited - Corporate Website
  * Design: Clean White Base with Navy & Gold Accents
  * Style: Professional, Minimal, Trustworthy
+ * 
+ * Typography System:
+ * - English Headings: Playfair Display (elegant serif, luxury feel)
+ * - English Body: Cormorant Garamond (classic, readable)
+ * - Numbers/Data: Libre Baskerville (professional, clear numerals)
+ * - Japanese: Noto Serif JP (elegant serif for Japanese)
+ * - Chinese: Noto Serif SC (elegant serif for Simplified Chinese)
  */
 
 @import "tailwindcss";
@@ -58,11 +65,13 @@
   --color-light-gray: oklch(0.97 0.005 250);
   --color-warm-white: oklch(0.995 0.002 90);
   
-  /* Font families */
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-jp: "Noto Sans JP", sans-serif;
-  --font-jp-serif: "Noto Serif JP", serif;
-  --font-zh: "Noto Sans SC", sans-serif;
+  /* Font families - Elegant Typography System */
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Cormorant Garamond", Georgia, serif;
+  --font-numbers: "Libre Baskerville", Georgia, serif;
+  --font-jp: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --font-zh: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --font-sans: "Source Sans 3", system-ui, -apple-system, sans-serif;
 }
 
 :root {
@@ -106,10 +115,50 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
   }
+  
+  /* Headings - Playfair Display for English */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  
+  h2 {
+    font-size: 2.25rem;
+    font-weight: 600;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  
+  /* Numbers - Libre Baskerville for elegant numerals */
+  .font-numbers,
+  [data-numbers] {
+    font-family: var(--font-numbers);
+    font-feature-settings: "lnum" 1, "tnum" 1;
+  }
+  
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
   [type="button"]:not(:disabled),
@@ -152,21 +201,56 @@
     }
   }
   
-  /* Typography */
-  .font-display {
-    font-family: var(--font-display);
+  /* Typography Classes */
+  
+  /* English Heading Font - Playfair Display */
+  .font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
   }
   
+  /* English Body Font - Cormorant Garamond */
+  .font-body {
+    font-family: var(--font-body);
+    letter-spacing: 0.01em;
+  }
+  
+  /* Numbers Font - Libre Baskerville */
+  .font-numbers {
+    font-family: var(--font-numbers);
+    font-feature-settings: "lnum" 1, "tnum" 1;
+  }
+  
+  /* Japanese Font - Noto Serif JP */
   .font-jp {
     font-family: var(--font-jp);
+    letter-spacing: 0.05em;
+    line-height: 1.8;
   }
   
-  .font-jp-serif {
-    font-family: var(--font-jp-serif);
-  }
-  
+  /* Chinese Font - Noto Serif SC */
   .font-zh {
     font-family: var(--font-zh);
+    letter-spacing: 0.02em;
+    line-height: 1.8;
+  }
+  
+  /* Sans-serif for UI elements */
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+  
+  /* Language-specific body text */
+  [lang="ja"] {
+    font-family: var(--font-jp);
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+  
+  [lang="zh"] {
+    font-family: var(--font-zh);
+    letter-spacing: 0.02em;
+    line-height: 1.8;
   }
   
   /* Brand Colors */
@@ -254,5 +338,20 @@
   .card-hover:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Elegant stat numbers */
+  .stat-number {
+    font-family: var(--font-numbers);
+    font-weight: 400;
+    font-feature-settings: "lnum" 1, "tnum" 1;
+    letter-spacing: -0.02em;
+  }
+  
+  /* License/Registration numbers */
+  .license-number {
+    font-family: var(--font-numbers);
+    font-weight: 400;
+    letter-spacing: 0.05em;
   }
 }

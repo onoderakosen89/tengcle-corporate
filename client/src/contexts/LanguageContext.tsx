@@ -478,3 +478,31 @@ export function useLanguage() {
   }
   return context;
 }
+
+// Helper function to get language-specific font class
+export function getFontClass(language: Language, type: "heading" | "body" | "numbers" = "body"): string {
+  if (type === "numbers") {
+    return "font-numbers";
+  }
+  
+  switch (language) {
+    case "ja":
+      return "font-jp";
+    case "zh":
+      return "font-zh";
+    default:
+      return type === "heading" ? "font-heading" : "font-body";
+  }
+}
+
+// Helper function to get language attribute
+export function getLangAttr(language: Language): string {
+  switch (language) {
+    case "ja":
+      return "ja";
+    case "zh":
+      return "zh-Hans";
+    default:
+      return "en";
+  }
+}
