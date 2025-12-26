@@ -1,0 +1,61 @@
+/**
+ * Tengcle Group - Region-Specific Color Themes
+ * 
+ * 案A: ディープパープル＆シャンパンゴールド (Hong Kong)
+ * 案B: プラム＆シルバー (Japan)
+ * 案C: ロイヤルパープル＆アイボリー (USA)
+ */
+
+/* ===== 案A: ディープパープル＆シャンパンゴールド (Hong Kong) ===== */
+/* Main: #2d1b4e (深いディープパープル) - oklch(0.22 0.12 300) */
+/* Accent: #c9a962 (シャンパンゴールド) - oklch(0.72 0.12 85) */
+/* Background: #faf9f7 (オフホワイト) */
+
+[data-region="hk"] {
+  --color-purple: oklch(0.22 0.12 300);
+  --color-purple-light: oklch(0.30 0.10 300);
+  --color-purple-dark: oklch(0.15 0.14 300);
+  --color-gold: oklch(0.72 0.12 85);
+  --color-gold-light: oklch(0.80 0.10 85);
+  --color-gold-dark: oklch(0.62 0.14 85);
+  --primary: oklch(0.22 0.12 300);
+  --accent: oklch(0.72 0.12 85);
+  --foreground: oklch(0.22 0.12 300);
+  --muted-foreground: oklch(0.40 0.08 300);
+}
+
+/* ===== 案B: プラム＆シルバー (Japan) ===== */
+/* Main: #4a2c4a (プラム) - oklch(0.30 0.10 330) */
+/* Accent: #b8b8b8 (シルバー) - oklch(0.75 0 0) */
+/* Background: #f8f6f4 (ウォームホワイト) */
+
+[data-region="jp"] {
+  --color-purple: oklch(0.30 0.10 330);
+  --color-purple-light: oklch(0.38 0.08 330);
+  --color-purple-dark: oklch(0.22 0.12 330);
+  --color-gold: oklch(0.75 0 0);
+  --color-gold-light: oklch(0.85 0 0);
+  --color-gold-dark: oklch(0.60 0 0);
+  --primary: oklch(0.30 0.10 330);
+  --accent: oklch(0.75 0 0);
+  --foreground: oklch(0.30 0.10 330);
+  --muted-foreground: oklch(0.45 0.06 330);
+}
+
+/* ===== 案C: ロイヤルパープル＆アイボリー (USA) ===== */
+/* Main: #3c1874 (ロイヤルパープル) - oklch(0.25 0.18 290) */
+/* Accent: #c9a962 (ゴールドポイント) + #f5f0e6 (アイボリー) */
+/* Background: #fdfcfa (アイボリーホワイト) */
+
+[data-region="us"] {
+  --color-purple: oklch(0.25 0.18 290);
+  --color-purple-light: oklch(0.35 0.15 290);
+  --color-purple-dark: oklch(0.18 0.20 290);
+  --color-gold: oklch(0.72 0.12 85);
+  --color-gold-light: oklch(0.92 0.03 85);
+  --color-gold-dark: oklch(0.62 0.14 85);
+  --primary: oklch(0.25 0.18 290);
+  --accent: oklch(0.72 0.12 85);
+  --foreground: oklch(0.25 0.18 290);
+  --muted-foreground: oklch(0.42 0.12 290);
+}
