@@ -1,20 +1,39 @@
-import { motion } from "framer-motion";
+import { motion, type Easing } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { Building2, Home as HomeIcon, Key, Shield, ArrowRight, CheckCircle } from "lucide-react";
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 
+// Animation variants - USA: Bold & Dynamic
+// 大胆でインパクトのあるアメリカンスタイルのアニメーション
+const easeAmerican: Easing = [0.4, 0, 0.2, 1];
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeAmerican } },
+};
+
+const slideInLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: easeAmerican } },
+};
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: easeAmerican } },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: easeAmerican } },
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
   },
 };
 
@@ -93,14 +112,14 @@ export default function UsHome() {
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
               <Link
                 href={`${basePath}/services`}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-purple-deep font-medium hover:bg-gold-light transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-purple-deep font-medium us-btn-hover"
               >
                 {t('hero.cta.services')}
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href={`${basePath}/contact`}
-                className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white hover:bg-white/10 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white us-btn-hover"
               >
                 {t('hero.cta.contact')}
               </Link>
@@ -157,7 +176,7 @@ export default function UsHome() {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="bg-white p-8 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white p-8 us-card-hover"
               >
                 <service.icon className="w-12 h-12 text-gold mb-6" />
                 <h3 className="font-heading text-2xl text-charcoal mb-4">
@@ -184,7 +203,7 @@ export default function UsHome() {
           >
             <Link
               href={`${basePath}/services`}
-              className="inline-flex items-center gap-2 text-purple hover:text-gold transition-colors"
+              className="inline-flex items-center gap-2 text-purple us-link-hover"
             >
               {t('hero.cta.services')}
               <ArrowRight className="w-4 h-4" />
@@ -231,7 +250,7 @@ export default function UsHome() {
               <img
                 src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80"
                 alt="Property Management"
-                className="w-full aspect-[4/3] object-cover"
+                className="w-full aspect-[4/3] object-cover us-img-hover"
                 loading="lazy"
               />
             </motion.div>
@@ -256,7 +275,7 @@ export default function UsHome() {
             </p>
             <Link
               href={`${basePath}/contact`}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-purple-deep font-medium hover:bg-gold-light transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-purple-deep font-medium us-btn-hover"
             >
               {t('cta.button')}
               <ArrowRight className="w-4 h-4" />

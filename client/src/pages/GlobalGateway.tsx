@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, type Easing } from "framer-motion";
 import { Link } from "wouter";
 import { Globe, Building2, MapPin } from "lucide-react";
 
@@ -65,16 +65,34 @@ const regions = [
   },
 ];
 
+// Animation variants - Global Gateway: Elegant & Welcoming
+// エレガントで歓迎感のあるアニメーション
+const easeElegant: Easing = [0.25, 0.46, 0.45, 0.94];
+
 const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  hidden: { opacity: 0, y: 30, scale: 0.98 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { duration: 0.7, ease: easeElegant } 
+  },
+};
+
+const fadeInScale = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 0.8, ease: easeElegant } 
+  },
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
   },
 };
 
@@ -176,7 +194,7 @@ export default function GlobalGateway() {
                   variants={fadeInUp}
                   className="group"
                 >
-                  <div className="bg-white/5 backdrop-blur-sm border border-gold/20 p-6 hover:bg-white/10 hover:border-gold/50 transition-all duration-500 h-full">
+                  <div className="bg-white/5 backdrop-blur-sm border border-gold/20 p-6 gateway-card-hover h-full">
                     {/* Region Header */}
                     <div className="flex items-start justify-between mb-4">
                       <div>
@@ -211,7 +229,7 @@ export default function GlobalGateway() {
                           <Link
                             key={lang.code}
                             href={lang.path}
-                            className="px-3 py-1.5 bg-purple-dark border border-gold/30 text-white text-sm hover:bg-gold hover:border-gold hover:text-purple-deep transition-all duration-300"
+                            className="px-3 py-1.5 bg-purple-dark border border-gold/30 text-white text-sm gateway-lang-hover"
                           >
                             {lang.label}
                           </Link>

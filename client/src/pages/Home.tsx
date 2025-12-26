@@ -138,13 +138,13 @@ export default function Home() {
               className="flex flex-wrap gap-4"
             >
               <Link href={`${basePath}/services`}>
-                <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider ${getFontClass()}`}>
+                <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
                   {t.hero.cta1}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
               <Link href={`${basePath}/contact`}>
-                <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider ${getFontClass()}`}>
+                <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
                   {t.hero.cta2}
                 </Button>
               </Link>
@@ -232,7 +232,7 @@ export default function Home() {
               <AnimatedSection key={service.title}>
                 <motion.div
                   variants={fadeInUp}
-                  className="group bg-white border border-gray-200 p-8 hover:border-gold/50 hover:shadow-lg transition-all duration-500 card-hover"
+                  className="group bg-white border border-gray-200 p-8 hk-card-hover"
                 >
                   <service.icon className="h-10 w-10 text-gold mb-6" />
                   <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-4`}>
@@ -249,7 +249,7 @@ export default function Home() {
           <AnimatedSection className="text-center mt-12">
             <motion.div variants={fadeInUp}>
               <Link href={`${basePath}/services`}>
-                <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider ${getFontClass()}`}>
+                <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
                   {t.services.viewAll}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -339,7 +339,7 @@ export default function Home() {
           <AnimatedSection className="text-center mt-12">
             <motion.div variants={fadeInUp}>
               <Link href={`${basePath}/portfolio`}>
-                <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider ${getFontClass()}`}>
+                <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
                   {t.portfolio.viewCase}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

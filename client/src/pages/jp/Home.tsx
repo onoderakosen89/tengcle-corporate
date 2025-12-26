@@ -16,15 +16,33 @@ import Footer from "@/components/jp/Footer";
 import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
 
-// Animation variants with proper typing
-const easeOut: Easing = [0.16, 1, 0.3, 1];
+// Animation variants with proper typing - Japan: Refined & Delicate
+// 日本的な繊細さと優雅さを表現するアニメーション
+const easeJapanese: Easing = [0.22, 1, 0.36, 1]; // Gentle, flowing easing
 
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { 
+    opacity: 0, 
+    y: 40,
+    filter: "blur(4px)"
+  },
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.8, ease: easeOut } 
+    filter: "blur(0px)",
+    transition: { duration: 1.2, ease: easeJapanese } 
+  },
+};
+
+const fadeInDelicate: Variants = {
+  hidden: { 
+    opacity: 0,
+    scale: 0.98
+  },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 1.0, ease: easeJapanese } 
   },
 };
 
@@ -32,7 +50,7 @@ const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
   },
 };
 
@@ -171,13 +189,13 @@ export default function Home() {
               className="flex flex-wrap gap-4"
             >
               <Link href={`${basePath}/services`}>
-                <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider ${getFontClass()}`}>
+                <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
                   {t.hero.cta1}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
               <Link href={`${basePath}/contact`}>
-                <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider ${getFontClass()}`}>
+                <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
                   {t.hero.cta2}
                 </Button>
               </Link>
@@ -239,13 +257,13 @@ export default function Home() {
               <AnimatedSection key={service.title}>
                 <motion.div
                   variants={fadeInUp}
-                  className="group bg-white border border-gray-200 overflow-hidden hover:border-gold/50 hover:shadow-lg transition-all duration-500 card-hover"
+                  className="group bg-white border border-gray-200 overflow-hidden jp-card-hover"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover jp-img-hover"
                     />
                     <div className="absolute inset-0 bg-navy/20 group-hover:bg-navy/10 transition-colors duration-500" />
                   </div>
@@ -266,7 +284,7 @@ export default function Home() {
           <AnimatedSection className="text-center mt-12">
             <motion.div variants={fadeInUp}>
               <Link href={`${basePath}/services`}>
-                <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider ${getFontClass()}`}>
+                <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
                   {t.services.viewAll}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -288,7 +306,7 @@ export default function Home() {
                 {t.contact.description}
               </p>
               <Link href={`${basePath}/contact`}>
-                <Button className={`bg-gold hover:bg-gold-dark text-navy px-8 py-6 text-sm tracking-wider font-medium ${getFontClass()}`}>
+                <Button className={`bg-gold hover:bg-gold-dark text-navy px-8 py-6 text-sm tracking-wider font-medium jp-btn-hover ${getFontClass()}`}>
                   {t.common.getInTouch}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
