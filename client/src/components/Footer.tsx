@@ -151,7 +151,7 @@ export default function Footer() {
             {/* Group Companies */}
             <div className="flex items-center gap-6">
               <a 
-                href="https://jp.tengcle.com" 
+                href="https://www.tengcle.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}

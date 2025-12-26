@@ -199,7 +199,7 @@ export default function Contact() {
             <AnimatedSection className="mt-12">
               <motion.div variants={fadeInUp} className="text-center">
                 <a 
-                  href="https://jp.tengcle.com" 
+                  href="https://www.tengcle.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className={`inline-flex items-center gap-2 text-navy hover:text-gold transition-colors ${getFontClass()}`}

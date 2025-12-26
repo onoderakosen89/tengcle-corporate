@@ -122,6 +122,7 @@
     font-size: 1rem;
     line-height: 1.7;
     letter-spacing: 0.01em;
+    font-feature-settings: "lnum" 1;  /* Lining numerals - all numbers same height */
   }
   
   /* Headings - Playfair Display for English */
@@ -353,5 +354,6 @@
     font-family: var(--font-numbers);
     font-weight: 400;
     letter-spacing: 0.05em;
+    font-feature-settings: "lnum" 1, "tnum" 1;  /* Lining + tabular numerals */
   }
 }
