@@ -43,6 +43,26 @@ const regions = [
       { code: "zh", label: "中文", path: "/jp/zh" },
     ],
   },
+  {
+    id: "us",
+    name: "United States",
+    nameJa: "アメリカ",
+    nameZh: "美国",
+    company: "Tengcle LLC",
+    role: "US Office",
+    roleJa: "米国拠点",
+    roleZh: "美国办事处",
+    description: "Real Estate Management & Vacation Rentals",
+    descriptionJa: "不動産管理・民泊",
+    descriptionZh: "房地产管理与民宿",
+    flag: "🇺🇸",
+    path: "/us/en",
+    languages: [
+      { code: "en", label: "English", path: "/us/en" },
+      { code: "ja", label: "日本語", path: "/us/ja" },
+      { code: "zh", label: "中文", path: "/us/zh" },
+    ],
+  },
 ];
 
 const fadeInUp = {
@@ -54,18 +74,38 @@ const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.2 },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
 export default function GlobalGateway() {
   return (
-    <div className="min-h-screen bg-navy text-white overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+    <div className="min-h-screen bg-purple-deep text-white overflow-hidden relative">
+      {/* Auspicious Pattern Background - Seigaiha (Wave) Pattern */}
+      <div className="absolute inset-0">
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-dark to-purple-deep" />
+        
+        {/* Seigaiha wave pattern - Japanese auspicious pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='50' viewBox='0 0 100 50'%3E%3Cg fill='%23D4AF37'%3E%3Cpath d='M0 25 Q25 0 50 25 Q75 50 100 25 L100 50 L0 50 Z' fill-opacity='0.3'/%3E%3Ccircle cx='0' cy='25' r='20' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.4'/%3E%3Ccircle cx='0' cy='25' r='15' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.3'/%3E%3Ccircle cx='0' cy='25' r='10' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.2'/%3E%3Ccircle cx='50' cy='25' r='20' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.4'/%3E%3Ccircle cx='50' cy='25' r='15' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.3'/%3E%3Ccircle cx='50' cy='25' r='10' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.2'/%3E%3Ccircle cx='100' cy='25' r='20' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.4'/%3E%3Ccircle cx='100' cy='25' r='15' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.3'/%3E%3Ccircle cx='100' cy='25' r='10' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.2'/%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '100px 50px',
+          }}
+        />
+        
+        {/* Additional cloud/fortune pattern overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23D4AF37'%3E%3Cpath d='M40 40c0-11.046-8.954-20-20-20S0 28.954 0 40s8.954 20 20 20 20-8.954 20-20zm40 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z' fill-opacity='0.4'/%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '80px 80px',
+          }}
+        />
+        
+        {/* Subtle radial gradient for depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(30,10,50,0.4)_100%)]" />
       </div>
 
       {/* Content */}
@@ -95,16 +135,19 @@ export default function GlobalGateway() {
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
-              className="text-center mb-16"
+              className="text-center mb-12"
             >
               <motion.div variants={fadeInUp} className="flex justify-center mb-6">
-                <Globe className="w-16 h-16 text-gold" />
+                <div className="relative">
+                  <Globe className="w-16 h-16 text-gold" />
+                  <div className="absolute inset-0 w-16 h-16 bg-gold/20 rounded-full blur-xl" />
+                </div>
               </motion.div>
               <motion.h1
                 variants={fadeInUp}
-                className="font-heading text-4xl md:text-5xl lg:text-6xl mb-6"
+                className="font-heading text-4xl md:text-5xl lg:text-6xl mb-6 text-white"
               >
-                Tengcle Group
+                <span className="text-gradient-gold">Tengcle</span> Group
               </motion.h1>
               <motion.p
                 variants={fadeInUp}
@@ -125,7 +168,7 @@ export default function GlobalGateway() {
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
-              className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+              className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto"
             >
               {regions.map((region) => (
                 <motion.div
@@ -133,24 +176,24 @@ export default function GlobalGateway() {
                   variants={fadeInUp}
                   className="group"
                 >
-                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/10 hover:border-gold/50 transition-all duration-500">
+                  <div className="bg-white/5 backdrop-blur-sm border border-gold/20 p-6 hover:bg-white/10 hover:border-gold/50 transition-all duration-500 h-full">
                     {/* Region Header */}
-                    <div className="flex items-start justify-between mb-6">
+                    <div className="flex items-start justify-between mb-4">
                       <div>
-                        <span className="text-4xl mb-4 block">{region.flag}</span>
-                        <h2 className="font-heading text-2xl md:text-3xl text-white mb-1">
+                        <span className="text-3xl mb-3 block">{region.flag}</span>
+                        <h2 className="font-heading text-xl md:text-2xl text-white mb-1">
                           {region.name}
                         </h2>
-                        <p className="text-gold text-sm tracking-wider uppercase">
+                        <p className="text-gold text-xs tracking-wider uppercase">
                           {region.role}
                         </p>
                       </div>
-                      <Building2 className="w-8 h-8 text-gold/50 group-hover:text-gold transition-colors" />
+                      <Building2 className="w-6 h-6 text-gold/40 group-hover:text-gold transition-colors" />
                     </div>
 
                     {/* Company Info */}
-                    <div className="mb-6">
-                      <p className="text-lg text-white font-medium mb-2">
+                    <div className="mb-5">
+                      <p className="text-base text-white font-medium mb-1">
                         {region.company}
                       </p>
                       <p className="text-gray-400 text-sm">
@@ -159,8 +202,8 @@ export default function GlobalGateway() {
                     </div>
 
                     {/* Language Selection */}
-                    <div className="space-y-3">
-                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
+                    <div className="space-y-2">
+                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-2">
                         Select Language
                       </p>
                       <div className="flex flex-wrap gap-2">
@@ -168,7 +211,7 @@ export default function GlobalGateway() {
                           <Link
                             key={lang.code}
                             href={lang.path}
-                            className="px-4 py-2 bg-navy border border-white/20 text-white text-sm hover:bg-gold hover:border-gold hover:text-navy transition-all duration-300"
+                            className="px-3 py-1.5 bg-purple-dark border border-gold/30 text-white text-sm hover:bg-gold hover:border-gold hover:text-purple-deep transition-all duration-300"
                           >
                             {lang.label}
                           </Link>
@@ -180,23 +223,24 @@ export default function GlobalGateway() {
               ))}
             </motion.div>
 
-            {/* Future Regions Hint */}
+            {/* Auspicious message */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.6 }}
-              className="text-center mt-16"
+              className="text-center mt-12"
             >
-              <p className="text-gray-500 text-sm flex items-center justify-center gap-2">
-                <MapPin className="w-4 h-4" />
-                More regions coming soon
+              <p className="text-gold/60 text-sm flex items-center justify-center gap-2 font-jp">
+                <span className="text-gold">✦</span>
+                think into the future
+                <span className="text-gold">✦</span>
               </p>
             </motion.div>
           </div>
         </main>
 
         {/* Footer */}
-        <footer className="py-8">
+        <footer className="py-6">
           <div className="container">
             <div className="text-center text-gray-500 text-sm">
               <p>© {new Date().getFullYear()} Tengcle Group. All rights reserved.</p>

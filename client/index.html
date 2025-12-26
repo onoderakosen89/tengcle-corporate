@@ -7,8 +7,8 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <title>Tengcle Group | Global Business Solutions</title>
-    <meta name="description" content="Tengcle Group - Global business solutions from Hong Kong and Japan. Hotel procurement, real estate management, hospitality, and more." />
-    <meta name="keywords" content="Tengcle Group, Tengcle Limited, Tengcle Inc, Hong Kong, Japan, hotel procurement, real estate, hospitality" />
+    <meta name="description" content="Tengcle Group - Global business solutions from Hong Kong, Japan, and the United States. Hotel procurement, real estate management, hospitality, and more." />
+    <meta name="keywords" content="Tengcle Group, Tengcle Limited, Tengcle Inc, Tengcle LLC, Hong Kong, Japan, United States, hotel procurement, real estate, hospitality, vacation rentals" />
     <meta name="author" content="Tengcle Group" />
     <meta name="robots" content="index, follow" />
     
@@ -22,11 +22,15 @@
     <link rel="alternate" hreflang="ja-JP" href="https://www.tengcle.com/jp/ja" />
     <link rel="alternate" hreflang="en-JP" href="https://www.tengcle.com/jp/en" />
     <link rel="alternate" hreflang="zh-JP" href="https://www.tengcle.com/jp/zh" />
+    <!-- US pages -->
+    <link rel="alternate" hreflang="en-US" href="https://www.tengcle.com/us/en" />
+    <link rel="alternate" hreflang="ja-US" href="https://www.tengcle.com/us/ja" />
+    <link rel="alternate" hreflang="zh-US" href="https://www.tengcle.com/us/zh" />
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Tengcle Group | Global Business Solutions" />
-    <meta property="og:description" content="Tengcle Group - Global business solutions from Hong Kong and Japan. Hotel procurement, real estate management, hospitality, and more." />
+    <meta property="og:description" content="Tengcle Group - Global business solutions from Hong Kong, Japan, and the United States. Hotel procurement, real estate management, hospitality, and more." />
     <meta property="og:site_name" content="Tengcle Group" />
     <meta property="og:url" content="https://www.tengcle.com/" />
     <meta property="og:image" content="https://www.tengcle.com/images/og-image.jpg" />
@@ -40,7 +44,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Tengcle Group | Global Business Solutions" />
-    <meta name="twitter:description" content="Tengcle Group - Global business solutions from Hong Kong and Japan. Hotel procurement, real estate management, hospitality, and more." />
+    <meta name="twitter:description" content="Tengcle Group - Global business solutions from Hong Kong, Japan, and the United States. Hotel procurement, real estate management, hospitality, and more." />
     <meta name="twitter:image" content="https://www.tengcle.com/images/og-image.jpg" />
     
     <!-- Favicon -->
@@ -80,7 +84,7 @@
             "width": 400,
             "height": 100
           },
-          "description": "Global business solutions group with headquarters in Hong Kong and offices in Japan.",
+          "description": "Global business solutions group with headquarters in Hong Kong and offices in Japan and the United States.",
           "slogan": "think into the future",
           "foundingDate": "2019",
           "foundingLocation": {
@@ -122,9 +126,25 @@
               "description": "Japan Office - Real estate management, restaurant operations, rental gym, capsule hotel, and recruitment services.",
               "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Tokyo",
+                "postalCode": "108-0074",
+                "streetAddress": "2-19-20 Takanawa",
+                "addressLocality": "Minato-ku",
                 "addressRegion": "Tokyo",
                 "addressCountry": "JP"
+              }
+            },
+            {
+              "@type": "Organization",
+              "@id": "https://www.tengcle.com/us/#organization",
+              "name": "Tengcle LLC",
+              "description": "US Office - Real estate management and vacation rental services in the New Jersey and New York metropolitan area.",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "17 Hamilton Ave",
+                "addressLocality": "Weehawken",
+                "addressRegion": "NJ",
+                "postalCode": "07086",
+                "addressCountry": "US"
               }
             }
           ],
@@ -136,6 +156,10 @@
             {
               "@type": "Place",
               "name": "Japan"
+            },
+            {
+              "@type": "Place",
+              "name": "United States"
             },
             {
               "@type": "Place",
@@ -152,7 +176,7 @@
           "@id": "https://www.tengcle.com/#website",
           "url": "https://www.tengcle.com",
           "name": "Tengcle Group",
-          "description": "Global Business Solutions - Hong Kong & Japan",
+          "description": "Global Business Solutions - Hong Kong, Japan & United States",
           "publisher": {
             "@id": "https://www.tengcle.com/#organization"
           },
@@ -192,12 +216,42 @@
           "image": "https://www.tengcle.com/images/og-image.jpg",
           "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Tokyo",
+            "postalCode": "108-0074",
+            "streetAddress": "2-19-20 Takanawa",
+            "addressLocality": "Minato-ku",
             "addressRegion": "Tokyo",
             "addressCountry": "JP"
           },
           "url": "https://www.tengcle.com/jp/ja",
           "email": "info@tengcle.com",
+          "priceRange": "$$$",
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://www.tengcle.com/us/#localbusiness",
+          "name": "Tengcle LLC - US Office",
+          "image": "https://www.tengcle.com/images/og-image.jpg",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "17 Hamilton Ave",
+            "addressLocality": "Weehawken",
+            "addressRegion": "NJ",
+            "postalCode": "07086",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 40.7690,
+            "longitude": -74.0215
+          },
+          "url": "https://www.tengcle.com/us/en",
+          "email": "us@tengcle.com",
           "priceRange": "$$$",
           "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",

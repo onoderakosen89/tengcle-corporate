@@ -1,7 +1,7 @@
 /**
- * Tengcle Limited - Corporate Website
- * Design: Clean White Base with Navy & Gold Accents
- * Style: Professional, Minimal, Trustworthy
+ * Tengcle Group - Global Corporate Website
+ * Design: Elegant Gold & Purple (Royal Theme)
+ * Style: Luxurious, Auspicious, Professional
  * 
  * Typography System:
  * - English Headings: Playfair Display (elegant serif, luxury feel)
@@ -16,7 +16,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Custom Colors - Light Theme (White Base) */
+/* Custom Colors - Gold & Purple Theme */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -55,15 +55,22 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   
-  /* Tengcle Brand Colors */
-  --color-navy: oklch(0.25 0.05 250);
-  --color-navy-light: oklch(0.35 0.05 250);
-  --color-gold: oklch(0.65 0.15 85);
-  --color-gold-dark: oklch(0.55 0.15 85);
-  --color-charcoal: oklch(0.30 0.01 250);
-  --color-slate: oklch(0.45 0.01 250);
-  --color-light-gray: oklch(0.97 0.005 250);
+  /* Tengcle Brand Colors - Gold & Purple Theme */
+  --color-purple: oklch(0.35 0.15 290);
+  --color-purple-light: oklch(0.45 0.12 290);
+  --color-purple-dark: oklch(0.25 0.18 290);
+  --color-purple-deep: oklch(0.20 0.15 290);
+  --color-gold: oklch(0.72 0.16 85);
+  --color-gold-light: oklch(0.80 0.14 85);
+  --color-gold-dark: oklch(0.60 0.18 85);
+  --color-charcoal: oklch(0.25 0.02 290);
+  --color-slate: oklch(0.50 0.03 290);
+  --color-light-gray: oklch(0.97 0.005 290);
   --color-warm-white: oklch(0.995 0.002 90);
+  
+  /* Legacy navy aliases for compatibility */
+  --color-navy: var(--color-purple-dark);
+  --color-navy-light: var(--color-purple);
   
   /* Font families - Elegant Typography System */
   --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
@@ -75,39 +82,39 @@
 }
 
 :root {
-  /* Light Theme - White Base */
+  /* Light Theme - White Base with Gold & Purple accents */
   --radius: 0.5rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.20 0.02 250);
+  --foreground: oklch(0.20 0.03 290);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.20 0.02 250);
+  --card-foreground: oklch(0.20 0.03 290);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.20 0.02 250);
-  --primary: oklch(0.25 0.05 250);
+  --popover-foreground: oklch(0.20 0.03 290);
+  --primary: oklch(0.35 0.15 290);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.97 0.005 250);
-  --secondary-foreground: oklch(0.30 0.02 250);
-  --muted: oklch(0.96 0.005 250);
-  --muted-foreground: oklch(0.50 0.02 250);
-  --accent: oklch(0.65 0.15 85);
-  --accent-foreground: oklch(0.20 0.02 250);
+  --secondary: oklch(0.97 0.005 290);
+  --secondary-foreground: oklch(0.30 0.03 290);
+  --muted: oklch(0.96 0.005 290);
+  --muted-foreground: oklch(0.50 0.03 290);
+  --accent: oklch(0.72 0.16 85);
+  --accent-foreground: oklch(0.20 0.03 290);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.005 250);
-  --input: oklch(0.92 0.005 250);
-  --ring: oklch(0.65 0.15 85);
-  --chart-1: oklch(0.25 0.05 250);
-  --chart-2: oklch(0.65 0.15 85);
-  --chart-3: oklch(0.45 0.05 250);
-  --chart-4: oklch(0.55 0.12 85);
-  --chart-5: oklch(0.35 0.05 250);
-  --sidebar: oklch(0.98 0.002 250);
-  --sidebar-foreground: oklch(0.20 0.02 250);
-  --sidebar-accent: oklch(0.96 0.005 250);
-  --sidebar-accent-foreground: oklch(0.20 0.02 250);
-  --sidebar-border: oklch(0.92 0.005 250);
-  --sidebar-ring: oklch(0.65 0.15 85);
-  --sidebar-primary: oklch(0.25 0.05 250);
+  --border: oklch(0.92 0.005 290);
+  --input: oklch(0.92 0.005 290);
+  --ring: oklch(0.72 0.16 85);
+  --chart-1: oklch(0.35 0.15 290);
+  --chart-2: oklch(0.72 0.16 85);
+  --chart-3: oklch(0.45 0.12 290);
+  --chart-4: oklch(0.60 0.18 85);
+  --chart-5: oklch(0.25 0.18 290);
+  --sidebar: oklch(0.98 0.002 290);
+  --sidebar-foreground: oklch(0.20 0.03 290);
+  --sidebar-accent: oklch(0.96 0.005 290);
+  --sidebar-accent-foreground: oklch(0.20 0.03 290);
+  --sidebar-border: oklch(0.92 0.005 290);
+  --sidebar-ring: oklch(0.72 0.16 85);
+  --sidebar-primary: oklch(0.35 0.15 290);
   --sidebar-primary-foreground: oklch(1 0 0);
 }
 
@@ -254,29 +261,67 @@
     line-height: 1.8;
   }
   
-  /* Brand Colors */
+  /* Brand Colors - Purple */
+  .bg-purple {
+    background-color: var(--color-purple);
+  }
+  
+  .bg-purple-light {
+    background-color: var(--color-purple-light);
+  }
+  
+  .bg-purple-dark {
+    background-color: var(--color-purple-dark);
+  }
+  
+  .bg-purple-deep {
+    background-color: var(--color-purple-deep);
+  }
+  
+  .text-purple {
+    color: var(--color-purple);
+  }
+  
+  .text-purple-light {
+    color: var(--color-purple-light);
+  }
+  
+  .text-purple-dark {
+    color: var(--color-purple-dark);
+  }
+  
+  /* Legacy navy classes - now map to purple */
   .bg-navy {
-    background-color: var(--color-navy);
+    background-color: var(--color-purple-dark);
   }
   
   .bg-navy-light {
-    background-color: var(--color-navy-light);
+    background-color: var(--color-purple);
   }
   
   .text-navy {
-    color: var(--color-navy);
+    color: var(--color-purple-dark);
   }
   
   .text-navy-light {
-    color: var(--color-navy-light);
+    color: var(--color-purple);
   }
   
+  /* Brand Colors - Gold */
   .bg-gold {
     background-color: var(--color-gold);
   }
   
+  .bg-gold-light {
+    background-color: var(--color-gold-light);
+  }
+  
   .text-gold {
     color: var(--color-gold);
+  }
+  
+  .text-gold-light {
+    color: var(--color-gold-light);
   }
   
   .text-gold-dark {
@@ -307,22 +352,49 @@
     border-color: var(--color-gold);
   }
   
+  .border-purple {
+    border-color: var(--color-purple);
+  }
+  
   .border-navy {
-    border-color: var(--color-navy);
+    border-color: var(--color-purple-dark);
   }
   
   /* Gold gradient text */
   .text-gradient-gold {
-    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 50%, var(--color-gold-dark) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+  
+  /* Purple gradient text */
+  .text-gradient-purple {
+    background: linear-gradient(135deg, var(--color-purple-light) 0%, var(--color-purple) 50%, var(--color-purple-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Gold & Purple gradient */
+  .bg-gradient-royal {
+    background: linear-gradient(135deg, var(--color-purple-deep) 0%, var(--color-purple-dark) 50%, var(--color-purple) 100%);
+  }
+  
+  .bg-gradient-gold-purple {
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-purple) 100%);
   }
   
   /* Gold accent line */
   .gold-line {
     height: 1px;
     background: linear-gradient(90deg, transparent 0%, var(--color-gold) 50%, transparent 100%);
+  }
+  
+  /* Purple accent line */
+  .purple-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--color-purple) 50%, transparent 100%);
   }
   
   /* Section divider */
@@ -338,7 +410,7 @@
   
   .card-hover:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 40px rgba(75, 0, 130, 0.12);
   }
   
   /* Elegant stat numbers */
@@ -355,5 +427,20 @@
     font-weight: 400;
     letter-spacing: 0.05em;
     font-feature-settings: "lnum" 1, "tnum" 1;  /* Lining + tabular numerals */
+  }
+  
+  /* Auspicious pattern overlay */
+  .pattern-auspicious {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  /* Seigaiha (wave) pattern - Japanese auspicious */
+  .pattern-seigaiha {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.06'%3E%3Cpath d='M0 40a19.96 19.96 0 0 1 5.9-14.11 20.17 20.17 0 0 1 19.44-5.33A20 20 0 0 1 20.2 40H0zM65.32.75A20.02 20.02 0 0 1 40.8 20.2 20.02 20.02 0 0 1 65.32.75zM.07 0h20.1A20.02 20.02 0 0 1 .07 0zM80 40a19.96 19.96 0 0 1-5.9-14.11 20.17 20.17 0 0 1-19.44-5.33A20 20 0 0 1 59.8 40H80z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  /* Cloud pattern - Chinese auspicious */
+  .pattern-clouds {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23D4AF37' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
   }
 }

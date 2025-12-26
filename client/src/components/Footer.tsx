@@ -124,6 +124,12 @@ export default function Footer() {
                   <ExternalLink className="h-3 w-3" />
                 </span>
               </Link>
+              <Link href="/us/en">
+                <span className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}>
+                  <span>US Office</span>
+                  <ExternalLink className="h-3 w-3" />
+                </span>
+              </Link>
             </div>
           </div>
         </div>

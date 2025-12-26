@@ -7,6 +7,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { JpLanguageProvider } from "./contexts/JpLanguageContext";
+import { UsLanguageProvider } from "./contexts/UsLanguageContext";
 import SplashScreen from "./components/SplashScreen";
 
 // Global Gateway
@@ -25,6 +26,12 @@ import JpServices from "./pages/jp/Services";
 import JpAbout from "./pages/jp/About";
 import JpCareers from "./pages/jp/Careers";
 import JpContact from "./pages/jp/Contact";
+
+// US Pages
+import UsHome from "./pages/us/Home";
+import UsServices from "./pages/us/Services";
+import UsAbout from "./pages/us/About";
+import UsContact from "./pages/us/Contact";
 
 // Hong Kong Router with Language Provider
 function HkRouter() {
@@ -90,12 +97,42 @@ function JpRouter() {
   );
 }
 
+// US Router with US Language Provider
+function UsRouter() {
+  return (
+    <UsLanguageProvider>
+      <Switch>
+        {/* US Routes - English */}
+        <Route path="/us/en" component={UsHome} />
+        <Route path="/us/en/services" component={UsServices} />
+        <Route path="/us/en/about" component={UsAbout} />
+        <Route path="/us/en/contact" component={UsContact} />
+        
+        {/* US Routes - Japanese */}
+        <Route path="/us/ja" component={UsHome} />
+        <Route path="/us/ja/services" component={UsServices} />
+        <Route path="/us/ja/about" component={UsAbout} />
+        <Route path="/us/ja/contact" component={UsContact} />
+        
+        {/* US Routes - Chinese */}
+        <Route path="/us/zh" component={UsHome} />
+        <Route path="/us/zh/services" component={UsServices} />
+        <Route path="/us/zh/about" component={UsAbout} />
+        <Route path="/us/zh/contact" component={UsContact} />
+        
+        <Route component={NotFound} />
+      </Switch>
+    </UsLanguageProvider>
+  );
+}
+
 function MainRouter() {
   const [location] = useLocation();
   
   // Determine which region we're in
   const isHk = location.startsWith("/hk");
   const isJp = location.startsWith("/jp");
+  const isUs = location.startsWith("/us");
   const isGateway = location === "/";
   
   if (isGateway) {
@@ -108,6 +145,10 @@ function MainRouter() {
   
   if (isJp) {
     return <JpRouter />;
+  }
+  
+  if (isUs) {
+    return <UsRouter />;
   }
   
   return <NotFound />;
