@@ -3,6 +3,7 @@
  * 
  * Displays a full-screen logo video on page load.
  * After the video ends, smoothly transitions to reveal the main content.
+ * Responsive design with letterboxing/pillarboxing for various screen sizes.
  */
 
 import { useState, useRef, useEffect } from "react";
@@ -71,41 +72,36 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           initial={{ opacity: 1 }}
           animate={{ 
             opacity: phase === "fading" ? 0 : 1,
-            scale: phase === "fading" ? 1.05 : 1,
           }}
           exit={{ opacity: 0 }}
           transition={{ 
             duration: 1,
-            ease: [0.4, 0, 0.2, 1], // Custom easing for smoother feel
+            ease: [0.4, 0, 0.2, 1],
           }}
           className="fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden"
         >
-          {/* Subtle gradient overlay for depth */}
+          {/* Video container - full screen with object-contain for letterboxing */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: phase === "fading" ? 0.3 : 0 }}
-            transition={{ duration: 0.8 }}
-            className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/10"
-          />
-          
-          {/* Video container with subtle scale animation */}
-          <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ 
-              scale: phase === "fading" ? 1.02 : 1, 
               opacity: phase === "fading" ? 0 : 1 
             }}
             transition={{ 
-              duration: phase === "fading" ? 1 : 0.5,
+              duration: phase === "fading" ? 1 : 0.3,
               ease: [0.4, 0, 0.2, 1]
             }}
-            className="relative"
+            className="absolute inset-0 flex items-center justify-center"
           >
             <video
               ref={videoRef}
               muted
               playsInline
-              className="max-w-[80vw] max-h-[80vh] w-auto h-auto object-contain"
+              className="w-full h-full object-contain"
+              style={{
+                // Ensure video maintains aspect ratio with black letterboxing/pillarboxing
+                maxWidth: '100vw',
+                maxHeight: '100vh',
+              }}
             >
               <source src="/videos/tengcle_logo_1.mp4" type="video/mp4" />
             </video>
