@@ -246,7 +246,7 @@ export default function Home() {
       <SEOHead
         title={currentSeo.title}
         description={currentSeo.description}
-        canonical={`https://www.tengcle.com/hk/${language}`}
+        canonical={`https://tengcle.com/hk/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
         ogImage="/images/og-image-hk.jpg"
       />

@@ -118,12 +118,12 @@ export default function UsAbout() {
                     <Globe className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
                     <div>
                       <a 
-                        href="https://www.tengcle.com/us/en" 
+                        href="https://tengcle.com/us/en" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-purple hover:text-gold transition-colors flex items-center gap-1"
                       >
-                        www.tengcle.com/us
+                        tengcle.com/us
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     </div>

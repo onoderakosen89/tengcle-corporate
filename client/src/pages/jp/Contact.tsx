@@ -73,7 +73,7 @@ export default function Contact() {
         : language === "zh"
         ? "〒108-0074\n东京都港区高轮2-19-20"
         : "2-19-20 Takanawa, Minato-ku\nTokyo 108-0074, Japan",
-      mapUrl: "https://maps.google.com/?q=2-19-20+Takanawa+Minato-ku+Tokyo",
+      mapUrl: "https://www.google.com/maps/place/2-19-20+Takanawa,+Minato+City,+Tokyo+108-0074,+Japan",
     },
     {
       name: t.contact.info.tokyoOffice2,
@@ -89,6 +89,11 @@ export default function Contact() {
       address: "No. 5, 17/F, Strand 50\n50 Bonham Strand\nSheung Wan, Hong Kong",
       mapUrl: "https://maps.google.com/?q=50+Bonham+Strand+Sheung+Wan+Hong+Kong",
       isHQ: true,
+    },
+    {
+      name: language === "ja" ? "アメリカオフィス" : language === "zh" ? "美国办公室" : "US Office",
+      address: "17 Hamilton Ave\nWeehawken, NJ 07086\nUnited States",
+      mapUrl: "https://maps.google.com/?q=17+Hamilton+Ave+Weehawken+NJ+07086",
     },
   ];
 
@@ -148,7 +153,7 @@ export default function Contact() {
       {/* Offices Section */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="container">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {offices.map((office) => (
               <AnimatedSection key={office.name}>
                 <motion.div 

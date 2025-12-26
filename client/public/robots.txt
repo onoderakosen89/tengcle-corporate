@@ -1,12 +1,12 @@
 # Robots.txt for Tengcle Limited
-# https://www.tengcle.com
+# https://tengcle.com
 
 # Allow all crawlers
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.tengcle.com/sitemap.xml
+Sitemap: https://tengcle.com/sitemap.xml
 
 # Disallow admin and private directories (if any)
 Disallow: /api/

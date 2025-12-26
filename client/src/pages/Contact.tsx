@@ -203,7 +203,7 @@ export default function Contact() {
             <AnimatedSection className="mt-12">
               <motion.div variants={fadeInUp} className="text-center flex flex-wrap justify-center gap-6">
                 <a 
-                  href="https://www.tengcle.com/jp/ja" 
+                  href="https://tengcle.com/jp/ja" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className={`inline-flex items-center gap-2 text-navy hover:text-gold transition-colors ${getFontClass()}`}
@@ -212,7 +212,7 @@ export default function Contact() {
                   <ExternalLink className="h-4 w-4" />
                 </a>
                 <a 
-                  href="https://www.tengcle.com/us/en" 
+                  href="https://tengcle.com/us/en" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className={`inline-flex items-center gap-2 text-navy hover:text-gold transition-colors ${getFontClass()}`}
