@@ -1,6 +1,16 @@
+/**
+ * Global Gateway - Region & Language Selection
+ * 
+ * Design Philosophy: 和モダン × グローバルエレガンス
+ * - Deep navy background with visible Seigaiha (青海波) pattern
+ * - Champagne gold accents for luxury feel
+ * - Glass morphism cards with warm undertones
+ * - Elegant hover effects with glow
+ */
+
 import { motion, type Easing } from "framer-motion";
 import { Link } from "wouter";
-import { Globe, Building2, MapPin } from "lucide-react";
+import { Globe, Building2, ArrowRight } from "lucide-react";
 
 const regions = [
   {
@@ -16,7 +26,9 @@ const regions = [
     descriptionJa: "資産管理・ホテル調達",
     descriptionZh: "资产管理与酒店采购",
     flag: "🇭🇰",
+    flagImage: "/images/flag-hk.svg",
     path: "/hk/en",
+    color: "#c9a962",
     languages: [
       { code: "en", label: "English", path: "/hk/en" },
       { code: "ja", label: "日本語", path: "/hk/ja" },
@@ -36,7 +48,9 @@ const regions = [
     descriptionJa: "不動産・飲食・フィットネス・宿泊・人材",
     descriptionZh: "房地产、餐饮、健身、住宿、人才",
     flag: "🇯🇵",
+    flagImage: "/images/flag-jp.svg",
     path: "/jp/ja",
+    color: "#bc002d",
     languages: [
       { code: "ja", label: "日本語", path: "/jp/ja" },
       { code: "en", label: "English", path: "/jp/en" },
@@ -56,7 +70,9 @@ const regions = [
     descriptionJa: "不動産管理・民泊",
     descriptionZh: "房地产管理与民宿",
     flag: "🇺🇸",
+    flagImage: "/images/flag-us.svg",
     path: "/us/en",
+    color: "#3c3b6e",
     languages: [
       { code: "en", label: "English", path: "/us/en" },
       { code: "ja", label: "日本語", path: "/us/ja" },
@@ -65,26 +81,24 @@ const regions = [
   },
 ];
 
-// Animation variants - Global Gateway: Elegant & Welcoming
-// エレガントで歓迎感のあるアニメーション
+// Animation variants
 const easeElegant: Easing = [0.25, 0.46, 0.45, 0.94];
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 30, scale: 0.98 },
+  hidden: { opacity: 0, y: 40 },
   visible: { 
     opacity: 1, 
     y: 0, 
-    scale: 1,
-    transition: { duration: 0.7, ease: easeElegant } 
+    transition: { duration: 0.8, ease: easeElegant } 
   },
 };
 
-const fadeInScale = {
-  hidden: { opacity: 0, scale: 0.95 },
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.9 },
   visible: { 
     opacity: 1, 
     scale: 1,
-    transition: { duration: 0.8, ease: easeElegant } 
+    transition: { duration: 0.6, ease: easeElegant } 
   },
 };
 
@@ -92,93 +106,112 @@ const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
   },
 };
 
+// Seigaiha SVG pattern - more visible
+const seigaihaPattern = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='90' viewBox='0 0 180 90'%3E%3Cg fill='none' stroke='%23c9a962'%3E%3Ccircle cx='0' cy='45' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='0' cy='45' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='0' cy='45' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='0' cy='45' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='60' cy='45' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='60' cy='45' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='60' cy='45' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='60' cy='45' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='120' cy='45' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='120' cy='45' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='120' cy='45' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='120' cy='45' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='180' cy='45' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='180' cy='45' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='180' cy='45' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='180' cy='45' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='30' cy='0' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='30' cy='0' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='30' cy='0' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='30' cy='0' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='90' cy='0' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='90' cy='0' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='90' cy='0' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='90' cy='0' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='150' cy='0' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='150' cy='0' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='150' cy='0' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='150' cy='0' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='30' cy='90' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='30' cy='90' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='30' cy='90' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='30' cy='90' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='90' cy='90' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='90' cy='90' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='90' cy='90' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='90' cy='90' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='150' cy='90' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='150' cy='90' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='150' cy='90' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='150' cy='90' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3C/g%3E%3C/svg%3E")`;
+
 export default function GlobalGateway() {
   return (
-    <div className="min-h-screen bg-[#2d1b4e] text-white overflow-hidden relative">
-      {/* Auspicious Pattern Background - Seigaiha (Wave) Pattern */}
+    <div className="min-h-screen bg-[#0a0f1a] text-white overflow-hidden relative">
+      {/* Animated Seigaiha Background */}
       <div className="absolute inset-0">
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#2d1b4e] via-[#1a0f2e] to-[#2d1b4e]" />
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a] via-[#0d1420] to-[#0a0f1a]" />
         
-        {/* Seigaiha wave pattern - Japanese auspicious pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.08]"
+        {/* Seigaiha pattern layer - animated */}
+        <motion.div 
+          className="absolute inset-0"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='50' viewBox='0 0 100 50'%3E%3Cg fill='%23D4AF37'%3E%3Cpath d='M0 25 Q25 0 50 25 Q75 50 100 25 L100 50 L0 50 Z' fill-opacity='0.3'/%3E%3Ccircle cx='0' cy='25' r='20' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.4'/%3E%3Ccircle cx='0' cy='25' r='15' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.3'/%3E%3Ccircle cx='0' cy='25' r='10' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.2'/%3E%3Ccircle cx='50' cy='25' r='20' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.4'/%3E%3Ccircle cx='50' cy='25' r='15' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.3'/%3E%3Ccircle cx='50' cy='25' r='10' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.2'/%3E%3Ccircle cx='100' cy='25' r='20' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.4'/%3E%3Ccircle cx='100' cy='25' r='15' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.3'/%3E%3Ccircle cx='100' cy='25' r='10' fill='none' stroke='%23D4AF37' stroke-width='0.5' stroke-opacity='0.2'/%3E%3C/g%3E%3C/svg%3E")`,
-            backgroundSize: '100px 50px',
+            backgroundImage: seigaihaPattern,
+            backgroundSize: '180px 90px',
+          }}
+          animate={{
+            y: [0, -10, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
           }}
         />
         
-        {/* Additional cloud/fortune pattern overlay */}
-        <div 
-          className="absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23D4AF37'%3E%3Cpath d='M40 40c0-11.046-8.954-20-20-20S0 28.954 0 40s8.954 20 20 20 20-8.954 20-20zm40 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z' fill-opacity='0.4'/%3E%3C/g%3E%3C/svg%3E")`,
-            backgroundSize: '80px 80px',
-          }}
-        />
+        {/* Gradient overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] via-transparent to-[#0a0f1a]/50" />
         
-        {/* Subtle radial gradient for depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(30,10,50,0.4)_100%)]" />
+        {/* Radial glow in center */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,169,98,0.08)_0%,_transparent_60%)]" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Header */}
-        <header className="py-8">
+        <header className="py-8 md:py-12">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8, ease: easeElegant }}
               className="flex justify-center"
             >
               <img
                 src="/images/tengcle-logo-white.png"
                 alt="Tengcle - think into the future"
-                className="h-12 md:h-16"
+                className="h-14 md:h-20"
               />
             </motion.div>
           </div>
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 flex items-center justify-center py-12">
-          <div className="container">
+        <main className="flex-1 flex items-center justify-center py-8 md:py-16">
+          <div className="container px-4 md:px-8">
+            {/* Title Section */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
-              className="text-center mb-12"
+              className="text-center mb-12 md:mb-16"
             >
-              <motion.div variants={fadeInUp} className="flex justify-center mb-6">
+              <motion.div variants={scaleIn} className="flex justify-center mb-8">
                 <div className="relative">
-                  <Globe className="w-16 h-16 text-gold" />
-                  <div className="absolute inset-0 w-16 h-16 bg-gold/20 rounded-full blur-xl" />
+                  <Globe className="w-20 h-20 md:w-24 md:h-24 text-gold" strokeWidth={1} />
+                  <motion.div 
+                    className="absolute inset-0 bg-gold/20 rounded-full blur-2xl"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.5, 0.3],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
                 </div>
               </motion.div>
+              
               <motion.h1
                 variants={fadeInUp}
-                className="font-heading text-4xl md:text-5xl lg:text-6xl mb-6 text-white"
+                className="font-heading text-4xl md:text-5xl lg:text-7xl mb-6"
               >
-                <span className="text-gradient-gold">Tengcle</span> Group
+                <span className="text-gold">Tengcle</span>{" "}
+                <span className="text-white/90">Group</span>
               </motion.h1>
-              <motion.p
-                variants={fadeInUp}
-                className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto"
-              >
-                Select your region and language
-              </motion.p>
-              <motion.p
-                variants={fadeInUp}
-                className="text-lg text-gray-400 mt-2"
-              >
-                地域と言語を選択してください / 选择您的地区和语言
-              </motion.p>
+              
+              <motion.div variants={fadeInUp} className="space-y-2">
+                <p className="text-xl md:text-2xl text-white/70 font-light tracking-wide">
+                  Select your region and language
+                </p>
+                <p className="text-base md:text-lg text-white/50 font-jp">
+                  地域と言語を選択してください
+                </p>
+                <p className="text-base md:text-lg text-white/50 font-zh">
+                  选择您的地区和语言
+                </p>
+              </motion.div>
             </motion.div>
 
             {/* Region Cards */}
@@ -186,7 +219,7 @@ export default function GlobalGateway() {
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
-              className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto"
+              className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto"
             >
               {regions.map((region) => (
                 <motion.div
@@ -194,46 +227,64 @@ export default function GlobalGateway() {
                   variants={fadeInUp}
                   className="group"
                 >
-                  <div className="bg-white/5 backdrop-blur-sm border border-gold/20 p-6 gateway-card-hover h-full">
-                    {/* Region Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <span className="text-3xl mb-3 block">{region.flag}</span>
-                        <h2 className="font-heading text-xl md:text-2xl text-white mb-1">
-                          {region.name}
-                        </h2>
-                        <p className="text-gold text-xs tracking-wider uppercase">
-                          {region.role}
+                  <div className="relative h-full">
+                    {/* Card glow effect on hover */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-gold/0 via-gold/30 to-gold/0 rounded-lg opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
+                    
+                    {/* Card */}
+                    <div className="relative bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-lg p-6 md:p-8 h-full transition-all duration-500 group-hover:bg-white/[0.06] group-hover:border-gold/30 group-hover:translate-y-[-4px]">
+                      {/* Flag & Region Name */}
+                      <div className="flex items-start justify-between mb-6">
+                        <div>
+                          <span className="text-5xl md:text-6xl block mb-4 drop-shadow-lg">
+                            {region.flag}
+                          </span>
+                          <h2 className="font-heading text-2xl md:text-3xl text-white mb-1">
+                            {region.name}
+                          </h2>
+                          <p className="text-gold text-sm tracking-[0.2em] uppercase font-medium">
+                            {region.role}
+                          </p>
+                        </div>
+                        <Building2 className="w-6 h-6 text-white/20 group-hover:text-gold/60 transition-colors duration-300" />
+                      </div>
+
+                      {/* Company Info */}
+                      <div className="mb-8">
+                        <p className="text-lg text-white/90 font-medium mb-2">
+                          {region.company}
+                        </p>
+                        <p className="text-white/50 text-sm leading-relaxed">
+                          {region.description}
                         </p>
                       </div>
-                      <Building2 className="w-6 h-6 text-gold/40 group-hover:text-gold transition-colors" />
-                    </div>
 
-                    {/* Company Info */}
-                    <div className="mb-5">
-                      <p className="text-base text-white font-medium mb-1">
-                        {region.company}
-                      </p>
-                      <p className="text-gray-400 text-sm">
-                        {region.description}
-                      </p>
-                    </div>
+                      {/* Divider */}
+                      <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6" />
 
-                    {/* Language Selection */}
-                    <div className="space-y-2">
-                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-2">
-                        Select Language
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {region.languages.map((lang) => (
-                          <Link
-                            key={lang.code}
-                            href={lang.path}
-                            className="px-3 py-1.5 bg-purple-dark border border-gold/30 text-white text-sm gateway-lang-hover"
-                          >
-                            {lang.label}
-                          </Link>
-                        ))}
+                      {/* Language Selection */}
+                      <div>
+                        <p className="text-xs text-white/40 uppercase tracking-[0.15em] mb-4">
+                          Select Language
+                        </p>
+                        <div className="flex flex-wrap gap-3">
+                          {region.languages.map((lang) => (
+                            <Link
+                              key={lang.code}
+                              href={lang.path}
+                              className="group/btn relative px-5 py-2.5 text-sm font-medium text-white/80 transition-all duration-300 overflow-hidden"
+                            >
+                              {/* Button background */}
+                              <span className="absolute inset-0 bg-white/5 border border-white/10 rounded group-hover/btn:bg-gold/20 group-hover/btn:border-gold/40 transition-all duration-300" />
+                              
+                              {/* Button text */}
+                              <span className="relative flex items-center gap-2 group-hover/btn:text-gold transition-colors duration-300">
+                                {lang.label}
+                                <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover/btn:opacity-100 group-hover/btn:translate-x-0 transition-all duration-300" />
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -241,26 +292,24 @@ export default function GlobalGateway() {
               ))}
             </motion.div>
 
-            {/* Auspicious message */}
+            {/* Tagline */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.6 }}
-              className="text-center mt-12"
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="text-center mt-16 md:mt-20"
             >
-              <p className="text-gold/60 text-sm flex items-center justify-center gap-2 font-jp">
-                <span className="text-gold">✦</span>
-                think into the future
-                <span className="text-gold">✦</span>
+              <p className="text-gold/50 text-sm md:text-base tracking-[0.3em] uppercase font-light">
+                ✦ think into the future ✦
               </p>
             </motion.div>
           </div>
         </main>
 
         {/* Footer */}
-        <footer className="py-6">
+        <footer className="py-6 md:py-8">
           <div className="container">
-            <div className="text-center text-gray-500 text-sm">
+            <div className="text-center text-white/30 text-sm">
               <p>© {new Date().getFullYear()} Tengcle Group. All rights reserved.</p>
             </div>
           </div>

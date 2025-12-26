@@ -1,4 +1,14 @@
-import { motion, type Easing } from "framer-motion";
+/**
+ * US Home Page - Bold American Style with Parallax
+ * 
+ * Design Philosophy:
+ * - Bold, dynamic animations
+ * - High contrast with purple and gold
+ * - Impactful parallax scrolling
+ */
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform, type Easing } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { Building2, Home as HomeIcon, Key, Shield, ArrowRight, CheckCircle } from "lucide-react";
 import UsHeader from "@/components/us/Header";
@@ -6,27 +16,11 @@ import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 
 // Animation variants - USA: Bold & Dynamic
-// 大胆でインパクトのあるアメリカンスタイルのアニメーション
 const easeAmerican: Easing = [0.4, 0, 0.2, 1];
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeAmerican } },
-};
-
-const slideInLeft = {
-  hidden: { opacity: 0, x: -40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: easeAmerican } },
-};
-
-const slideInRight = {
-  hidden: { opacity: 0, x: 40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: easeAmerican } },
-};
-
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: easeAmerican } },
 };
 
 const staggerContainer = {
@@ -36,6 +30,101 @@ const staggerContainer = {
     transition: { staggerChildren: 0.1, delayChildren: 0.05 },
   },
 };
+
+// Hero Section with Parallax Effect - Bold American Style
+function UsHeroSection({ basePath, t }: { basePath: string; t: (key: string) => string }) {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  // Parallax transforms - Bold and dynamic movement
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
+  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  return (
+    <section ref={heroRef} className="relative min-h-screen flex items-center bg-purple-deep overflow-hidden">
+      {/* Background Image with Parallax */}
+      <motion.div 
+        className="absolute inset-0"
+        style={{ y: backgroundY, scale: backgroundScale }}
+      >
+        <img
+          src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1920&q=80"
+          alt="New York City Skyline"
+          className="w-full h-[120%] object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-deep/70 via-purple-deep/50 to-transparent" />
+      </motion.div>
+
+      {/* Content with Parallax */}
+      <motion.div 
+        className="container relative z-10 pt-32 pb-20"
+        style={{ y: contentY, opacity }}
+      >
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="max-w-3xl"
+        >
+          <motion.p
+            variants={fadeInUp}
+            className="text-gold text-sm tracking-widest uppercase mb-4"
+          >
+            {t('hero.tagline')}
+          </motion.p>
+          <motion.h1
+            variants={fadeInUp}
+            className="font-heading text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight"
+          >
+            {t('hero.title')}
+          </motion.h1>
+          <motion.p
+            variants={fadeInUp}
+            className="text-xl text-gray-300 mb-8 leading-relaxed"
+          >
+            {t('hero.subtitle')}
+          </motion.p>
+          <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
+            <Link
+              href={`${basePath}/services`}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-purple-deep font-medium us-btn-hover"
+            >
+              {t('hero.cta.services')}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href={`${basePath}/contact`}
+              className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white us-btn-hover"
+            >
+              {t('hero.cta.contact')}
+            </Link>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll Indicator - Dynamic American Style */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+      >
+        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-1.5 h-1.5 bg-gold rounded-full mt-2"
+          />
+        </div>
+      </motion.div>
+    </section>
+  );
+}
 
 export default function UsHome() {
   const { language, t } = useUsLanguage();
@@ -71,78 +160,8 @@ export default function UsHome() {
     <div className="min-h-screen bg-white" data-region="us">
       <UsHeader />
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center bg-purple-deep overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1920&q=80"
-            alt="New York City Skyline"
-            className="w-full h-full object-cover opacity-60"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-deep/70 via-purple-deep/50 to-transparent" />
-        </div>
-
-        {/* Content */}
-        <div className="container relative z-10 pt-32 pb-20">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-            className="max-w-3xl"
-          >
-            <motion.p
-              variants={fadeInUp}
-              className="text-gold text-sm tracking-widest uppercase mb-4"
-            >
-              {t('hero.tagline')}
-            </motion.p>
-            <motion.h1
-              variants={fadeInUp}
-              className="font-heading text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight"
-            >
-              {t('hero.title')}
-            </motion.h1>
-            <motion.p
-              variants={fadeInUp}
-              className="text-xl text-gray-300 mb-8 leading-relaxed"
-            >
-              {t('hero.subtitle')}
-            </motion.p>
-            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
-              <Link
-                href={`${basePath}/services`}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-purple-deep font-medium us-btn-hover"
-              >
-                {t('hero.cta.services')}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href={`${basePath}/contact`}
-                className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white us-btn-hover"
-              >
-                {t('hero.cta.contact')}
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-gold rounded-full mt-2"
-            />
-          </div>
-        </motion.div>
-      </section>
+      {/* Hero Section with Parallax */}
+      <UsHeroSection basePath={basePath} t={t} />
 
       {/* Services Overview */}
       <section className="py-24 bg-light-gray">

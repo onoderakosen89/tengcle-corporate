@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
+import { motion, AnimatePresence, type Easing } from "framer-motion";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -33,101 +34,169 @@ import UsServices from "./pages/us/Services";
 import UsAbout from "./pages/us/About";
 import UsContact from "./pages/us/Contact";
 
+// Page transition variants for each region
+const pageTransitions = {
+  hk: {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -10 },
+    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] as Easing },
+  },
+  jp: {
+    initial: { opacity: 0, filter: "blur(8px)" },
+    animate: { opacity: 1, filter: "blur(0px)" },
+    exit: { opacity: 0, filter: "blur(4px)" },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as Easing },
+  },
+  us: {
+    initial: { opacity: 0, x: 30 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -20 },
+    transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] as Easing },
+  },
+  gateway: {
+    initial: { opacity: 0, scale: 0.98 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 1.02 },
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as Easing },
+  },
+};
+
 // Hong Kong Router with Language Provider
 function HkRouter() {
+  const [location] = useLocation();
+  const transition = pageTransitions.hk;
+  
   return (
     <LanguageProvider>
-      <Switch>
-        {/* Hong Kong Routes - English */}
-        <Route path="/hk/en" component={Home} />
-        <Route path="/hk/en/services" component={Services} />
-        <Route path="/hk/en/portfolio" component={Portfolio} />
-        <Route path="/hk/en/about" component={About} />
-        <Route path="/hk/en/contact" component={Contact} />
-        
-        {/* Hong Kong Routes - Japanese */}
-        <Route path="/hk/ja" component={Home} />
-        <Route path="/hk/ja/services" component={Services} />
-        <Route path="/hk/ja/portfolio" component={Portfolio} />
-        <Route path="/hk/ja/about" component={About} />
-        <Route path="/hk/ja/contact" component={Contact} />
-        
-        {/* Hong Kong Routes - Chinese */}
-        <Route path="/hk/zh" component={Home} />
-        <Route path="/hk/zh/services" component={Services} />
-        <Route path="/hk/zh/portfolio" component={Portfolio} />
-        <Route path="/hk/zh/about" component={About} />
-        <Route path="/hk/zh/contact" component={Contact} />
-        
-        <Route component={NotFound} />
-      </Switch>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={location}
+          initial={transition.initial}
+          animate={transition.animate}
+          exit={transition.exit}
+          transition={transition.transition}
+        >
+          <Switch>
+            {/* Hong Kong Routes - English */}
+            <Route path="/hk/en" component={Home} />
+            <Route path="/hk/en/services" component={Services} />
+            <Route path="/hk/en/portfolio" component={Portfolio} />
+            <Route path="/hk/en/about" component={About} />
+            <Route path="/hk/en/contact" component={Contact} />
+            
+            {/* Hong Kong Routes - Japanese */}
+            <Route path="/hk/ja" component={Home} />
+            <Route path="/hk/ja/services" component={Services} />
+            <Route path="/hk/ja/portfolio" component={Portfolio} />
+            <Route path="/hk/ja/about" component={About} />
+            <Route path="/hk/ja/contact" component={Contact} />
+            
+            {/* Hong Kong Routes - Chinese */}
+            <Route path="/hk/zh" component={Home} />
+            <Route path="/hk/zh/services" component={Services} />
+            <Route path="/hk/zh/portfolio" component={Portfolio} />
+            <Route path="/hk/zh/about" component={About} />
+            <Route path="/hk/zh/contact" component={Contact} />
+            
+            <Route component={NotFound} />
+          </Switch>
+        </motion.div>
+      </AnimatePresence>
     </LanguageProvider>
   );
 }
 
 // Japan Router with Japan Language Provider
 function JpRouter() {
+  const [location] = useLocation();
+  const transition = pageTransitions.jp;
+  
   return (
     <JpLanguageProvider>
-      <Switch>
-        {/* Japan Routes - Japanese */}
-        <Route path="/jp/ja" component={JpHome} />
-        <Route path="/jp/ja/services" component={JpServices} />
-        <Route path="/jp/ja/about" component={JpAbout} />
-        <Route path="/jp/ja/careers" component={JpCareers} />
-        <Route path="/jp/ja/contact" component={JpContact} />
-        
-        {/* Japan Routes - English */}
-        <Route path="/jp/en" component={JpHome} />
-        <Route path="/jp/en/services" component={JpServices} />
-        <Route path="/jp/en/about" component={JpAbout} />
-        <Route path="/jp/en/careers" component={JpCareers} />
-        <Route path="/jp/en/contact" component={JpContact} />
-        
-        {/* Japan Routes - Chinese */}
-        <Route path="/jp/zh" component={JpHome} />
-        <Route path="/jp/zh/services" component={JpServices} />
-        <Route path="/jp/zh/about" component={JpAbout} />
-        <Route path="/jp/zh/careers" component={JpCareers} />
-        <Route path="/jp/zh/contact" component={JpContact} />
-        
-        <Route component={NotFound} />
-      </Switch>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={location}
+          initial={transition.initial}
+          animate={transition.animate}
+          exit={transition.exit}
+          transition={transition.transition}
+        >
+          <Switch>
+            {/* Japan Routes - Japanese */}
+            <Route path="/jp/ja" component={JpHome} />
+            <Route path="/jp/ja/services" component={JpServices} />
+            <Route path="/jp/ja/about" component={JpAbout} />
+            <Route path="/jp/ja/careers" component={JpCareers} />
+            <Route path="/jp/ja/contact" component={JpContact} />
+            
+            {/* Japan Routes - English */}
+            <Route path="/jp/en" component={JpHome} />
+            <Route path="/jp/en/services" component={JpServices} />
+            <Route path="/jp/en/about" component={JpAbout} />
+            <Route path="/jp/en/careers" component={JpCareers} />
+            <Route path="/jp/en/contact" component={JpContact} />
+            
+            {/* Japan Routes - Chinese */}
+            <Route path="/jp/zh" component={JpHome} />
+            <Route path="/jp/zh/services" component={JpServices} />
+            <Route path="/jp/zh/about" component={JpAbout} />
+            <Route path="/jp/zh/careers" component={JpCareers} />
+            <Route path="/jp/zh/contact" component={JpContact} />
+            
+            <Route component={NotFound} />
+          </Switch>
+        </motion.div>
+      </AnimatePresence>
     </JpLanguageProvider>
   );
 }
 
 // US Router with US Language Provider
 function UsRouter() {
+  const [location] = useLocation();
+  const transition = pageTransitions.us;
+  
   return (
     <UsLanguageProvider>
-      <Switch>
-        {/* US Routes - English */}
-        <Route path="/us/en" component={UsHome} />
-        <Route path="/us/en/services" component={UsServices} />
-        <Route path="/us/en/about" component={UsAbout} />
-        <Route path="/us/en/contact" component={UsContact} />
-        
-        {/* US Routes - Japanese */}
-        <Route path="/us/ja" component={UsHome} />
-        <Route path="/us/ja/services" component={UsServices} />
-        <Route path="/us/ja/about" component={UsAbout} />
-        <Route path="/us/ja/contact" component={UsContact} />
-        
-        {/* US Routes - Chinese */}
-        <Route path="/us/zh" component={UsHome} />
-        <Route path="/us/zh/services" component={UsServices} />
-        <Route path="/us/zh/about" component={UsAbout} />
-        <Route path="/us/zh/contact" component={UsContact} />
-        
-        <Route component={NotFound} />
-      </Switch>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={location}
+          initial={transition.initial}
+          animate={transition.animate}
+          exit={transition.exit}
+          transition={transition.transition}
+        >
+          <Switch>
+            {/* US Routes - English */}
+            <Route path="/us/en" component={UsHome} />
+            <Route path="/us/en/services" component={UsServices} />
+            <Route path="/us/en/about" component={UsAbout} />
+            <Route path="/us/en/contact" component={UsContact} />
+            
+            {/* US Routes - Japanese */}
+            <Route path="/us/ja" component={UsHome} />
+            <Route path="/us/ja/services" component={UsServices} />
+            <Route path="/us/ja/about" component={UsAbout} />
+            <Route path="/us/ja/contact" component={UsContact} />
+            
+            {/* US Routes - Chinese */}
+            <Route path="/us/zh" component={UsHome} />
+            <Route path="/us/zh/services" component={UsServices} />
+            <Route path="/us/zh/about" component={UsAbout} />
+            <Route path="/us/zh/contact" component={UsContact} />
+            
+            <Route component={NotFound} />
+          </Switch>
+        </motion.div>
+      </AnimatePresence>
     </UsLanguageProvider>
   );
 }
 
 function MainRouter() {
   const [location] = useLocation();
+  const transition = pageTransitions.gateway;
   
   // Determine which region we're in
   const isHk = location.startsWith("/hk");
@@ -136,7 +205,19 @@ function MainRouter() {
   const isGateway = location === "/";
   
   if (isGateway) {
-    return <GlobalGateway />;
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div
+          key="gateway"
+          initial={transition.initial}
+          animate={transition.animate}
+          exit={transition.exit}
+          transition={transition.transition}
+        >
+          <GlobalGateway />
+        </motion.div>
+      </AnimatePresence>
+    );
   }
   
   if (isHk) {

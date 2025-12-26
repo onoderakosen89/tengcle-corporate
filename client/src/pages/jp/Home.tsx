@@ -1,15 +1,16 @@
 /**
- * Home Page - Clean White Professional Design
+ * Home Page - Clean White Professional Design with Parallax
  * 
  * Design Philosophy:
  * - White base with Navy & Gold accents
  * - Trust indicators prominently displayed
  * - Multi-language support (JA/EN/ZH)
+ * - 日本的な繊細で優雅なパララックス効果
  */
 
 import { useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { motion, useInView, type Variants, type Easing } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, type Variants, type Easing } from "framer-motion";
 import { ArrowRight, Building2, Globe, Users, Home as HomeIcon, Utensils, Dumbbell, BedDouble } from "lucide-react";
 import Header from "@/components/jp/Header";
 import Footer from "@/components/jp/Footer";
@@ -71,6 +72,148 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
   );
 }
 
+// Hero Section with Parallax Effect - 日本的な優雅なパララックス
+function JpHeroSection({ 
+  getFontClass, 
+  getHeadingFontClass, 
+  t, 
+  basePath 
+}: { 
+  getFontClass: () => string; 
+  getHeadingFontClass: () => string; 
+  t: any; 
+  basePath: string;
+}) {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  // Parallax transforms - 繊細で優雅な動き
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+
+  return (
+    <section ref={heroRef} className="relative min-h-screen flex items-center bg-white overflow-hidden">
+      {/* Background Image with Parallax */}
+      <motion.div 
+        className="absolute inset-0"
+        style={{ y: backgroundY }}
+      >
+        <img
+          src="/images/hero-japan-corporate.jpg"
+          alt="Tokyo Business District"
+          className="w-full h-[120%] object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
+      </motion.div>
+      
+      {/* Content with Parallax */}
+      <motion.div 
+        className="container relative z-10 pt-32 pb-20"
+        style={{ y: contentY, opacity }}
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2 }}
+          className="max-w-3xl"
+        >
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 1.0 }}
+            className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-6 ${getFontClass()}`}
+          >
+            {t.hero.tagline}
+          </motion.p>
+          
+          {/* Main Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 1.0 }}
+            className={`${getHeadingFontClass()} text-4xl md:text-5xl lg:text-6xl text-navy leading-tight mb-8`}
+          >
+            {t.hero.headline1}
+            <br />
+            <span className="text-gradient-gold">{t.hero.headline2}</span>
+          </motion.h1>
+          
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 1.0 }}
+            className={`text-slate text-lg md:text-xl leading-relaxed mb-10 max-w-xl ${getFontClass()}`}
+          >
+            {t.hero.subtitle}
+          </motion.p>
+          
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 1.0 }}
+            className="flex flex-wrap gap-4"
+          >
+            <Link href={`${basePath}/services`}>
+              <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
+                {t.hero.cta1}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href={`${basePath}/contact`}>
+              <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
+                {t.hero.cta2}
+              </Button>
+            </Link>
+          </motion.div>
+          
+          {/* Trust Indicators */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 1.0 }}
+            className="mt-16 flex flex-wrap gap-8"
+          >
+            <div className={`flex items-center gap-2 text-charcoal text-sm ${getFontClass()}`}>
+              <HomeIcon className="h-4 w-4 text-gold" />
+              <span>{t.hero.trust1}</span>
+            </div>
+            <div className={`flex items-center gap-2 text-charcoal text-sm ${getFontClass()}`}>
+              <Building2 className="h-4 w-4 text-gold" />
+              <span>{t.hero.trust2}</span>
+            </div>
+            <div className={`flex items-center gap-2 text-charcoal text-sm ${getFontClass()}`}>
+              <Globe className="h-4 w-4 text-gold" />
+              <span>{t.hero.trust3}</span>
+            </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+      
+      {/* Scroll Indicator - 繊細なアニメーション */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1.0 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
+      >
+        <motion.div 
+          className="w-px h-16 bg-gradient-to-b from-gold to-transparent"
+          animate={{ scaleY: [1, 1.15, 1] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.div>
+    </section>
+  );
+}
+
 export default function Home() {
   const { t, language } = useJpLanguage();
   const [location] = useLocation();
@@ -108,19 +251,19 @@ export default function Home() {
       icon: Dumbbell,
       title: t.services.gym.title,
       description: t.services.gym.description,
-      image: "/images/service-gym.jpg",
+      image: "/images/service-fitness.jpg",
     },
     {
       icon: BedDouble,
       title: t.services.capsuleHotel.title,
       description: t.services.capsuleHotel.description,
-      image: "/images/service-capsule-hotel.jpg",
+      image: "/images/service-hospitality.jpg",
     },
     {
       icon: Users,
       title: t.services.recruitment.title,
       description: t.services.recruitment.description,
-      image: "/images/service-recruitment.jpg",
+      image: "/images/service-hr.jpg",
     },
   ];
 
@@ -128,112 +271,13 @@ export default function Home() {
     <div className="min-h-screen bg-white" data-region="jp">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center bg-white">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img
-            src="/images/hero-japan-corporate.jpg"
-            alt="Tokyo Business District"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
-        </div>
-        
-        {/* Content */}
-        <div className="container relative z-10 pt-32 pb-20">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="max-w-3xl"
-          >
-            {/* Tagline */}
-            <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-6 ${getFontClass()}`}
-            >
-              {t.hero.tagline}
-            </motion.p>
-            
-            {/* Main Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className={`${getHeadingFontClass()} text-4xl md:text-5xl lg:text-6xl text-navy leading-tight mb-8`}
-            >
-              {t.hero.headline1}
-              <br />
-              <span className="text-gradient-gold">{t.hero.headline2}</span>
-            </motion.h1>
-            
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              className={`text-slate text-lg md:text-xl leading-relaxed mb-10 max-w-xl ${getFontClass()}`}
-            >
-              {t.hero.subtitle}
-            </motion.p>
-            
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.8 }}
-              className="flex flex-wrap gap-4"
-            >
-              <Link href={`${basePath}/services`}>
-                <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
-                  {t.hero.cta1}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <Link href={`${basePath}/contact`}>
-                <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
-                  {t.hero.cta2}
-                </Button>
-              </Link>
-            </motion.div>
-            
-            {/* Trust Indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.8 }}
-              className="mt-16 flex flex-wrap gap-8"
-            >
-              <div className={`flex items-center gap-2 text-charcoal text-sm ${getFontClass()}`}>
-                <HomeIcon className="h-4 w-4 text-gold" />
-                <span>{t.hero.trust1}</span>
-              </div>
-              <div className={`flex items-center gap-2 text-charcoal text-sm ${getFontClass()}`}>
-                <Building2 className="h-4 w-4 text-gold" />
-                <span>{t.hero.trust2}</span>
-              </div>
-              <div className={`flex items-center gap-2 text-charcoal text-sm ${getFontClass()}`}>
-                <Globe className="h-4 w-4 text-gold" />
-                <span>{t.hero.trust3}</span>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-        
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <div className="w-px h-16 bg-gradient-to-b from-gold to-transparent" />
-        </motion.div>
-      </section>
+      {/* Hero Section with Parallax */}
+      <JpHeroSection 
+        getFontClass={getFontClass} 
+        getHeadingFontClass={getHeadingFontClass} 
+        t={t} 
+        basePath={basePath} 
+      />
 
       {/* Services Overview */}
       <section className="py-24 lg:py-32 bg-light-gray">
@@ -263,13 +307,14 @@ export default function Home() {
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover jp-img-hover"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                      loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-navy/20 group-hover:bg-navy/10 transition-colors duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
                   <div className="p-6">
                     <service.icon className="h-8 w-8 text-gold mb-4" />
-                    <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-3`}>
+                    <h3 className={`${getHeadingFontClass()} text-lg text-navy mb-3`}>
                       {service.title}
                     </h3>
                     <p className={`text-slate text-sm leading-relaxed ${getFontClass()}`}>
