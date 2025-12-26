@@ -165,13 +165,13 @@ export default function GlobalGateway() {
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
-              className="text-center mb-12 md:mb-16"
+              className="text-center mb-10 md:mb-14"
             >
-              <motion.div variants={scaleIn} className="flex justify-center mb-8">
+              <motion.div variants={scaleIn} className="flex justify-center mb-6">
                 <div className="relative">
-                  <Globe className="w-20 h-20 md:w-24 md:h-24 text-gold" strokeWidth={1} />
+                  <Globe className="w-14 h-14 md:w-16 md:h-16 text-gold" strokeWidth={1} />
                   <motion.div 
-                    className="absolute inset-0 bg-gold/20 rounded-full blur-2xl"
+                    className="absolute inset-0 bg-gold/20 rounded-full blur-xl"
                     animate={{
                       scale: [1, 1.2, 1],
                       opacity: [0.3, 0.5, 0.3],
@@ -187,20 +187,20 @@ export default function GlobalGateway() {
               
               <motion.h1
                 variants={fadeInUp}
-                className="font-heading text-4xl md:text-5xl lg:text-7xl mb-6"
+                className="font-heading text-3xl md:text-4xl lg:text-5xl mb-5"
               >
                 <span className="text-gold">Tengcle</span>{" "}
                 <span className="text-white/90">Group</span>
               </motion.h1>
               
-              <motion.div variants={fadeInUp} className="space-y-2">
-                <p className="text-xl md:text-2xl text-white/70 font-light tracking-wide">
+              <motion.div variants={fadeInUp} className="space-y-1.5">
+                <p className="text-lg md:text-xl text-white/70 font-light tracking-wide">
                   Select your region and language
                 </p>
-                <p className="text-base md:text-lg text-white/50 font-jp">
+                <p className="text-sm md:text-base text-white/50 font-jp">
                   地域と言語を選択してください
                 </p>
-                <p className="text-base md:text-lg text-white/50 font-zh">
+                <p className="text-sm md:text-base text-white/50 font-zh">
                   选择您的地区和语言
                 </p>
               </motion.div>

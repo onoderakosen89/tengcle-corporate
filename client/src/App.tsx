@@ -35,6 +35,9 @@ import UsServices from "./pages/us/Services";
 import UsAbout from "./pages/us/About";
 import UsContact from "./pages/us/Contact";
 
+// Shared Pages
+import Privacy from "./pages/Privacy";
+
 // Page transition variants for each region
 const pageTransitions = {
   hk: {
@@ -100,6 +103,11 @@ function HkRouter() {
             <Route path="/hk/zh/about" component={About} />
             <Route path="/hk/zh/contact" component={Contact} />
             
+            {/* Privacy Policy */}
+            <Route path="/hk/en/privacy" component={Privacy} />
+            <Route path="/hk/ja/privacy" component={Privacy} />
+            <Route path="/hk/zh/privacy" component={Privacy} />
+            
             <Route component={NotFound} />
           </Switch>
         </motion.div>
@@ -145,6 +153,11 @@ function JpRouter() {
             <Route path="/jp/zh/careers" component={JpCareers} />
             <Route path="/jp/zh/contact" component={JpContact} />
             
+            {/* Privacy Policy */}
+            <Route path="/jp/ja/privacy" component={Privacy} />
+            <Route path="/jp/en/privacy" component={Privacy} />
+            <Route path="/jp/zh/privacy" component={Privacy} />
+            
             <Route component={NotFound} />
           </Switch>
         </motion.div>
@@ -187,6 +200,11 @@ function UsRouter() {
             <Route path="/us/zh/about" component={UsAbout} />
             <Route path="/us/zh/contact" component={UsContact} />
             
+            {/* Privacy Policy */}
+            <Route path="/us/en/privacy" component={Privacy} />
+            <Route path="/us/ja/privacy" component={Privacy} />
+            <Route path="/us/zh/privacy" component={Privacy} />
+            
             <Route component={NotFound} />
           </Switch>
         </motion.div>
@@ -204,6 +222,7 @@ function MainRouter() {
   const isJp = location.startsWith("/jp");
   const isUs = location.startsWith("/us");
   const isGateway = location === "/";
+  const isPrivacy = location === "/privacy";
   
   if (isGateway) {
     return (
@@ -216,6 +235,22 @@ function MainRouter() {
           transition={transition.transition}
         >
           <GlobalGateway />
+        </motion.div>
+      </AnimatePresence>
+    );
+  }
+  
+  if (isPrivacy) {
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div
+          key="privacy"
+          initial={transition.initial}
+          animate={transition.animate}
+          exit={transition.exit}
+          transition={transition.transition}
+        >
+          <Privacy />
         </motion.div>
       </AnimatePresence>
     );

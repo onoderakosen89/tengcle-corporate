@@ -15,6 +15,7 @@ import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
+import SEOHead from "@/components/SEOHead";
 
 // Animation variants - USA: Bold & Dynamic
 const easeAmerican: Easing = [0.4, 0, 0.2, 1];
@@ -157,8 +158,32 @@ export default function UsHome() {
     },
   ];
 
+  // SEO meta data based on language
+  const seoData = {
+    en: {
+      title: "Tengcle LLC | Real Estate & Vacation Rentals in New Jersey",
+      description: "Professional real estate management and vacation rental services in the New Jersey and New York metropolitan area. Your trusted property partner.",
+    },
+    ja: {
+      title: "Tengcle LLC | ニュージャージーの不動産・バケーションレンタル",
+      description: "ニュージャージー・ニューヨーク圈でプロフェッショナルな不動産管理とバケーションレンタルサービスを提供。信頼のパートナー。",
+    },
+    zh: {
+      title: "Tengcle LLC | 新泽西房地产与度假租赁",
+      description: "在新泽西和纽约大都会圈提供专业的房地产管理和度假租赁服务。您值得信赖的房产合作伙伴。",
+    },
+  };
+
+  const currentSeo = seoData[language as keyof typeof seoData] || seoData.en;
+
   return (
     <div className="min-h-screen bg-white" data-region="us">
+      <SEOHead
+        title={currentSeo.title}
+        description={currentSeo.description}
+        canonical={`https://www.tengcle.com/us/${language}`}
+        locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
+      />
       <UsHeader />
 
       {/* Hero Section with Parallax */}

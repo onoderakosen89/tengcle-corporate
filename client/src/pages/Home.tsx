@@ -19,6 +19,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import SEOHead from "@/components/SEOHead";
 
 // Animation variants with proper typing
 const easeOut: Easing = [0.16, 1, 0.3, 1];
@@ -222,8 +223,32 @@ export default function Home() {
     return "font-heading";
   };
 
+  // SEO meta data based on language
+  const seoData = {
+    en: {
+      title: "Tengcle Limited | Global Business Solutions from Hong Kong",
+      description: "TCSP licensed Hong Kong company specializing in hotel FF&E procurement, IT solutions, and international trade. Bridging excellence across Asia.",
+    },
+    ja: {
+      title: "Tengcle Limited | 香港発グローバルビジネスソリューション",
+      description: "TCSPライセンス取得の香港企業。ホテルFF&E調達、ITソリューション、国際貿易を専門としています。",
+    },
+    zh: {
+      title: "Tengcle Limited | 香港全球商业解决方案",
+      description: "TCSP持牌香港公司，专注于酒店FF&E采购、IT解决方案和国际贸易。跨越亚洲的卓越服务。",
+    },
+  };
+
+  const currentSeo = seoData[language as keyof typeof seoData] || seoData.en;
+
   return (
     <div className="min-h-screen bg-white" data-region="hk">
+      <SEOHead
+        title={currentSeo.title}
+        description={currentSeo.description}
+        canonical={`https://www.tengcle.com/hk/${language}`}
+        locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
+      />
       <Header />
       
       {/* Hero Section with Parallax */}

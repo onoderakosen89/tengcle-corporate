@@ -17,6 +17,7 @@ import Footer from "@/components/jp/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
+import SEOHead from "@/components/SEOHead";
 
 // Animation variants with proper typing - Japan: Refined & Delicate
 // 日本的な繊細さと優雅さを表現するアニメーション
@@ -271,8 +272,32 @@ export default function Home() {
     },
   ];
 
+  // SEO meta data based on language
+  const seoData = {
+    ja: {
+      title: "Tengcle Inc. | 日本の不動産・飲食・フィットネス・ホスピタリティ",
+      description: "東京を拠点に不動産管理、レストラン運営、レンタルジム、カプセルホテル、人材紹介サービスを提供。おもてなしの心で事業を展開しています。",
+    },
+    en: {
+      title: "Tengcle Inc. | Real Estate, F&B, Fitness & Hospitality in Japan",
+      description: "Tokyo-based company offering real estate management, restaurant operations, rental gym, capsule hotel, and recruitment services with Japanese hospitality.",
+    },
+    zh: {
+      title: "Tengcle Inc. | 日本房地产・餐饮・健身・酒店服务",
+      description: "以东京为基地，提供房地产管理、餐厅运营、租赁健身房、胶囊酒店和人才介绍服务。以日式待客之道开展事业。",
+    },
+  };
+
+  const currentSeo = seoData[language as keyof typeof seoData] || seoData.ja;
+
   return (
     <div className="min-h-screen bg-white" data-region="jp">
+      <SEOHead
+        title={currentSeo.title}
+        description={currentSeo.description}
+        canonical={`https://www.tengcle.com/jp/${language}`}
+        locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
+      />
       <Header />
       
       {/* Hero Section with Parallax */}
