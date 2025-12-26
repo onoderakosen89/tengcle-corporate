@@ -173,7 +173,7 @@ export default function Portfolio() {
                     <div className="absolute top-4 left-4 bg-navy text-white px-4 py-2">
                       <p className={`text-gold text-xs ${getFontClass()}`}>{project.location}</p>
                     </div>
-                    <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-gold" />
+
                   </div>
                   
                   {/* Content */}

@@ -248,7 +248,7 @@ export default function Services() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent" />
                     </div>
-                    <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-gold -z-10" />
+
                   </div>
                 </motion.div>
                 
