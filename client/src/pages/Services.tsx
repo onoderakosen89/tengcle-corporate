@@ -140,7 +140,7 @@ export default function Services() {
       icon: Palette,
       title: t.services.ip.title,
       description: t.services.ip.description,
-      image: "/images/service-character.jpg",
+      image: "/images/service-character-new.jpg",
       features: language === "ja" ? [
         "キャラクターグッズ企画・開発",
         "製造発注・品質検査",
