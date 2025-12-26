@@ -102,7 +102,7 @@ export default function Portfolio() {
       title: t.portfolio.project2.title,
       location: t.portfolio.project2.location,
       description: t.portfolio.project2.description,
-      image: "/images/services-integration.jpg",
+      image: "/images/portfolio-it-system.jpg",
       scope: language === "ja" ? [
         "Odoo ERP導入",
         "高度なカスタマイズ（API、フィールド追加）",

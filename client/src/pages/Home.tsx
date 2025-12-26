@@ -308,7 +308,7 @@ export default function Home() {
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
-                    src="/images/services-integration.jpg"
+                    src="/images/portfolio-it-system.jpg"
                     alt={t.portfolio.project2.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />

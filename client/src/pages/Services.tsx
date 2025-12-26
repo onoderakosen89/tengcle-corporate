@@ -1,7 +1,7 @@
 /**
  * Services Page - Clean White Professional Design
  * 
- * 5 Service Categories:
+ * 5 Service Categories with high-quality generated images:
  * 1. Hospitality Procurement
  * 2. Project Integration
  * 3. Hotel Operations & IT
@@ -74,6 +74,7 @@ export default function Services() {
       icon: Package,
       title: t.services.hospitality.title,
       description: t.services.hospitality.description,
+      image: "/images/service-hospitality.jpg",
       features: language === "ja" ? [
         "FF&E（家具・什器・設備）調達",
         "OS&E（運営備品）調達",
@@ -95,6 +96,7 @@ export default function Services() {
       icon: Building2,
       title: t.services.integration.title,
       description: t.services.integration.description,
+      image: "/images/service-integration.jpg",
       features: language === "ja" ? [
         "エンドツーエンドプロジェクト管理",
         "サプライチェーン最適化",
@@ -116,6 +118,7 @@ export default function Services() {
       icon: Cpu,
       title: t.services.operations.title,
       description: t.services.operations.description,
+      image: "/images/service-it.jpg",
       features: language === "ja" ? [
         "Odoo ERP導入・カスタマイズ",
         "API開発・システム連携",
@@ -137,6 +140,7 @@ export default function Services() {
       icon: Palette,
       title: t.services.ip.title,
       description: t.services.ip.description,
+      image: "/images/service-character.jpg",
       features: language === "ja" ? [
         "キャラクターグッズ企画・開発",
         "製造発注・品質検査",
@@ -158,6 +162,7 @@ export default function Services() {
       icon: TrendingUp,
       title: t.services.trading.title,
       description: t.services.trading.description,
+      image: "/images/service-trading.jpg",
       features: language === "ja" ? [
         "国際貿易（輸出入）",
         "建設会社向け資材卸売",
@@ -203,7 +208,7 @@ export default function Services() {
       {/* Services Grid */}
       <section className="py-24 bg-white">
         <div className="container">
-          <div className="space-y-16">
+          <div className="space-y-24">
             {services.map((service, index) => (
               <AnimatedSection key={service.title}>
                 <motion.div
@@ -231,17 +236,22 @@ export default function Services() {
                     </ul>
                   </div>
                   
-                  {/* Visual */}
+                  {/* Image */}
                   <div className={`relative ${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                    <div className="bg-light-gray aspect-[4/3] flex items-center justify-center">
-                      <service.icon className="h-24 w-24 text-navy/20" />
+                    <div className="relative overflow-hidden shadow-xl">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full aspect-[4/3] object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent" />
                     </div>
-                    <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-gold" />
+                    <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-gold -z-10" />
                   </div>
                 </motion.div>
                 
                 {index < services.length - 1 && (
-                  <div className="section-divider mt-16" />
+                  <div className="section-divider mt-20" />
                 )}
               </AnimatedSection>
             ))}
