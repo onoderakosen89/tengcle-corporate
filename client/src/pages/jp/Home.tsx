@@ -18,6 +18,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
 import SEOHead from "@/components/SEOHead";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 // Animation variants with proper typing - Japan: Refined & Delicate
 // 日本的な繊細さと優雅さを表現するアニメーション
@@ -256,7 +257,7 @@ export default function Home() {
       icon: Dumbbell,
       title: t.services.gym.title,
       description: t.services.gym.description,
-      image: "/images/service-fitness.jpg",
+      image: "/images/service-gym.jpg",
     },
     {
       icon: BedDouble,
@@ -268,7 +269,7 @@ export default function Home() {
       icon: Users,
       title: t.services.recruitment.title,
       description: t.services.recruitment.description,
-      image: "/images/service-hr.jpg",
+      image: "/images/service-recruitment.jpg",
     },
   ];
 
@@ -334,11 +335,12 @@ export default function Home() {
                   className="group bg-white border border-gray-200 overflow-hidden jp-card-hover"
                 >
                   <div className="relative h-48 overflow-hidden">
-                    <img
+                    <ImageWithFallback
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                      loading="lazy"
+                      className="w-full h-full transition-transform duration-1000 group-hover:scale-105"
+                      fallbackText="Coming Soon"
+                      fallbackSubText="準備中"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
