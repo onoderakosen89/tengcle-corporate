@@ -280,7 +280,7 @@ export default function Home() {
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
-                    src="/images/hero-japan-luxury.jpg"
+                    src="/images/hotel-lobby-realistic.jpg"
                     alt={t.portfolio.project1.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -308,7 +308,7 @@ export default function Home() {
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
-                    src="/images/portfolio-it-system.jpg"
+                    src="/images/portfolio-it-realistic.jpg"
                     alt={t.portfolio.project2.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
