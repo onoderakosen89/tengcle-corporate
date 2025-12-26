@@ -80,6 +80,14 @@
     <priority>0.7</priority>
   </url>
   
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://www.tengcle.com/privacy</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
   <!-- Hong Kong - Chinese -->
   <url>
     <loc>https://www.tengcle.com/hk/zh</loc>
@@ -113,6 +121,12 @@
     <lastmod>2024-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/hk/en/privacy</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
   
   <!-- Japan - Japanese -->
@@ -219,6 +233,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/ja/privacy</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
   
   <!-- US - English -->
   <url>
@@ -305,6 +325,12 @@
     <lastmod>2024-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/us/en/privacy</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
   
 </urlset>
