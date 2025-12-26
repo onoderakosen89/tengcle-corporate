@@ -118,7 +118,7 @@ export default function Contact() {
               </motion.div>
             </AnimatedSection>
             
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {/* Hong Kong */}
               <AnimatedSection>
                 <motion.div
@@ -169,6 +169,27 @@ export default function Contact() {
                     {language === "ja" || language === "zh" 
                       ? "東京都中央区築地2-12-14" 
                       : "2-12-14 Tsukiji, Chuo-ku, Tokyo, Japan"}
+                  </p>
+                </motion.div>
+              </AnimatedSection>
+              
+              {/* USA Office */}
+              <AnimatedSection>
+                <motion.div
+                  variants={fadeInUp}
+                  className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300 h-full relative"
+                >
+                  <div className="absolute top-4 right-4 bg-gold/10 text-gold text-xs px-2 py-1 rounded">
+                    {language === "ja" ? "設立準備中" : language === "zh" ? "筹备中" : "Establishing"}
+                  </div>
+                  <MapPin className="h-8 w-8 text-gold mb-4" />
+                  <h3 className={`${getSerifFontClass()} text-xl text-navy mb-4`}>
+                    {t.contact.info.usOffice}
+                  </h3>
+                  <p className="text-slate text-sm leading-relaxed">
+                    17 Hamilton Ave<br />
+                    Weehawken, NJ<br />
+                    USA
                   </p>
                 </motion.div>
               </AnimatedSection>

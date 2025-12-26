@@ -120,6 +120,19 @@ export default function Footer() {
                   </p>
                 </div>
               </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="h-4 w-4 text-gold flex-shrink-0 mt-1" />
+                <div className="relative">
+                  <span className="absolute -top-1 -right-1 bg-gold/20 text-gold text-[10px] px-1.5 py-0.5 rounded">
+                    {language === "ja" ? "設立準備中" : language === "zh" ? "筹备中" : "Establishing"}
+                  </span>
+                  <p className={`text-white/50 text-xs mb-1 ${getFontClass()}`}>{t.contact.info.usOffice}</p>
+                  <p className="text-white/90 text-sm">
+                    17 Hamilton Ave<br />
+                    Weehawken, NJ, USA
+                  </p>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -133,16 +146,24 @@ export default function Footer() {
               © {new Date().getFullYear()} Tengcle Limited. All rights reserved.
             </p>
             
-            {/* Japan Link */}
-            <a 
-              href="https://jp.tengcle.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}
-            >
-              <span>{t.footer.japan}</span>
-              <ExternalLink className="h-3 w-3" />
-            </a>
+            {/* Group Companies */}
+            <div className="flex items-center gap-6">
+              <a 
+                href="https://jp.tengcle.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}
+              >
+                <span>{t.footer.japan}</span>
+                <ExternalLink className="h-3 w-3" />
+              </a>
+              <span className={`flex items-center gap-2 text-white/50 text-xs ${getFontClass()}`}>
+                <span>{t.footer.usa}</span>
+                <span className="text-gold text-[10px]">
+                  ({language === "ja" ? "設立準備中" : language === "zh" ? "笹备中" : "Establishing"})
+                </span>
+              </span>
+            </div>
           </div>
         </div>
       </div>

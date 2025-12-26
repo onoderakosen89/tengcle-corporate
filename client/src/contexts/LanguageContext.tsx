@@ -100,6 +100,7 @@ interface Translations {
       hkOffice: string;
       jpOffice1: string;
       jpOffice2: string;
+      usOffice: string;
     };
   };
   footer: {
@@ -107,6 +108,7 @@ interface Translations {
     navigation: string;
     contact: string;
     japan: string;
+    usa: string;
   };
   common: {
     learnMore: string;
@@ -209,6 +211,7 @@ const translations: Record<Language, Translations> = {
         hkOffice: "Hong Kong Office",
         jpOffice1: "Tokyo Office (Takanawa)",
         jpOffice2: "Tokyo Office (Tsukiji)",
+        usOffice: "USA Office (Establishing)",
       },
     },
     footer: {
@@ -216,6 +219,7 @@ const translations: Record<Language, Translations> = {
       navigation: "Navigation",
       contact: "Contact",
       japan: "Tengcle Inc. (Japan)",
+      usa: "Tengcle LCC (USA)",
     },
     common: {
       learnMore: "Learn More",
@@ -316,6 +320,7 @@ const translations: Record<Language, Translations> = {
         hkOffice: "香港オフィス",
         jpOffice1: "東京オフィス（高輪）",
         jpOffice2: "東京オフィス（築地）",
+        usOffice: "米国オフィス（設立準備中）",
       },
     },
     footer: {
@@ -323,6 +328,7 @@ const translations: Record<Language, Translations> = {
       navigation: "ナビゲーション",
       contact: "お問い合わせ",
       japan: "Tengcle Inc.（日本）",
+      usa: "Tengcle LCC（米国）",
     },
     common: {
       learnMore: "詳しく見る",
@@ -423,6 +429,7 @@ const translations: Record<Language, Translations> = {
         hkOffice: "香港办公室",
         jpOffice1: "东京办公室（高轮）",
         jpOffice2: "东京办公室（筑地）",
+        usOffice: "美国办公室（筹备中）",
       },
     },
     footer: {
@@ -430,6 +437,7 @@ const translations: Record<Language, Translations> = {
       navigation: "导航",
       contact: "联系方式",
       japan: "Tengcle Inc.（日本）",
+      usa: "Tengcle LCC（美国）",
     },
     common: {
       learnMore: "了解更多",
