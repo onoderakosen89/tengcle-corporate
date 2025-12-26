@@ -10,7 +10,7 @@
  */
 
 import { useRef } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { motion, useInView, type Variants, type Easing } from "framer-motion";
 import { ArrowRight, Package, Building2, Cpu, Palette, TrendingUp, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
@@ -56,6 +56,9 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export default function Services() {
   const { t, language } = useLanguage();
+  const [location] = useLocation();
+  const pathLang = location.split("/")[2] || "en";
+  const basePath = `/hk/${pathLang}`;
   
   // Get body font class based on language
   const getFontClass = () => {
@@ -273,7 +276,7 @@ export default function Services() {
               <p className={`text-white/70 max-w-xl mx-auto mb-10 ${getFontClass()}`}>
                 {t.contact.description}
               </p>
-              <Link href="/contact">
+              <Link href={`${basePath}/contact`}>
                 <Button className={`bg-gold hover:bg-gold-dark text-navy px-10 py-6 text-sm tracking-wider ${getFontClass()}`}>
                   {t.common.getInTouch}
                   <ArrowRight className="ml-2 h-4 w-4" />

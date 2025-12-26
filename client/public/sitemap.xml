@@ -2,60 +2,222 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
-  <!-- Homepage -->
+  <!-- Global Gateway -->
   <url>
     <loc>https://www.tengcle.com/</loc>
     <lastmod>2024-12-26</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.tengcle.com/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.tengcle.com/"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://www.tengcle.com/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tengcle.com/"/>
   </url>
   
-  <!-- Services Page -->
+  <!-- Hong Kong - English -->
   <url>
-    <loc>https://www.tengcle.com/services</loc>
+    <loc>https://www.tengcle.com/hk/en</loc>
+    <xhtml:link rel="alternate" hreflang="en-HK" href="https://www.tengcle.com/hk/en"/>
+    <xhtml:link rel="alternate" hreflang="ja-HK" href="https://www.tengcle.com/hk/ja"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.tengcle.com/hk/zh"/>
     <lastmod>2024-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.tengcle.com/services"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.tengcle.com/services"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://www.tengcle.com/services"/>
   </url>
-  
-  <!-- Portfolio Page -->
   <url>
-    <loc>https://www.tengcle.com/portfolio</loc>
+    <loc>https://www.tengcle.com/hk/en/services</loc>
     <lastmod>2024-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.tengcle.com/portfolio"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.tengcle.com/portfolio"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://www.tengcle.com/portfolio"/>
   </url>
-  
-  <!-- About Page -->
   <url>
-    <loc>https://www.tengcle.com/about</loc>
+    <loc>https://www.tengcle.com/hk/en/portfolio</loc>
     <lastmod>2024-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.tengcle.com/about"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.tengcle.com/about"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://www.tengcle.com/about"/>
   </url>
-  
-  <!-- Contact Page -->
   <url>
-    <loc>https://www.tengcle.com/contact</loc>
+    <loc>https://www.tengcle.com/hk/en/about</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/hk/en/contact</loc>
     <lastmod>2024-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.tengcle.com/contact"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.tengcle.com/contact"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://www.tengcle.com/contact"/>
+  </url>
+  
+  <!-- Hong Kong - Japanese -->
+  <url>
+    <loc>https://www.tengcle.com/hk/ja</loc>
+    <xhtml:link rel="alternate" hreflang="en-HK" href="https://www.tengcle.com/hk/en"/>
+    <xhtml:link rel="alternate" hreflang="ja-HK" href="https://www.tengcle.com/hk/ja"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.tengcle.com/hk/zh"/>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/hk/ja/services</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/hk/ja/portfolio</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/hk/ja/about</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/hk/ja/contact</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Hong Kong - Chinese -->
+  <url>
+    <loc>https://www.tengcle.com/hk/zh</loc>
+    <xhtml:link rel="alternate" hreflang="en-HK" href="https://www.tengcle.com/hk/en"/>
+    <xhtml:link rel="alternate" hreflang="ja-HK" href="https://www.tengcle.com/hk/ja"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.tengcle.com/hk/zh"/>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/hk/zh/services</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/hk/zh/portfolio</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/hk/zh/about</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/hk/zh/contact</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Japan - Japanese -->
+  <url>
+    <loc>https://www.tengcle.com/jp/ja</loc>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.tengcle.com/jp/ja"/>
+    <xhtml:link rel="alternate" hreflang="en-JP" href="https://www.tengcle.com/jp/en"/>
+    <xhtml:link rel="alternate" hreflang="zh-JP" href="https://www.tengcle.com/jp/zh"/>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/ja/services</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/ja/about</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/ja/careers</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/ja/contact</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Japan - English -->
+  <url>
+    <loc>https://www.tengcle.com/jp/en</loc>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.tengcle.com/jp/ja"/>
+    <xhtml:link rel="alternate" hreflang="en-JP" href="https://www.tengcle.com/jp/en"/>
+    <xhtml:link rel="alternate" hreflang="zh-JP" href="https://www.tengcle.com/jp/zh"/>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/en/services</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/en/about</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/en/careers</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/en/contact</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Japan - Chinese -->
+  <url>
+    <loc>https://www.tengcle.com/jp/zh</loc>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.tengcle.com/jp/ja"/>
+    <xhtml:link rel="alternate" hreflang="en-JP" href="https://www.tengcle.com/jp/en"/>
+    <xhtml:link rel="alternate" hreflang="zh-JP" href="https://www.tengcle.com/jp/zh"/>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/zh/services</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/zh/about</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/zh/careers</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/jp/zh/contact</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   
 </urlset>

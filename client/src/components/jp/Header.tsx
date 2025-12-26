@@ -1,8 +1,8 @@
 /**
- * Header Component - Clean White Design (Hong Kong)
+ * Header Component - Clean White Design (Japan)
  * 
  * Design: Professional white header with logo image
- * Features: 3-language support (EN/JA/ZH) with region-aware routing
+ * Features: 3-language support (JA/EN/ZH) with region-aware routing
  */
 
 import { useState, useEffect } from "react";
@@ -10,18 +10,18 @@ import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useJpLanguage } from "@/contexts/JpLanguageContext";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [location] = useLocation();
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage, t } = useJpLanguage();
 
   // Extract current language from URL path
-  const pathLang = location.split("/")[2] || "en";
-  const basePath = `/hk/${pathLang}`;
+  const pathLang = location.split("/")[2] || "ja";
+  const basePath = `/jp/${pathLang}`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,18 +41,18 @@ export default function Header() {
   const navItems = [
     { href: basePath, label: t.nav.home },
     { href: `${basePath}/services`, label: t.nav.services },
-    { href: `${basePath}/portfolio`, label: t.nav.portfolio },
     { href: `${basePath}/about`, label: t.nav.about },
+    { href: `${basePath}/careers`, label: t.nav.careers },
     { href: `${basePath}/contact`, label: t.nav.contact },
   ];
 
   const languages = [
-    { code: "en" as const, label: "EN" },
     { code: "ja" as const, label: "日本語" },
+    { code: "en" as const, label: "EN" },
     { code: "zh" as const, label: "中文" },
   ];
 
-  const currentLangLabel = languages.find(l => l.code === language)?.label || "EN";
+  const currentLangLabel = languages.find(l => l.code === language)?.label || "日本語";
 
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
@@ -62,13 +62,13 @@ export default function Header() {
 
   // Get current page path without language prefix
   const getCurrentPagePath = () => {
-    const parts = location.split("/").slice(3); // Remove /hk/lang
+    const parts = location.split("/").slice(3); // Remove /jp/lang
     return parts.length > 0 ? "/" + parts.join("/") : "";
   };
 
   const handleLanguageChange = (langCode: "en" | "ja" | "zh") => {
     const pagePath = getCurrentPagePath();
-    window.location.href = `/hk/${langCode}${pagePath}`;
+    window.location.href = `/jp/${langCode}${pagePath}`;
   };
 
   return (

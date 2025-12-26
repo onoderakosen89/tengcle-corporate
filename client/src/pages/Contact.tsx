@@ -6,6 +6,7 @@
  */
 
 import { useRef } from "react";
+import { useLocation } from "wouter";
 import { motion, useInView, type Variants, type Easing } from "framer-motion";
 import { Mail, MapPin, ExternalLink } from "lucide-react";
 import Header from "@/components/Header";
@@ -50,6 +51,9 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export default function Contact() {
   const { t, language } = useLanguage();
+  const [location] = useLocation();
+  const pathLang = location.split("/")[2] || "en";
+  const basePath = `/hk/${pathLang}`;
   
   const getFontClass = () => {
     if (language === "ja") return "font-jp";

@@ -1,16 +1,21 @@
 /**
- * Footer Component - Clean White Design
+ * Footer Component - Clean White Design (Hong Kong)
  * 
  * Design: Professional footer with company info and navigation
- * Features: 3-language support, Japan link
+ * Features: 3-language support, region-aware routing
  */
 
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Mail, MapPin, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Footer() {
   const { t, language } = useLanguage();
+  const [location] = useLocation();
+
+  // Extract current language from URL path
+  const pathLang = location.split("/")[2] || "en";
+  const basePath = `/hk/${pathLang}`;
 
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
@@ -19,11 +24,11 @@ export default function Footer() {
   };
 
   const navItems = [
-    { href: "/", label: t.nav.home },
-    { href: "/services", label: t.nav.services },
-    { href: "/portfolio", label: t.nav.portfolio },
-    { href: "/about", label: t.nav.about },
-    { href: "/contact", label: t.nav.contact },
+    { href: basePath, label: t.nav.home },
+    { href: `${basePath}/services`, label: t.nav.services },
+    { href: `${basePath}/portfolio`, label: t.nav.portfolio },
+    { href: `${basePath}/about`, label: t.nav.about },
+    { href: `${basePath}/contact`, label: t.nav.contact },
   ];
 
   return (
@@ -98,43 +103,6 @@ export default function Footer() {
                   </p>
                 </div>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 text-gold flex-shrink-0 mt-1" />
-                <div>
-                  <p className={`text-white/50 text-xs mb-1 ${getFontClass()}`}>{t.contact.info.jpOffice1}</p>
-                  <p className="text-white/90 text-sm">
-                    {language === "ja" || language === "zh" 
-                      ? "東京都港区高輪2-19-20" 
-                      : "2-19-20 Takanawa, Minato-ku, Tokyo"}
-                  </p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 text-gold flex-shrink-0 mt-1" />
-                <div>
-                  <p className={`text-white/50 text-xs mb-1 ${getFontClass()}`}>{t.contact.info.jpOffice2}</p>
-                  <p className="text-white/90 text-sm">
-                    {language === "ja" || language === "zh" 
-                      ? "東京都中央区築地2-12-14" 
-                      : "2-12-14 Tsukiji, Chuo-ku, Tokyo"}
-                  </p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 text-gold flex-shrink-0 mt-1" />
-                <div>
-                  <p className={`text-white/50 text-xs mb-1 ${getFontClass()}`}>
-                    {t.contact.info.usOffice}
-                    <span className="ml-2 bg-gold/20 text-gold text-[10px] px-1.5 py-0.5 rounded">
-                      {language === "ja" ? "設立準備中" : language === "zh" ? "筹备中" : "Establishing"}
-                    </span>
-                  </p>
-                  <p className="text-white/90 text-sm">
-                    17 Hamilton Ave<br />
-                    Weehawken, NJ, USA
-                  </p>
-                </div>
-              </li>
             </ul>
           </div>
         </div>
@@ -150,21 +118,12 @@ export default function Footer() {
             
             {/* Group Companies */}
             <div className="flex items-center gap-6">
-              <a 
-                href="https://www.tengcle.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}
-              >
-                <span>{t.footer.japan}</span>
-                <ExternalLink className="h-3 w-3" />
-              </a>
-              <span className={`flex items-center gap-2 text-white/50 text-xs ${getFontClass()}`}>
-                <span>{t.footer.usa}</span>
-                <span className="text-gold text-[10px]">
-                  ({language === "ja" ? "設立準備中" : language === "zh" ? "笹备中" : "Establishing"})
+              <Link href={`/jp/${pathLang === "zh" ? "zh" : pathLang === "ja" ? "ja" : "ja"}`}>
+                <span className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}>
+                  <span>{t.footer.japan}</span>
+                  <ExternalLink className="h-3 w-3" />
                 </span>
-              </span>
+              </Link>
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@
  */
 
 import { useRef } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { motion, useInView, type Variants, type Easing } from "framer-motion";
 import { ArrowRight, Building2, Globe, Shield, Award, CheckCircle2, Package, Cpu, Palette, TrendingUp } from "lucide-react";
 import Header from "@/components/Header";
@@ -55,6 +55,9 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export default function Home() {
   const { t, language } = useLanguage();
+  const [location] = useLocation();
+  const pathLang = location.split("/")[2] || "en";
+  const basePath = `/hk/${pathLang}`;
   
   // Get body font class based on language
   const getFontClass = () => {
@@ -134,13 +137,13 @@ export default function Home() {
               transition={{ delay: 0.9, duration: 0.8 }}
               className="flex flex-wrap gap-4"
             >
-              <Link href="/services">
+              <Link href={`${basePath}/services`}>
                 <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider ${getFontClass()}`}>
                   {t.hero.cta1}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <Link href="/contact">
+              <Link href={`${basePath}/contact`}>
                 <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider ${getFontClass()}`}>
                   {t.hero.cta2}
                 </Button>
@@ -245,7 +248,7 @@ export default function Home() {
           
           <AnimatedSection className="text-center mt-12">
             <motion.div variants={fadeInUp}>
-              <Link href="/services">
+              <Link href={`${basePath}/services`}>
                 <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider ${getFontClass()}`}>
                   {t.services.viewAll}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -335,7 +338,7 @@ export default function Home() {
           
           <AnimatedSection className="text-center mt-12">
             <motion.div variants={fadeInUp}>
-              <Link href="/portfolio">
+              <Link href={`${basePath}/portfolio`}>
                 <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider ${getFontClass()}`}>
                   {t.portfolio.viewCase}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -424,7 +427,7 @@ export default function Home() {
               <p className={`text-slate max-w-xl mx-auto mb-10 ${getFontClass()}`}>
                 {t.contact.description}
               </p>
-              <Link href="/contact">
+              <Link href={`${basePath}/contact`}>
                 <Button className={`bg-gold hover:bg-gold-dark text-navy px-10 py-6 text-sm tracking-wider ${getFontClass()}`}>
                   {t.common.getInTouch}
                   <ArrowRight className="ml-2 h-4 w-4" />
