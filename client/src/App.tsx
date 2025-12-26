@@ -10,6 +10,7 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import { JpLanguageProvider } from "./contexts/JpLanguageContext";
 import { UsLanguageProvider } from "./contexts/UsLanguageContext";
 import SplashScreen from "./components/SplashScreen";
+import CookieConsent from "./components/CookieConsent";
 
 // Global Gateway
 import GlobalGateway from "./pages/GlobalGateway";
@@ -267,6 +268,7 @@ function App() {
             <SplashScreen onComplete={handleSplashComplete} />
           )}
           <MainRouter />
+          <CookieConsent lang="en" position="bottom" />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

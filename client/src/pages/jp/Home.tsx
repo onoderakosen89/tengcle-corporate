@@ -103,11 +103,14 @@ function JpHeroSection({
         className="absolute inset-0"
         style={{ y: backgroundY }}
       >
-        <img
-          src="/images/hero-japan-corporate.jpg"
-          alt="Tokyo Business District"
-          className="w-full h-[120%] object-cover"
-        />
+        <picture>
+          <source srcSet="/images/hero-japan-corporate.webp" type="image/webp" />
+          <img
+            src="/images/hero-japan-corporate.jpg"
+            alt="Tokyo Business District"
+            className="w-full h-[120%] object-cover"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
       </motion.div>

@@ -14,6 +14,7 @@ import { motion, useInView, useScroll, useTransform, type Variants, type Easing 
 import { ArrowRight, Building2, Globe, Shield, Award, CheckCircle2, Package, Cpu, Palette, TrendingUp } from "lucide-react";
 import AnimatedCounter, { AnimatedCounterPlus } from "@/components/AnimatedCounter";
 import ScrollToTop from "@/components/ScrollToTop";
+import OptimizedImage from "@/components/OptimizedImage";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -86,11 +87,14 @@ function HeroSection({
         className="absolute inset-0"
         style={{ y: backgroundY }}
       >
-        <img
-          src="/images/hero-global-network.jpg"
-          alt="Hong Kong Victoria Harbour"
-          className="w-full h-[120%] object-cover"
-        />
+        <picture>
+          <source srcSet="/images/hero-global-network.webp" type="image/webp" />
+          <img
+            src="/images/hero-global-network.jpg"
+            alt="Hong Kong Victoria Harbour"
+            className="w-full h-[120%] object-cover"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
       </motion.div>
@@ -330,12 +334,15 @@ export default function Home() {
                 className="group relative bg-white border border-gray-200 overflow-hidden hover:border-gold/50 hover:shadow-lg transition-all duration-500"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <img
-                    src="/images/hotel-lobby-realistic.jpg"
-                    alt={t.portfolio.project1.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
+                  <picture>
+                    <source srcSet="/images/hotel-lobby-realistic.webp" type="image/webp" />
+                    <img
+                      src="/images/hotel-lobby-realistic.jpg"
+                      alt={t.portfolio.project1.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </picture>
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <span className="text-gold text-xs tracking-wider uppercase">{t.portfolio.project1.location}</span>
@@ -357,12 +364,15 @@ export default function Home() {
                 className="group relative bg-white border border-gray-200 overflow-hidden hover:border-gold/50 hover:shadow-lg transition-all duration-500"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <img
-                    src="/images/erp-dashboard-realistic.jpg"
-                    alt={t.portfolio.project2.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
+                  <picture>
+                    <source srcSet="/images/portfolio-it-realistic.webp" type="image/webp" />
+                    <img
+                      src="/images/portfolio-it-realistic.jpg"
+                      alt={t.portfolio.project2.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </picture>
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <span className="text-gold text-xs tracking-wider uppercase">{t.portfolio.project2.location}</span>

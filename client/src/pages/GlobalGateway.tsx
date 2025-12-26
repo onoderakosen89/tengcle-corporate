@@ -220,30 +220,34 @@ export default function GlobalGateway() {
                   className="group"
                 >
                   <div className="relative h-full">
-                    {/* Card glow effect on hover */}
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-gold/0 via-gold/30 to-gold/0 rounded-lg opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
+                    {/* Elegant shadow on hover - no gradient glow */}
+                    <div 
+                      className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500"
+                      style={{
+                        boxShadow: '0 25px 50px -12px rgba(201, 169, 98, 0.25), 0 0 0 1px rgba(201, 169, 98, 0.1)'
+                      }}
+                    />
                     
                     {/* Card */}
-                    <div className="relative bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-lg p-6 md:p-8 h-full transition-all duration-500 group-hover:bg-white/[0.06] group-hover:border-gold/30 group-hover:translate-y-[-4px]">
-                      {/* Flag & Region Name */}
-                      <div className="flex items-start justify-between mb-6">
+                    <div className="relative bg-[#12182a]/90 backdrop-blur-sm border border-white/10 rounded-xl p-6 md:p-8 h-full transition-all duration-500 group-hover:bg-[#1a2236] group-hover:border-gold/40 group-hover:-translate-y-2 group-hover:shadow-2xl">
+                      {/* Flag & Region Info - Simplified */}
+                      <div className="flex items-center gap-4 mb-6">
+                        <span className="text-4xl md:text-5xl drop-shadow-lg">
+                          {region.flag}
+                        </span>
                         <div>
-                          <span className="text-5xl md:text-6xl block mb-4 drop-shadow-lg">
-                            {region.flag}
-                          </span>
-                          <h2 className="font-heading text-2xl md:text-3xl text-white mb-1">
+                          <h2 className="font-heading text-xl md:text-2xl text-white">
                             {region.name}
                           </h2>
-                          <p className="text-gold text-sm tracking-[0.2em] uppercase font-medium">
+                          <p className="text-gold/80 text-xs tracking-[0.15em] uppercase">
                             {region.role}
                           </p>
                         </div>
-                        <Building2 className="w-6 h-6 text-white/20 group-hover:text-gold/60 transition-colors duration-300" />
                       </div>
 
                       {/* Company Info */}
-                      <div className="mb-8">
-                        <p className="text-lg text-white/90 font-medium mb-2">
+                      <div className="mb-6">
+                        <p className="text-base text-white/90 font-medium mb-1">
                           {region.company}
                         </p>
                         <p className="text-white/50 text-sm leading-relaxed">
@@ -252,28 +256,21 @@ export default function GlobalGateway() {
                       </div>
 
                       {/* Divider */}
-                      <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6" />
+                      <div className="h-px bg-white/10 mb-5" />
 
                       {/* Language Selection */}
                       <div>
-                        <p className="text-xs text-white/40 uppercase tracking-[0.15em] mb-4">
-                          Select Language
+                        <p className="text-xs text-white/40 uppercase tracking-[0.1em] mb-3">
+                          Language
                         </p>
-                        <div className="flex flex-wrap gap-3">
+                        <div className="flex flex-wrap gap-2">
                           {region.languages.map((lang) => (
                             <Link
                               key={lang.code}
                               href={lang.path}
-                              className="group/btn relative px-5 py-2.5 text-sm font-medium text-white/80 transition-all duration-300 overflow-hidden"
+                              className="px-4 py-2 text-sm font-medium text-white/70 bg-white/5 border border-white/10 rounded-lg hover:bg-gold/20 hover:border-gold/50 hover:text-gold transition-all duration-300"
                             >
-                              {/* Button background */}
-                              <span className="absolute inset-0 bg-white/5 border border-white/10 rounded group-hover/btn:bg-gold/20 group-hover/btn:border-gold/40 transition-all duration-300" />
-                              
-                              {/* Button text */}
-                              <span className="relative flex items-center gap-2 group-hover/btn:text-gold transition-colors duration-300">
-                                {lang.label}
-                                <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover/btn:opacity-100 group-hover/btn:translate-x-0 transition-all duration-300" />
-                              </span>
+                              {lang.label}
                             </Link>
                           ))}
                         </div>
