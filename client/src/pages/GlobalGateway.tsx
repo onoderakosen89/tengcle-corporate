@@ -80,11 +80,11 @@ const staggerContainer = {
 
 export default function GlobalGateway() {
   return (
-    <div className="min-h-screen bg-purple-deep text-white overflow-hidden relative">
+    <div className="min-h-screen bg-[#2d1b4e] text-white overflow-hidden relative">
       {/* Auspicious Pattern Background - Seigaiha (Wave) Pattern */}
       <div className="absolute inset-0">
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-dark to-purple-deep" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#2d1b4e] via-[#1a0f2e] to-[#2d1b4e]" />
         
         {/* Seigaiha wave pattern - Japanese auspicious pattern */}
         <div 

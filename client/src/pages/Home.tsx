@@ -86,8 +86,8 @@ export default function Home() {
             alt="Hong Kong Victoria Harbour"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
         </div>
         
         {/* Content */}

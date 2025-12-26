@@ -59,9 +59,9 @@ export default function UsHome() {
           <img
             src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1920&q=80"
             alt="New York City Skyline"
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-deep via-purple-deep/90 to-purple-dark/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-deep/70 via-purple-deep/50 to-transparent" />
         </div>
 
         {/* Content */}
