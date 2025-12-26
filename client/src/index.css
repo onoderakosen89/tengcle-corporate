@@ -1,22 +1,15 @@
+/**
+ * Tengcle Limited - Corporate Website
+ * Design: Clean White Base with Navy & Gold Accents
+ * Style: Professional, Minimal, Trustworthy
+ */
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
-/* 
- * Design Philosophy: Japanese Zen Luxury
- * - Ma (間): Strategic use of whitespace
- * - Wabi-Sabi Refinement: Harmony over perfection
- * - Natural Hierarchy: Organic visual flow
- * - Quiet Confidence: Presence without assertion
- * 
- * Color Palette:
- * - Sumi Black (#1C1C1C): Deep ink black
- * - Kincha Gold (#C7802D): Subtle golden warmth
- * - Stone Gray (#6B6B6B): Calm stone gray
- * - Washi White (#FAF8F5): Warm paper white
- */
-
+/* Custom Colors - Light Theme (White Base) */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -55,73 +48,58 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   
-  /* Custom brand colors */
-  --color-kincha: oklch(0.65 0.12 65);
-  --color-kincha-light: oklch(0.75 0.10 65);
-  --color-sumi: oklch(0.18 0.01 285);
-  --color-stone: oklch(0.50 0.01 285);
-  --color-washi: oklch(0.98 0.005 90);
-  --color-navy: oklch(0.25 0.05 260);
-  --color-navy-light: oklch(0.35 0.05 260);
+  /* Tengcle Brand Colors */
+  --color-navy: oklch(0.25 0.05 250);
+  --color-navy-light: oklch(0.35 0.05 250);
+  --color-gold: oklch(0.65 0.15 85);
+  --color-gold-dark: oklch(0.55 0.15 85);
+  --color-charcoal: oklch(0.30 0.01 250);
+  --color-slate: oklch(0.45 0.01 250);
+  --color-light-gray: oklch(0.97 0.005 250);
+  --color-warm-white: oklch(0.995 0.002 90);
   
-  /* Typography */
-  --font-display: 'Cormorant', serif;
-  --font-body: 'Source Sans 3', sans-serif;
-  --font-jp: 'Noto Sans JP', sans-serif;
-  --font-jp-serif: 'Noto Serif JP', serif;
+  /* Font families */
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-jp: "Noto Sans JP", sans-serif;
+  --font-jp-serif: "Noto Serif JP", serif;
+  --font-zh: "Noto Sans SC", sans-serif;
 }
 
 :root {
-  --primary: oklch(0.65 0.12 65);
-  --primary-foreground: oklch(0.98 0.005 90);
-  --sidebar-primary: oklch(0.65 0.12 65);
-  --sidebar-primary-foreground: oklch(0.98 0.005 90);
-  --chart-1: oklch(0.65 0.12 65);
-  --chart-2: oklch(0.25 0.05 260);
-  --chart-3: oklch(0.50 0.01 285);
-  --chart-4: oklch(0.35 0.05 260);
-  --chart-5: oklch(0.18 0.01 285);
-  --radius: 0.25rem;
-  --background: oklch(0.18 0.01 285);
-  --foreground: oklch(0.95 0.005 90);
-  --card: oklch(0.22 0.01 285);
-  --card-foreground: oklch(0.95 0.005 90);
-  --popover: oklch(0.22 0.01 285);
-  --popover-foreground: oklch(0.95 0.005 90);
-  --secondary: oklch(0.28 0.01 285);
-  --secondary-foreground: oklch(0.85 0.005 90);
-  --muted: oklch(0.30 0.01 285);
-  --muted-foreground: oklch(0.65 0.01 285);
-  --accent: oklch(0.25 0.05 260);
-  --accent-foreground: oklch(0.95 0.005 90);
+  /* Light Theme - White Base */
+  --radius: 0.5rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.20 0.02 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.20 0.02 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.20 0.02 250);
+  --primary: oklch(0.25 0.05 250);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0.005 250);
+  --secondary-foreground: oklch(0.30 0.02 250);
+  --muted: oklch(0.96 0.005 250);
+  --muted-foreground: oklch(0.50 0.02 250);
+  --accent: oklch(0.65 0.15 85);
+  --accent-foreground: oklch(0.20 0.02 250);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.30 0.01 285);
-  --input: oklch(0.30 0.01 285);
-  --ring: oklch(0.65 0.12 65);
-  --sidebar: oklch(0.20 0.01 285);
-  --sidebar-foreground: oklch(0.95 0.005 90);
-  --sidebar-accent: oklch(0.25 0.01 285);
-  --sidebar-accent-foreground: oklch(0.95 0.005 90);
-  --sidebar-border: oklch(0.30 0.01 285);
-  --sidebar-ring: oklch(0.65 0.12 65);
-}
-
-.light {
-  --background: oklch(0.98 0.005 90);
-  --foreground: oklch(0.18 0.01 285);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.01 285);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.01 285);
-  --secondary: oklch(0.95 0.005 90);
-  --secondary-foreground: oklch(0.30 0.01 285);
-  --muted: oklch(0.92 0.005 90);
-  --muted-foreground: oklch(0.50 0.01 285);
-  --accent: oklch(0.95 0.02 65);
-  --accent-foreground: oklch(0.18 0.01 285);
-  --border: oklch(0.88 0.005 90);
-  --input: oklch(0.88 0.005 90);
+  --border: oklch(0.92 0.005 250);
+  --input: oklch(0.92 0.005 250);
+  --ring: oklch(0.65 0.15 85);
+  --chart-1: oklch(0.25 0.05 250);
+  --chart-2: oklch(0.65 0.15 85);
+  --chart-3: oklch(0.45 0.05 250);
+  --chart-4: oklch(0.55 0.12 85);
+  --chart-5: oklch(0.35 0.05 250);
+  --sidebar: oklch(0.98 0.002 250);
+  --sidebar-foreground: oklch(0.20 0.02 250);
+  --sidebar-accent: oklch(0.96 0.005 250);
+  --sidebar-accent-foreground: oklch(0.20 0.02 250);
+  --sidebar-border: oklch(0.92 0.005 250);
+  --sidebar-ring: oklch(0.65 0.15 85);
+  --sidebar-primary: oklch(0.25 0.05 250);
+  --sidebar-primary-foreground: oklch(1 0 0);
 }
 
 @layer base {
@@ -129,8 +107,8 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-body);
+    @apply bg-background text-foreground antialiased;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -142,24 +120,6 @@
   input[type="checkbox"]:not(:disabled),
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-  }
-  
-  .font-jp {
-    font-family: var(--font-jp);
-  }
-  
-  .font-jp-serif {
-    font-family: var(--font-jp-serif);
-  }
-  
-  .font-display {
-    font-family: var(--font-display);
   }
 }
 
@@ -188,129 +148,111 @@
     .container {
       padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1400px;
+      max-width: 1280px;
     }
   }
   
-  /* Gold accent line */
-  .gold-line {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, oklch(0.65 0.12 65), transparent);
+  /* Typography */
+  .font-display {
+    font-family: var(--font-display);
   }
   
-  .gold-line-left {
-    height: 1px;
-    background: linear-gradient(90deg, oklch(0.65 0.12 65), transparent);
+  .font-jp {
+    font-family: var(--font-jp);
   }
   
-  /* Text gradient */
+  .font-jp-serif {
+    font-family: var(--font-jp-serif);
+  }
+  
+  .font-zh {
+    font-family: var(--font-zh);
+  }
+  
+  /* Brand Colors */
+  .bg-navy {
+    background-color: var(--color-navy);
+  }
+  
+  .bg-navy-light {
+    background-color: var(--color-navy-light);
+  }
+  
+  .text-navy {
+    color: var(--color-navy);
+  }
+  
+  .text-navy-light {
+    color: var(--color-navy-light);
+  }
+  
+  .bg-gold {
+    background-color: var(--color-gold);
+  }
+  
+  .text-gold {
+    color: var(--color-gold);
+  }
+  
+  .text-gold-dark {
+    color: var(--color-gold-dark);
+  }
+  
+  .bg-charcoal {
+    background-color: var(--color-charcoal);
+  }
+  
+  .text-charcoal {
+    color: var(--color-charcoal);
+  }
+  
+  .text-slate {
+    color: var(--color-slate);
+  }
+  
+  .bg-light-gray {
+    background-color: var(--color-light-gray);
+  }
+  
+  .bg-warm-white {
+    background-color: var(--color-warm-white);
+  }
+  
+  .border-gold {
+    border-color: var(--color-gold);
+  }
+  
+  .border-navy {
+    border-color: var(--color-navy);
+  }
+  
+  /* Gold gradient text */
   .text-gradient-gold {
-    background: linear-gradient(135deg, oklch(0.75 0.10 65), oklch(0.65 0.12 65), oklch(0.55 0.12 65));
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   
-  /* Subtle texture overlay */
-  .texture-overlay {
-    position: relative;
+  /* Gold accent line */
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--color-gold) 50%, transparent 100%);
   }
   
-  .texture-overlay::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.03;
-    pointer-events: none;
+  /* Section divider */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--color-border) 20%, var(--color-border) 80%, transparent 100%);
   }
   
-  /* Smooth scroll */
-  html {
-    scroll-behavior: smooth;
+  /* Card hover effect */
+  .card-hover {
+    transition: all 0.3s ease;
   }
   
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
   }
-  
-  ::-webkit-scrollbar-track {
-    background: oklch(0.20 0.01 285);
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: oklch(0.35 0.01 285);
-    border-radius: 4px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: oklch(0.65 0.12 65);
-  }
-  
-  /* Animation utilities */
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-  
-  .animate-slide-up {
-    animation: slideUp 0.8s ease-out forwards;
-  }
-  
-  .animate-slide-in-left {
-    animation: slideInLeft 0.8s ease-out forwards;
-  }
-  
-  .animate-slide-in-right {
-    animation: slideInRight 0.8s ease-out forwards;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  /* Stagger animation delays */
-  .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-  .stagger-4 { animation-delay: 0.4s; }
-  .stagger-5 { animation-delay: 0.5s; }
 }

@@ -1,25 +1,29 @@
 /**
- * About Page - Japanese Zen Luxury Design
+ * About Page - Clean White Professional Design
  * 
- * Design Philosophy:
- * - Comprehensive company information for compliance
- * - Trust-building through transparency
- * - Professional team presentation
+ * Company information with trust indicators
+ * Hong Kong Office: Sheung Wan only
+ * Japan Offices: Takanawa and Tsukiji
  */
 
 import { useRef } from "react";
 import { Link } from "wouter";
 import { motion, useInView, type Variants, type Easing } from "framer-motion";
-import { ArrowRight, MapPin, Shield, Award, Globe, Building2, Users, Target, Heart } from "lucide-react";
+import { ArrowRight, Shield, Building2, Globe, Award, MapPin } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: easeOut } },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8, ease: easeOut } 
+  },
 };
 
 const staggerContainer: Variants = {
@@ -48,256 +52,85 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 }
 
 export default function About() {
+  const { t, language } = useLanguage();
+  
+  const getFontClass = () => {
+    if (language === "ja") return "font-jp";
+    if (language === "zh") return "font-zh";
+    return "";
+  };
+
+  const getSerifFontClass = () => {
+    if (language === "ja") return "font-jp-serif";
+    if (language === "zh") return "font-zh";
+    return "font-display";
+  };
+
   return (
-    <div className="min-h-screen bg-sumi">
+    <div className="min-h-screen bg-white">
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/images/about-team.jpg"
-            alt="Tengcle Team"
-            className="w-full h-full object-cover opacity-30"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-sumi via-sumi/90 to-sumi/70" />
-        </div>
-        
-        <div className="container relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            <p className="text-kincha text-sm tracking-[0.3em] uppercase mb-4">About Us</p>
-            <h1 className="font-display text-5xl md:text-6xl text-washi mb-6">
-              Hong Kong's Gateway
-              <br />
-              <span className="text-gradient-gold">to Global Excellence</span>
-            </h1>
-            <p className="text-stone text-lg leading-relaxed">
-              Tengcle Limited is a Hong Kong-based global sourcing and project integration 
-              company, bridging world-class manufacturers with luxury hospitality projects 
-              across Asia and beyond.
-            </p>
-          </motion.div>
+      <section className="pt-32 pb-20 bg-light-gray">
+        <div className="container">
+          <AnimatedSection>
+            <motion.div variants={fadeInUp} className="max-w-3xl">
+              <p className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}>
+                {t.about.subtitle}
+              </p>
+              <h1 className={`${getSerifFontClass()} text-4xl md:text-5xl lg:text-6xl text-navy mb-6`}>
+                {t.about.title}
+              </h1>
+              <p className={`text-slate text-lg leading-relaxed ${getFontClass()}`}>
+                {t.about.description}
+              </p>
+            </motion.div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Company Overview */}
-      <section className="py-24 lg:py-32 bg-sumi">
+      <section className="py-24 bg-white">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection>
               <motion.div variants={fadeInUp}>
-                <p className="text-kincha text-sm tracking-[0.3em] uppercase mb-4">Our Story</p>
-                <h2 className="font-display text-4xl md:text-5xl text-washi mb-6">
-                  Built on Trust
-                  <br />
-                  & Expertise
-                </h2>
-                <div className="space-y-4 text-stone leading-relaxed">
-                  <p>
-                    Founded in Hong Kong, Tengcle Limited has established itself as a trusted 
-                    partner for luxury hospitality projects requiring world-class sourcing and 
-                    project integration services.
-                  </p>
-                  <p>
-                    Our deep involvement in Japan's prestigious hotel sector has shaped our 
-                    commitment to uncompromising quality standards. We apply these exacting 
-                    Japanese principles to every project we undertake, regardless of location.
-                  </p>
-                  <p>
-                    From our strategic Hong Kong base, we coordinate global supply chains, 
-                    manage complex procurement projects, and ensure seamless delivery of 
-                    FF&E and OS&E solutions to hospitality developments worldwide.
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatedSection>
-            
-            <AnimatedSection>
-              <motion.div variants={fadeInUp} className="space-y-6">
-                {/* Company Details Card */}
-                <div className="bg-navy/30 border border-stone/10 p-8">
-                  <h3 className="font-display text-2xl text-washi mb-6">Company Information</h3>
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-4">
-                      <Building2 className="h-5 w-5 text-kincha mt-1 flex-shrink-0" />
-                      <div>
-                        <p className="text-washi/60 text-xs tracking-wider uppercase mb-1">Legal Name</p>
-                        <p className="text-washi">Tengcle Limited</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-4">
-                      <Shield className="h-5 w-5 text-kincha mt-1 flex-shrink-0" />
-                      <div>
-                        <p className="text-washi/60 text-xs tracking-wider uppercase mb-1">TCSP License</p>
-                        <p className="text-washi">TC007820</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-4">
-                      <Award className="h-5 w-5 text-kincha mt-1 flex-shrink-0" />
-                      <div>
-                        <p className="text-washi/60 text-xs tracking-wider uppercase mb-1">Business Registration</p>
-                        <p className="text-washi">BR No. 65188837</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-4">
-                      <MapPin className="h-5 w-5 text-kincha mt-1 flex-shrink-0" />
-                      <div>
-                        <p className="text-washi/60 text-xs tracking-wider uppercase mb-1">Registered Office</p>
-                        <p className="text-washi text-sm">
-                          Units A-C, 25/F, Seabright Plaza<br />
-                          9-23 Shell Street, North Point<br />
-                          Hong Kong
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-4">
-                      <Globe className="h-5 w-5 text-kincha mt-1 flex-shrink-0" />
-                      <div>
-                        <p className="text-washi/60 text-xs tracking-wider uppercase mb-1">Operations Office</p>
-                        <p className="text-washi text-sm">
-                          No. 5, 17/F, Strand 50<br />
-                          50 Bonham Strand, Sheung Wan<br />
-                          Hong Kong
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Values */}
-      <section className="py-24 lg:py-32 bg-navy/20">
-        <div className="container">
-          <AnimatedSection className="text-center mb-16">
-            <motion.div variants={fadeInUp}>
-              <p className="text-kincha text-sm tracking-[0.3em] uppercase mb-4">Our Philosophy</p>
-              <h2 className="font-display text-4xl md:text-5xl text-washi mb-6">
-                Think Into The Future
-              </h2>
-              <p className="text-stone max-w-2xl mx-auto">
-                Our slogan reflects our forward-thinking approach to hospitality sourcing 
-                and project management.
-              </p>
-            </motion.div>
-          </AnimatedSection>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Target,
-                title: "Mission",
-                titleJp: "使命",
-                description: "To deliver world-class hospitality solutions by bridging global manufacturers with discerning clients, applying Japanese quality standards to every engagement.",
-              },
-              {
-                icon: Heart,
-                title: "Values",
-                titleJp: "価値観",
-                description: "Integrity, excellence, and transparency guide every decision. We believe trust is earned through consistent delivery and unwavering commitment to quality.",
-              },
-              {
-                icon: Users,
-                title: "Approach",
-                titleJp: "アプローチ",
-                description: "We combine global reach with local expertise, ensuring cultural sensitivity and regulatory compliance in every market we serve.",
-              },
-            ].map((item) => (
-              <AnimatedSection key={item.title}>
-                <motion.div
-                  variants={fadeInUp}
-                  className="bg-sumi border border-stone/10 p-8 h-full hover:border-kincha/30 transition-all duration-300"
-                >
-                  <item.icon className="h-10 w-10 text-kincha mb-6" />
-                  <h3 className="font-display text-2xl text-washi mb-1">{item.title}</h3>
-                  <p className="text-kincha/70 font-jp text-sm mb-4">{item.titleJp}</p>
-                  <p className="text-stone text-sm leading-relaxed">{item.description}</p>
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Strategic Advantage */}
-      <section className="py-24 lg:py-32 bg-sumi">
-        <div className="container">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <AnimatedSection>
-              <motion.div variants={fadeInUp} className="relative">
                 <img
-                  src="/images/hero-global-network.jpg"
-                  alt="Hong Kong Business Hub"
+                  src="/images/about-team.jpg"
+                  alt="Tengcle Team"
                   className="w-full aspect-[4/3] object-cover"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-kincha text-sumi p-6">
-                  <p className="font-display text-3xl">Hong Kong</p>
-                  <p className="text-sm">Strategic Hub</p>
-                </div>
               </motion.div>
             </AnimatedSection>
             
             <AnimatedSection>
               <motion.div variants={fadeInUp}>
-                <p className="text-kincha text-sm tracking-[0.3em] uppercase mb-4">Strategic Position</p>
-                <h2 className="font-display text-4xl md:text-5xl text-washi mb-6">
-                  Hong Kong Advantage
+                <h2 className={`${getSerifFontClass()} text-3xl text-navy mb-6`}>
+                  {t.about.story.title}
                 </h2>
-                <p className="text-stone leading-relaxed mb-6">
-                  Our Hong Kong base provides strategic advantages for international hospitality projects:
+                <p className={`text-slate leading-relaxed mb-6 ${getFontClass()}`}>
+                  {t.about.story.p1}
                 </p>
-                
-                <div className="space-y-4">
-                  {[
-                    "Gateway to Asian manufacturing hubs",
-                    "Robust legal and financial infrastructure",
-                    "International banking and trade facilitation",
-                    "Multilingual professional workforce",
-                    "Time zone bridging East and West",
-                    "Strong regulatory compliance framework",
-                  ].map((item, index) => (
-                    <motion.div
-                      key={index}
-                      variants={fadeInUp}
-                      className="flex items-center gap-3"
-                    >
-                      <div className="w-2 h-2 bg-kincha rounded-full flex-shrink-0" />
-                      <span className="text-washi/90">{item}</span>
-                    </motion.div>
-                  ))}
-                </div>
+                <p className={`text-slate leading-relaxed ${getFontClass()}`}>
+                  {t.about.story.p2}
+                </p>
               </motion.div>
             </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Compliance & Trust */}
-      <section className="py-24 lg:py-32 bg-navy/30">
+      {/* Trust & Compliance */}
+      <section className="py-24 bg-navy">
         <div className="container">
           <AnimatedSection className="text-center mb-16">
             <motion.div variants={fadeInUp}>
-              <p className="text-kincha text-sm tracking-[0.3em] uppercase mb-4">Compliance & Trust</p>
-              <h2 className="font-display text-4xl md:text-5xl text-washi mb-6">
-                Regulatory Excellence
-              </h2>
-              <p className="text-stone max-w-2xl mx-auto">
-                As a fully licensed Hong Kong entity, we maintain the highest standards 
-                of corporate governance and regulatory compliance.
+              <p className={`text-gold text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}>
+                {t.common.trustCompliance}
               </p>
+              <h2 className={`${getSerifFontClass()} text-4xl text-white mb-6`}>
+                {language === "ja" ? "コンプライアンスと信頼性" : language === "zh" ? "合规与信任" : "Compliance & Trust"}
+              </h2>
             </motion.div>
           </AnimatedSection>
           
@@ -305,33 +138,40 @@ export default function About() {
             {[
               {
                 icon: Shield,
-                title: "TCSP Licensed",
-                description: "Trust or Company Service Provider License TC007820",
+                title: language === "ja" ? "TCSPライセンス" : language === "zh" ? "TCSP牌照" : "TCSP Licensed",
+                value: "TC007820",
+                description: language === "ja" ? "信託・会社サービス提供者ライセンス" : language === "zh" ? "信托或公司服务提供者牌照" : "Trust or Company Service Provider License",
               },
               {
                 icon: Building2,
-                title: "Registered Entity",
-                description: "Hong Kong Companies Registry BR No. 65188837",
+                title: language === "ja" ? "商業登記" : language === "zh" ? "商业登记" : "Business Registration",
+                value: "65188837",
+                description: language === "ja" ? "香港会社登記所" : language === "zh" ? "香港公司注册处" : "Hong Kong Companies Registry",
               },
               {
                 icon: Award,
-                title: "Quality Standards",
-                description: "Japanese-standard quality control protocols",
+                title: language === "ja" ? "品質認証" : language === "zh" ? "质量认证" : "Quality Certified",
+                value: "ISO Standards",
+                description: language === "ja" ? "国際品質管理" : language === "zh" ? "国际质量管理" : "International quality management",
               },
               {
                 icon: Globe,
-                title: "Global Compliance",
-                description: "International trade and customs expertise",
+                title: language === "ja" ? "グローバルネットワーク" : language === "zh" ? "全球网络" : "Global Network",
+                value: language === "ja" ? "15カ国以上" : language === "zh" ? "15+国家" : "15+ Countries",
+                description: language === "ja" ? "世界中のサプライヤー関係" : language === "zh" ? "全球供应商关系" : "Supplier relationships worldwide",
               },
             ].map((item) => (
               <AnimatedSection key={item.title}>
                 <motion.div
                   variants={fadeInUp}
-                  className="bg-sumi border border-stone/10 p-6 text-center hover:border-kincha/30 transition-all duration-300"
+                  className="bg-white/5 border border-white/10 p-8 text-center hover:border-gold/30 transition-all duration-300"
                 >
-                  <item.icon className="h-10 w-10 text-kincha mx-auto mb-4" />
-                  <h3 className="font-display text-lg text-washi mb-2">{item.title}</h3>
-                  <p className="text-stone text-sm">{item.description}</p>
+                  <item.icon className="h-10 w-10 text-gold mx-auto mb-4" />
+                  <p className={`text-white/60 text-xs tracking-wider uppercase mb-2 ${getFontClass()}`}>
+                    {item.title}
+                  </p>
+                  <p className="font-display text-2xl text-white mb-2">{item.value}</p>
+                  <p className={`text-white/60 text-sm ${getFontClass()}`}>{item.description}</p>
                 </motion.div>
               </AnimatedSection>
             ))}
@@ -339,32 +179,92 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 lg:py-32 bg-sumi">
+      {/* Offices */}
+      <section className="py-24 bg-light-gray">
         <div className="container">
-          <AnimatedSection className="text-center max-w-3xl mx-auto">
+          <AnimatedSection className="text-center mb-16">
             <motion.div variants={fadeInUp}>
-              <p className="text-kincha text-sm tracking-[0.3em] uppercase mb-4">Connect With Us</p>
-              <h2 className="font-display text-4xl md:text-5xl text-washi mb-6">
-                Let's Build Together
+              <h2 className={`${getSerifFontClass()} text-4xl text-navy mb-6`}>
+                {language === "ja" ? "オフィス" : language === "zh" ? "办公室" : "Our Offices"}
               </h2>
-              <p className="text-stone text-lg mb-10">
-                Partner with a team that combines global expertise with unwavering 
-                commitment to quality and compliance.
+            </motion.div>
+          </AnimatedSection>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Hong Kong */}
+            <AnimatedSection>
+              <motion.div
+                variants={fadeInUp}
+                className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300"
+              >
+                <MapPin className="h-8 w-8 text-gold mb-4" />
+                <h3 className={`${getSerifFontClass()} text-xl text-navy mb-2`}>
+                  {t.contact.info.hkOffice}
+                </h3>
+                <p className="text-slate text-sm leading-relaxed">
+                  No. 5, 17/F, Strand 50<br />
+                  50 Bonham Strand<br />
+                  Sheung Wan, Hong Kong
+                </p>
+              </motion.div>
+            </AnimatedSection>
+            
+            {/* Tokyo Takanawa */}
+            <AnimatedSection>
+              <motion.div
+                variants={fadeInUp}
+                className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300"
+              >
+                <MapPin className="h-8 w-8 text-gold mb-4" />
+                <h3 className={`${getSerifFontClass()} text-xl text-navy mb-2`}>
+                  {t.contact.info.jpOffice1}
+                </h3>
+                <p className="text-slate text-sm leading-relaxed">
+                  {language === "ja" || language === "zh" 
+                    ? "東京都港区高輪2-19-20" 
+                    : "2-19-20 Takanawa, Minato-ku, Tokyo, Japan"}
+                </p>
+              </motion.div>
+            </AnimatedSection>
+            
+            {/* Tokyo Tsukiji */}
+            <AnimatedSection>
+              <motion.div
+                variants={fadeInUp}
+                className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300"
+              >
+                <MapPin className="h-8 w-8 text-gold mb-4" />
+                <h3 className={`${getSerifFontClass()} text-xl text-navy mb-2`}>
+                  {t.contact.info.jpOffice2}
+                </h3>
+                <p className="text-slate text-sm leading-relaxed">
+                  {language === "ja" || language === "zh" 
+                    ? "東京都中央区築地2-12-14" 
+                    : "2-12-14 Tsukiji, Chuo-ku, Tokyo, Japan"}
+                </p>
+              </motion.div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-white">
+        <div className="container">
+          <AnimatedSection className="text-center">
+            <motion.div variants={fadeInUp}>
+              <h2 className={`${getSerifFontClass()} text-4xl text-navy mb-6`}>
+                {t.contact.title}
+              </h2>
+              <p className={`text-slate max-w-xl mx-auto mb-10 ${getFontClass()}`}>
+                {t.contact.description}
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link href="/contact">
-                  <Button className="bg-kincha hover:bg-kincha-light text-sumi px-10 py-6 text-sm tracking-wider">
-                    Contact Our Team
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-                <Link href="/portfolio">
-                  <Button variant="outline" className="border-washi/30 text-washi hover:bg-washi/10 px-10 py-6 text-sm tracking-wider">
-                    View Our Work
-                  </Button>
-                </Link>
-              </div>
+              <Link href="/contact">
+                <Button className={`bg-navy hover:bg-navy-light text-white px-10 py-6 text-sm tracking-wider ${getFontClass()}`}>
+                  {t.common.getInTouch}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </motion.div>
           </AnimatedSection>
         </div>

@@ -1,20 +1,23 @@
 /**
- * Footer Component - Japanese Zen Luxury Design
+ * Footer Component - Clean White Design
  * 
- * Design Philosophy:
- * - Comprehensive company information for compliance/trust
- * - Gold accent lines for subtle luxury
- * - Clear display of licenses and registration numbers
- * - Multi-language support
+ * Design: Professional footer with company info and navigation
+ * Features: 3-language support, Japan link
  */
 
 import { Link } from "wouter";
-import { MapPin, Mail, Building2, Shield, FileCheck } from "lucide-react";
+import { Mail, MapPin, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Footer() {
   const { t, language } = useLanguage();
-  
+
+  const getFontClass = () => {
+    if (language === "ja") return "font-jp";
+    if (language === "zh") return "font-zh";
+    return "";
+  };
+
   const navItems = [
     { href: "/", label: t.nav.home },
     { href: "/services", label: t.nav.services },
@@ -24,50 +27,40 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-sumi border-t border-stone/20">
-      {/* Gold accent line */}
-      <div className="gold-line" />
-      
-      <div className="container py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+    <footer className="bg-navy text-white">
+      {/* Main Footer */}
+      <div className="container py-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="mb-6">
-              <h3 className="font-display text-3xl text-washi tracking-wider mb-2">
-                TENGCLE
-              </h3>
-              <p className="text-kincha text-sm tracking-[0.2em] uppercase">
-                think into the future
-              </p>
-            </div>
-            
-            <p className={`text-stone text-sm leading-relaxed mb-6 max-w-md ${language === "ja" ? "font-jp" : ""}`}>
+            <Link href="/">
+              <img 
+                src="/images/tengcle-logo.png" 
+                alt="Tengcle" 
+                className="h-12 w-auto mb-6 brightness-0 invert"
+              />
+            </Link>
+            <p className={`text-white/70 text-sm leading-relaxed mb-6 max-w-md ${getFontClass()}`}>
               {t.footer.description}
             </p>
             
-            {/* Trust Badges */}
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 text-xs text-stone/80 bg-navy/30 px-3 py-2 rounded">
-                <Shield size={14} className="text-kincha" />
-                <span>TCSP Licensed</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-stone/80 bg-navy/30 px-3 py-2 rounded">
-                <FileCheck size={14} className="text-kincha" />
-                <span>Compliance Verified</span>
-              </div>
+            {/* Licenses */}
+            <div className="flex flex-wrap gap-4 text-xs text-white/50">
+              <span>TCSP License: TC007820</span>
+              <span>BR No: 65188837</span>
             </div>
           </div>
-
-          {/* Quick Links */}
+          
+          {/* Navigation */}
           <div>
-            <h4 className={`text-washi font-display text-lg mb-6 tracking-wider ${language === "ja" ? "font-jp" : ""}`}>
+            <h4 className={`text-gold text-sm tracking-wider uppercase mb-6 ${getFontClass()}`}>
               {t.footer.navigation}
             </h4>
             <ul className="space-y-3">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href}>
-                    <span className={`text-stone hover:text-kincha transition-colors duration-300 text-sm ${language === "ja" ? "font-jp" : ""}`}>
+                    <span className={`text-white/70 hover:text-white transition-colors text-sm ${getFontClass()}`}>
                       {item.label}
                     </span>
                   </Link>
@@ -75,62 +68,81 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-
-          {/* Contact Info */}
+          
+          {/* Contact */}
           <div>
-            <h4 className={`text-washi font-display text-lg mb-6 tracking-wider ${language === "ja" ? "font-jp" : ""}`}>
+            <h4 className={`text-gold text-sm tracking-wider uppercase mb-6 ${getFontClass()}`}>
               {t.footer.contact}
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Mail size={16} className="text-kincha mt-1 flex-shrink-0" />
-                <a 
-                  href="mailto:admin@tengcle.com" 
-                  className="text-stone hover:text-kincha transition-colors text-sm"
-                >
-                  admin@tengcle.com
-                </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <Building2 size={16} className="text-kincha mt-1 flex-shrink-0" />
-                <div className="text-stone text-sm">
-                  <p className={`text-washi/80 text-xs mb-1 ${language === "ja" ? "font-jp" : ""}`}>
-                    {t.contact.info.operations}
-                  </p>
-                  <p>No. 5, 17/F, Strand 50</p>
-                  <p>50 Bonham Strand</p>
-                  <p>Sheung Wan, Hong Kong</p>
+                <Mail className="h-4 w-4 text-gold flex-shrink-0 mt-1" />
+                <div>
+                  <p className={`text-white/50 text-xs mb-1 ${getFontClass()}`}>{t.contact.email}</p>
+                  <a 
+                    href="mailto:info@tengcle.com" 
+                    className="text-white/90 hover:text-white transition-colors text-sm"
+                  >
+                    info@tengcle.com
+                  </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin size={16} className="text-kincha mt-1 flex-shrink-0" />
-                <div className="text-stone text-sm">
-                  <p className={`text-washi/80 text-xs mb-1 ${language === "ja" ? "font-jp" : ""}`}>
-                    {t.contact.info.registered}
+                <MapPin className="h-4 w-4 text-gold flex-shrink-0 mt-1" />
+                <div>
+                  <p className={`text-white/50 text-xs mb-1 ${getFontClass()}`}>{t.contact.info.hkOffice}</p>
+                  <p className="text-white/90 text-sm">
+                    No. 5, 17/F, Strand 50<br />
+                    50 Bonham Strand<br />
+                    Sheung Wan, Hong Kong
                   </p>
-                  <p>Units A-C, 25/F</p>
-                  <p>Seabright Plaza, 9-23 Shell St</p>
-                  <p>North Point, Hong Kong</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="h-4 w-4 text-gold flex-shrink-0 mt-1" />
+                <div>
+                  <p className={`text-white/50 text-xs mb-1 ${getFontClass()}`}>{t.contact.info.jpOffice1}</p>
+                  <p className="text-white/90 text-sm">
+                    {language === "ja" || language === "zh" 
+                      ? "東京都港区高輪2-19-20" 
+                      : "2-19-20 Takanawa, Minato-ku, Tokyo"}
+                  </p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="h-4 w-4 text-gold flex-shrink-0 mt-1" />
+                <div>
+                  <p className={`text-white/50 text-xs mb-1 ${getFontClass()}`}>{t.contact.info.jpOffice2}</p>
+                  <p className="text-white/90 text-sm">
+                    {language === "ja" || language === "zh" 
+                      ? "東京都中央区築地2-12-14" 
+                      : "2-12-14 Tsukiji, Chuo-ku, Tokyo"}
+                  </p>
                 </div>
               </li>
             </ul>
           </div>
         </div>
-
-        {/* Bottom Section */}
-        <div className="mt-16 pt-8 border-t border-stone/20">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-            {/* Legal Info */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 text-xs text-stone/70">
-              <span>BR No: 65188837</span>
-              <span className="hidden sm:inline">|</span>
-              <span>TCSP License: TC007820</span>
-            </div>
-            
-            {/* Copyright */}
-            <p className="text-xs text-stone/50 text-center lg:text-right">
+      </div>
+      
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10">
+        <div className="container py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-white/50 text-xs">
               © {new Date().getFullYear()} Tengcle Limited. All rights reserved.
             </p>
+            
+            {/* Japan Link */}
+            <a 
+              href="https://jp.tengcle.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}
+            >
+              <span>{t.footer.japan}</span>
+              <ExternalLink className="h-3 w-3" />
+            </a>
           </div>
         </div>
       </div>

@@ -1,27 +1,26 @@
 /**
- * Contact Page - Japanese Zen Luxury Design
+ * Contact Page - Clean White Professional Design
  * 
- * Design Philosophy:
- * - Clear contact information for trust
- * - Professional inquiry form
- * - Office locations prominently displayed
+ * Simple contact information display
+ * Email only (no form)
  */
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView, type Variants, type Easing } from "framer-motion";
-import { Mail, MapPin, Building2, Phone, Send, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, ExternalLink } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: easeOut } },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8, ease: easeOut } 
+  },
 };
 
 const staggerContainer: Variants = {
@@ -50,260 +49,146 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 }
 
 export default function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { t, language } = useLanguage();
+  
+  const getFontClass = () => {
+    if (language === "ja") return "font-jp";
+    if (language === "zh") return "font-zh";
+    return "";
+  };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast.success("Thank you for your inquiry. We will respond within 24 hours.");
+  const getSerifFontClass = () => {
+    if (language === "ja") return "font-jp-serif";
+    if (language === "zh") return "font-zh";
+    return "font-display";
   };
 
   return (
-    <div className="min-h-screen bg-sumi">
+    <div className="min-h-screen bg-white">
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/30 to-transparent" />
-        
-        <div className="container relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            <p className="text-kincha text-sm tracking-[0.3em] uppercase mb-4">Contact Us</p>
-            <h1 className="font-display text-5xl md:text-6xl text-washi mb-6">
-              Let's Start a
-              <br />
-              <span className="text-gradient-gold">Conversation</span>
-            </h1>
-            <p className="text-stone text-lg leading-relaxed">
-              Whether you're planning a new hospitality project or seeking a reliable 
-              sourcing partner, we're here to help bring your vision to life.
-            </p>
-          </motion.div>
+      <section className="pt-32 pb-20 bg-light-gray">
+        <div className="container">
+          <AnimatedSection>
+            <motion.div variants={fadeInUp} className="max-w-3xl">
+              <p className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}>
+                {t.contact.subtitle}
+              </p>
+              <h1 className={`${getSerifFontClass()} text-4xl md:text-5xl lg:text-6xl text-navy mb-6`}>
+                {t.contact.title}
+              </h1>
+              <p className={`text-slate text-lg leading-relaxed ${getFontClass()}`}>
+                {t.contact.description}
+              </p>
+            </motion.div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-24 lg:py-32 bg-sumi">
+      {/* Contact Information */}
+      <section className="py-24 bg-white">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-            {/* Contact Form */}
-            <AnimatedSection>
-              <motion.div variants={fadeInUp}>
-                <h2 className="font-display text-3xl text-washi mb-6">Send an Inquiry</h2>
-                <p className="text-stone mb-8">
-                  Fill out the form below and our team will respond within 24 hours.
-                </p>
-                
-                {isSubmitted ? (
-                  <div className="bg-navy/30 border border-kincha/30 p-8 text-center">
-                    <CheckCircle2 className="h-12 w-12 text-kincha mx-auto mb-4" />
-                    <h3 className="font-display text-2xl text-washi mb-2">Thank You</h3>
-                    <p className="text-stone">
-                      Your inquiry has been received. We will contact you shortly.
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-washi/80 text-sm mb-2">Name *</label>
-                        <Input
-                          required
-                          placeholder="Your full name"
-                          className="bg-navy/30 border-stone/20 text-washi placeholder:text-stone/50 focus:border-kincha"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-washi/80 text-sm mb-2">Company</label>
-                        <Input
-                          placeholder="Company name"
-                          className="bg-navy/30 border-stone/20 text-washi placeholder:text-stone/50 focus:border-kincha"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="grid sm:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-washi/80 text-sm mb-2">Email *</label>
-                        <Input
-                          type="email"
-                          required
-                          placeholder="your@email.com"
-                          className="bg-navy/30 border-stone/20 text-washi placeholder:text-stone/50 focus:border-kincha"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-washi/80 text-sm mb-2">Phone</label>
-                        <Input
-                          type="tel"
-                          placeholder="+852 XXXX XXXX"
-                          className="bg-navy/30 border-stone/20 text-washi placeholder:text-stone/50 focus:border-kincha"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <label className="block text-washi/80 text-sm mb-2">Subject *</label>
-                      <Input
-                        required
-                        placeholder="How can we help?"
-                        className="bg-navy/30 border-stone/20 text-washi placeholder:text-stone/50 focus:border-kincha"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-washi/80 text-sm mb-2">Message *</label>
-                      <Textarea
-                        required
-                        rows={5}
-                        placeholder="Tell us about your project or inquiry..."
-                        className="bg-navy/30 border-stone/20 text-washi placeholder:text-stone/50 focus:border-kincha resize-none"
-                      />
-                    </div>
-                    
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-kincha hover:bg-kincha-light text-sumi py-6 text-sm tracking-wider"
-                    >
-                      {isSubmitting ? (
-                        "Sending..."
-                      ) : (
-                        <>
-                          Send Message
-                          <Send className="ml-2 h-4 w-4" />
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                )}
+          <div className="max-w-4xl mx-auto">
+            {/* Email */}
+            <AnimatedSection className="mb-16">
+              <motion.div
+                variants={fadeInUp}
+                className="bg-light-gray border border-gray-200 p-8 md:p-12 text-center"
+              >
+                <Mail className="h-12 w-12 text-gold mx-auto mb-6" />
+                <h2 className={`${getSerifFontClass()} text-2xl text-navy mb-4`}>
+                  {t.contact.email}
+                </h2>
+                <a 
+                  href="mailto:info@tengcle.com"
+                  className="text-2xl md:text-3xl text-navy hover:text-gold transition-colors font-display"
+                >
+                  info@tengcle.com
+                </a>
               </motion.div>
             </AnimatedSection>
             
-            {/* Contact Information */}
+            {/* Offices */}
             <AnimatedSection>
-              <motion.div variants={fadeInUp} className="space-y-8">
-                <div>
-                  <h2 className="font-display text-3xl text-washi mb-6">Contact Information</h2>
-                  <p className="text-stone mb-8">
-                    Reach out directly or visit one of our Hong Kong offices.
+              <motion.div variants={fadeInUp} className="text-center mb-12">
+                <h2 className={`${getSerifFontClass()} text-3xl text-navy`}>
+                  {language === "ja" ? "オフィス" : language === "zh" ? "办公室" : "Our Offices"}
+                </h2>
+              </motion.div>
+            </AnimatedSection>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Hong Kong */}
+              <AnimatedSection>
+                <motion.div
+                  variants={fadeInUp}
+                  className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300 h-full"
+                >
+                  <MapPin className="h-8 w-8 text-gold mb-4" />
+                  <h3 className={`${getSerifFontClass()} text-xl text-navy mb-4`}>
+                    {t.contact.info.hkOffice}
+                  </h3>
+                  <p className="text-slate text-sm leading-relaxed">
+                    No. 5, 17/F, Strand 50<br />
+                    50 Bonham Strand<br />
+                    Sheung Wan, Hong Kong
                   </p>
-                </div>
-                
-                {/* Email */}
-                <div className="bg-navy/30 border border-stone/10 p-6 hover:border-kincha/30 transition-all duration-300">
-                  <div className="flex items-start gap-4">
-                    <Mail className="h-6 w-6 text-kincha flex-shrink-0" />
-                    <div>
-                      <p className="text-washi/60 text-xs tracking-wider uppercase mb-1">Email</p>
-                      <a 
-                        href="mailto:admin@tengcle.com" 
-                        className="text-washi hover:text-kincha transition-colors text-lg"
-                      >
-                        admin@tengcle.com
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Operations Office */}
-                <div className="bg-navy/30 border border-stone/10 p-6 hover:border-kincha/30 transition-all duration-300">
-                  <div className="flex items-start gap-4">
-                    <Building2 className="h-6 w-6 text-kincha flex-shrink-0" />
-                    <div>
-                      <p className="text-washi/60 text-xs tracking-wider uppercase mb-1">Operations Office</p>
-                      <p className="text-washi">
-                        No. 5, 17/F, Strand 50<br />
-                        50 Bonham Strand<br />
-                        Sheung Wan, Hong Kong
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Registered Office */}
-                <div className="bg-navy/30 border border-stone/10 p-6 hover:border-kincha/30 transition-all duration-300">
-                  <div className="flex items-start gap-4">
-                    <MapPin className="h-6 w-6 text-kincha flex-shrink-0" />
-                    <div>
-                      <p className="text-washi/60 text-xs tracking-wider uppercase mb-1">Registered Office</p>
-                      <p className="text-washi">
-                        Units A-C, 25/F, Seabright Plaza<br />
-                        9-23 Shell Street<br />
-                        North Point, Hong Kong
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Business Hours */}
-                <div className="bg-navy/30 border border-stone/10 p-6 hover:border-kincha/30 transition-all duration-300">
-                  <div className="flex items-start gap-4">
-                    <Phone className="h-6 w-6 text-kincha flex-shrink-0" />
-                    <div>
-                      <p className="text-washi/60 text-xs tracking-wider uppercase mb-1">Business Hours</p>
-                      <p className="text-washi">
-                        Monday - Friday: 9:00 AM - 6:00 PM (HKT)<br />
-                        Saturday - Sunday: Closed
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Trust Badge */}
-                <div className="bg-kincha/10 border border-kincha/30 p-6">
-                  <p className="text-kincha text-sm mb-2">Licensed & Registered</p>
-                  <p className="text-washi/80 text-sm">
-                    TCSP License: TC007820<br />
-                    BR No: 65188837
+                </motion.div>
+              </AnimatedSection>
+              
+              {/* Tokyo Takanawa */}
+              <AnimatedSection>
+                <motion.div
+                  variants={fadeInUp}
+                  className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300 h-full"
+                >
+                  <MapPin className="h-8 w-8 text-gold mb-4" />
+                  <h3 className={`${getSerifFontClass()} text-xl text-navy mb-4`}>
+                    {t.contact.info.jpOffice1}
+                  </h3>
+                  <p className="text-slate text-sm leading-relaxed">
+                    {language === "ja" || language === "zh" 
+                      ? "東京都港区高輪2-19-20" 
+                      : "2-19-20 Takanawa, Minato-ku, Tokyo, Japan"}
                   </p>
-                </div>
+                </motion.div>
+              </AnimatedSection>
+              
+              {/* Tokyo Tsukiji */}
+              <AnimatedSection>
+                <motion.div
+                  variants={fadeInUp}
+                  className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300 h-full"
+                >
+                  <MapPin className="h-8 w-8 text-gold mb-4" />
+                  <h3 className={`${getSerifFontClass()} text-xl text-navy mb-4`}>
+                    {t.contact.info.jpOffice2}
+                  </h3>
+                  <p className="text-slate text-sm leading-relaxed">
+                    {language === "ja" || language === "zh" 
+                      ? "東京都中央区築地2-12-14" 
+                      : "2-12-14 Tsukiji, Chuo-ku, Tokyo, Japan"}
+                  </p>
+                </motion.div>
+              </AnimatedSection>
+            </div>
+            
+            {/* Japan Link */}
+            <AnimatedSection className="mt-12">
+              <motion.div variants={fadeInUp} className="text-center">
+                <a 
+                  href="https://jp.tengcle.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-2 text-navy hover:text-gold transition-colors ${getFontClass()}`}
+                >
+                  <span>{t.footer.japan}</span>
+                  <ExternalLink className="h-4 w-4" />
+                </a>
               </motion.div>
             </AnimatedSection>
           </div>
-        </div>
-      </section>
-
-      {/* Map Section Placeholder */}
-      <section className="py-24 lg:py-32 bg-navy/20">
-        <div className="container">
-          <AnimatedSection className="text-center">
-            <motion.div variants={fadeInUp}>
-              <h2 className="font-display text-3xl text-washi mb-6">Our Location</h2>
-              <p className="text-stone mb-8 max-w-2xl mx-auto">
-                Strategically located in Hong Kong's business districts, 
-                we're positioned to serve clients across Asia and beyond.
-              </p>
-              
-              {/* Map placeholder with Hong Kong image */}
-              <div className="relative aspect-[21/9] overflow-hidden">
-                <img
-                  src="/images/hero-global-network.jpg"
-                  alt="Hong Kong Business District"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-sumi/60 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="h-12 w-12 text-kincha mx-auto mb-4" />
-                    <p className="font-display text-2xl text-washi">Hong Kong SAR</p>
-                    <p className="text-stone">Asia's Premier Business Hub</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatedSection>
         </div>
       </section>
 

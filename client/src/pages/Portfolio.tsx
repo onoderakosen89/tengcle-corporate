@@ -1,25 +1,28 @@
 /**
- * Portfolio Page - Japanese Zen Luxury Design
+ * Portfolio Page - Clean White Professional Design
  * 
- * Design Philosophy:
- * - Showcase Japan and Myanmar projects prominently
- * - Emphasize trust, quality, and scale
- * - Visual storytelling with project details
+ * Projects displayed without specific country names
+ * Uses "Southeast Asia" for location
  */
 
 import { useRef } from "react";
 import { Link } from "wouter";
 import { motion, useInView, type Variants, type Easing } from "framer-motion";
-import { ArrowRight, MapPin, Building2, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Building2, Cpu, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: easeOut } },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8, ease: easeOut } 
+  },
 };
 
 const staggerContainer: Variants = {
@@ -47,271 +50,190 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
   );
 }
 
-const projects = [
-  {
-    id: "japan-luxury",
-    title: "Luxury Hotel Development",
-    titleJp: "高級ホテル開発プロジェクト",
-    location: "Japan",
-    locationDetail: "Tokyo & Kyoto",
-    image: "/images/hero-japan-luxury.jpg",
-    secondaryImage: "/images/japan-hotel-1.jpg",
-    category: "FF&E Procurement",
-    description: "Comprehensive FF&E sourcing and supply chain management for multiple luxury hotel properties across Japan, meeting the nation's exacting quality standards.",
-    highlights: [
-      "Custom furniture design coordination",
-      "Premium textile and fabric sourcing",
-      "Strict Japanese quality control protocols",
-      "On-time delivery across multiple sites",
-    ],
-    stats: [
-      { label: "Properties", value: "3" },
-      { label: "Room Keys", value: "450+" },
-      { label: "Suppliers", value: "25+" },
-    ],
-    featured: true,
-  },
-  {
-    id: "kyoto-boutique",
-    title: "Boutique Hotel Renovation",
-    titleJp: "ブティックホテル改装",
-    location: "Japan",
-    locationDetail: "Kyoto",
-    image: "/images/japan-hotel-3.jpg",
-    secondaryImage: "/images/japan-hotel-4.jpg",
-    category: "Interior Sourcing",
-    description: "Global sourcing of interior materials and decorative items that reflect Japan's unique aesthetic sensibility for a prestigious boutique hotel renovation.",
-    highlights: [
-      "Traditional Japanese design elements",
-      "Global artisan partnerships",
-      "Sustainable material sourcing",
-      "Cultural authenticity preservation",
-    ],
-    stats: [
-      { label: "Rooms", value: "85" },
-      { label: "Artisans", value: "12" },
-      { label: "Countries", value: "6" },
-    ],
-    featured: false,
-  },
-  {
-    id: "yangon-international",
-    title: "Yangon International Hotel",
-    titleJp: "ヤンゴン国際ホテル開発",
-    location: "Myanmar",
-    locationDetail: "Yangon",
-    image: "/images/myanmar-hotel-2.jpg",
-    secondaryImage: "/images/myanmar-hotel-1.jpg",
-    category: "Full Project Integration",
-    description: "Lead sourcing agent for a landmark 500-room mixed-use hotel development, managing a $20M+ procurement scope with comprehensive project integration services.",
-    highlights: [
-      "500-room mixed-use complex",
-      "$20M+ procurement value",
-      "Full FF&E and OS&E scope",
-      "International logistics coordination",
-    ],
-    stats: [
-      { label: "Total Rooms", value: "500" },
-      { label: "Project Value", value: "$20M+" },
-      { label: "Categories", value: "150+" },
-    ],
-    featured: true,
-  },
-];
-
 export default function Portfolio() {
+  const { t, language } = useLanguage();
+  
+  const getFontClass = () => {
+    if (language === "ja") return "font-jp";
+    if (language === "zh") return "font-zh";
+    return "";
+  };
+
+  const getSerifFontClass = () => {
+    if (language === "ja") return "font-jp-serif";
+    if (language === "zh") return "font-zh";
+    return "font-display";
+  };
+
+  const projects = [
+    {
+      icon: Building2,
+      title: t.portfolio.project1.title,
+      location: t.portfolio.project1.location,
+      description: t.portfolio.project1.description,
+      image: "/images/hero-japan-luxury.jpg",
+      scope: language === "ja" ? [
+        "本館全面改装",
+        "別館内装工事一式",
+        "400室以上の新規ホテル建設",
+        "ホテル運営・管理",
+        "FF&E/OS&E調達",
+      ] : language === "zh" ? [
+        "主楼全面翻新",
+        "附楼室内装修",
+        "400多间客房新酒店建设",
+        "酒店运营管理",
+        "FF&E/OS&E采购",
+      ] : [
+        "Main building complete renovation",
+        "Annex interior fit-out",
+        "400+ room new hotel construction",
+        "Hotel operations and management",
+        "FF&E/OS&E procurement",
+      ],
+      stats: [
+        { label: language === "ja" ? "客室数" : language === "zh" ? "客房数" : "Rooms", value: "400+" },
+        { label: language === "ja" ? "プロジェクト規模" : language === "zh" ? "项目规模" : "Scale", value: language === "ja" ? "大規模" : language === "zh" ? "大规模" : "Large" },
+        { label: language === "ja" ? "ステータス" : language === "zh" ? "状态" : "Status", value: language === "ja" ? "進行中" : language === "zh" ? "进行中" : "Ongoing" },
+      ],
+    },
+    {
+      icon: Cpu,
+      title: t.portfolio.project2.title,
+      location: t.portfolio.project2.location,
+      description: t.portfolio.project2.description,
+      image: "/images/services-integration.jpg",
+      scope: language === "ja" ? [
+        "Odoo ERP導入",
+        "高度なカスタマイズ（API、フィールド追加）",
+        "XML表示カスタマイズ",
+        "オペレーションシステム統合",
+        "スタッフトレーニング",
+      ] : language === "zh" ? [
+        "Odoo ERP实施",
+        "高级定制（API、字段添加）",
+        "XML显示定制",
+        "运营系统集成",
+        "员工培训",
+      ] : [
+        "Odoo ERP implementation",
+        "Advanced customization (API, field additions)",
+        "XML display customization",
+        "Operations system integration",
+        "Staff training",
+      ],
+      stats: [
+        { label: language === "ja" ? "システム" : language === "zh" ? "系统" : "System", value: "Odoo ERP" },
+        { label: language === "ja" ? "カスタマイズ" : language === "zh" ? "定制" : "Custom", value: language === "ja" ? "高度" : language === "zh" ? "高级" : "Advanced" },
+        { label: language === "ja" ? "ステータス" : language === "zh" ? "状态" : "Status", value: language === "ja" ? "進行中" : language === "zh" ? "进行中" : "Ongoing" },
+      ],
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-sumi">
+    <div className="min-h-screen bg-white">
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/30 to-transparent" />
-        
-        <div className="container relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            <p className="text-kincha text-sm tracking-[0.3em] uppercase mb-4">Our Portfolio</p>
-            <h1 className="font-display text-5xl md:text-6xl text-washi mb-6">
-              Proven Track Record
-              <br />
-              <span className="text-gradient-gold">of Excellence</span>
-            </h1>
-            <p className="text-stone text-lg leading-relaxed">
-              From Japan's most prestigious hotels to landmark developments in Southeast Asia, 
-              our portfolio demonstrates our commitment to quality and reliability.
-            </p>
-          </motion.div>
+      <section className="pt-32 pb-20 bg-light-gray">
+        <div className="container">
+          <AnimatedSection>
+            <motion.div variants={fadeInUp} className="max-w-3xl">
+              <p className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}>
+                {t.portfolio.subtitle}
+              </p>
+              <h1 className={`${getSerifFontClass()} text-4xl md:text-5xl lg:text-6xl text-navy mb-6`}>
+                {t.portfolio.title}
+              </h1>
+              <p className={`text-slate text-lg leading-relaxed ${getFontClass()}`}>
+                {t.portfolio.description}
+              </p>
+            </motion.div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Featured Projects */}
-      {projects.filter(p => p.featured).map((project, index) => (
-        <section
-          key={project.id}
-          className={`py-24 lg:py-32 ${index % 2 === 0 ? "bg-sumi" : "bg-navy/20"}`}
-        >
-          <div className="container">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-              {/* Images */}
-              <AnimatedSection className={index % 2 === 1 ? "lg:order-2" : ""}>
-                <motion.div variants={fadeInUp} className="relative">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full aspect-[4/3] object-cover"
-                  />
-                  <div className="absolute -bottom-8 -right-4 lg:-right-8 w-1/2 aspect-[4/3] border-4 border-sumi">
-                    <img
-                      src={project.secondaryImage}
-                      alt={`${project.title} detail`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {/* Location Badge */}
-                  <div className="absolute top-4 left-4 bg-kincha text-sumi px-4 py-2 flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
-                    <span className="text-sm font-medium">{project.location}</span>
-                  </div>
-                </motion.div>
-              </AnimatedSection>
-              
-              {/* Content */}
-              <AnimatedSection className={`${index % 2 === 1 ? "lg:order-1" : ""} pt-8 lg:pt-0`}>
-                <motion.div variants={fadeInUp}>
-                  <p className="text-kincha text-sm tracking-[0.2em] uppercase mb-2">{project.category}</p>
-                  <h2 className="font-display text-4xl md:text-5xl text-washi mb-2">{project.title}</h2>
-                  <p className="text-kincha/70 font-jp text-lg mb-2">{project.titleJp}</p>
-                  <p className="text-stone/70 text-sm mb-6 flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
-                    {project.locationDetail}
-                  </p>
-                  
-                  <p className="text-stone leading-relaxed mb-8">{project.description}</p>
-                  
-                  {/* Highlights */}
-                  <div className="space-y-3 mb-8">
-                    {project.highlights.map((highlight, i) => (
-                      <motion.div
-                        key={i}
-                        variants={fadeInUp}
-                        className="flex items-start gap-3"
-                      >
-                        <CheckCircle2 className="h-5 w-5 text-kincha flex-shrink-0 mt-0.5" />
-                        <span className="text-washi/90">{highlight}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                  
-                  {/* Stats */}
-                  <div className="grid grid-cols-3 gap-4">
-                    {project.stats.map((stat, i) => (
-                      <motion.div
-                        key={i}
-                        variants={fadeInUp}
-                        className="bg-navy/30 border border-stone/10 p-4 text-center"
-                      >
-                        <p className="font-display text-3xl text-kincha mb-1">{stat.value}</p>
-                        <p className="text-stone text-xs tracking-wider uppercase">{stat.label}</p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              </AnimatedSection>
-            </div>
-          </div>
-        </section>
-      ))}
-
-      {/* Other Projects Grid */}
-      <section className="py-24 lg:py-32 bg-sumi">
+      {/* Projects */}
+      <section className="py-24 bg-white">
         <div className="container">
-          <AnimatedSection className="mb-16">
-            <motion.div variants={fadeInUp}>
-              <p className="text-kincha text-sm tracking-[0.3em] uppercase mb-4">Additional Projects</p>
-              <h2 className="font-display text-4xl md:text-5xl text-washi">
-                More Case Studies
-              </h2>
-            </motion.div>
-          </AnimatedSection>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.filter(p => !p.featured).map((project) => (
-              <AnimatedSection key={project.id}>
+          <div className="space-y-24">
+            {projects.map((project, index) => (
+              <AnimatedSection key={project.title}>
                 <motion.div
                   variants={fadeInUp}
-                  className="group bg-navy/20 border border-stone/10 overflow-hidden hover:border-kincha/30 transition-all duration-500"
+                  className="grid lg:grid-cols-2 gap-12 items-start"
                 >
-                  <div className="relative h-56 overflow-hidden">
+                  {/* Image */}
+                  <div className={`relative ${index % 2 === 1 ? "lg:order-2" : ""}`}>
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full aspect-[4/3] object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-sumi via-sumi/50 to-transparent" />
-                    <div className="absolute top-4 left-4 bg-kincha/90 text-sumi px-3 py-1 text-xs">
-                      {project.location}
+                    <div className="absolute top-4 left-4 bg-navy text-white px-4 py-2">
+                      <p className={`text-gold text-xs ${getFontClass()}`}>{project.location}</p>
                     </div>
+                    <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-gold" />
                   </div>
                   
-                  <div className="p-6">
-                    <p className="text-kincha/70 text-xs tracking-wider uppercase mb-2">{project.category}</p>
-                    <h3 className="font-display text-xl text-washi mb-2">{project.title}</h3>
-                    <p className="text-stone text-sm leading-relaxed mb-4">{project.description}</p>
+                  {/* Content */}
+                  <div className={index % 2 === 1 ? "lg:order-1" : ""}>
+                    <project.icon className="h-12 w-12 text-gold mb-6" />
+                    <h2 className={`${getSerifFontClass()} text-3xl text-navy mb-4`}>
+                      {project.title}
+                    </h2>
+                    <p className={`text-slate leading-relaxed mb-8 ${getFontClass()}`}>
+                      {project.description}
+                    </p>
                     
-                    <div className="flex gap-4 text-xs text-stone/70">
-                      {project.stats.slice(0, 2).map((stat, i) => (
-                        <span key={i}>
-                          <span className="text-kincha">{stat.value}</span> {stat.label}
-                        </span>
+                    {/* Stats */}
+                    <div className="grid grid-cols-3 gap-4 mb-8">
+                      {project.stats.map((stat, i) => (
+                        <div key={i} className="bg-light-gray p-4 text-center">
+                          <p className={`text-slate text-xs mb-1 ${getFontClass()}`}>{stat.label}</p>
+                          <p className="text-navy font-semibold">{stat.value}</p>
+                        </div>
                       ))}
                     </div>
+                    
+                    {/* Scope */}
+                    <h3 className={`${getSerifFontClass()} text-lg text-navy mb-4`}>
+                      {language === "ja" ? "プロジェクト範囲" : language === "zh" ? "项目范围" : "Project Scope"}
+                    </h3>
+                    <ul className="space-y-2">
+                      {project.scope.map((item, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <CheckCircle2 className="h-5 w-5 text-gold flex-shrink-0 mt-0.5" />
+                          <span className={`text-charcoal ${getFontClass()}`}>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </motion.div>
+                
+                {index < projects.length - 1 && (
+                  <div className="section-divider mt-16" />
+                )}
               </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Trust Statement */}
-      <section className="py-24 lg:py-32 bg-navy/30">
-        <div className="container">
-          <AnimatedSection className="max-w-4xl mx-auto text-center">
-            <motion.div variants={fadeInUp}>
-              <Building2 className="h-12 w-12 text-kincha mx-auto mb-6" />
-              <h2 className="font-display text-3xl md:text-4xl text-washi mb-6">
-                "Our involvement in Japan's luxury hotel sector has established 
-                our reputation for uncompromising quality and reliability."
-              </h2>
-              <p className="text-stone">
-                Every project we undertake reflects our commitment to excellence, 
-                compliance, and the highest standards of professional service.
-              </p>
-            </motion.div>
-          </AnimatedSection>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-24 lg:py-32 bg-sumi">
+      <section className="py-24 bg-navy">
         <div className="container">
-          <AnimatedSection className="text-center max-w-3xl mx-auto">
+          <AnimatedSection className="text-center">
             <motion.div variants={fadeInUp}>
-              <p className="text-kincha text-sm tracking-[0.3em] uppercase mb-4">Start Your Project</p>
-              <h2 className="font-display text-4xl md:text-5xl text-washi mb-6">
-                Ready to Join Our Portfolio?
+              <h2 className={`${getSerifFontClass()} text-4xl text-white mb-6`}>
+                {t.contact.title}
               </h2>
-              <p className="text-stone text-lg mb-10">
-                Let us bring our expertise and proven track record to your next hospitality project.
+              <p className={`text-white/70 max-w-xl mx-auto mb-10 ${getFontClass()}`}>
+                {t.contact.description}
               </p>
               <Link href="/contact">
-                <Button className="bg-kincha hover:bg-kincha-light text-sumi px-10 py-6 text-sm tracking-wider">
-                  Discuss Your Project
+                <Button className={`bg-gold hover:bg-gold-dark text-navy px-10 py-6 text-sm tracking-wider ${getFontClass()}`}>
+                  {t.common.getInTouch}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
