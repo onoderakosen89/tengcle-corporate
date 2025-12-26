@@ -13,6 +13,7 @@ import { Link, useLocation } from "wouter";
 import { motion, useInView, useScroll, useTransform, type Variants, type Easing } from "framer-motion";
 import { ArrowRight, Building2, Globe, Shield, Award, CheckCircle2, Package, Cpu, Palette, TrendingUp } from "lucide-react";
 import AnimatedCounter, { AnimatedCounterPlus } from "@/components/AnimatedCounter";
+import ScrollToTop from "@/components/ScrollToTop";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -481,6 +482,7 @@ export default function Home() {
       </section>
 
       <Footer />
+      <ScrollToTop region="hk" />
     </div>
   );
 }

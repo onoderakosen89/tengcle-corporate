@@ -121,20 +121,12 @@ export default function GlobalGateway() {
         {/* Base gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a] via-[#0d1420] to-[#0a0f1a]" />
         
-        {/* Seigaiha pattern layer - animated */}
-        <motion.div 
+        {/* Seigaiha pattern layer - static */}
+        <div 
           className="absolute inset-0"
           style={{
             backgroundImage: seigaihaPattern,
             backgroundSize: '180px 90px',
-          }}
-          animate={{
-            y: [0, -10, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
           }}
         />
         

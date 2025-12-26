@@ -14,6 +14,7 @@ import { motion, useInView, useScroll, useTransform, type Variants, type Easing 
 import { ArrowRight, Building2, Globe, Users, Home as HomeIcon, Utensils, Dumbbell, BedDouble } from "lucide-react";
 import Header from "@/components/jp/Header";
 import Footer from "@/components/jp/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
 
@@ -362,6 +363,7 @@ export default function Home() {
       </section>
 
       <Footer />
+      <ScrollToTop region="jp" />
     </div>
   );
 }

@@ -13,6 +13,7 @@ import { Link, useLocation } from "wouter";
 import { Building2, Home as HomeIcon, Key, Shield, ArrowRight, CheckCircle } from "lucide-react";
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 
 // Animation variants - USA: Bold & Dynamic
@@ -304,6 +305,7 @@ export default function UsHome() {
       </section>
 
       <UsFooter />
+      <ScrollToTop region="us" />
     </div>
   );
 }
