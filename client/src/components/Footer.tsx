@@ -122,11 +122,13 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-gold flex-shrink-0 mt-1" />
-                <div className="relative">
-                  <span className="absolute -top-1 -right-1 bg-gold/20 text-gold text-[10px] px-1.5 py-0.5 rounded">
-                    {language === "ja" ? "設立準備中" : language === "zh" ? "筹备中" : "Establishing"}
-                  </span>
-                  <p className={`text-white/50 text-xs mb-1 ${getFontClass()}`}>{t.contact.info.usOffice}</p>
+                <div>
+                  <p className={`text-white/50 text-xs mb-1 ${getFontClass()}`}>
+                    {t.contact.info.usOffice}
+                    <span className="ml-2 bg-gold/20 text-gold text-[10px] px-1.5 py-0.5 rounded">
+                      {language === "ja" ? "設立準備中" : language === "zh" ? "筹备中" : "Establishing"}
+                    </span>
+                  </p>
                   <p className="text-white/90 text-sm">
                     17 Hamilton Ave<br />
                     Weehawken, NJ, USA
