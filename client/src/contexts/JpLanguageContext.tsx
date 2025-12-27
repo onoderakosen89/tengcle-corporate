@@ -262,10 +262,10 @@ const translations: Record<Language, Translations> = {
     about: {
       subtitle: "会社概要",
       title: "Tengcle Inc.について",
-      description: "Tengcle Inc.は、香港に本社を置くTengcle Limitedの日本法人です。",
+      description: "Tengcle Inc.は、2021年に日本で創業したTengcle Groupの創業法人です。",
       story: {
         title: "私たちについて",
-        p1: "Tengcle Inc.は、香港のTengcle Limitedグループの一員です。",
+        p1: "Tengcle Inc.は2021年10月に日本で創業し、現在は香港本社のTengcle Limitedのグループ企業として事業を展開しています。",
         p2: "不動産管理、飲食店オペレーション、レンタルジム、カプセルホテル運営、人材紹介の5つの事業を展開しています。",
       },
       info: {
@@ -499,10 +499,10 @@ const translations: Record<Language, Translations> = {
     about: {
       subtitle: "About Us",
       title: "About Tengcle Inc.",
-      description: "Tengcle Inc. is the Japanese subsidiary of Tengcle Limited, Hong Kong.",
+      description: "Tengcle Inc. is the founding company of Tengcle Group, established in Japan in 2021.",
       story: {
         title: "Our Story",
-        p1: "Tengcle Inc. is part of the Tengcle Limited group based in Hong Kong.",
+        p1: "Tengcle Inc. was founded in Japan in October 2021 and now operates as a group company under Tengcle Limited, headquartered in Hong Kong.",
         p2: "We operate 5 businesses: real estate, restaurants, rental gyms, capsule hotels, and recruitment.",
       },
       info: {
@@ -736,10 +736,10 @@ const translations: Record<Language, Translations> = {
     about: {
       subtitle: "公司概要",
       title: "关于Tengcle Inc.",
-      description: "Tengcle Inc.是总部位于香港的Tengcle Limited的日本法人，在日本市场开展多元化业务。",
+      description: "Tengcle Inc.是Tengcle Group的2021年在日本创立的创业法人。",
       story: {
         title: "关于我们",
-        p1: "Tengcle Inc.作为总部位于香港的Tengcle Limited集团成员，负责日本市场的业务拓展。",
+        p1: "Tengcle Inc.于2021年10月在日本创立，现作为香港总部Tengcle Limited的集团企业开展业务。",
         p2: "通过房地产管理、餐饮运营、租赁健身房、胶囊酒店运营、人才介绍五大业务，为日本各界人士的生活和事业做出贡献。",
       },
       info: {

@@ -71,7 +71,7 @@ const newsArticlesEn: NewsArticle[] = [
   {
     id: "5",
     title: "Tengcle Limited Established in Hong Kong",
-    excerpt: "Tengcle Limited is officially established in Hong Kong as the regional headquarters for Tengcle Group, focusing on hotel FF&E procurement and IT solutions.",
+    excerpt: "Tengcle Limited is officially established in Hong Kong as the global headquarters for Tengcle Group, which was founded in Japan in 2021.",
     date: "2025-01-15",
     category: "Company Founding",
     readTime: "4 min",
@@ -124,7 +124,7 @@ const newsArticlesJa: NewsArticle[] = [
   {
     id: "5",
     title: "Tengcle Limited 香港で設立",
-    excerpt: "Tengcle LimitedはTengcle Groupの地域本部として香港で正式に設立されました。ホテルFF&E調達とITソリューションに注力しています。",
+    excerpt: "2021年に日本で創業したTengcle Groupのグローバル本社として、Tengcle Limitedが香港で正式に設立されました。",
     date: "2025-01-15",
     category: "会社設立",
     readTime: "4分",
@@ -177,7 +177,7 @@ const newsArticlesZh: NewsArticle[] = [
   {
     id: "5",
     title: "Tengcle Limited在香港成立",
-    excerpt: "Tengcle Limited作为Tengcle Group的地区总部在香港正式成立，专注于酒店FF&E采购和IT解决方案。",
+    excerpt: "Tengcle Limited作为2021年在日本创立的Tengcle Group的全球总部，在香港正式成立。",
     date: "2025-01-15",
     category: "公司成立",
     readTime: "4分钟",

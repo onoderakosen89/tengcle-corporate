@@ -252,28 +252,28 @@ const newsArticles: NewsArticle[] = [
       zh: "Tengcle Limited在香港成立"
     },
     excerpt: {
-      en: "Tengcle Limited is officially established in Hong Kong as the regional headquarters for Tengcle Group.",
-      ja: "Tengcle LimitedはTengcle Groupの地域本部として香港で正式に設立されました。",
-      zh: "Tengcle Limited作为Tengcle Group的地区总部在香港正式成立。"
+      en: "Tengcle Limited is officially established in Hong Kong as the global headquarters for Tengcle Group, which was founded in Japan in 2021.",
+      ja: "2021年に日本で創業したTengcle Groupのグローバル本社として、Tengcle Limitedが香港で正式に設立されました。",
+      zh: "Tengcle Limited作为2021年在日本创立的Tengcle Group的全球总部，在香港正式成立。"
     },
     content: {
       en: [
-        "In January 2025, Tengcle Limited was officially established in Hong Kong, marking a significant expansion of Tengcle Group's global presence.",
-        "Hong Kong was chosen as the location for our regional headquarters due to its strategic position as a gateway to Asia, world-class business infrastructure, and strong connections to both mainland China and international markets.",
-        "Tengcle Limited focuses on hotel FF&E procurement and IT solutions, complementing the services offered by our sister companies in Japan and the United States. Together, the three entities form a comprehensive global network.",
-        "The establishment of Tengcle Limited represents Tengcle Group's commitment to growth and our vision of becoming a leading provider of hospitality and business solutions across Asia and beyond."
+        "In January 2025, Tengcle Limited was officially established in Hong Kong as the global headquarters for Tengcle Group.",
+        "Tengcle Group was originally founded in Japan in October 2021. As the company expanded into Southeast Asian projects, the decision was made to relocate the headquarters to Hong Kong to better serve the growing Asian market.",
+        "Hong Kong was chosen due to its strategic position as a gateway to Asia, world-class business infrastructure, and strong connections to both mainland China and international markets.",
+        "Tengcle Limited focuses on hotel FF&E procurement and IT solutions, complementing the services offered by our founding company in Japan and our US subsidiary. Together, the three entities form a comprehensive global network."
       ],
       ja: [
-        "2025年1月、Tengcle Limitedは香港で正式に設立され、Tengcle Groupのグローバルプレゼンスの大幅な拡大を示しました。",
-        "香港は、アジアへのゲートウェイとしての戦略的位置、世界クラスのビジネスインフラ、中国本土と国際市場の両方への強いつながりから、地域本部の所在地として選ばれました。",
-        "Tengcle LimitedはホテルFF&E調達とITソリューションに注力し、日本とアメリカの姉妹会社が提供するサービスを補完しています。3つの法人が一体となって包括的なグローバルネットワークを形成しています。",
-        "Tengcle Limitedの設立は、Tengcle Groupの成長へのコミットメントと、アジアおよびその先でホスピタリティとビジネスソリューションの主要プロバイダーになるというビジョンを表しています。"
+        "2025年1月、Tengcle LimitedはTengcle Groupのグローバル本社として香港で正式に設立されました。",
+        "Tengcle Groupは2021年10月に日本で創業しました。東南アジアのプロジェクト拡大に伴い、アジア市場へのサービス向上のため本社を香港に移転しました。",
+        "香港は、アジアへのゲートウェイとしての戦略的位置、世界クラスのビジネスインフラ、中国本土と国際市場の両方への強いつながりから選ばれました。",
+        "Tengcle LimitedはホテルFF&E調達とITソリューションに注力し、日本の創業会社とアメリカの子会社が提供するサービスを補完しています。3つの法人が一体となって包括的なグローバルネットワークを形成しています。"
       ],
       zh: [
-        "2025年1月，Tengcle Limited在香港正式成立，标志着Tengcle Group全球业务的重大扩展。",
-        "香港因其作为亚洲门户的战略位置、世界级的商业基础设施以及与中国大陆和国际市场的紧密联系而被选为我们的地区总部所在地。",
-        "Tengcle Limited专注于酒店FF&E采购和IT解决方案，补充我们在日本和美国的姐妹公司提供的服务。三个实体共同形成一个全面的全球网络。",
-        "Tengcle Limited的成立代表了Tengcle Group对增长的承诺，以及我们成为亚洲及其他地区酒店和商业解决方案领先提供商的愿景。"
+        "2025年1月，Tengcle Limited作为Tengcle Group的全球总部在香港正式成立。",
+        "Tengcle Group于2021年10月在日本创立。随着东南亚项目的扩展，为了更好地服务于不断增长的亚洲市场，我们决定将总部迁至香港。",
+        "香港因其作为亚洲门户的战略位置、世界级的商业基础设施以及与中国大陆和国际市场的紧密联系而被选中。",
+        "Tengcle Limited专注于酒店FF&E采购和IT解决方案，补充我们在日本的创业公司和美国子公司提供的服务。三个实体共同形成一个全面的全球网络。"
       ]
     },
     image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=1200&h=600&fit=crop"

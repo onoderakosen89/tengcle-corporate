@@ -204,10 +204,10 @@ const translations: Record<Language, Translations> = {
     about: {
       subtitle: "About Us",
       title: "Hong Kong-Based Business Partner",
-      description: "Tengcle Limited provides hospitality, IT, and trade services from Hong Kong.",
+      description: "Tengcle Limited serves as the global headquarters of Tengcle Group, providing hospitality, IT, and trade services from Hong Kong.",
       story: {
         title: "Our Story",
-        p1: "Founded in Hong Kong, Tengcle Limited works with businesses that need procurement, project management, and IT solutions.",
+        p1: "Tengcle Group was founded in Japan in 2021 and relocated its headquarters to Hong Kong when Southeast Asian projects began. Tengcle Limited serves as the global headquarters, providing procurement, project management, and IT solutions.",
         p2: "From Hong Kong, we coordinate supply chains, manage projects, and deliver solutions to clients in Asia.",
       },
       info: {
@@ -331,10 +331,10 @@ const translations: Record<Language, Translations> = {
     about: {
       subtitle: "会社概要",
       title: "香港拠点のビジネスパートナー",
-      description: "Tengcle Limitedは、ホスピタリティ、IT、国際貿易サービスを提供する香港拠点の企業です。",
+      description: "Tengcle Limitedは、Tengcle Groupのグローバル本社として香港に拠点を置き、ホスピタリティ、IT、国際貿易サービスを提供しています。",
       story: {
         title: "私たちについて",
-        p1: "香港で設立されたTengcle Limitedは、調達、プロジェクト管理、ITソリューションを必要とする企業と協力しています。",
+        p1: "Tengcle Groupは2021年に日本で創業し、東南アジアのプロジェクト開始を機に本社を香港に移転しました。Tengcle Limitedはグループのグローバル本社として、調達、プロジェクト管理、ITソリューションを提供しています。",
         p2: "香港拠点から、サプライチェーン調整、プロジェクト管理、アジア各地のクライアントへのソリューション提供を行っています。",
       },
       info: {
@@ -458,10 +458,10 @@ const translations: Record<Language, Translations> = {
     about: {
       subtitle: "关于我们",
       title: "香港商业合作伙伴",
-      description: "Tengcle Limited提供酒店、IT和贸易服务，总部位于香港。",
+      description: "Tengcle Limited作为Tengcle Group的全球总部，从香港提供酒店、IT和贸易服务。",
       story: {
         title: "我们的故事",
-        p1: "Tengcle Limited在香港成立，与需要采购、项目管理和IT解决方案的企业合作。",
+        p1: "Tengcle Group于2021年在日本创立，随着东南亚项目的开始，将总部迁至香港。Tengcle Limited作为全球总部，提供采购、项目管理和IT解决方案。",
         p2: "从香港出发，我们协调供应链、管理项目，为亚洲各地客户提供解决方案。",
       },
       info: {
