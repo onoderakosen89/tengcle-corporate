@@ -24,6 +24,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import News from "./pages/News";
+import NewsArticle from "./pages/NewsArticle";
 
 // Japan Pages
 import JpHome from "./pages/jp/Home";
@@ -32,6 +33,8 @@ import JpAbout from "./pages/jp/About";
 import JpCareers from "./pages/jp/Careers";
 import JpContact from "./pages/jp/Contact";
 import JpFAQ from "./pages/jp/FAQ";
+import JpNews from "./pages/jp/News";
+import JpNewsArticle from "./pages/jp/NewsArticle";
 
 // US Pages
 import UsHome from "./pages/us/Home";
@@ -39,6 +42,8 @@ import UsServices from "./pages/us/Services";
 import UsAbout from "./pages/us/About";
 import UsContact from "./pages/us/Contact";
 import UsFAQ from "./pages/us/FAQ";
+import UsNews from "./pages/us/News";
+import UsNewsArticle from "./pages/us/NewsArticle";
 
 // Shared Pages
 import Privacy from "./pages/Privacy";
@@ -117,6 +122,9 @@ function HkRouter() {
             <Route path="/hk/en/news" component={News} />
             <Route path="/hk/ja/news" component={News} />
             <Route path="/hk/zh/news" component={News} />
+            <Route path="/hk/en/news/:slug" component={NewsArticle} />
+            <Route path="/hk/ja/news/:slug" component={NewsArticle} />
+            <Route path="/hk/zh/news/:slug" component={NewsArticle} />
             
             {/* Privacy Policy */}
             <Route path="/hk/en/privacy" component={Privacy} />
@@ -154,6 +162,8 @@ function JpRouter() {
             <Route path="/jp/ja/careers" component={JpCareers} />
             <Route path="/jp/ja/contact" component={JpContact} />
             <Route path="/jp/ja/faq" component={JpFAQ} />
+            <Route path="/jp/ja/news" component={JpNews} />
+            <Route path="/jp/ja/news/:id" component={JpNewsArticle} />
             
             {/* Japan Routes - English */}
             <Route path="/jp/en" component={JpHome} />
@@ -162,6 +172,8 @@ function JpRouter() {
             <Route path="/jp/en/careers" component={JpCareers} />
             <Route path="/jp/en/contact" component={JpContact} />
             <Route path="/jp/en/faq" component={JpFAQ} />
+            <Route path="/jp/en/news" component={JpNews} />
+            <Route path="/jp/en/news/:id" component={JpNewsArticle} />
             
             {/* Japan Routes - Chinese */}
             <Route path="/jp/zh" component={JpHome} />
@@ -170,6 +182,8 @@ function JpRouter() {
             <Route path="/jp/zh/careers" component={JpCareers} />
             <Route path="/jp/zh/contact" component={JpContact} />
             <Route path="/jp/zh/faq" component={JpFAQ} />
+            <Route path="/jp/zh/news" component={JpNews} />
+            <Route path="/jp/zh/news/:id" component={JpNewsArticle} />
             
             {/* Privacy Policy */}
             <Route path="/jp/ja/privacy" component={Privacy} />
@@ -206,6 +220,8 @@ function UsRouter() {
             <Route path="/us/en/about" component={UsAbout} />
             <Route path="/us/en/contact" component={UsContact} />
             <Route path="/us/en/faq" component={UsFAQ} />
+            <Route path="/us/en/news" component={UsNews} />
+            <Route path="/us/en/news/:id" component={UsNewsArticle} />
             
             {/* US Routes - Japanese */}
             <Route path="/us/ja" component={UsHome} />
@@ -213,6 +229,8 @@ function UsRouter() {
             <Route path="/us/ja/about" component={UsAbout} />
             <Route path="/us/ja/contact" component={UsContact} />
             <Route path="/us/ja/faq" component={UsFAQ} />
+            <Route path="/us/ja/news" component={UsNews} />
+            <Route path="/us/ja/news/:id" component={UsNewsArticle} />
             
             {/* US Routes - Chinese */}
             <Route path="/us/zh" component={UsHome} />
@@ -220,6 +238,8 @@ function UsRouter() {
             <Route path="/us/zh/about" component={UsAbout} />
             <Route path="/us/zh/contact" component={UsContact} />
             <Route path="/us/zh/faq" component={UsFAQ} />
+            <Route path="/us/zh/news" component={UsNews} />
+            <Route path="/us/zh/news/:id" component={UsNewsArticle} />
             
             {/* Privacy Policy */}
             <Route path="/us/en/privacy" component={Privacy} />

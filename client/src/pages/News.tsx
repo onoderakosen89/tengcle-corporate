@@ -232,12 +232,13 @@ function NewsCard({ article, language, basePath }: { article: NewsArticle; langu
   };
 
   return (
+    <Link href={`${basePath}/news/${article.slug}`}>
     <motion.article
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6 }}
-      className="group bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+      className="group bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer"
     >
       <div className="aspect-video overflow-hidden">
         <img
@@ -266,12 +267,13 @@ function NewsCard({ article, language, basePath }: { article: NewsArticle; langu
         <p className={`text-slate text-sm leading-relaxed mb-4 ${fontClass}`}>
           {article.excerpt}
         </p>
-        <button className="flex items-center gap-2 text-purple text-sm font-medium group-hover:gap-3 transition-all">
+        <span className="flex items-center gap-2 text-purple text-sm font-medium group-hover:gap-3 transition-all">
           {language === "ja" ? "続きを読む" : language === "zh" ? "阅读更多" : "Read More"}
           <ArrowRight className="h-4 w-4" />
-        </button>
+        </span>
       </div>
     </motion.article>
+    </Link>
   );
 }
 

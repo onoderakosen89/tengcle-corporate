@@ -474,6 +474,52 @@
     <priority>0.6</priority>
   </url>
   
+  <!-- Japan News -->
+  <url>
+    <loc>https://tengcle.com/jp/ja/news</loc>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://tengcle.com/jp/ja/news"/>
+    <xhtml:link rel="alternate" hreflang="en-JP" href="https://tengcle.com/jp/en/news"/>
+    <xhtml:link rel="alternate" hreflang="zh-JP" href="https://tengcle.com/jp/zh/news"/>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tengcle.com/jp/en/news</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tengcle.com/jp/zh/news</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- US News -->
+  <url>
+    <loc>https://tengcle.com/us/en/news</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://tengcle.com/us/en/news"/>
+    <xhtml:link rel="alternate" hreflang="ja-US" href="https://tengcle.com/us/ja/news"/>
+    <xhtml:link rel="alternate" hreflang="zh-US" href="https://tengcle.com/us/zh/news"/>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tengcle.com/us/ja/news</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tengcle.com/us/zh/news</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
   <!-- US Privacy Policy -->
   <url>
     <loc>https://tengcle.com/us/en/privacy</loc>
