@@ -2,13 +2,13 @@
  * News/Blog Page - Hong Kong Site
  * 
  * Design: Clean professional layout with article cards
- * Features: News articles, project updates, company announcements
+ * Features: News articles based on actual company milestones
  */
 
 import { useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, useInView } from "framer-motion";
-import { Calendar, ArrowRight, Tag, Clock, ArrowLeft } from "lucide-react";
+import { Calendar, ArrowRight, Clock, ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
@@ -26,193 +26,163 @@ interface NewsArticle {
   slug: string;
 }
 
-// Sample news articles
+// Actual company milestones - Hong Kong perspective
 const newsArticlesEn: NewsArticle[] = [
   {
     id: "1",
-    title: "Tengcle Group Expands Operations to United States",
-    excerpt: "We are excited to announce the establishment of Tengcle LLC in New Jersey, marking our expansion into the US real estate market.",
-    date: "2024-12-15",
-    category: "Company News",
+    title: "First FF&E Project Scheduled for February 2026",
+    excerpt: "Tengcle Limited announces its first hotel FF&E procurement project, scheduled for delivery in February 2026. This marks a significant milestone in our hospitality services expansion.",
+    date: "2025-12-15",
+    category: "Project Announcement",
     readTime: "3 min",
-    image: "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=800&h=400&fit=crop",
-    slug: "us-expansion"
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop",
+    slug: "first-ffe-project-2026"
   },
   {
     id: "2",
-    title: "New Hotel FF&E Project Completed in Osaka",
-    excerpt: "Successfully delivered furniture, fixtures, and equipment for a 200-room luxury hotel in Osaka, Japan.",
-    date: "2024-11-28",
-    category: "Project Update",
-    readTime: "4 min",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop",
-    slug: "osaka-hotel-project"
+    title: "Odoo ERP Implementation Services Launched",
+    excerpt: "Starting October 2025, Tengcle Limited now offers Odoo ERP implementation and customization services for hospitality and business clients across Asia.",
+    date: "2025-10-01",
+    category: "Service Launch",
+    readTime: "3 min",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
+    slug: "odoo-erp-launch"
   },
   {
     id: "3",
-    title: "Tengcle Inc. Launches Rental Gym Service in Tokyo",
-    excerpt: "Our Japan subsidiary introduces private rental gym facilities, offering personalized fitness spaces in central Tokyo.",
-    date: "2024-11-10",
-    category: "Service Launch",
+    title: "Business Expansion Preparation Begins",
+    excerpt: "Tengcle Limited begins preparations for business expansion, identifying FF&E procurement as a key growth opportunity in the hospitality sector.",
+    date: "2025-06-01",
+    category: "Company News",
     readTime: "2 min",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=400&fit=crop",
-    slug: "tokyo-rental-gym"
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=400&fit=crop",
+    slug: "expansion-preparation"
   },
   {
     id: "4",
-    title: "Partnership with Leading Furniture Manufacturers",
-    excerpt: "Tengcle Limited announces strategic partnerships with premium furniture manufacturers in China and Southeast Asia.",
-    date: "2024-10-25",
-    category: "Partnership",
+    title: "Hotel Operations Business Commences",
+    excerpt: "Shortly after establishment, Tengcle Limited launches hotel operations business, providing management and operational support for hospitality properties.",
+    date: "2025-02-01",
+    category: "Business Launch",
     readTime: "3 min",
-    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=400&fit=crop",
-    slug: "manufacturer-partnership"
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=400&fit=crop",
+    slug: "hotel-operations-launch"
   },
   {
     id: "5",
-    title: "Odoo ERP Implementation for Hospitality Clients",
-    excerpt: "Our IT team successfully deployed customized Odoo ERP solutions for three hotel chains across Asia.",
-    date: "2024-10-08",
-    category: "IT Solutions",
-    readTime: "5 min",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
-    slug: "odoo-implementation"
-  },
-  {
-    id: "6",
-    title: "Tengcle Group Celebrates 5th Anniversary",
-    excerpt: "Reflecting on five years of growth, partnerships, and successful projects across Hong Kong, Japan, and the United States.",
-    date: "2024-09-20",
-    category: "Company News",
+    title: "Tengcle Limited Established in Hong Kong",
+    excerpt: "Tengcle Limited is officially established in Hong Kong as the regional headquarters for Tengcle Group, focusing on hotel FF&E procurement and IT solutions.",
+    date: "2025-01-15",
+    category: "Company Founding",
     readTime: "4 min",
-    image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&h=400&fit=crop",
-    slug: "5th-anniversary"
+    image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=800&h=400&fit=crop",
+    slug: "hk-founding"
   }
 ];
 
 const newsArticlesJa: NewsArticle[] = [
   {
     id: "1",
-    title: "Tengcle Groupがアメリカ事業を拡大",
-    excerpt: "ニュージャージー州にTengcle LLCを設立し、米国不動産市場への進出を発表いたしました。",
-    date: "2024-12-15",
-    category: "会社ニュース",
+    title: "初のFF&Eプロジェクト、2026年2月に実施予定",
+    excerpt: "Tengcle Limitedは、2026年2月に納品予定の初のホテルFF&E調達プロジェクトを発表しました。ホスピタリティサービス拡大における重要なマイルストーンとなります。",
+    date: "2025-12-15",
+    category: "プロジェクト発表",
     readTime: "3分",
-    image: "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=800&h=400&fit=crop",
-    slug: "us-expansion"
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop",
+    slug: "first-ffe-project-2026"
   },
   {
     id: "2",
-    title: "大阪の新ホテルFF&Eプロジェクト完了",
-    excerpt: "大阪の200室のラグジュアリーホテル向けに家具・什器・備品の納入を完了しました。",
-    date: "2024-11-28",
-    category: "プロジェクト",
-    readTime: "4分",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop",
-    slug: "osaka-hotel-project"
+    title: "Odoo ERP導入サービスを開始",
+    excerpt: "2025年10月より、Tengcle Limitedはアジア全域のホスピタリティ・ビジネス向けにOdoo ERP導入・カスタマイズサービスを提供開始しました。",
+    date: "2025-10-01",
+    category: "サービス開始",
+    readTime: "3分",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
+    slug: "odoo-erp-launch"
   },
   {
     id: "3",
-    title: "Tengcle Inc.が東京でレンタルジムサービスを開始",
-    excerpt: "日本法人がプライベートレンタルジム施設を導入。東京都心でパーソナルなフィットネス空間を提供します。",
-    date: "2024-11-10",
-    category: "サービス開始",
+    title: "事業拡大に向けた準備を開始",
+    excerpt: "Tengcle Limitedは事業拡大の準備を開始し、ホスピタリティ分野における重要な成長機会としてFF&E調達事業を特定しました。",
+    date: "2025-06-01",
+    category: "会社ニュース",
     readTime: "2分",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=400&fit=crop",
-    slug: "tokyo-rental-gym"
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=400&fit=crop",
+    slug: "expansion-preparation"
   },
   {
     id: "4",
-    title: "大手家具メーカーとの提携",
-    excerpt: "Tengcle Limitedは中国・東南アジアのプレミアム家具メーカーとの戦略的提携を発表しました。",
-    date: "2024-10-25",
-    category: "提携",
+    title: "ホテル運営事業を開始",
+    excerpt: "設立直後、Tengcle Limitedはホテル運営事業を開始し、ホスピタリティ施設への管理・運営サポートを提供しています。",
+    date: "2025-02-01",
+    category: "事業開始",
     readTime: "3分",
-    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=400&fit=crop",
-    slug: "manufacturer-partnership"
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=400&fit=crop",
+    slug: "hotel-operations-launch"
   },
   {
     id: "5",
-    title: "ホスピタリティ向けOdoo ERP導入",
-    excerpt: "ITチームがアジア3つのホテルチェーン向けにカスタマイズしたOdoo ERPソリューションを導入しました。",
-    date: "2024-10-08",
-    category: "ITソリューション",
-    readTime: "5分",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
-    slug: "odoo-implementation"
-  },
-  {
-    id: "6",
-    title: "Tengcle Group創業5周年",
-    excerpt: "香港、日本、アメリカでの5年間の成長、パートナーシップ、成功したプロジェクトを振り返ります。",
-    date: "2024-09-20",
-    category: "会社ニュース",
+    title: "Tengcle Limited 香港で設立",
+    excerpt: "Tengcle LimitedはTengcle Groupの地域本部として香港で正式に設立されました。ホテルFF&E調達とITソリューションに注力しています。",
+    date: "2025-01-15",
+    category: "会社設立",
     readTime: "4分",
-    image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&h=400&fit=crop",
-    slug: "5th-anniversary"
+    image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=800&h=400&fit=crop",
+    slug: "hk-founding"
   }
 ];
 
 const newsArticlesZh: NewsArticle[] = [
   {
     id: "1",
-    title: "Tengcle Group扩展美国业务",
-    excerpt: "我们很高兴宣布在新泽西州成立Tengcle LLC，标志着我们进入美国房地产市场。",
-    date: "2024-12-15",
-    category: "公司新闻",
+    title: "首个FF&E项目定于2026年2月实施",
+    excerpt: "Tengcle Limited宣布首个酒店FF&E采购项目，计划于2026年2月交付。这标志着我们在酒店服务扩展方面的重要里程碑。",
+    date: "2025-12-15",
+    category: "项目公告",
     readTime: "3分钟",
-    image: "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=800&h=400&fit=crop",
-    slug: "us-expansion"
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop",
+    slug: "first-ffe-project-2026"
   },
   {
     id: "2",
-    title: "大阪新酒店FF&E项目完成",
-    excerpt: "成功为大阪一家200间客房的豪华酒店交付家具、固定装置和设备。",
-    date: "2024-11-28",
-    category: "项目更新",
-    readTime: "4分钟",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop",
-    slug: "osaka-hotel-project"
+    title: "Odoo ERP实施服务正式启动",
+    excerpt: "自2025年10月起，Tengcle Limited为亚洲地区的酒店和商业客户提供Odoo ERP实施和定制服务。",
+    date: "2025-10-01",
+    category: "服务启动",
+    readTime: "3分钟",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
+    slug: "odoo-erp-launch"
   },
   {
     id: "3",
-    title: "Tengcle Inc.在东京推出租赁健身房服务",
-    excerpt: "我们的日本子公司推出私人租赁健身房设施，在东京市中心提供个性化健身空间。",
-    date: "2024-11-10",
-    category: "服务推出",
+    title: "开始业务扩展准备工作",
+    excerpt: "Tengcle Limited开始业务扩展准备，确定FF&E采购为酒店行业的关键增长机会。",
+    date: "2025-06-01",
+    category: "公司新闻",
     readTime: "2分钟",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=400&fit=crop",
-    slug: "tokyo-rental-gym"
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=400&fit=crop",
+    slug: "expansion-preparation"
   },
   {
     id: "4",
-    title: "与领先家具制造商建立合作伙伴关系",
-    excerpt: "Tengcle Limited宣布与中国和东南亚的优质家具制造商建立战略合作伙伴关系。",
-    date: "2024-10-25",
-    category: "合作伙伴",
+    title: "酒店运营业务正式启动",
+    excerpt: "成立后不久，Tengcle Limited启动酒店运营业务，为酒店物业提供管理和运营支持。",
+    date: "2025-02-01",
+    category: "业务启动",
     readTime: "3分钟",
-    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=400&fit=crop",
-    slug: "manufacturer-partnership"
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=400&fit=crop",
+    slug: "hotel-operations-launch"
   },
   {
     id: "5",
-    title: "为酒店客户实施Odoo ERP",
-    excerpt: "我们的IT团队成功为亚洲三家连锁酒店部署了定制的Odoo ERP解决方案。",
-    date: "2024-10-08",
-    category: "IT解决方案",
-    readTime: "5分钟",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
-    slug: "odoo-implementation"
-  },
-  {
-    id: "6",
-    title: "Tengcle Group庆祝成立5周年",
-    excerpt: "回顾五年来在香港、日本和美国的成长、合作伙伴关系和成功项目。",
-    date: "2024-09-20",
-    category: "公司新闻",
+    title: "Tengcle Limited在香港成立",
+    excerpt: "Tengcle Limited作为Tengcle Group的地区总部在香港正式成立，专注于酒店FF&E采购和IT解决方案。",
+    date: "2025-01-15",
+    category: "公司成立",
     readTime: "4分钟",
-    image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&h=400&fit=crop",
-    slug: "5th-anniversary"
+    image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=800&h=400&fit=crop",
+    slug: "hk-founding"
   }
 ];
 
@@ -297,110 +267,83 @@ export default function News() {
       allNews: "All News",
       metaTitle: "News & Updates | Tengcle Limited",
       metaDescription: "Latest news, project updates, and company announcements from Tengcle Limited. Stay informed about our hotel FF&E projects and business developments.",
-      metaKeywords: "Tengcle news, company updates, hotel FF&E projects, business news, Hong Kong"
+      ctaTitle: "Get in Touch",
+      ctaDescription: "Contact us to learn more about our projects and services"
     },
     ja: {
-      title: "ニュース",
-      subtitle: "最新のプロジェクト、パートナーシップ、会社の動向をお知らせします",
+      title: "ニュース＆お知らせ",
+      subtitle: "最新のプロジェクト、パートナーシップ、会社の動向をお届けします",
       backToHome: "ホームに戻る",
       allNews: "すべてのニュース",
-      metaTitle: "ニュース | Tengcle Limited",
-      metaDescription: "Tengcle Limitedの最新ニュース、プロジェクト更新、会社のお知らせ。ホテルFF&Eプロジェクトとビジネス開発の最新情報。",
-      metaKeywords: "Tengcle ニュース, 会社更新, ホテルFF&Eプロジェクト, ビジネスニュース, 香港"
+      metaTitle: "ニュース＆お知らせ | Tengcle Limited",
+      metaDescription: "Tengcle Limitedの最新ニュース、プロジェクト更新、会社発表。ホテルFF&Eプロジェクトとビジネス展開についての情報をお届けします。",
+      ctaTitle: "お問い合わせ",
+      ctaDescription: "プロジェクトやサービスについてお気軽にお問い合わせください"
     },
     zh: {
       title: "新闻动态",
-      subtitle: "了解我们最新的项目、合作伙伴关系和公司发展",
+      subtitle: "了解我们最新的项目、合作伙伴关系和公司发展动态",
       backToHome: "返回首页",
       allNews: "所有新闻",
       metaTitle: "新闻动态 | Tengcle Limited",
       metaDescription: "Tengcle Limited的最新新闻、项目更新和公司公告。了解我们的酒店FF&E项目和业务发展。",
-      metaKeywords: "Tengcle新闻, 公司更新, 酒店FF&E项目, 商业新闻, 香港"
+      ctaTitle: "联系我们",
+      ctaDescription: "联系我们了解更多项目和服务信息"
     }
   };
 
-  const trans = translations[pathLang as keyof typeof translations] || translations.en;
-
-  // Structured data for news page
-  const newsSchema = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": trans.metaTitle,
-    "description": trans.metaDescription,
-    "url": `https://tengcle.com/hk/${pathLang}/news`,
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": articles.map((article, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "item": {
-          "@type": "NewsArticle",
-          "headline": article.title,
-          "description": article.excerpt,
-          "datePublished": article.date,
-          "image": article.image,
-          "author": {
-            "@type": "Organization",
-            "name": "Tengcle Limited"
-          }
-        }
-      }))
-    }
-  };
+  const text = translations[pathLang as keyof typeof translations] || translations.en;
 
   return (
     <>
       <SEOHead
-        title={trans.metaTitle}
-        description={trans.metaDescription}
-        canonical={`https://tengcle.com/hk/${pathLang}/news`}
-        locale={pathLang === "ja" ? "ja_JP" : pathLang === "zh" ? "zh_HK" : "en_HK"}
-        keywords={trans.metaKeywords}
-        structuredData={newsSchema}
+        title={text.metaTitle}
+        description={text.metaDescription}
+        canonical={`https://tengcle.com${basePath}/news`}
+        keywords="Tengcle news, hotel FF&E, hospitality projects, company updates, Hong Kong business"
       />
-
-      <Header />
-
-      <main className="pt-20">
+      <div className="min-h-screen bg-cream">
+        <Header />
+        
         {/* Hero Section */}
-        <section className="relative py-20 bg-purple overflow-hidden">
+        <section className="relative pt-24 pb-16 bg-gradient-to-br from-purple via-purple/95 to-purple-dark overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             }} />
           </div>
-
-          <div className="container relative">
+          
+          <div className="container relative z-10">
             <Link href={basePath}>
-              <Button variant="ghost" className="mb-6 text-white/80 hover:text-white hover:bg-white/10">
+              <Button variant="ghost" className="text-white/80 hover:text-white hover:bg-white/10 mb-6">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                <span className={fontClass}>{trans.backToHome}</span>
+                {text.backToHome}
               </Button>
             </Link>
-
+            
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
               <h1 className={`text-4xl md:text-5xl font-heading text-white mb-4 ${fontClass}`}>
-                {trans.title}
+                {text.title}
               </h1>
-              <p className={`text-white/80 text-lg max-w-2xl ${fontClass}`}>
-                {trans.subtitle}
+              <p className={`text-lg text-white/80 max-w-2xl ${fontClass}`}>
+                {text.subtitle}
               </p>
             </motion.div>
           </div>
         </section>
 
         {/* News Grid */}
-        <section className="py-20 bg-light-gray">
+        <section className="py-16">
           <div className="container">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {articles.map((article) => (
-                <NewsCard
-                  key={article.id}
-                  article={article}
+                <NewsCard 
+                  key={article.id} 
+                  article={article} 
                   language={pathLang}
                   basePath={basePath}
                 />
@@ -412,29 +355,22 @@ export default function News() {
         {/* CTA Section */}
         <section className="py-16 bg-white">
           <div className="container text-center">
-            <h2 className={`text-2xl font-heading text-charcoal mb-4 ${fontClass}`}>
-              {language === "ja" ? "お問い合わせ" : language === "zh" ? "联系我们" : "Get in Touch"}
+            <h2 className={`text-3xl font-heading text-charcoal mb-4 ${fontClass}`}>
+              {text.ctaTitle}
             </h2>
-            <p className={`text-slate mb-8 max-w-xl mx-auto ${fontClass}`}>
-              {language === "ja" 
-                ? "プロジェクトやサービスについてのお問い合わせはこちらから" 
-                : language === "zh" 
-                ? "如需了解更多项目和服务信息，请联系我们"
-                : "Contact us to learn more about our projects and services"}
+            <p className={`text-slate mb-8 ${fontClass}`}>
+              {text.ctaDescription}
             </p>
             <Link href={`${basePath}/contact`}>
-              <Button className="bg-purple hover:bg-purple-light text-white">
-                <span className={fontClass}>
-                  {language === "ja" ? "お問い合わせ" : language === "zh" ? "联系我们" : "Contact Us"}
-                </span>
-                <ArrowRight className="h-4 w-4 ml-2" />
+              <Button className="bg-purple hover:bg-purple-dark text-white">
+                {language === "ja" ? "お問い合わせ" : language === "zh" ? "联系我们" : "Contact Us"}
               </Button>
             </Link>
           </div>
         </section>
-      </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </>
   );
 }

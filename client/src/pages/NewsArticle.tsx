@@ -1,25 +1,33 @@
 /**
- * News Article Page - Hong Kong Site
+ * News Article Detail Page - Hong Kong Site
  * 
- * Design: Individual article page with full content
- * Features: 3-language support, related articles
+ * Design: Clean article layout with related articles
+ * Features: Individual news article display based on actual company milestones
  */
 
 import { Link, useLocation, useParams } from "wouter";
 import { motion } from "framer-motion";
-import { Calendar, ArrowLeft, Tag, Clock, Building2, Hotel, Laptop, Package, Globe } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { Calendar, ArrowLeft, Clock, Building2, Hotel, Settings, Rocket } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface NewsArticle {
   id: string;
   slug: string;
   date: string;
-  category: string;
-  readTime: string;
-  image: string;
+  category: {
+    en: string;
+    ja: string;
+    zh: string;
+  };
+  readTime: {
+    en: string;
+    ja: string;
+    zh: string;
+  };
   title: {
     en: string;
     ja: string;
@@ -35,236 +43,240 @@ interface NewsArticle {
     ja: string[];
     zh: string[];
   };
+  image: string;
 }
 
+// Actual company milestones - Hong Kong
 const newsArticles: NewsArticle[] = [
   {
-    id: "1",
-    slug: "us-expansion",
-    date: "2024-12-15",
-    category: "Company News",
-    readTime: "3 min",
-    image: "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=800&h=400&fit=crop",
+    id: "first-ffe-project-2026",
+    slug: "first-ffe-project-2026",
+    date: "2025-12-15",
+    category: {
+      en: "Project Announcement",
+      ja: "プロジェクト発表",
+      zh: "项目公告"
+    },
+    readTime: {
+      en: "3 min",
+      ja: "3分",
+      zh: "3分钟"
+    },
     title: {
-      en: "Tengcle Group Expands Operations to United States",
-      ja: "Tengcle Group 米国事業を開始",
-      zh: "Tengcle Group扩展美国业务"
+      en: "First FF&E Project Scheduled for February 2026",
+      ja: "初のFF&Eプロジェクト、2026年2月に実施予定",
+      zh: "首个FF&E项目定于2026年2月实施"
     },
     excerpt: {
-      en: "We are excited to announce the establishment of Tengcle LLC in New Jersey.",
-      ja: "ニュージャージー州にTengcle LLCを設立しました。",
-      zh: "我们很高兴宣布在新泽西州成立Tengcle LLC。"
+      en: "Tengcle Limited announces its first hotel FF&E procurement project, scheduled for delivery in February 2026.",
+      ja: "Tengcle Limitedは、2026年2月に納品予定の初のホテルFF&E調達プロジェクトを発表しました。",
+      zh: "Tengcle Limited宣布首个酒店FF&E采购项目，计划于2026年2月交付。"
     },
     content: {
       en: [
-        "We are excited to announce the establishment of Tengcle LLC in New Jersey, marking our expansion into the US real estate market. This strategic move represents a significant milestone in Tengcle Group's global growth strategy.",
-        "Tengcle LLC will focus on property management and vacation rental services in the New York metropolitan area. Based in Weehawken, NJ, we are ideally positioned to serve property owners and investors in one of the world's most dynamic real estate markets.",
-        "Our US operations will leverage the expertise and best practices developed through our Japan and Hong Kong entities. We bring international perspective combined with local market knowledge to deliver exceptional property management services.",
-        "This expansion strengthens Tengcle Group's three-location network spanning Asia and North America, enabling us to better serve clients with global real estate portfolios and cross-border investment needs."
+        "Tengcle Limited is proud to announce our first hotel FF&E (Furniture, Fixtures & Equipment) procurement project, scheduled for delivery in February 2026. This marks a significant milestone in our hospitality services expansion.",
+        "Since identifying FF&E procurement as a key growth opportunity in June 2025, our team has been building relationships with premium furniture manufacturers across Asia. This first project represents the culmination of months of preparation and planning.",
+        "Our FF&E services encompass complete procurement solutions including furniture selection, fixture coordination, equipment sourcing, logistics management, and on-site installation supervision. We work closely with hotel developers and operators to ensure every detail meets their specifications.",
+        "This project demonstrates Tengcle Limited's commitment to becoming a trusted partner in the hospitality industry, leveraging our regional expertise and global network to deliver exceptional results."
       ],
       ja: [
-        "ニュージャージー州にTengcle LLCを設立し、米国不動産市場への進出を発表いたします。この戦略的な動きは、Tengcle Groupのグローバル成長戦略における重要なマイルストーンです。",
-        "Tengcle LLCは、ニューヨーク大都市圏での不動産管理およびバケーションレンタルサービスに注力します。ニュージャージー州ウィーホーケンを拠点に、世界で最もダイナミックな不動産市場の一つで物件オーナーや投資家にサービスを提供します。",
-        "米国事業では、日本と香港の事業体で培った専門知識とベストプラクティスを活用します。国際的な視点と地域の市場知識を組み合わせ、卓越した不動産管理サービスを提供します。",
-        "この拡大により、アジアと北米にまたがるTengcle Groupの3拠点ネットワークが強化され、グローバルな不動産ポートフォリオとクロスボーダー投資ニーズを持つクライアントにより良いサービスを提供できるようになります。"
+        "Tengcle Limitedは、2026年2月に納品予定の初のホテルFF&E（家具・什器・備品）調達プロジェクトを発表いたします。これはホスピタリティサービス拡大における重要なマイルストーンです。",
+        "2025年6月にFF&E調達を重要な成長機会として特定して以来、当社チームはアジア全域のプレミアム家具メーカーとの関係構築に取り組んできました。この最初のプロジェクトは、数ヶ月にわたる準備と計画の集大成です。",
+        "当社のFF&Eサービスは、家具選定、什器調整、設備調達、物流管理、現場設置監督を含む完全な調達ソリューションを提供します。ホテル開発者やオペレーターと緊密に連携し、すべての詳細が仕様を満たすよう努めています。",
+        "このプロジェクトは、地域の専門知識とグローバルネットワークを活用して優れた結果を提供する、ホスピタリティ業界の信頼できるパートナーになるというTengcle Limitedのコミットメントを示しています。"
       ],
       zh: [
-        "我们很高兴宣布在新泽西州成立Tengcle LLC，标志着我们进军美国房地产市场。这一战略举措是Tengcle Group全球增长战略的重要里程碑。",
-        "Tengcle LLC将专注于纽约大都会地区的物业管理和度假租赁服务。我们以新泽西州威霍肯为基地，处于为全球最具活力的房地产市场之一的业主和投资者提供服务的理想位置。",
-        "我们的美国业务将利用通过日本和香港实体开发的专业知识和最佳实践。我们将国际视野与本地市场知识相结合，提供卓越的物业管理服务。",
-        "此次扩张加强了Tengcle Group横跨亚洲和北美的三地网络，使我们能够更好地服务于拥有全球房地产投资组合和跨境投资需求的客户。"
+        "Tengcle Limited很荣幸地宣布我们的首个酒店FF&E（家具、固定装置和设备）采购项目，计划于2026年2月交付。这标志着我们在酒店服务扩展方面的重要里程碑。",
+        "自2025年6月确定FF&E采购为关键增长机会以来，我们的团队一直在与亚洲各地的优质家具制造商建立关系。这个首个项目代表了数月准备和规划的成果。",
+        "我们的FF&E服务涵盖完整的采购解决方案，包括家具选择、固定装置协调、设备采购、物流管理和现场安装监督。我们与酒店开发商和运营商紧密合作，确保每个细节都符合他们的规格。",
+        "该项目展示了Tengcle Limited致力于成为酒店行业值得信赖的合作伙伴的承诺，利用我们的区域专业知识和全球网络提供卓越的成果。"
       ]
-    }
+    },
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=600&fit=crop"
   },
   {
-    id: "2",
-    slug: "osaka-hotel-project",
-    date: "2024-11-28",
-    category: "Project Update",
-    readTime: "4 min",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop",
+    id: "odoo-erp-launch",
+    slug: "odoo-erp-launch",
+    date: "2025-10-01",
+    category: {
+      en: "Service Launch",
+      ja: "サービス開始",
+      zh: "服务启动"
+    },
+    readTime: {
+      en: "3 min",
+      ja: "3分",
+      zh: "3分钟"
+    },
     title: {
-      en: "New Hotel FF&E Project Completed in Osaka",
-      ja: "大阪の新ホテルFF&Eプロジェクト完了",
-      zh: "大阪新酒店FF&E项目完成"
+      en: "Odoo ERP Implementation Services Launched",
+      ja: "Odoo ERP導入サービスを開始",
+      zh: "Odoo ERP实施服务正式启动"
     },
     excerpt: {
-      en: "Successfully delivered furniture, fixtures, and equipment for a 200-room luxury hotel in Osaka.",
-      ja: "大阪の200室のラグジュアリーホテル向けに家具・什器・備品を納品しました。",
-      zh: "成功为大阪一家200间客房的豪华酒店交付家具、固定装置和设备。"
+      en: "Starting October 2025, Tengcle Limited now offers Odoo ERP implementation and customization services.",
+      ja: "2025年10月より、Tengcle LimitedはOdoo ERP導入・カスタマイズサービスを提供開始しました。",
+      zh: "自2025年10月起，Tengcle Limited提供Odoo ERP实施和定制服务。"
     },
     content: {
       en: [
-        "We are proud to announce the successful completion of our FF&E project for a new 200-room luxury hotel in Osaka, Japan. This project showcases our comprehensive procurement and project management capabilities.",
-        "The scope included sourcing and delivering guest room furniture, lobby fixtures, restaurant equipment, and back-of-house supplies. We worked closely with the hotel developer and interior designers to ensure every item met the property's luxury standards.",
-        "Our team managed the entire supply chain, from manufacturer selection and quality control to logistics coordination and on-site installation supervision. The project was completed on schedule and within budget.",
-        "This successful delivery reinforces our position as a trusted FF&E partner for hospitality developments across Asia. We look forward to supporting more hotel projects in the region."
+        "Tengcle Limited is excited to announce the launch of our Odoo ERP implementation services, starting October 2025. This expansion into IT solutions reflects our commitment to providing comprehensive business support to our clients.",
+        "Odoo is a powerful open-source ERP platform that offers integrated solutions for inventory management, accounting, CRM, project management, and more. Our team provides end-to-end implementation services tailored to each client's specific needs.",
+        "Our Odoo services include initial consultation and needs assessment, system configuration and customization, data migration from existing systems, staff training and documentation, and ongoing support and maintenance.",
+        "By adding Odoo ERP services to our portfolio, Tengcle Limited can now offer clients a complete business solution package, from hotel operations to digital transformation."
       ],
       ja: [
-        "大阪の新しい200室のラグジュアリーホテル向けFF&Eプロジェクトの成功裏の完了を発表いたします。このプロジェクトは、当社の包括的な調達およびプロジェクト管理能力を示すものです。",
-        "範囲には、客室家具、ロビー什器、レストラン機器、バックオブハウス用品の調達と納品が含まれました。ホテル開発者やインテリアデザイナーと緊密に連携し、すべてのアイテムが物件のラグジュアリー基準を満たすようにしました。",
-        "当社チームは、メーカー選定と品質管理から物流調整、現場での設置監督まで、サプライチェーン全体を管理しました。プロジェクトは予定通り、予算内で完了しました。",
-        "この成功した納品は、アジア全域のホスピタリティ開発における信頼できるFF&Eパートナーとしての当社の地位を強化します。今後も地域のホテルプロジェクトをサポートしてまいります。"
+        "Tengcle Limitedは、2025年10月よりOdoo ERP導入サービスを開始いたします。ITソリューションへの拡大は、クライアントへの包括的なビジネスサポート提供へのコミットメントを反映しています。",
+        "Odooは、在庫管理、会計、CRM、プロジェクト管理などの統合ソリューションを提供する強力なオープンソースERPプラットフォームです。当社チームは、各クライアントの特定のニーズに合わせたエンドツーエンドの導入サービスを提供します。",
+        "当社のOdooサービスには、初期コンサルティングとニーズ評価、システム構成とカスタマイズ、既存システムからのデータ移行、スタッフトレーニングとドキュメント作成、継続的なサポートとメンテナンスが含まれます。",
+        "Odoo ERPサービスをポートフォリオに追加することで、Tengcle Limitedはホテル運営からデジタルトランスフォーメーションまで、クライアントに完全なビジネスソリューションパッケージを提供できるようになりました。"
       ],
       zh: [
-        "我们自豪地宣布成功完成日本大阪一家新建200间客房豪华酒店的FF&E项目。该项目展示了我们全面的采购和项目管理能力。",
-        "范围包括采购和交付客房家具、大堂固定装置、餐厅设备和后勤用品。我们与酒店开发商和室内设计师密切合作，确保每件物品都符合物业的豪华标准。",
-        "我们的团队管理整个供应链，从制造商选择和质量控制到物流协调和现场安装监督。项目按计划在预算内完成。",
-        "这次成功交付巩固了我们作为亚洲酒店开发项目值得信赖的FF&E合作伙伴的地位。我们期待支持该地区更多的酒店项目。"
+        "Tengcle Limited很高兴宣布从2025年10月起推出Odoo ERP实施服务。向IT解决方案的扩展反映了我们为客户提供全面业务支持的承诺。",
+        "Odoo是一个强大的开源ERP平台，提供库存管理、会计、CRM、项目管理等集成解决方案。我们的团队提供根据每个客户特定需求量身定制的端到端实施服务。",
+        "我们的Odoo服务包括初步咨询和需求评估、系统配置和定制、从现有系统迁移数据、员工培训和文档编制，以及持续的支持和维护。",
+        "通过将Odoo ERP服务添加到我们的产品组合中，Tengcle Limited现在可以为客户提供从酒店运营到数字化转型的完整业务解决方案包。"
       ]
-    }
+    },
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=600&fit=crop"
   },
   {
-    id: "3",
-    slug: "tokyo-rental-gym",
-    date: "2024-11-10",
-    category: "Service Launch",
-    readTime: "2 min",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=400&fit=crop",
+    id: "expansion-preparation",
+    slug: "expansion-preparation",
+    date: "2025-06-01",
+    category: {
+      en: "Company News",
+      ja: "会社ニュース",
+      zh: "公司新闻"
+    },
+    readTime: {
+      en: "2 min",
+      ja: "2分",
+      zh: "2分钟"
+    },
     title: {
-      en: "Tengcle Inc. Launches Rental Gym Service in Tokyo",
-      ja: "Tengcle Inc. 東京でレンタルジムサービスを開始",
-      zh: "Tengcle Inc.在东京推出租赁健身房服务"
+      en: "Business Expansion Preparation Begins",
+      ja: "事業拡大に向けた準備を開始",
+      zh: "开始业务扩展准备工作"
     },
     excerpt: {
-      en: "Our Japan subsidiary introduces private rental gym facilities in central Tokyo.",
-      ja: "日本法人が東京都心でプライベートレンタルジム施設を開始しました。",
-      zh: "我们的日本子公司在东京市中心推出私人租赁健身房设施。"
+      en: "Tengcle Limited begins preparations for business expansion, identifying FF&E procurement as a key growth opportunity.",
+      ja: "Tengcle Limitedは事業拡大の準備を開始し、FF&E調達事業を重要な成長機会として特定しました。",
+      zh: "Tengcle Limited开始业务扩展准备，确定FF&E采购为关键增长机会。"
     },
     content: {
       en: [
-        "Tengcle Inc., our Japan subsidiary, has launched a new rental gym service offering private fitness spaces in central Tokyo. This service caters to individuals seeking a personalized workout environment.",
-        "Our rental gym facilities provide fully equipped private rooms where customers can exercise at their own pace without the distractions of a crowded gym. Equipment includes cardio machines, free weights, and resistance training equipment.",
-        "The service operates on a flexible hourly booking system, making it convenient for busy professionals and fitness enthusiasts who prefer privacy during their workouts.",
-        "This launch represents Tengcle Inc.'s continued expansion of lifestyle services in Japan, complementing our existing property management and F&B operations."
+        "In June 2025, Tengcle Limited began intensive preparations for business expansion, marking a pivotal moment in our company's growth trajectory.",
+        "Through market research and industry analysis, we identified hotel FF&E (Furniture, Fixtures & Equipment) procurement as a significant opportunity in the Asian hospitality market. The region's growing tourism industry and increasing hotel development create strong demand for quality FF&E services.",
+        "Our expansion preparation includes building relationships with furniture manufacturers, developing procurement processes, establishing quality control standards, and training our team in hospitality industry requirements.",
+        "This strategic decision positions Tengcle Limited to become a comprehensive hospitality solutions provider, complementing our existing hotel operations business."
       ],
       ja: [
-        "日本法人Tengcle Inc.は、東京都心でプライベートフィットネス空間を提供する新しいレンタルジムサービスを開始しました。このサービスは、パーソナライズされたトレーニング環境を求める方々向けです。",
-        "当社のレンタルジム施設は、混雑したジムの気を散らすことなく、お客様が自分のペースで運動できる完全装備のプライベートルームを提供します。設備には有酸素マシン、フリーウェイト、レジスタンストレーニング機器が含まれます。",
-        "サービスは柔軟な時間単位の予約システムで運営されており、トレーニング中のプライバシーを好む忙しいビジネスパーソンやフィットネス愛好家に便利です。",
-        "この開始は、既存の不動産管理および飲食事業を補完する、日本でのライフスタイルサービスのTengcle Inc.の継続的な拡大を表しています。"
+        "2025年6月、Tengcle Limitedは事業拡大に向けた集中的な準備を開始しました。これは当社の成長軌道における重要な転換点です。",
+        "市場調査と業界分析を通じて、ホテルFF&E（家具・什器・備品）調達をアジアのホスピタリティ市場における重要な機会として特定しました。この地域の成長する観光産業とホテル開発の増加は、質の高いFF&Eサービスへの強い需要を生み出しています。",
+        "当社の拡大準備には、家具メーカーとの関係構築、調達プロセスの開発、品質管理基準の確立、ホスピタリティ業界の要件に関するチームトレーニングが含まれます。",
+        "この戦略的決定により、Tengcle Limitedは既存のホテル運営事業を補完する包括的なホスピタリティソリューションプロバイダーとしての地位を確立します。"
       ],
       zh: [
-        "我们的日本子公司Tengcle Inc.推出了新的租赁健身房服务，在东京市中心提供私人健身空间。该服务面向寻求个性化锻炼环境的人群。",
-        "我们的租赁健身房设施提供设备齐全的私人房间，客户可以按自己的节奏锻炼，不受拥挤健身房的干扰。设备包括有氧器械、自由重量和阻力训练设备。",
-        "该服务采用灵活的按小时预订系统，方便忙碌的专业人士和喜欢在锻炼时保持隐私的健身爱好者。",
-        "此次推出代表了Tengcle Inc.在日本持续扩展生活方式服务，补充我们现有的物业管理和餐饮业务。"
+        "2025年6月，Tengcle Limited开始密集准备业务扩展，标志着公司增长轨迹中的关键时刻。",
+        "通过市场研究和行业分析，我们确定酒店FF&E（家具、固定装置和设备）采购为亚洲酒店市场的重要机会。该地区不断增长的旅游业和日益增加的酒店开发为优质FF&E服务创造了强劲需求。",
+        "我们的扩展准备包括与家具制造商建立关系、开发采购流程、建立质量控制标准，以及培训我们的团队了解酒店行业要求。",
+        "这一战略决策使Tengcle Limited能够成为全面的酒店解决方案提供商，补充我们现有的酒店运营业务。"
       ]
-    }
+    },
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=600&fit=crop"
   },
   {
-    id: "4",
-    slug: "manufacturer-partnership",
-    date: "2024-10-25",
-    category: "Partnership",
-    readTime: "3 min",
-    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=400&fit=crop",
+    id: "hotel-operations-launch",
+    slug: "hotel-operations-launch",
+    date: "2025-02-01",
+    category: {
+      en: "Business Launch",
+      ja: "事業開始",
+      zh: "业务启动"
+    },
+    readTime: {
+      en: "3 min",
+      ja: "3分",
+      zh: "3分钟"
+    },
     title: {
-      en: "Partnership with Leading Furniture Manufacturers",
-      ja: "大手家具メーカーとの提携",
-      zh: "与领先家具制造商建立合作伙伴关系"
+      en: "Hotel Operations Business Commences",
+      ja: "ホテル運営事業を開始",
+      zh: "酒店运营业务正式启动"
     },
     excerpt: {
-      en: "Tengcle Limited announces strategic partnerships with premium furniture manufacturers.",
-      ja: "Tengcle Limitedは、プレミアム家具メーカーとの戦略的提携を発表しました。",
-      zh: "Tengcle Limited宣布与优质家具制造商建立战略合作伙伴关系。"
+      en: "Shortly after establishment, Tengcle Limited launches hotel operations business.",
+      ja: "設立直後、Tengcle Limitedはホテル運営事業を開始しました。",
+      zh: "成立后不久，Tengcle Limited启动酒店运营业务。"
     },
     content: {
       en: [
-        "Tengcle Limited is pleased to announce strategic partnerships with leading furniture manufacturers in China and Southeast Asia. These partnerships strengthen our FF&E procurement capabilities for hospitality clients.",
-        "Our new manufacturing partners specialize in hotel furniture, including guest room casegoods, upholstery, and custom millwork. They meet international quality standards and have experience supplying major hotel brands.",
-        "These partnerships enable us to offer competitive pricing, reliable quality, and flexible customization options for our hotel development clients. We can now support projects of various scales and design requirements.",
-        "As part of these partnerships, we have established quality control protocols and regular factory audits to ensure consistent product quality for all our procurement projects."
+        "Shortly after our establishment in January 2025, Tengcle Limited launched our hotel operations business, providing management and operational support for hospitality properties in the region.",
+        "Our hotel operations services leverage the extensive experience of Tengcle Group, particularly the hospitality expertise developed through our Japan subsidiary's hotel and accommodation businesses.",
+        "We offer comprehensive hotel management services including daily operations oversight, staff training and management, revenue optimization, guest experience enhancement, and quality assurance programs.",
+        "By starting with hotel operations, Tengcle Limited established a strong foundation in the hospitality industry, building relationships and expertise that would later support our expansion into FF&E procurement."
       ],
       ja: [
-        "Tengcle Limitedは、中国および東南アジアの大手家具メーカーとの戦略的提携を発表いたします。これらの提携により、ホスピタリティクライアント向けのFF&E調達能力が強化されます。",
-        "新しい製造パートナーは、客室ケースグッズ、張り地、カスタムミルワークを含むホテル家具を専門としています。国際的な品質基準を満たし、主要ホテルブランドへの供給実績があります。",
-        "これらの提携により、ホテル開発クライアントに競争力のある価格、信頼性の高い品質、柔軟なカスタマイズオプションを提供できるようになりました。様々な規模とデザイン要件のプロジェクトをサポートできます。",
-        "これらの提携の一環として、すべての調達プロジェクトで一貫した製品品質を確保するための品質管理プロトコルと定期的な工場監査を確立しました。"
+        "2025年1月の設立直後、Tengcle Limitedはホテル運営事業を開始し、地域のホスピタリティ施設に管理・運営サポートを提供しています。",
+        "当社のホテル運営サービスは、Tengcle Groupの豊富な経験、特に日本法人のホテル・宿泊事業を通じて培われたホスピタリティの専門知識を活用しています。",
+        "日常業務の監督、スタッフトレーニングと管理、収益最適化、ゲスト体験の向上、品質保証プログラムを含む包括的なホテル管理サービスを提供しています。",
+        "ホテル運営から始めることで、Tengcle Limitedはホスピタリティ業界で強固な基盤を確立し、後のFF&E調達への拡大を支える関係性と専門知識を構築しました。"
       ],
       zh: [
-        "Tengcle Limited很高兴宣布与中国和东南亚领先的家具制造商建立战略合作伙伴关系。这些合作伙伴关系加强了我们为酒店客户提供FF&E采购的能力。",
-        "我们的新制造合作伙伴专门生产酒店家具，包括客房箱柜、软垫家具和定制木工。他们符合国际质量标准，并有为主要酒店品牌供货的经验。",
-        "这些合作伙伴关系使我们能够为酒店开发客户提供有竞争力的价格、可靠的质量和灵活的定制选项。我们现在可以支持各种规模和设计要求的项目。",
-        "作为这些合作伙伴关系的一部分，我们建立了质量控制协议和定期工厂审核，以确保所有采购项目的产品质量一致。"
+        "在2025年1月成立后不久，Tengcle Limited启动了酒店运营业务，为该地区的酒店物业提供管理和运营支持。",
+        "我们的酒店运营服务利用Tengcle Group的丰富经验，特别是通过我们日本子公司的酒店和住宿业务发展起来的酒店专业知识。",
+        "我们提供全面的酒店管理服务，包括日常运营监督、员工培训和管理、收入优化、宾客体验提升和质量保证计划。",
+        "从酒店运营开始，Tengcle Limited在酒店行业建立了坚实的基础，建立了关系和专业知识，这些后来支持了我们向FF&E采购的扩展。"
       ]
-    }
+    },
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&h=600&fit=crop"
   },
   {
-    id: "5",
-    slug: "odoo-implementation",
-    date: "2024-10-08",
-    category: "IT Solutions",
-    readTime: "5 min",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
-    title: {
-      en: "Odoo ERP Implementation for Hospitality Clients",
-      ja: "ホスピタリティクライアント向けOdoo ERP導入",
-      zh: "为酒店客户实施Odoo ERP"
+    id: "hk-founding",
+    slug: "hk-founding",
+    date: "2025-01-15",
+    category: {
+      en: "Company Founding",
+      ja: "会社設立",
+      zh: "公司成立"
     },
-    excerpt: {
-      en: "Our IT team successfully deployed customized Odoo ERP solutions for hotel chains across Asia.",
-      ja: "ITチームがアジアのホテルチェーン向けにカスタマイズされたOdoo ERPソリューションを導入しました。",
-      zh: "我们的IT团队成功为亚洲酒店连锁部署定制的Odoo ERP解决方案。"
+    readTime: {
+      en: "4 min",
+      ja: "4分",
+      zh: "4分钟"
     },
-    content: {
-      en: [
-        "Our IT team has successfully deployed customized Odoo ERP solutions for three hotel chains across Asia. These implementations streamline operations and improve business efficiency for our hospitality clients.",
-        "The Odoo implementations include modules for inventory management, procurement, accounting, and human resources. Each system was customized to meet the specific operational requirements of the hotel properties.",
-        "Our team provided end-to-end services including system design, data migration, staff training, and ongoing technical support. The implementations were completed with minimal disruption to hotel operations.",
-        "This project demonstrates Tengcle Limited's capability to deliver comprehensive IT solutions for the hospitality industry. We continue to expand our Odoo expertise to serve more clients in the region."
-      ],
-      ja: [
-        "ITチームは、アジアの3つのホテルチェーン向けにカスタマイズされたOdoo ERPソリューションを成功裏に導入しました。これらの導入により、ホスピタリティクライアントの業務が効率化され、ビジネス効率が向上しました。",
-        "Odoo導入には、在庫管理、調達、会計、人事のモジュールが含まれています。各システムは、ホテル物件の特定の運用要件を満たすようにカスタマイズされました。",
-        "当社チームは、システム設計、データ移行、スタッフトレーニング、継続的な技術サポートを含むエンドツーエンドのサービスを提供しました。導入はホテル運営への影響を最小限に抑えて完了しました。",
-        "このプロジェクトは、ホスピタリティ業界向けの包括的なITソリューションを提供するTengcle Limitedの能力を示しています。地域のより多くのクライアントにサービスを提供するため、Odooの専門知識を引き続き拡大しています。"
-      ],
-      zh: [
-        "我们的IT团队成功为亚洲三家酒店连锁部署了定制的Odoo ERP解决方案。这些实施简化了运营，提高了酒店客户的业务效率。",
-        "Odoo实施包括库存管理、采购、会计和人力资源模块。每个系统都经过定制，以满足酒店物业的特定运营要求。",
-        "我们的团队提供端到端服务，包括系统设计、数据迁移、员工培训和持续技术支持。实施在对酒店运营影响最小的情况下完成。",
-        "该项目展示了Tengcle Limited为酒店行业提供全面IT解决方案的能力。我们继续扩展Odoo专业知识，以服务该地区更多客户。"
-      ]
-    }
-  },
-  {
-    id: "6",
-    slug: "hong-kong-founding",
-    date: "2024-01-15",
-    category: "Company News",
-    readTime: "3 min",
-    image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=800&h=400&fit=crop",
     title: {
       en: "Tengcle Limited Established in Hong Kong",
-      ja: "Tengcle Limited 香港にて設立",
+      ja: "Tengcle Limited 香港で設立",
       zh: "Tengcle Limited在香港成立"
     },
     excerpt: {
-      en: "Tengcle Group establishes Hong Kong entity to serve hospitality industry across Asia.",
-      ja: "Tengcle Groupがアジア全域のホスピタリティ業界にサービスを提供するため香港法人を設立しました。",
-      zh: "Tengcle Group成立香港实体，服务亚洲酒店行业。"
+      en: "Tengcle Limited is officially established in Hong Kong as the regional headquarters for Tengcle Group.",
+      ja: "Tengcle LimitedはTengcle Groupの地域本部として香港で正式に設立されました。",
+      zh: "Tengcle Limited作为Tengcle Group的地区总部在香港正式成立。"
     },
     content: {
       en: [
-        "Tengcle Group is pleased to announce the establishment of Tengcle Limited in Hong Kong. This new entity will serve as our regional hub for hospitality procurement and consulting services across Asia.",
-        "Tengcle Limited is a fully licensed Hong Kong company, holding a Trust or Company Service Provider (TCSP) license. We are committed to maintaining the highest standards of corporate governance and regulatory compliance.",
-        "Our Hong Kong operations focus on hotel FF&E procurement, hospitality consulting, and IT solutions for the hotel industry. We leverage Hong Kong's strategic position as a gateway between Asia and the rest of the world.",
-        "This establishment marks a significant expansion for Tengcle Group, building on the foundation laid by Tengcle Inc. in Japan since 2021."
+        "In January 2025, Tengcle Limited was officially established in Hong Kong, marking a significant expansion of Tengcle Group's global presence.",
+        "Hong Kong was chosen as the location for our regional headquarters due to its strategic position as a gateway to Asia, world-class business infrastructure, and strong connections to both mainland China and international markets.",
+        "Tengcle Limited focuses on hotel FF&E procurement and IT solutions, complementing the services offered by our sister companies in Japan and the United States. Together, the three entities form a comprehensive global network.",
+        "The establishment of Tengcle Limited represents Tengcle Group's commitment to growth and our vision of becoming a leading provider of hospitality and business solutions across Asia and beyond."
       ],
       ja: [
-        "Tengcle Groupは、香港にTengcle Limitedを設立したことを発表いたします。この新しい法人は、アジア全域のホスピタリティ調達およびコンサルティングサービスの地域ハブとして機能します。",
-        "Tengcle Limitedは、Trust or Company Service Provider（TCSP）ライセンスを保有する完全認可の香港企業です。企業統治と規制遵守の最高基準を維持することにコミットしています。",
-        "香港事業は、ホテルFF&E調達、ホスピタリティコンサルティング、ホテル業界向けITソリューションに焦点を当てています。アジアと世界をつなぐゲートウェイとしての香港の戦略的位置を活用しています。",
-        "この設立は、2021年以来日本のTengcle Inc.が築いた基盤の上に構築される、Tengcle Groupの重要な拡大を示しています。"
+        "2025年1月、Tengcle Limitedは香港で正式に設立され、Tengcle Groupのグローバルプレゼンスの大幅な拡大を示しました。",
+        "香港は、アジアへのゲートウェイとしての戦略的位置、世界クラスのビジネスインフラ、中国本土と国際市場の両方への強いつながりから、地域本部の所在地として選ばれました。",
+        "Tengcle LimitedはホテルFF&E調達とITソリューションに注力し、日本とアメリカの姉妹会社が提供するサービスを補完しています。3つの法人が一体となって包括的なグローバルネットワークを形成しています。",
+        "Tengcle Limitedの設立は、Tengcle Groupの成長へのコミットメントと、アジアおよびその先でホスピタリティとビジネスソリューションの主要プロバイダーになるというビジョンを表しています。"
       ],
       zh: [
-        "Tengcle Group很高兴宣布在香港成立Tengcle Limited。这个新实体将作为我们在亚洲酒店采购和咨询服务的区域中心。",
-        "Tengcle Limited是一家持有信托或公司服务提供者（TCSP）牌照的完全授权香港公司。我们致力于保持最高标准的公司治理和监管合规。",
-        "我们的香港业务专注于酒店FF&E采购、酒店咨询和酒店行业IT解决方案。我们利用香港作为亚洲与世界其他地区之间门户的战略位置。",
-        "此次成立标志着Tengcle Group的重大扩张，建立在Tengcle Inc.自2021年以来在日本奠定的基础之上。"
+        "2025年1月，Tengcle Limited在香港正式成立，标志着Tengcle Group全球业务的重大扩展。",
+        "香港因其作为亚洲门户的战略位置、世界级的商业基础设施以及与中国大陆和国际市场的紧密联系而被选为我们的地区总部所在地。",
+        "Tengcle Limited专注于酒店FF&E采购和IT解决方案，补充我们在日本和美国的姐妹公司提供的服务。三个实体共同形成一个全面的全球网络。",
+        "Tengcle Limited的成立代表了Tengcle Group对增长的承诺，以及我们成为亚洲及其他地区酒店和商业解决方案领先提供商的愿景。"
       ]
-    }
+    },
+    image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=1200&h=600&fit=crop"
   }
 ];
 
@@ -279,140 +291,176 @@ export default function NewsArticle() {
 
   const article = newsArticles.find(a => a.slug === articleSlug);
   
-  const getFontClass = () => {
-    if (language === "ja") return "font-jp";
-    if (language === "zh") return "font-zh";
-    return "";
+  const fontClass = pathLang === "ja" ? "font-jp" : pathLang === "zh" ? "font-zh" : "";
+
+  const translations = {
+    en: {
+      backToNews: "Back to News",
+      relatedArticles: "Related Articles",
+      articleNotFound: "Article not found"
+    },
+    ja: {
+      backToNews: "ニュース一覧に戻る",
+      relatedArticles: "関連記事",
+      articleNotFound: "記事が見つかりません"
+    },
+    zh: {
+      backToNews: "返回新闻列表",
+      relatedArticles: "相关文章",
+      articleNotFound: "文章未找到"
+    }
   };
 
-  const backToNews = language === "ja" ? "ニュース一覧に戻る" : language === "zh" ? "返回新闻列表" : "Back to News";
-  const relatedTitle = language === "ja" ? "関連記事" : language === "zh" ? "相关文章" : "Related Articles";
+  const text = translations[pathLang as keyof typeof translations] || translations.en;
 
   if (!article) {
     return (
-      <div className="min-h-screen bg-cream">
-        <Header />
-        <div className="container py-32 text-center">
-          <h1 className="text-2xl font-bold text-navy mb-4">Article not found</h1>
-          <Link href={`${basePath}/news`}>
-            <span className="text-gold hover:underline">Back to News</span>
-          </Link>
+      <>
+        <SEOHead
+          title="Article Not Found | Tengcle Limited"
+          description="The requested article could not be found."
+          canonical={`https://tengcle.com${basePath}/news`}
+        />
+        <div className="min-h-screen bg-cream">
+          <Header />
+          <div className="container py-32 text-center">
+            <h1 className="text-3xl font-heading text-charcoal mb-4">{text.articleNotFound}</h1>
+            <Link href={`${basePath}/news`}>
+              <Button className="bg-purple hover:bg-purple-dark text-white">
+                {text.backToNews}
+              </Button>
+            </Link>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </>
     );
   }
 
+  const title = article.title[pathLang as keyof typeof article.title] || article.title.en;
+  const excerpt = article.excerpt[pathLang as keyof typeof article.excerpt] || article.excerpt.en;
+  const content = article.content[pathLang as keyof typeof article.content] || article.content.en;
+  const category = article.category[pathLang as keyof typeof article.category] || article.category.en;
+  const readTime = article.readTime[pathLang as keyof typeof article.readTime] || article.readTime.en;
+
+  // Get related articles (exclude current)
   const relatedArticles = newsArticles.filter(a => a.slug !== articleSlug).slice(0, 2);
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    if (pathLang === "ja") {
+      return date.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
+    } else if (pathLang === "zh") {
+      return date.toLocaleDateString("zh-CN", { year: "numeric", month: "long", day: "numeric" });
+    }
+    return date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  };
 
   return (
     <>
       <SEOHead
-        title={`${article.title[language as keyof typeof article.title]} | Tengcle Limited`}
-        description={article.excerpt[language as keyof typeof article.excerpt]}
-        keywords="Tengcle Limited, News, Hong Kong, Hospitality, FF&E"
-        canonical={`https://tengcle.com${basePath}/news/${articleSlug}`}
-        ogType="article"
+        title={`${title} | Tengcle Limited`}
+        description={excerpt}
+        canonical={`https://tengcle.com${basePath}/news/${article.slug}`}
+        keywords="Tengcle news, hotel FF&E, hospitality projects, company updates"
       />
       <div className="min-h-screen bg-cream">
         <Header />
         
-        {/* Hero Section with Image */}
-        <section className="pt-20">
-          <div className="relative h-64 md:h-80 lg:h-96">
-            <img 
-              src={article.image} 
-              alt={article.title[language as keyof typeof article.title]}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
-              <div className="container max-w-4xl">
-                {/* Back Link */}
-                <Link href={`${basePath}/news`}>
-                  <span className={`inline-flex items-center gap-2 text-white/70 hover:text-white mb-4 transition-colors ${getFontClass()}`}>
-                    <ArrowLeft className="w-4 h-4" />
-                    {backToNews}
-                  </span>
-                </Link>
-                
-                {/* Meta */}
-                <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <span className="inline-flex items-center gap-1.5 text-sm text-white/70">
-                    <Calendar className="w-4 h-4" />
-                    {article.date}
-                  </span>
-                  <span className="px-2 py-0.5 bg-gold/20 text-gold text-xs rounded-full">
-                    {article.category}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 text-sm text-white/70">
-                    <Clock className="w-4 h-4" />
-                    {article.readTime}
-                  </span>
-                </div>
-                
-                {/* Title */}
-                <h1 className={`text-2xl md:text-3xl lg:text-4xl font-bold text-white ${getFontClass()}`}>
-                  {article.title[language as keyof typeof article.title]}
-                </h1>
+        {/* Hero Section */}
+        <section 
+          className="relative pt-24 pb-16 bg-cover bg-center"
+          style={{ backgroundImage: `linear-gradient(rgba(88, 28, 135, 0.85), rgba(88, 28, 135, 0.9)), url(${article.image})` }}
+        >
+          <div className="container relative z-10">
+            <Link href={`${basePath}/news`}>
+              <Button variant="ghost" className="text-white/80 hover:text-white hover:bg-white/10 mb-6">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                {text.backToNews}
+              </Button>
+            </Link>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <span className="flex items-center gap-1 text-white/80 text-sm">
+                  <Calendar className="h-4 w-4" />
+                  {formatDate(article.date)}
+                </span>
+                <span className="flex items-center gap-1 text-white/80 text-sm">
+                  <Clock className="h-4 w-4" />
+                  {readTime}
+                </span>
+                <span className="px-3 py-1 bg-gold/20 text-gold text-xs font-medium">
+                  {category}
+                </span>
               </div>
-            </div>
+              <h1 className={`text-3xl md:text-4xl lg:text-5xl font-heading text-white max-w-4xl ${fontClass}`}>
+                {title}
+              </h1>
+            </motion.div>
           </div>
         </section>
 
         {/* Article Content */}
         <section className="py-16">
-          <div className="container max-w-4xl">
-            <motion.article
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="bg-white rounded-xl p-8 md:p-12 shadow-sm"
-            >
-              <div className={`prose prose-lg max-w-none ${getFontClass()}`}>
-                {article.content[language as keyof typeof article.content].map((paragraph, index) => (
-                  <p key={index} className="text-gray-700 leading-relaxed mb-6 last:mb-0">
+          <div className="container">
+            <div className="max-w-3xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-white p-8 md:p-12 shadow-sm"
+              >
+                {content.map((paragraph, index) => (
+                  <p key={index} className={`text-charcoal/80 leading-relaxed mb-6 last:mb-0 ${fontClass}`}>
                     {paragraph}
                   </p>
                 ))}
-              </div>
-            </motion.article>
+              </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Related Articles */}
-        <section className="py-16 bg-gray-50">
-          <div className="container max-w-4xl">
-            <h2 className={`text-2xl font-bold text-navy mb-8 ${getFontClass()}`}>
-              {relatedTitle}
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {relatedArticles.map((related) => (
-                <Link key={related.slug} href={`${basePath}/news/${related.slug}`}>
-                  <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group cursor-pointer h-full">
-                    <img 
-                      src={related.image} 
-                      alt={related.title[language as keyof typeof related.title]}
-                      className="w-full h-40 object-cover"
-                    />
-                    <div className="p-6">
-                      <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                        <Calendar className="w-4 h-4" />
-                        {related.date}
-                      </div>
-                      <h3 className={`text-lg font-bold text-navy group-hover:text-gold transition-colors mb-2 ${getFontClass()}`}>
-                        {related.title[language as keyof typeof related.title]}
-                      </h3>
-                      <p className={`text-gray-600 text-sm line-clamp-2 ${getFontClass()}`}>
-                        {related.excerpt[language as keyof typeof related.excerpt]}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+        {relatedArticles.length > 0 && (
+          <section className="py-16 bg-white">
+            <div className="container">
+              <h2 className={`text-2xl font-heading text-charcoal mb-8 ${fontClass}`}>
+                {text.relatedArticles}
+              </h2>
+              <div className="grid md:grid-cols-2 gap-8">
+                {relatedArticles.map((related) => {
+                  const relatedTitle = related.title[pathLang as keyof typeof related.title] || related.title.en;
+                  const relatedExcerpt = related.excerpt[pathLang as keyof typeof related.excerpt] || related.excerpt.en;
+                  
+                  return (
+                    <Link key={related.id} href={`${basePath}/news/${related.slug}`}>
+                      <motion.article
+                        whileHover={{ y: -5 }}
+                        className="group bg-cream p-6 border border-gray-100 hover:shadow-md transition-all cursor-pointer"
+                      >
+                        <div className="flex items-center gap-2 text-slate text-sm mb-3">
+                          <Calendar className="h-4 w-4" />
+                          {formatDate(related.date)}
+                        </div>
+                        <h3 className={`text-lg font-heading text-charcoal mb-2 group-hover:text-purple transition-colors ${fontClass}`}>
+                          {relatedTitle}
+                        </h3>
+                        <p className={`text-slate text-sm line-clamp-2 ${fontClass}`}>
+                          {relatedExcerpt}
+                        </p>
+                      </motion.article>
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         <Footer />
       </div>
