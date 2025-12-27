@@ -92,7 +92,7 @@ export default function Header() {
                 src="/images/tengcle-logo.png" 
                 alt="Tengcle - think into the future" 
                 className="w-auto object-contain"
-                style={{ height: '38px', maxHeight: '38px' }}
+                style={{ height: '46px', maxHeight: '46px' }}
               />
             </motion.div>
           </Link>
