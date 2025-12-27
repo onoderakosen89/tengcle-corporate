@@ -11,7 +11,7 @@
 import { useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, useInView, useScroll, useTransform, type Variants, type Easing } from "framer-motion";
-import { ArrowRight, Building2, Globe, Shield, Award, CheckCircle2, Package, Cpu, Palette, TrendingUp } from "lucide-react";
+import { ArrowRight, Building2, Globe, Shield, Award, CheckCircle2, Package, Cpu, Palette, TrendingUp, Zap } from "lucide-react";
 import AnimatedCounter, { AnimatedCounterPlus } from "@/components/AnimatedCounter";
 import ScrollToTop from "@/components/ScrollToTop";
 import OptimizedImage from "@/components/OptimizedImage";
@@ -307,6 +307,11 @@ export default function Home() {
                 icon: TrendingUp,
                 title: t.services.trading.title,
                 description: t.services.trading.description,
+              },
+              {
+                icon: Zap,
+                title: t.services.dx.title,
+                description: t.services.dx.description,
               },
             ].map((service) => (
               <AnimatedSection key={service.title}>

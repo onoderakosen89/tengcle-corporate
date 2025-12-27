@@ -51,6 +51,10 @@ interface Translations {
       title: string;
       description: string;
     };
+    dx: {
+      title: string;
+      description: string;
+    };
   };
   portfolio: {
     subtitle: string;
@@ -176,6 +180,10 @@ const translations: Record<Language, Translations> = {
         title: "Trading & Wholesale",
         description: "Trade services and wholesale distribution for construction companies through our supplier network.",
       },
+      dx: {
+        title: "DX & Business Automation",
+        description: "Digital transformation support using Google Apps Script, workflow automation, and custom business tools for corporate efficiency.",
+      },
     },
     portfolio: {
       subtitle: "Our Portfolio",
@@ -299,6 +307,10 @@ const translations: Record<Language, Translations> = {
         title: "貿易＆卸売",
         description: "サプライヤーネットワークを通じた国際貿易と建設会社向け卸売。",
       },
+      dx: {
+        title: "DX＆業務自動化",
+        description: "Google Apps Scriptを活用したワークフロー自動化、カスタムビジネスツール開発による法人のDX支援。",
+      },
     },
     portfolio: {
       subtitle: "実績",
@@ -421,6 +433,10 @@ const translations: Record<Language, Translations> = {
       trading: {
         title: "贸易与批发",
         description: "通过供应商网络提供贸易服务和建筑公司批发。",
+      },
+      dx: {
+        title: "DX与业务自动化",
+        description: "利用Google Apps Script实现工作流自动化，开发定制业务工具，支持企业数字化转型。",
       },
     },
     portfolio: {

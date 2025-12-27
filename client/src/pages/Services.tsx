@@ -12,7 +12,7 @@
 import { useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, useInView, type Variants, type Easing } from "framer-motion";
-import { ArrowRight, Package, Building2, Cpu, Palette, TrendingUp, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Package, Building2, Cpu, Palette, TrendingUp, CheckCircle2, Zap } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -183,6 +183,28 @@ export default function Services() {
         "Construction materials wholesale",
         "Global supplier network",
         "Customs and logistics support",
+      ],
+    },
+    {
+      icon: Zap,
+      title: t.services.dx.title,
+      description: t.services.dx.description,
+      image: "/images/service-dx.jpg",
+      features: language === "ja" ? [
+        "Google Apps Scriptによる業務自動化",
+        "ワークフロー最適化・効率化",
+        "カスタムビジネスツール開発",
+        "データ連携・レポート自動化",
+      ] : language === "zh" ? [
+        "Google Apps Script业务自动化",
+        "工作流优化与效率提升",
+        "定制业务工具开发",
+        "数据集成与报表自动化",
+      ] : [
+        "Business automation with Google Apps Script",
+        "Workflow optimization and efficiency",
+        "Custom business tool development",
+        "Data integration and automated reporting",
       ],
     },
   ];
