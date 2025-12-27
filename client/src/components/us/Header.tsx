@@ -53,7 +53,7 @@ export default function UsHeader() {
               <img
                 src={isScrolled ? "/images/tengcle-logo.png" : "/images/tengcle-logo-white.png"}
                 alt="Tengcle"
-                className="h-8 md:h-10 transition-all duration-300"
+                className="h-6 md:h-8 w-auto object-contain transition-all duration-300"
               />
             </motion.div>
           </Link>

@@ -80,7 +80,7 @@ export default function Header() {
       }`}
     >
       <div className="container">
-        <nav className="flex items-center justify-between h-20">
+        <nav className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/">
             <motion.div
@@ -91,7 +91,7 @@ export default function Header() {
               <img 
                 src="/images/tengcle-logo.png" 
                 alt="Tengcle - think into the future" 
-                className="h-12 md:h-14 w-auto"
+                className="h-6 md:h-8 w-auto object-contain"
               />
             </motion.div>
           </Link>

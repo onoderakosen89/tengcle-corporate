@@ -151,7 +151,7 @@ export default function GlobalGateway() {
               <img
                 src="/images/tengcle-logo-white.png"
                 alt="Tengcle - think into the future"
-                className="h-14 md:h-20"
+                className="h-28 md:h-36 w-auto"
               />
             </motion.div>
           </div>

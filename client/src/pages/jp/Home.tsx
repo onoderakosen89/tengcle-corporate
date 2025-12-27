@@ -119,7 +119,7 @@ function JpHeroSection({
       
       {/* Content with Parallax */}
       <motion.div 
-        className="container relative z-10 pt-32 pb-20"
+        className="container relative z-10 pt-24 pb-20"
         style={{ y: contentY, opacity }}
       >
         <motion.div
