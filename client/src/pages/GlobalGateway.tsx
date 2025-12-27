@@ -232,9 +232,13 @@ export default function GlobalGateway() {
                     <div className="relative bg-[#12182a]/90 backdrop-blur-sm border border-white/10 rounded-xl p-6 md:p-8 h-full transition-all duration-500 group-hover:bg-[#1a2236] group-hover:border-gold/40 group-hover:-translate-y-2 group-hover:shadow-2xl">
                       {/* Flag & Region Info - Simplified */}
                       <div className="flex items-center gap-4 mb-6">
-                        <span className="text-4xl md:text-5xl drop-shadow-lg">
-                          {region.flag}
-                        </span>
+                        <div className="w-12 h-8 md:w-14 md:h-10 rounded overflow-hidden shadow-lg flex-shrink-0">
+                          <img 
+                            src={region.flagImage} 
+                            alt={`${region.name} flag`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
                         <div>
                           <h2 className="font-heading text-xl md:text-2xl text-white">
                             {region.name}
