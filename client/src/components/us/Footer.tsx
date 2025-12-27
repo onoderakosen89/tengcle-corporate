@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Mail, MapPin, ExternalLink } from "lucide-react";
+import { Mail, MapPin, Globe } from "lucide-react";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 
 export default function UsFooter() {
@@ -16,8 +16,8 @@ export default function UsFooter() {
   ];
 
   const groupSites = [
-    { href: "/hk/en", label: t('footer.hk'), flag: "🇭🇰" },
-    { href: "/jp/ja", label: t('footer.jp'), flag: "🇯🇵" },
+    { href: "/hk/en", label: "Tengcle Limited (Hong Kong)" },
+    { href: "/jp/ja", label: "Tengcle Inc. (Japan)" },
   ];
 
   return (
@@ -79,7 +79,7 @@ export default function UsFooter() {
                   href="/"
                   className="text-gray-300 text-sm hover:text-gold transition-colors flex items-center gap-2"
                 >
-                  <span>🌐</span>
+                  <Globe className="w-4 h-4 text-gold flex-shrink-0" />
                   Global Site
                 </Link>
               </li>
@@ -87,9 +87,8 @@ export default function UsFooter() {
                 <li key={site.href}>
                   <Link
                     href={site.href}
-                    className="text-gray-300 text-sm hover:text-gold transition-colors flex items-center gap-2"
+                    className="text-gray-300 text-sm hover:text-gold transition-colors"
                   >
-                    <span>{site.flag}</span>
                     {site.label}
                   </Link>
                 </li>
