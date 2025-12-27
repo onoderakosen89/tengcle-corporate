@@ -223,19 +223,22 @@ export default function Home() {
     return "font-heading";
   };
 
-  // SEO meta data based on language
+  // SEO meta data based on language - Optimized for maximum SEO score
   const seoData = {
     en: {
-      title: "Tengcle Limited | Global Business Solutions from Hong Kong",
-      description: "TCSP licensed Hong Kong company specializing in hotel FF&E procurement, IT solutions, and international trade. Bridging excellence across Asia.",
+      title: "Tengcle Limited | Hotel FF&E Procurement & Business Solutions Hong Kong",
+      description: "TCSP licensed Hong Kong company (TC007820) specializing in hotel FF&E procurement, project integration, and international trade. Serving Asia-Pacific region.",
+      keywords: "Tengcle Limited, Hong Kong company, TCSP licensed, hotel FF&E, furniture fixtures equipment, project integration, international trade, Asia Pacific business",
     },
     ja: {
-      title: "Tengcle Limited | 香港発グローバルビジネスソリューション",
-      description: "TCSPライセンス取得の香港企業。ホテルFF&E調達、ITソリューション、国際貿易を専門としています。",
+      title: "Tengcle Limited | ホテルFF&E調達・ビジネスソリューション 香港",
+      description: "TCSPライセンス取得の香港企業（TC007820）。ホテルFF&E調達、プロジェクト統合、国際貿易を専門としています。",
+      keywords: "Tengcle Limited, 香港企業, TCSPライセンス, ホテルFF&E, 家具調達, プロジェクト統合, 国際貿易",
     },
     zh: {
-      title: "Tengcle Limited | 香港全球商业解决方案",
-      description: "TCSP持牌香港公司，专注于酒店FF&E采购、IT解决方案和国际贸易。跨越亚洲的卓越服务。",
+      title: "Tengcle Limited | 酒店FF&E采购及商业解决方案 香港",
+      description: "TCSP持牌香港公司（TC007820），专注于酒店FF&E采购、项目整合和国际贸易。服务亚太地区。",
+      keywords: "Tengcle Limited, 香港公司, TCSP持牌, 酒店FF&E, 家具采购, 项目整合, 国际贸易",
     },
   };
 
@@ -249,6 +252,7 @@ export default function Home() {
         canonical={`https://tengcle.com/hk/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
         ogImage="/images/og-image-hk.jpg"
+        keywords={currentSeo.keywords}
       />
       <Header />
       

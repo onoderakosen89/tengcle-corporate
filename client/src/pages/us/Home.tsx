@@ -158,19 +158,22 @@ export default function UsHome() {
     },
   ];
 
-  // SEO meta data based on language
+  // SEO meta data based on language - Optimized for maximum SEO score
   const seoData = {
     en: {
-      title: "Tengcle LLC | Real Estate & Vacation Rentals in New Jersey",
-      description: "Professional real estate management and vacation rental services in the New Jersey and New York metropolitan area. Your trusted property partner.",
+      title: "Tengcle LLC | Property Management & Vacation Rentals Weehawken NJ",
+      description: "Professional property management and Airbnb/VRBO vacation rental services in Weehawken, New Jersey and the NYC metro area. Tenant screening, maintenance, dynamic pricing.",
+      keywords: "Tengcle LLC, property management NJ, vacation rentals Weehawken, Airbnb management, VRBO, New Jersey real estate, NYC metro property, tenant screening",
     },
     ja: {
-      title: "Tengcle LLC | ニュージャージーの不動産・バケーションレンタル",
-      description: "ニュージャージー・ニューヨーク圈でプロフェッショナルな不動産管理とバケーションレンタルサービスを提供。信頼のパートナー。",
+      title: "Tengcle LLC | ニュージャージーの不動産管理・バケーションレンタル",
+      description: "ニュージャージー州ウィーホーケンとNYCメトロエリアでプロフェッショナルな不動産管理とAirbnb/VRBOバケーションレンタルサービスを提供。",
+      keywords: "Tengcle LLC, ニュージャージー 不動産, バケーションレンタル, Airbnb管理, ウィーホーケン, NYCメトロ",
     },
     zh: {
-      title: "Tengcle LLC | 新泽西房地产与度假租赁",
-      description: "在新泽西和纽约大都会圈提供专业的房地产管理和度假租赁服务。您值得信赖的房产合作伙伴。",
+      title: "Tengcle LLC | 新泽西州房产管理与度假租赁",
+      description: "在新泽西州Weehawken和纽约大都会圈提供专业的房产管理和Airbnb/VRBO度假租赁服务。租户筛选、维护、动态定价。",
+      keywords: "Tengcle LLC, 新泽西房产, 度假租赁, Airbnb管理, Weehawken, 纽约大都会圈",
     },
   };
 
@@ -184,6 +187,7 @@ export default function UsHome() {
         canonical={`https://tengcle.com/us/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
         ogImage="/images/og-image-us.jpg"
+        keywords={(currentSeo as any).keywords}
       />
       <UsHeader />
 

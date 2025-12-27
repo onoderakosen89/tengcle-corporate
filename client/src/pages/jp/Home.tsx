@@ -273,19 +273,22 @@ export default function Home() {
     },
   ];
 
-  // SEO meta data based on language
+  // SEO meta data based on language - Optimized for maximum SEO score
   const seoData = {
     ja: {
-      title: "Tengcle Inc. | 日本の不動産・飲食・フィットネス・ホスピタリティ",
-      description: "東京を拠点に不動産管理、レストラン運営、レンタルジム、カプセルホテル、人材紹介サービスを提供。おもてなしの心で事業を展開しています。",
+      title: "Tengcle Inc. | 東京の不動産管理・飲食・レンタルジム・カプセルホテル",
+      description: "東京都港区高輪を拠点に不動産管理、レストラン運営、レンタルジム、カプセルホテル、人材紹介サービスを提供。おもてなしの心で事業を展開。",
+      keywords: "Tengcle Inc, 東京 不動産管理, レンタルジム, カプセルホテル, 人材紹介, 港区, 高輪, 飲食店運営",
     },
     en: {
-      title: "Tengcle Inc. | Real Estate, F&B, Fitness & Hospitality in Japan",
-      description: "Tokyo-based company offering real estate management, restaurant operations, rental gym, capsule hotel, and recruitment services with Japanese hospitality.",
+      title: "Tengcle Inc. | Real Estate, Rental Gym, Capsule Hotel & Recruitment Tokyo",
+      description: "Tokyo-based company in Minato-ku offering real estate management, restaurant operations, rental gym, capsule hotel, and recruitment services with Japanese hospitality.",
+      keywords: "Tengcle Inc, Tokyo real estate, rental gym Tokyo, capsule hotel, recruitment Japan, Minato-ku, Takanawa, property management",
     },
     zh: {
-      title: "Tengcle Inc. | 日本房地产・餐饮・健身・酒店服务",
-      description: "以东京为基地，提供房地产管理、餐厅运营、租赁健身房、胶囊酒店和人才介绍服务。以日式待客之道开展事业。",
+      title: "Tengcle Inc. | 东京房地产管理・健身房・胶囊酒店・人才招聘",
+      description: "以东京都港区高轮为基地，提供房地产管理、餐厅运营、租赁健身房、胶囊酒店和人才介绍服务。以日式待客之道开展事业。",
+      keywords: "Tengcle Inc, 东京房地产, 租赁健身房, 胶囊酒店, 人才招聘, 港区, 高轮",
     },
   };
 
@@ -299,6 +302,7 @@ export default function Home() {
         canonical={`https://tengcle.com/jp/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
         ogImage="/images/og-image-jp.jpg"
+        keywords={(currentSeo as any).keywords}
       />
       <Header />
       
