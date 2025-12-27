@@ -73,8 +73,8 @@ const newsArticles: NewsArticle[] = [
     }
   },
   {
-    id: "us-founding-2025",
-    date: "2025-01",
+    id: "us-founding-2026",
+    date: "2026-01",
     category: "Company Founding",
     icon: <Building2 className="w-5 h-5" />,
     title: {
@@ -83,25 +83,25 @@ const newsArticles: NewsArticle[] = [
       zh: "Tengcle LLC在新泽西州成立"
     },
     excerpt: {
-      en: "Tengcle LLC was established in Weehawken, New Jersey as the US office of Tengcle Group.",
-      ja: "Tengcle LLCは、Tengcle Groupの米国拠点としてニュージャージー州ウィーホーケンに設立されました。",
-      zh: "Tengcle LLC作为Tengcle Group的美国办事处在新泽西州威霍肯成立。"
+      en: "Tengcle LLC is scheduled to be officially registered in Weehawken, New Jersey in January 2026 as the US office of Tengcle Group.",
+      ja: "Tengcle LLCは、2026年1月にTengcle Groupの米国拠点としてニュージャージー州ウィーホーケンに正式登記予定です。",
+      zh: "Tengcle LLC计划于2026年1月作为Tengcle Group的美国办事处在新泽西州威霍肯正式注册。"
     },
     content: {
       en: [
-        "Tengcle LLC was established in Weehawken, New Jersey as the US office of Tengcle Group, marking the group's expansion into the North American market.",
+        "Tengcle LLC is scheduled to be officially registered in Weehawken, New Jersey in January 2026 as the US office of Tengcle Group, marking the group's expansion into the North American market.",
         "Located just across the Hudson River from Manhattan, Weehawken offers an ideal strategic position for serving the New York metropolitan area while maintaining competitive operational costs.",
         "As part of Tengcle Group, which has operations in Tokyo and Hong Kong, Tengcle LLC brings international expertise to the US real estate market. Our team combines local market knowledge with global best practices in property management.",
         "The establishment of Tengcle LLC represents a significant milestone in Tengcle Group's vision of building a global network of real estate and hospitality services."
       ],
       ja: [
-        "Tengcle LLCは、Tengcle Groupの米国拠点としてニュージャージー州ウィーホーケンに設立されました。グループの北米市場への進出を示すものです。",
+        "Tengcle LLCは、2026年1月にTengcle Groupの米国拠点としてニュージャージー州ウィーホーケンに正式登記予定です。グループの北米市場への進出を示すものです。",
         "マンハッタンからハドソン川を挟んですぐの場所に位置するウィーホーケンは、競争力のある運営コストを維持しながらニューヨーク大都市圏にサービスを提供するための理想的な戦略的位置にあります。",
         "東京と香港に拠点を持つTengcle Groupの一員として、Tengcle LLCは米国不動産市場に国際的な専門知識をもたらします。私たちのチームは、地域の市場知識と不動産管理のグローバルベストプラクティスを組み合わせています。",
         "Tengcle LLCの設立は、不動産およびホスピタリティサービスのグローバルネットワーク構築というTengcle Groupのビジョンにおける重要なマイルストーンです。"
       ],
       zh: [
-        "Tengcle LLC作为Tengcle Group的美国办事处在新泽西州威霍肯成立，标志着集团进军北美市场。",
+        "Tengcle LLC计划于2026年1月作为Tengcle Group的美国办事处在新泽西州威霍肯正式注册，标志着集团进军北美市场。",
         "威霍肯位于哈德逊河对岸，距曼哈顿仅一河之隔，是服务纽约都市圈的理想战略位置，同时保持有竞争力的运营成本。",
         "作为在东京和香港设有办事处的Tengcle Group的一部分，Tengcle LLC将国际专业知识带入美国房地产市场。我们的团队将本地市场知识与物业管理的全球最佳实践相结合。",
         "Tengcle LLC的成立是Tengcle Group建立全球房地产和酒店服务网络愿景中的重要里程碑。"

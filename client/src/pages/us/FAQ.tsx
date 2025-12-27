@@ -47,7 +47,7 @@ const faqDataEn: FAQItem[] = [
   },
   {
     question: "What is the relationship with Tengcle Group?",
-    answer: "Tengcle LLC is the US subsidiary of Tengcle Group, headquartered in Hong Kong. The group operates across three locations: Hong Kong (headquarters), Japan, and the United States, providing various business services in each region."
+    answer: "Tengcle LLC is the US office of Tengcle Group, headquartered in Hong Kong. The group operates across three locations: Hong Kong (headquarters), Japan (founding office), and the United States, providing various business services in each region."
   },
   {
     question: "How can I contact you?",
@@ -82,7 +82,7 @@ const faqDataJa: FAQItem[] = [
   },
   {
     question: "Tengcle Groupとの関係は？",
-    answer: "Tengcle LLCは、香港に本社を置くTengcle Groupの米国子会社です。グループは香港（本社）、日本、米国の3拠点で事業を展開し、各地域で様々なビジネスサービスを提供しています。"
+    answer: "Tengcle LLCは、香港に本社を置くTengcle Groupの米国オフィスです。グループは香港（本社）、日本（創業地）、米国の3拠点で事業を展開し、各地域で様々なビジネスサービスを提供しています。"
   },
   {
     question: "連絡方法を教えてください。",
@@ -117,7 +117,7 @@ const faqDataZh: FAQItem[] = [
   },
   {
     question: "与Tengcle Group是什么关系？",
-    answer: "Tengcle LLC是总部位于香港的Tengcle Group的美国子公司。集团在香港（总部）、日本和美国三个地点运营，在每个地区提供各种商业服务。"
+    answer: "Tengcle LLC是总部位于香港的Tengcle Group的美国办事处。集团在香港（总部）、日本（创业地）和美国三个地点运营，在每个地区提供各种商业服务。"
   },
   {
     question: "如何联系你们？",

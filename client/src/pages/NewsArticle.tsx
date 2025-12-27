@@ -189,7 +189,7 @@ const newsArticles: NewsArticle[] = [
   {
     id: "hotel-operations-launch",
     slug: "hotel-operations-launch",
-    date: "2025-02-01",
+    date: "2025-05-01",
     category: {
       en: "Business Launch",
       ja: "事業開始",
@@ -212,8 +212,8 @@ const newsArticles: NewsArticle[] = [
     },
     content: {
       en: [
-        "Shortly after our establishment in January 2025, Tengcle Limited launched our hotel operations business, providing management and operational support for hospitality properties in the region.",
-        "Our hotel operations services leverage the extensive experience of Tengcle Group, particularly the hospitality expertise developed through our Japan subsidiary's hotel and accommodation businesses.",
+        "Shortly after our establishment in April 2025, Tengcle Limited launched our hotel operations business, providing management and operational support for hospitality properties in the region.",
+        "Our hotel operations services leverage the extensive experience of Tengcle Group, particularly the hospitality expertise developed through our Japan office's hotel and accommodation businesses.",
         "We offer comprehensive hotel management services including daily operations oversight, staff training and management, revenue optimization, guest experience enhancement, and quality assurance programs.",
         "By starting with hotel operations, Tengcle Limited established a strong foundation in the hospitality industry, building relationships and expertise that would later support our expansion into FF&E procurement."
       ],
@@ -224,8 +224,8 @@ const newsArticles: NewsArticle[] = [
         "ホテル運営から始めることで、Tengcle Limitedはホスピタリティ業界で強固な基盤を確立し、後のFF&E調達への拡大を支える関係性と専門知識を構築しました。"
       ],
       zh: [
-        "在2025年1月成立后不久，Tengcle Limited启动了酒店运营业务，为该地区的酒店物业提供管理和运营支持。",
-        "我们的酒店运营服务利用Tengcle Group的丰富经验，特别是通过我们日本子公司的酒店和住宿业务发展起来的酒店专业知识。",
+        "在2025年4月成立后不久，Tengcle Limited启动了酒店运营业务为该地区的酒店物业提供管理和运营支持。",
+        "我们的酒店运营服务利用Tengcle Group的丰富经验，特别是通过我们日本办事处的酒店和住宿业务发展起来的酒店专业知识。",
         "我们提供全面的酒店管理服务，包括日常运营监督、员工培训和管理、收入优化、宾客体验提升和质量保证计划。",
         "从酒店运营开始，Tengcle Limited在酒店行业建立了坚实的基础，建立了关系和专业知识，这些后来支持了我们向FF&E采购的扩展。"
       ]
@@ -235,7 +235,7 @@ const newsArticles: NewsArticle[] = [
   {
     id: "hk-founding",
     slug: "hk-founding",
-    date: "2025-01-15",
+    date: "2025-04-15",
     category: {
       en: "Company Founding",
       ja: "会社設立",
@@ -258,22 +258,22 @@ const newsArticles: NewsArticle[] = [
     },
     content: {
       en: [
-        "In January 2025, Tengcle Limited was officially established in Hong Kong as the global headquarters for Tengcle Group.",
+        "In April 2025, Tengcle Limited was officially established in Hong Kong as the global headquarters for Tengcle Group.",
         "Tengcle Group was originally founded in Japan in October 2021. As the company expanded into Southeast Asian projects, the decision was made to relocate the headquarters to Hong Kong to better serve the growing Asian market.",
         "Hong Kong was chosen due to its strategic position as a gateway to Asia, world-class business infrastructure, and strong connections to both mainland China and international markets.",
-        "Tengcle Limited focuses on hotel FF&E procurement and IT solutions, complementing the services offered by our founding company in Japan and our US subsidiary. Together, the three entities form a comprehensive global network."
+        "Tengcle Limited focuses on hotel FF&E procurement and IT solutions, complementing the services offered by our founding company in Japan and our US office. Together, the three entities form a comprehensive global network."
       ],
       ja: [
-        "2025年1月、Tengcle LimitedはTengcle Groupのグローバル本社として香港で正式に設立されました。",
+        "2025年4月、Tengcle LimitedはTengcle Groupのグローバル本社として香港で正式に設立されました。",
         "Tengcle Groupは2021年10月に日本で創業しました。東南アジアのプロジェクト拡大に伴い、アジア市場へのサービス向上のため本社を香港に移転しました。",
         "香港は、アジアへのゲートウェイとしての戦略的位置、世界クラスのビジネスインフラ、中国本土と国際市場の両方への強いつながりから選ばれました。",
-        "Tengcle LimitedはホテルFF&E調達とITソリューションに注力し、日本の創業会社とアメリカの子会社が提供するサービスを補完しています。3つの法人が一体となって包括的なグローバルネットワークを形成しています。"
+        "Tengcle LimitedはホテルFF&E調達とITソリューションに注力し、日本の創業会社とアメリカのオフィスが提供するサービスを補完しています。3つの法人が一体となって包括的なグローバルネットワークを形成しています。"
       ],
       zh: [
-        "2025年1月，Tengcle Limited作为Tengcle Group的全球总部在香港正式成立。",
+        "2025年4月，Tengcle Limited作为Tengcle Group的全球总部在香港正式成立。",
         "Tengcle Group于2021年10月在日本创立。随着东南亚项目的扩展，为了更好地服务于不断增长的亚洲市场，我们决定将总部迁至香港。",
         "香港因其作为亚洲门户的战略位置、世界级的商业基础设施以及与中国大陆和国际市场的紧密联系而被选中。",
-        "Tengcle Limited专注于酒店FF&E采购和IT解决方案，补充我们在日本的创业公司和美国子公司提供的服务。三个实体共同形成一个全面的全球网络。"
+        "Tengcle Limited专注于酒店FF&E采购和IT解决方案，补充我们在日本的创业公司和美国办事处提供的服务。三个实体共同形成一个全面的全球网络。"
       ]
     },
     image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=1200&h=600&fit=crop"

@@ -48,8 +48,8 @@ const newsArticles: NewsArticle[] = [
     }
   },
   {
-    id: "us-founding-2025",
-    date: "2025-01",
+    id: "us-founding-2026",
+    date: "2026-01",
     category: "Company Founding",
     icon: <Building2 className="w-5 h-5" />,
     title: {
@@ -58,9 +58,9 @@ const newsArticles: NewsArticle[] = [
       zh: "Tengcle LLC在新泽西州成立"
     },
     excerpt: {
-      en: "Tengcle LLC was established in Weehawken, New Jersey as the US office of Tengcle Group, marking the group's expansion into the North American market.",
-      ja: "Tengcle LLCは、Tengcle Groupの米国拠点としてニュージャージー州ウィーホーケンに設立されました。グループの北米市場への進出を示すものです。",
-      zh: "Tengcle LLC作为Tengcle Group的美国办事处在新泽西州威霍肯成立，标志着集团进军北美市场。"
+      en: "Tengcle LLC is scheduled to be officially registered in Weehawken, New Jersey in January 2026 as the US office of Tengcle Group, marking the group's expansion into the North American market.",
+      ja: "Tengcle LLCは、2026年1月にTengcle Groupの米国拠点としてニュージャージー州ウィーホーケンに正式登記予定です。グループの北米市場への進出を示すものです。",
+      zh: "Tengcle LLC计划于2026年1月作为Tengcle Group的美国办事处在新泽西州威霍肯正式注册，标志着集团进军北美市场。"
     }
   },
   {
