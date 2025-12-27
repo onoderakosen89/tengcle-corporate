@@ -140,7 +140,7 @@ export default function GlobalGateway() {
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Header */}
-        <header className="py-8 md:py-12">
+        <header className="py-4 md:py-6">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -151,7 +151,7 @@ export default function GlobalGateway() {
               <img
                 src="/images/tengcle-logo-white.png"
                 alt="Tengcle - think into the future"
-                className="h-28 md:h-36 w-auto"
+                className="h-10 md:h-12 w-auto"
               />
             </motion.div>
           </div>
