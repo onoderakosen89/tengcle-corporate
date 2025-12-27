@@ -73,7 +73,7 @@ export default function Contact() {
         : language === "zh"
         ? "〒108-0074\n东京都港区高轮2-19-20"
         : "2-19-20 Takanawa, Minato-ku\nTokyo 108-0074, Japan",
-      mapUrl: "https://www.google.com/maps?q=35.6399996895135,139.74110450906858",
+      mapUrl: "https://maps.app.goo.gl/1bGATAD26pQdv5BZ8",
     },
     {
       name: t.contact.info.tokyoOffice2,
@@ -82,7 +82,7 @@ export default function Contact() {
         : language === "zh"
         ? "〒104-0045\n东京都中央区筑地2-12-14"
         : "2-12-14 Tsukiji, Chuo-ku\nTokyo 104-0045, Japan",
-      mapUrl: "https://www.google.com/maps?q=35.6672,139.7714",
+      mapUrl: "https://maps.app.goo.gl/yAkTCAuyyN27xENx5",
     },
     {
       name: t.contact.info.hkOffice,
