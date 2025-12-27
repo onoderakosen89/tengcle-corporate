@@ -41,9 +41,9 @@ export default function Footer() {
           {/* Logo & Description */}
           <div className="lg:col-span-1">
             <img 
-              src="/images/tengcle-logo.png" 
+              src="/images/tengcle-logo-white.png" 
               alt="Tengcle" 
-              className="h-12 w-auto mb-6 brightness-0 invert"
+              className="h-12 w-auto mb-6"
             />
             <p className={`text-gray-300 text-sm leading-relaxed ${getFontClass()}`}>
               {t.footer.description}

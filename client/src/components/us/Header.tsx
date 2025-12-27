@@ -54,7 +54,7 @@ export default function UsHeader() {
                 src={isScrolled ? "/images/tengcle-logo.png" : "/images/tengcle-logo-white.png"}
                 alt="Tengcle"
                 className="w-auto object-contain transition-all duration-300"
-                style={{ height: '32px', maxHeight: '32px' }}
+                style={{ height: '38px', maxHeight: '38px' }}
               />
             </motion.div>
           </Link>

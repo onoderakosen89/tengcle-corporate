@@ -45,9 +45,9 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/">
               <img 
-                src="/images/tengcle-logo.png" 
+                src="/images/tengcle-logo-white.png" 
                 alt="Tengcle" 
-                className="h-12 w-auto mb-6 brightness-0 invert"
+                className="h-12 w-auto mb-6"
               />
             </Link>
             <p className={`text-white/70 text-sm leading-relaxed mb-6 max-w-md ${getFontClass()}`}>
