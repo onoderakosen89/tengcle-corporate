@@ -162,6 +162,29 @@
     <priority>0.7</priority>
   </url>
   
+  <!-- Hong Kong News -->
+  <url>
+    <loc>https://tengcle.com/hk/en/news</loc>
+    <xhtml:link rel="alternate" hreflang="en-HK" href="https://tengcle.com/hk/en/news"/>
+    <xhtml:link rel="alternate" hreflang="ja-HK" href="https://tengcle.com/hk/ja/news"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://tengcle.com/hk/zh/news"/>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tengcle.com/hk/ja/news</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tengcle.com/hk/zh/news</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
   <!-- Hong Kong Privacy Policy -->
   <url>
     <loc>https://tengcle.com/hk/en/privacy</loc>
@@ -294,6 +317,29 @@
     <priority>0.7</priority>
   </url>
   
+  <!-- Japan FAQ -->
+  <url>
+    <loc>https://tengcle.com/jp/ja/faq</loc>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://tengcle.com/jp/ja/faq"/>
+    <xhtml:link rel="alternate" hreflang="en-JP" href="https://tengcle.com/jp/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="zh-JP" href="https://tengcle.com/jp/zh/faq"/>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tengcle.com/jp/en/faq</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tengcle.com/jp/zh/faq</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
   <!-- Japan Privacy Policy -->
   <url>
     <loc>https://tengcle.com/jp/ja/privacy</loc>
@@ -403,6 +449,29 @@
     <lastmod>2024-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  
+  <!-- US FAQ -->
+  <url>
+    <loc>https://tengcle.com/us/en/faq</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://tengcle.com/us/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="ja-US" href="https://tengcle.com/us/ja/faq"/>
+    <xhtml:link rel="alternate" hreflang="zh-US" href="https://tengcle.com/us/zh/faq"/>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tengcle.com/us/ja/faq</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tengcle.com/us/zh/faq</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <!-- US Privacy Policy -->

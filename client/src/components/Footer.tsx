@@ -24,6 +24,7 @@ export default function Footer() {
   };
 
   const faqLabel = language === "ja" ? "よくある質問" : language === "zh" ? "常见问题" : "FAQ";
+  const newsLabel = language === "ja" ? "ニュース" : language === "zh" ? "新闻动态" : "News";
   
   const navItems = [
     { href: basePath, label: t.nav.home },
@@ -31,6 +32,7 @@ export default function Footer() {
     { href: `${basePath}/portfolio`, label: t.nav.portfolio },
     { href: `${basePath}/about`, label: t.nav.about },
     { href: `${basePath}/contact`, label: t.nav.contact },
+    { href: `${basePath}/news`, label: newsLabel },
     { href: `${basePath}/faq`, label: faqLabel },
   ];
 

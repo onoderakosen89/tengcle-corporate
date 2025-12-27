@@ -23,12 +23,15 @@ export default function Footer() {
     return "font-body";
   };
 
+  const faqLabel = language === "ja" ? "よくある質問" : language === "zh" ? "常见问题" : "FAQ";
+  
   const navItems = [
     { href: basePath, label: t.nav.home },
     { href: `${basePath}/services`, label: t.nav.services },
     { href: `${basePath}/about`, label: t.nav.about },
     { href: `${basePath}/careers`, label: t.nav.careers },
     { href: `${basePath}/contact`, label: t.nav.contact },
+    { href: `${basePath}/faq`, label: faqLabel },
   ];
 
   return (
