@@ -14,6 +14,10 @@
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="bingbot" content="index, follow" />
     
+    <!-- Google Search Console Verification -->
+    <!-- Replace with your actual verification code from Google Search Console -->
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    
     <!-- Additional SEO Meta Tags -->
     <meta name="theme-color" content="#2d1b4e" />
     <meta name="msapplication-TileColor" content="#2d1b4e" />
@@ -82,7 +86,33 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="/images/tengcle-logo.png" as="image" />
+    
+    <!-- Critical CSS for Above-the-Fold Content -->
+    <style>
+      /* Critical CSS - Inline styles for immediate rendering */
+      *,*::before,*::after{box-sizing:border-box}
+      html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,-apple-system,sans-serif}
+      body{margin:0;min-height:100vh}
+      img,video{max-width:100%;height:auto;display:block}
+      
+      /* Prevent layout shift */
+      .aspect-video{aspect-ratio:16/9}
+      .aspect-square{aspect-ratio:1/1}
+      .aspect-4-3{aspect-ratio:4/3}
+      
+      /* Loading skeleton */
+      .skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:skeleton 1.5s infinite}
+      @keyframes skeleton{0%{background-position:200% 0}100%{background-position:-200% 0}}
+      
+      /* Hide content until styles load */
+      .js-loading *{transition:none!important}
+    </style>
     
     <!-- Google Fonts - Elegant Typography System -->
     <!-- 

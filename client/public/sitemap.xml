@@ -139,6 +139,29 @@
     <priority>0.7</priority>
   </url>
   
+  <!-- Hong Kong FAQ -->
+  <url>
+    <loc>https://tengcle.com/hk/en/faq</loc>
+    <xhtml:link rel="alternate" hreflang="en-HK" href="https://tengcle.com/hk/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="ja-HK" href="https://tengcle.com/hk/ja/faq"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://tengcle.com/hk/zh/faq"/>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tengcle.com/hk/ja/faq</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tengcle.com/hk/zh/faq</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
   <!-- Hong Kong Privacy Policy -->
   <url>
     <loc>https://tengcle.com/hk/en/privacy</loc>

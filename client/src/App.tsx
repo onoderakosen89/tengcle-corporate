@@ -11,6 +11,7 @@ import { JpLanguageProvider } from "./contexts/JpLanguageContext";
 import { UsLanguageProvider } from "./contexts/UsLanguageContext";
 import SplashScreen from "./components/SplashScreen";
 import CookieConsent from "./components/CookieConsent";
+import ScrollRestoration from "./components/ScrollRestoration";
 
 // Global Gateway
 import GlobalGateway from "./pages/GlobalGateway";
@@ -21,6 +22,7 @@ import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
 
 // Japan Pages
 import JpHome from "./pages/jp/Home";
@@ -102,6 +104,11 @@ function HkRouter() {
             <Route path="/hk/zh/portfolio" component={Portfolio} />
             <Route path="/hk/zh/about" component={About} />
             <Route path="/hk/zh/contact" component={Contact} />
+            
+            {/* FAQ */}
+            <Route path="/hk/en/faq" component={FAQ} />
+            <Route path="/hk/ja/faq" component={FAQ} />
+            <Route path="/hk/zh/faq" component={FAQ} />
             
             {/* Privacy Policy */}
             <Route path="/hk/en/privacy" component={Privacy} />
@@ -298,6 +305,7 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
+          <ScrollRestoration />
           <Toaster />
           {isGateway && showSplash && !hasSeenSplash && (
             <SplashScreen onComplete={handleSplashComplete} />
