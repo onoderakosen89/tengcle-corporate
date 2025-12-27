@@ -239,11 +239,11 @@ export default function GlobalGateway() {
                             className="w-full h-full object-cover"
                           />
                         </div>
-                        <div>
-                          <h2 className="font-heading text-xl md:text-2xl text-white">
+                        <div className="min-w-0 flex-1">
+                          <h2 className="font-heading text-xl md:text-2xl text-white truncate">
                             {region.name}
                           </h2>
-                          <p className="text-gold/80 text-xs tracking-[0.15em] uppercase">
+                          <p className="text-gold/80 text-[10px] md:text-xs tracking-[0.1em] md:tracking-[0.15em] uppercase truncate">
                             {region.role}
                           </p>
                         </div>
