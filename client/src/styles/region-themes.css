@@ -1,0 +1,74 @@
+/**
+ * Tengcle Group - Region-Specific Color Themes
+ * Base: Plan A (Deep Purple & Champagne Gold)
+ * 
+ * Each region has subtle variations based on local web culture:
+ * - Hong Kong: International finance hub, East-West blend, prosperity symbolism
+ * - Japan: Refined minimalism, subtle elegance, attention to detail
+ * - USA: Bold confidence, high contrast, action-oriented
+ */
+
+/* ===== HONG KONG - International Finance Hub ===== */
+/* 
+ * Design Philosophy:
+ * - Sophisticated & trustworthy (financial center image)
+ * - Warmer gold tones (prosperity/luck symbolism in Chinese culture)
+ * - Balanced East-West aesthetics
+ * - Premium feel for B2B services
+ */
+[data-region="hk"] {
+  --color-purple: oklch(0.25 0.10 295);        /* Deep Purple - sophisticated */
+  --color-purple-light: oklch(0.35 0.08 295);
+  --color-purple-dark: oklch(0.18 0.12 295);
+  --color-gold: oklch(0.72 0.13 82);           /* Warm Champagne Gold - prosperity */
+  --color-gold-light: oklch(0.82 0.10 82);
+  --color-gold-dark: oklch(0.62 0.15 82);
+  --primary: oklch(0.25 0.10 295);
+  --accent: oklch(0.72 0.13 82);
+  --foreground: oklch(0.20 0.08 295);
+  --muted-foreground: oklch(0.45 0.05 295);
+}
+
+/* ===== JAPAN - Refined Minimalism ===== */
+/* 
+ * Design Philosophy:
+ * - Subtle & refined (wabi-sabi aesthetics)
+ * - More muted, cooler tones (elegance over boldness)
+ * - Emphasis on whitespace (ma - 間)
+ * - Attention to detail, omotenashi spirit
+ * - Slightly softer contrasts for gentler impression
+ */
+[data-region="jp"] {
+  --color-purple: oklch(0.28 0.08 300);        /* Softer Purple - refined elegance */
+  --color-purple-light: oklch(0.38 0.06 300);
+  --color-purple-dark: oklch(0.20 0.10 300);
+  --color-gold: oklch(0.70 0.10 85);           /* Muted Gold - subtle luxury */
+  --color-gold-light: oklch(0.80 0.08 85);
+  --color-gold-dark: oklch(0.60 0.12 85);
+  --primary: oklch(0.28 0.08 300);
+  --accent: oklch(0.70 0.10 85);
+  --foreground: oklch(0.18 0.06 300);
+  --muted-foreground: oklch(0.48 0.04 300);
+}
+
+/* ===== USA - Bold & Direct ===== */
+/* 
+ * Design Philosophy:
+ * - Confident & action-oriented
+ * - Higher saturation for impact
+ * - Strong contrast for clarity
+ * - Direct communication style
+ * - Modern, professional feel
+ */
+[data-region="us"] {
+  --color-purple: oklch(0.22 0.12 290);        /* Rich Purple - confident */
+  --color-purple-light: oklch(0.32 0.10 290);
+  --color-purple-dark: oklch(0.15 0.14 290);
+  --color-gold: oklch(0.74 0.14 85);           /* Brighter Gold - bold accent */
+  --color-gold-light: oklch(0.84 0.12 85);
+  --color-gold-dark: oklch(0.64 0.16 85);
+  --primary: oklch(0.22 0.12 290);
+  --accent: oklch(0.74 0.14 85);
+  --foreground: oklch(0.18 0.10 290);
+  --muted-foreground: oklch(0.42 0.06 290);
+}

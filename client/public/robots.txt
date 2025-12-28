@@ -1,0 +1,64 @@
+# Robots.txt for Tengcle Group
+# https://tengcle.com
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://tengcle.com/sitemap.xml
+
+# Disallow admin and private directories
+Disallow: /api/
+Disallow: /_*
+Disallow: /.env
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /src/
+Disallow: /server/
+
+# Crawl delay for polite crawling
+Crawl-delay: 1
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Google Images
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Baidu specific (for Chinese market)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# Yahoo Japan specific
+User-agent: Y!J-SRD
+Allow: /
+
+User-agent: Y!J
+Allow: /
+
+# Block common SEO tool bots (optional - saves bandwidth)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Host directive
+Host: https://tengcle.com

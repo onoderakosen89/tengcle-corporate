@@ -1,0 +1,1036 @@
+/**
+ * Tengcle Group - Global Corporate Website
+ * Design: Elegant Gold & Purple (Royal Theme)
+ * Style: Luxurious, Auspicious, Professional
+ * 
+ * Typography System:
+ * - English Headings: Playfair Display (elegant serif, luxury feel)
+ * - English Body: Cormorant Garamond (classic, readable)
+ * - Numbers/Data: Libre Baskerville (professional, clear numerals)
+ * - Japanese: Noto Serif JP (elegant serif for Japanese)
+ * - Chinese: Noto Serif SC (elegant serif for Simplified Chinese)
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./styles/region-themes.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Custom Colors - Gold & Purple Theme */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Tengcle Brand Colors - Gold & Purple Theme */
+  --color-purple: oklch(0.35 0.15 290);
+  --color-purple-light: oklch(0.45 0.12 290);
+  --color-purple-dark: oklch(0.25 0.18 290);
+  --color-purple-deep: oklch(0.20 0.15 290);
+  --color-gold: oklch(0.72 0.16 85);
+  --color-gold-light: oklch(0.80 0.14 85);
+  --color-gold-dark: oklch(0.60 0.18 85);
+  --color-charcoal: oklch(0.25 0.02 290);
+  --color-slate: oklch(0.50 0.03 290);
+  --color-light-gray: oklch(0.97 0.005 290);
+  --color-warm-white: oklch(0.995 0.002 90);
+  
+  /* Legacy navy aliases for compatibility */
+  --color-navy: var(--color-purple-dark);
+  --color-navy-light: var(--color-purple);
+  
+  /* Font families - Elegant Typography System */
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Cormorant Garamond", Georgia, serif;
+  --font-numbers: "Libre Baskerville", Georgia, serif;
+  --font-jp: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --font-zh: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --font-sans: "Source Sans 3", system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  /* Light Theme - White Base with Gold & Purple accents */
+  --radius: 0.5rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.20 0.03 290);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.20 0.03 290);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.20 0.03 290);
+  --primary: oklch(0.35 0.15 290);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0.005 290);
+  --secondary-foreground: oklch(0.30 0.03 290);
+  --muted: oklch(0.96 0.005 290);
+  --muted-foreground: oklch(0.50 0.03 290);
+  --accent: oklch(0.72 0.16 85);
+  --accent-foreground: oklch(0.20 0.03 290);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.92 0.005 290);
+  --input: oklch(0.92 0.005 290);
+  --ring: oklch(0.72 0.16 85);
+  --chart-1: oklch(0.35 0.15 290);
+  --chart-2: oklch(0.72 0.16 85);
+  --chart-3: oklch(0.45 0.12 290);
+  --chart-4: oklch(0.60 0.18 85);
+  --chart-5: oklch(0.25 0.18 290);
+  --sidebar: oklch(0.98 0.002 290);
+  --sidebar-foreground: oklch(0.20 0.03 290);
+  --sidebar-accent: oklch(0.96 0.005 290);
+  --sidebar-accent-foreground: oklch(0.20 0.03 290);
+  --sidebar-border: oklch(0.92 0.005 290);
+  --sidebar-ring: oklch(0.72 0.16 85);
+  --sidebar-primary: oklch(0.35 0.15 290);
+  --sidebar-primary-foreground: oklch(1 0 0);
+}
+
+/* Dark Theme - Deep Purple Base with Gold accents */
+.dark {
+  --background: oklch(0.15 0.03 290);
+  --foreground: oklch(0.95 0.01 90);
+  --card: oklch(0.18 0.04 290);
+  --card-foreground: oklch(0.95 0.01 90);
+  --popover: oklch(0.18 0.04 290);
+  --popover-foreground: oklch(0.95 0.01 90);
+  --primary: oklch(0.72 0.16 85);
+  --primary-foreground: oklch(0.15 0.03 290);
+  --secondary: oklch(0.25 0.05 290);
+  --secondary-foreground: oklch(0.90 0.01 90);
+  --muted: oklch(0.22 0.04 290);
+  --muted-foreground: oklch(0.65 0.02 90);
+  --accent: oklch(0.72 0.16 85);
+  --accent-foreground: oklch(0.15 0.03 290);
+  --destructive: oklch(0.60 0.22 27);
+  --destructive-foreground: oklch(0.95 0 0);
+  --border: oklch(0.30 0.04 290);
+  --input: oklch(0.25 0.04 290);
+  --ring: oklch(0.72 0.16 85);
+  --chart-1: oklch(0.72 0.16 85);
+  --chart-2: oklch(0.45 0.12 290);
+  --chart-3: oklch(0.80 0.14 85);
+  --chart-4: oklch(0.55 0.10 290);
+  --chart-5: oklch(0.65 0.15 85);
+  --sidebar: oklch(0.12 0.03 290);
+  --sidebar-foreground: oklch(0.95 0.01 90);
+  --sidebar-accent: oklch(0.20 0.04 290);
+  --sidebar-accent-foreground: oklch(0.95 0.01 90);
+  --sidebar-border: oklch(0.28 0.04 290);
+  --sidebar-ring: oklch(0.72 0.16 85);
+  --sidebar-primary: oklch(0.72 0.16 85);
+  --sidebar-primary-foreground: oklch(0.15 0.03 290);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    font-feature-settings: "lnum" 1;  /* Lining numerals - all numbers same height */
+  }
+  
+  /* Headings - Playfair Display for English */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  
+  h2 {
+    font-size: 2.25rem;
+    font-weight: 600;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  
+  /* Numbers - Libre Baskerville for elegant numerals */
+  .font-numbers,
+  [data-numbers] {
+    font-family: var(--font-numbers);
+    font-feature-settings: "lnum" 1, "tnum" 1;
+  }
+  
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+  
+  /* Typography Classes */
+  
+  /* English Heading Font - Playfair Display */
+  .font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
+  }
+  
+  /* English Body Font - Cormorant Garamond */
+  .font-body {
+    font-family: var(--font-body);
+    letter-spacing: 0.01em;
+  }
+  
+  /* Numbers Font - Libre Baskerville */
+  .font-numbers {
+    font-family: var(--font-numbers);
+    font-feature-settings: "lnum" 1, "tnum" 1;
+  }
+  
+  /* Japanese Font - Noto Serif JP */
+  .font-jp {
+    font-family: var(--font-jp);
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+  
+  /* Chinese Font - Noto Serif SC */
+  .font-zh {
+    font-family: var(--font-zh);
+    letter-spacing: 0.02em;
+    line-height: 1.8;
+  }
+  
+  /* Sans-serif for UI elements */
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+  
+  /* Language-specific body text */
+  [lang="ja"] {
+    font-family: var(--font-jp);
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+  
+  [lang="zh"] {
+    font-family: var(--font-zh);
+    letter-spacing: 0.02em;
+    line-height: 1.8;
+  }
+  
+  /* Brand Colors - Purple */
+  .bg-purple {
+    background-color: var(--color-purple);
+  }
+  
+  .bg-purple-light {
+    background-color: var(--color-purple-light);
+  }
+  
+  .bg-purple-dark {
+    background-color: var(--color-purple-dark);
+  }
+  
+  .bg-purple-deep {
+    background-color: var(--color-purple-deep);
+  }
+  
+  .text-purple {
+    color: var(--color-purple);
+  }
+  
+  .text-purple-light {
+    color: var(--color-purple-light);
+  }
+  
+  .text-purple-dark {
+    color: var(--color-purple-dark);
+  }
+  
+  /* Legacy navy classes - now map to purple */
+  .bg-navy {
+    background-color: var(--color-purple-dark);
+  }
+  
+  .bg-navy-light {
+    background-color: var(--color-purple);
+  }
+  
+  .text-navy {
+    color: var(--color-purple-dark);
+  }
+  
+  .text-navy-light {
+    color: var(--color-purple);
+  }
+  
+  /* Brand Colors - Gold */
+  .bg-gold {
+    background-color: var(--color-gold);
+  }
+  
+  .bg-gold-light {
+    background-color: var(--color-gold-light);
+  }
+  
+  .text-gold {
+    color: var(--color-gold);
+  }
+  
+  .text-gold-light {
+    color: var(--color-gold-light);
+  }
+  
+  .text-gold-dark {
+    color: var(--color-gold-dark);
+  }
+  
+  .bg-charcoal {
+    background-color: var(--color-charcoal);
+  }
+  
+  .text-charcoal {
+    color: var(--color-charcoal);
+  }
+  
+  .text-slate {
+    color: var(--color-slate);
+  }
+  
+  .bg-light-gray {
+    background-color: var(--color-light-gray);
+  }
+  
+  .bg-warm-white {
+    background-color: var(--color-warm-white);
+  }
+  
+  .border-gold {
+    border-color: var(--color-gold);
+  }
+  
+  .border-purple {
+    border-color: var(--color-purple);
+  }
+  
+  .border-navy {
+    border-color: var(--color-purple-dark);
+  }
+  
+  /* Gold gradient text */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 50%, var(--color-gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Purple gradient text */
+  .text-gradient-purple {
+    background: linear-gradient(135deg, var(--color-purple-light) 0%, var(--color-purple) 50%, var(--color-purple-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Gold & Purple gradient */
+  .bg-gradient-royal {
+    background: linear-gradient(135deg, var(--color-purple-deep) 0%, var(--color-purple-dark) 50%, var(--color-purple) 100%);
+  }
+  
+  .bg-gradient-gold-purple {
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-purple) 100%);
+  }
+  
+  /* Gold accent line */
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--color-gold) 50%, transparent 100%);
+  }
+  
+  /* Purple accent line */
+  .purple-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--color-purple) 50%, transparent 100%);
+  }
+  
+  /* Section divider */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--color-border) 20%, var(--color-border) 80%, transparent 100%);
+  }
+  
+  /* Card hover effect */
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(75, 0, 130, 0.12);
+  }
+  
+  /* Elegant stat numbers */
+  .stat-number {
+    font-family: var(--font-numbers);
+    font-weight: 400;
+    font-feature-settings: "lnum" 1, "tnum" 1;
+    letter-spacing: -0.02em;
+  }
+  
+  /* License/Registration numbers */
+  .license-number {
+    font-family: var(--font-numbers);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    font-feature-settings: "lnum" 1, "tnum" 1;  /* Lining + tabular numerals */
+  }
+  
+  /* Auspicious pattern overlay */
+  .pattern-auspicious {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  /* Seigaiha (wave) pattern - Japanese auspicious */
+  .pattern-seigaiha {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.06'%3E%3Cpath d='M0 40a19.96 19.96 0 0 1 5.9-14.11 20.17 20.17 0 0 1 19.44-5.33A20 20 0 0 1 20.2 40H0zM65.32.75A20.02 20.02 0 0 1 40.8 20.2 20.02 20.02 0 0 1 65.32.75zM.07 0h20.1A20.02 20.02 0 0 1 .07 0zM80 40a19.96 19.96 0 0 1-5.9-14.11 20.17 20.17 0 0 1-19.44-5.33A20 20 0 0 1 59.8 40H80z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  /* Cloud pattern - Chinese auspicious */
+  .pattern-clouds {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23D4AF37' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+}
+
+/* ============================================
+   Regional Animation & Hover Effects
+   Each region has culturally-appropriate animations
+   ============================================ */
+
+/* ----------------------------------------
+   Hong Kong (香港) - Sophisticated & Professional
+   - Subtle, refined animations
+   - Smooth transitions that convey trust
+   - Elegant hover effects for financial sector
+   ---------------------------------------- */
+
+[data-region="hk"] .animate-fade-in {
+  animation: hk-fade-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+[data-region="hk"] .animate-slide-up {
+  animation: hk-slide-up 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+[data-region="hk"] .animate-scale-in {
+  animation: hk-scale-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes hk-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes hk-slide-up {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes hk-scale-in {
+  from { 
+    opacity: 0; 
+    transform: scale(0.98); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+/* Hong Kong Hover Effects - Professional & Refined */
+[data-region="hk"] .hk-card-hover {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-region="hk"] .hk-card-hover::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-region="hk"] .hk-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(45, 27, 78, 0.12);
+}
+
+[data-region="hk"] .hk-card-hover:hover::before {
+  transform: scaleX(1);
+}
+
+/* Hong Kong Button Hover - Subtle glow */
+[data-region="hk"] .hk-btn-hover {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+[data-region="hk"] .hk-btn-hover:hover {
+  box-shadow: 0 4px 20px rgba(201, 169, 98, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Hong Kong Image Hover - Subtle zoom */
+[data-region="hk"] .hk-img-hover {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-region="hk"] .hk-img-hover:hover {
+  transform: scale(1.03);
+}
+
+/* Hong Kong Link Hover - Underline animation */
+[data-region="hk"] .hk-link-hover {
+  position: relative;
+  text-decoration: none;
+}
+
+[data-region="hk"] .hk-link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+[data-region="hk"] .hk-link-hover:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ----------------------------------------
+   Japan (日本) - Refined & Delicate
+   - Gentle, flowing animations (like water)
+   - Emphasis on 間 (ma) - breathing space
+   - Omotenashi spirit - welcoming transitions
+   ---------------------------------------- */
+
+[data-region="jp"] .animate-fade-in {
+  animation: jp-fade-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+[data-region="jp"] .animate-slide-up {
+  animation: jp-slide-up 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+[data-region="jp"] .animate-reveal {
+  animation: jp-reveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes jp-fade-in {
+  from { 
+    opacity: 0; 
+    filter: blur(4px);
+  }
+  to { 
+    opacity: 1; 
+    filter: blur(0);
+  }
+}
+
+@keyframes jp-slide-up {
+  from { 
+    opacity: 0; 
+    transform: translateY(40px); 
+    filter: blur(2px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+    filter: blur(0);
+  }
+}
+
+@keyframes jp-reveal {
+  0% { 
+    opacity: 0; 
+    clip-path: inset(100% 0 0 0);
+  }
+  100% { 
+    opacity: 1; 
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Japan Hover Effects - Gentle & Elegant */
+[data-region="jp"] .jp-card-hover {
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+
+[data-region="jp"] .jp-card-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid transparent;
+  transition: border-color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-region="jp"] .jp-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(45, 27, 78, 0.08);
+}
+
+[data-region="jp"] .jp-card-hover:hover::before {
+  border-color: rgba(201, 169, 98, 0.3);
+}
+
+/* Japan Button Hover - Soft expansion */
+[data-region="jp"] .jp-btn-hover {
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-region="jp"] .jp-btn-hover::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+[data-region="jp"] .jp-btn-hover:hover::before {
+  width: 300%;
+  height: 300%;
+}
+
+/* Japan Image Hover - Subtle brightness */
+[data-region="jp"] .jp-img-hover {
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: brightness(1);
+}
+
+[data-region="jp"] .jp-img-hover:hover {
+  filter: brightness(1.05);
+  transform: scale(1.02);
+}
+
+/* Japan Link Hover - Fade underline */
+[data-region="jp"] .jp-link-hover {
+  position: relative;
+  text-decoration: none;
+}
+
+[data-region="jp"] .jp-link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+[data-region="jp"] .jp-link-hover:hover::after {
+  opacity: 1;
+}
+
+/* Japan Scroll Reveal - Vertical line accent */
+[data-region="jp"] .jp-section-reveal {
+  position: relative;
+}
+
+[data-region="jp"] .jp-section-reveal::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 0;
+  background: var(--color-gold);
+  transition: height 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-region="jp"] .jp-section-reveal.in-view::before {
+  height: 100%;
+}
+
+/* ----------------------------------------
+   United States (アメリカ) - Bold & Dynamic
+   - Confident, impactful animations
+   - Strong visual feedback
+   - Action-oriented hover effects
+   ---------------------------------------- */
+
+[data-region="us"] .animate-fade-in {
+  animation: us-fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+[data-region="us"] .animate-slide-up {
+  animation: us-slide-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+[data-region="us"] .animate-slide-in-left {
+  animation: us-slide-in-left 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+[data-region="us"] .animate-slide-in-right {
+  animation: us-slide-in-right 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes us-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes us-slide-up {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes us-slide-in-left {
+  from { 
+    opacity: 0; 
+    transform: translateX(-40px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+@keyframes us-slide-in-right {
+  from { 
+    opacity: 0; 
+    transform: translateX(40px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+/* USA Hover Effects - Bold & Impactful */
+[data-region="us"] .us-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-region="us"] .us-card-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+[data-region="us"] .us-card-hover:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 60px rgba(45, 27, 78, 0.15);
+}
+
+[data-region="us"] .us-card-hover:hover::before {
+  left: 100%;
+}
+
+/* USA Button Hover - Strong feedback */
+[data-region="us"] .us-btn-hover {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+[data-region="us"] .us-btn-hover:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(201, 169, 98, 0.4);
+}
+
+[data-region="us"] .us-btn-hover:active {
+  transform: translateY(-1px) scale(1);
+}
+
+/* USA Image Hover - Bold zoom */
+[data-region="us"] .us-img-hover {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-region="us"] .us-img-hover:hover {
+  transform: scale(1.05);
+}
+
+/* USA Link Hover - Bold underline */
+[data-region="us"] .us-link-hover {
+  position: relative;
+  text-decoration: none;
+}
+
+[data-region="us"] .us-link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-gold);
+  transition: width 0.3s ease;
+}
+
+[data-region="us"] .us-link-hover:hover::after {
+  width: 100%;
+}
+
+/* USA CTA Pulse Animation */
+[data-region="us"] .us-cta-pulse {
+  animation: us-pulse 2s infinite;
+}
+
+@keyframes us-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(201, 169, 98, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(201, 169, 98, 0);
+  }
+}
+
+/* ----------------------------------------
+   Global Gateway - Elegant & Welcoming
+   ---------------------------------------- */
+
+.gateway-card-hover {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+}
+
+.gateway-card-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(201, 169, 98, 0.2);
+  transition: all 0.5s ease;
+}
+
+.gateway-card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+}
+
+.gateway-card-hover:hover::before {
+  border-color: rgba(201, 169, 98, 0.5);
+  inset: -4px;
+}
+
+/* Gateway Language Button Hover */
+.gateway-lang-hover {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.gateway-lang-hover::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-gold);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.gateway-lang-hover:hover {
+  color: var(--color-gold);
+}
+
+.gateway-lang-hover:hover::before {
+  width: 100%;
+}
+
+/* ----------------------------------------
+   Scroll-triggered Animation Classes
+   ---------------------------------------- */
+
+.scroll-animate {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-animate.in-view {
+  opacity: 1;
+}
+
+.scroll-animate.slide-up {
+  transform: translateY(40px);
+}
+
+.scroll-animate.slide-up.in-view {
+  transform: translateY(0);
+}
+
+.scroll-animate.slide-left {
+  transform: translateX(-40px);
+}
+
+.scroll-animate.slide-left.in-view {
+  transform: translateX(0);
+}
+
+.scroll-animate.slide-right {
+  transform: translateX(40px);
+}
+
+.scroll-animate.slide-right.in-view {
+  transform: translateX(0);
+}
+
+.scroll-animate.scale-up {
+  transform: scale(0.95);
+}
+
+.scroll-animate.scale-up.in-view {
+  transform: scale(1);
+}
+
+/* Stagger animation delays */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+
+
+/* ===========================================
+   Skeleton Loading Animation
+   =========================================== */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s ease-in-out infinite;
+}
