@@ -150,15 +150,13 @@ export default function UsAbout() {
                   <div className="flex items-start gap-3">
                     <Globe className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
                     <div>
-                      <a
-                        href="https://tengcle.com/us/en"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Link
+                        href="/us/en"
                         className="text-purple hover:text-gold transition-colors flex items-center gap-1"
                       >
                         tengcle.com/us
                         <ExternalLink className="w-3 h-3" />
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

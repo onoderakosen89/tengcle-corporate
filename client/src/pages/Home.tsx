@@ -18,7 +18,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import SEOHead from "@/components/SEOHead";
+import SEOHead, { generateOrganizationSchema, generateWebPageSchema, generateLocalBusinessSchema } from "@/components/SEOHead";
 
 // Animation variants with proper typing
 const easeOut: Easing = [0.16, 1, 0.3, 1];
@@ -93,6 +93,10 @@ function HeroSection({
             src="/images/hero-global-network.jpg"
             alt="Hong Kong Victoria Harbour"
             className="w-full h-[120%] object-cover"
+            width="1920"
+            height="1080"
+            // @ts-ignore - fetchPriority is standard but React types might lag
+            fetchPriority="high"
           />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
@@ -222,36 +226,44 @@ export default function Home() {
     return "font-heading";
   };
 
-  // SEO meta data based on language - Optimized for maximum SEO score
-  const seoData = {
-    en: {
-      title: "Tengcle Limited | Hotel FF&E Procurement & Business Solutions Hong Kong",
-      description: "TCSP licensed Hong Kong company (TC007820) specializing in hotel FF&E procurement, project integration, and international trade. Serving Asia-Pacific region.",
-      keywords: "Tengcle Limited, Hong Kong company, TCSP licensed, hotel FF&E, furniture fixtures equipment, project integration, international trade, Asia Pacific business",
-    },
-    ja: {
-      title: "Tengcle Limited | ホテルFF&E調達・ビジネスソリューション 香港",
-      description: "TCSPライセンス取得の香港企業（TC007820）。ホテルFF&E調達、プロジェクト統合、国際貿易を専門としています。",
-      keywords: "Tengcle Limited, 香港企業, TCSPライセンス, ホテルFF&E, 家具調達, プロジェクト統合, 国際貿易",
-    },
-    zh: {
-      title: "Tengcle Limited | 酒店FF&E采购及商业解决方案 香港",
-      description: "TCSP持牌香港公司（TC007820），专注于酒店FF&E采购、项目整合和国际贸易。服务亚太地区。",
-      keywords: "Tengcle Limited, 香港公司, TCSP持牌, 酒店FF&E, 家具采购, 项目整合, 国际贸易",
-    },
-  };
-
-  const currentSeo = seoData[language as keyof typeof seoData] || seoData.en;
-
   return (
     <div className="min-h-screen bg-white" data-region="hk">
       <SEOHead
-        title={currentSeo.title}
-        description={currentSeo.description}
+        title={t.meta.title}
+        description={t.meta.description}
         canonical={`https://www.tengcle.com/hk/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
         ogImage="/images/og-image-hk.jpg"
-        keywords={currentSeo.keywords}
+        keywords={t.meta.keywords}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@graph": [
+            generateOrganizationSchema({
+              name: "Tengcle Limited",
+              description: "Strategic Hub in Hong Kong offering hospitality procurement, IT solutions, and international trade services.",
+              url: "https://www.tengcle.com/hk/en",
+              logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
+              email: "info@tengcle.com",
+              address: {
+                street: "Suite C, Level 7, World Trust Tower, 50 Stanley Street",
+                city: "Central",
+                region: "Hong Kong",
+                country: "HK",
+              },
+              foundingDate: "2023",
+              sameAs: [
+                "https://www.linkedin.com/company/tengcle-limited",
+                "https://www.tengcle.com/jp/ja",
+                "https://www.tengcle.com/us/en"
+              ]
+            }),
+            generateWebPageSchema({
+              name: t.meta.title,
+              description: t.meta.description,
+              url: `https://www.tengcle.com/hk/${language}`,
+            })["@graph"][0] // Extract the WebPage object
+          ]
+        }}
       />
       <Header />
 
@@ -375,6 +387,8 @@ export default function Home() {
                       alt={t.portfolio.project1.title}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      width="800"
+                      height="600"
                     />
                   </picture>
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
@@ -405,6 +419,8 @@ export default function Home() {
                       alt={t.portfolio.project2.title}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      width="800"
+                      height="600"
                     />
                   </picture>
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />

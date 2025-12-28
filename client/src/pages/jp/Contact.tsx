@@ -11,6 +11,7 @@ import { useRef } from "react";
 import { motion, useInView, type Variants, type Easing } from "framer-motion";
 import { Mail, MapPin, ExternalLink } from "lucide-react";
 import Header from "@/components/jp/Header";
+import { toast } from "sonner";
 
 import Footer from "@/components/jp/Footer";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
@@ -140,12 +141,16 @@ export default function Contact() {
               <Mail className="h-8 w-8 text-gold" />
               <div className="text-left">
                 <p className={`text-sm text-slate mb-1 ${getFontClass()}`}>{t.contact.email}</p>
-                <a
-                  href="mailto:info@tengcle.com"
-                  className={`text-xl text-navy hover:text-gold transition-colors ${getHeadingFontClass()}`}
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText("info@tengcle.com");
+                    toast.success("メールアドレスをコピーしました / Email copied");
+                  }}
+                  className={`text-xl text-navy hover:text-gold transition-colors ${getHeadingFontClass()} cursor-pointer`}
+                  title="クリックしてコピー / Click to copy"
                 >
                   info@tengcle.com
-                </a>
+                </button>
               </div>
             </motion.div>
           </AnimatedSection>

@@ -32,11 +32,15 @@ export default function UsFooter() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <img
-              src="/images/tengcle-logo-white.png"
-              alt="Tengcle"
-              className="h-10 mb-6"
-            />
+            <Link href={basePath}>
+              <img
+                src="/images/tengcle-logo-white.png"
+                alt="Tengcle"
+                className="h-10 mb-6 cursor-pointer"
+                width="150"
+                height="40"
+              />
+            </Link>
             <p className="text-gray-300 text-sm leading-relaxed mb-6 max-w-md">
               {t('about.description').substring(0, 150)}...
             </p>

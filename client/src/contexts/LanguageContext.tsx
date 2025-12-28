@@ -133,6 +133,11 @@ interface Translations {
     globalNetworkDesc: string;
     countries: string;
   };
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
 }
 
 const translations: Record<Language, Translations> = {
@@ -145,21 +150,21 @@ const translations: Record<Language, Translations> = {
       contact: "Contact",
     },
     hero: {
-      tagline: "Business Solutions from Hong Kong",
-      headline1: "Connecting",
-      headline2: "Asia & Beyond",
-      subtitle: "Hong Kong-based team offering hospitality procurement, IT systems, and trade services.",
-      cta1: "View Our Services",
+      tagline: "Strategic Hub in Hong Kong",
+      headline1: "Bridging Markets",
+      headline2: "Creating Value",
+      subtitle: "Tengcle Limited serves as your strategic partner in Asia, delivering specialized solutions in hospitality, IT, and international trade.",
+      cta1: "Our Services",
       cta2: "Contact Us",
       trust1: "TCSP Licensed",
-      trust2: "Hong Kong Registered",
-      trust3: "Multi-region Operations",
+      trust2: "HK Registered",
+      trust3: "Global Network",
     },
     services: {
-      subtitle: "Our Services",
-      title: "Business Solutions",
-      description: "Hospitality procurement, IT solutions, and trade services. We handle projects from start to finish.",
-      viewAll: "View All Services",
+      subtitle: "Our Expertise",
+      title: "Comprehensive Solutions",
+      description: "From hospitality procurement to digital transformation, we provide end-to-end solutions tailored to your business needs.",
+      viewAll: "Explore All Services",
       hospitality: {
         title: "Hospitality Procurement",
         description: "FF&E and OS&E sourcing for hotels. Furniture, fixtures, equipment, and construction materials.",
@@ -202,13 +207,13 @@ const translations: Record<Language, Translations> = {
       },
     },
     about: {
-      subtitle: "About Us",
-      title: "Hong Kong-Based Business Partner",
-      description: "Tengcle Limited serves as the global headquarters of Tengcle Group, providing hospitality, IT, and trade services from Hong Kong.",
+      subtitle: "Corporate Profile",
+      title: "Global Headquarters in Hong Kong",
+      description: "Tengcle Limited stands at the center of the Tengcle Group, orchestrating global operations and strategic initiatives from our Hong Kong base.",
       story: {
-        title: "Our Story",
-        p1: "Tengcle Group was founded in Japan in 2021 and relocated its headquarters to Hong Kong when Southeast Asian projects began. Tengcle Limited serves as the global headquarters, providing procurement, project management, and IT solutions.",
-        p2: "From Hong Kong, we coordinate supply chains, manage projects, and deliver solutions to clients in Asia.",
+        title: "Our Journey",
+        p1: "Established to facilitate seamless cross-border business, Tengcle Limited has evolved into a multi-faceted organization. We leverage Hong Kong's position as a global financial hub to connect opportunities across Asia.",
+        p2: "Our team combines local expertise with global standards, ensuring that every project—whether in procurement, IT, or trade—is executed with precision.",
       },
       info: {
         title: "Company Information",
@@ -262,6 +267,11 @@ const translations: Record<Language, Translations> = {
       globalNetworkDesc: "Supplier relationships worldwide",
       countries: "Countries",
     },
+    meta: {
+      title: "Tengcle | Hong Kong Strategic Hub",
+      description: "Tengcle Limited serves as your strategic partner in Asia, delivering specialized solutions in hospitality, IT, and international trade.",
+      keywords: "Tengcle Limited, Hong Kong business, hospitality procurement, IT solutions, international trade",
+    },
   },
   ja: {
     nav: {
@@ -272,15 +282,15 @@ const translations: Record<Language, Translations> = {
       contact: "お問い合わせ",
     },
     hero: {
-      tagline: "香港発のビジネスソリューション",
-      headline1: "アジアを繋ぐ",
-      headline2: "ビジネスパートナー",
-      subtitle: "ホスピタリティ調達、ITシステム、国際貿易を手がける香港拠点のチーム。",
-      cta1: "サービスを見る",
+      tagline: "Strategic Hub in Hong Kong",
+      headline1: "市場を繋ぎ",
+      headline2: "価値を創る",
+      subtitle: "Tengcle Limitedは、ホスピタリティ、IT、国際貿易の分野で専門的なソリューションを提供する、アジアの戦略的パートナーです。",
+      cta1: "サービス一覧",
       cta2: "お問い合わせ",
-      trust1: "TCSPライセンス取得",
-      trust2: "香港法人登記済",
-      trust3: "複数拠点で展開",
+      trust1: "TCSPライセンス",
+      trust2: "香港法人",
+      trust3: "グローバル",
     },
     services: {
       subtitle: "サービス",
@@ -318,9 +328,9 @@ const translations: Record<Language, Translations> = {
       description: "これまでに手がけたホテル開発とITシステム導入。",
       viewCase: "詳細を見る",
       project1: {
-        title: "ホテルコンプレックス",
+        title: "ホテルコンプレックス開発",
         location: "東南アジア",
-        description: "本館改装、別館内装、400室以上の新規ホテル建設。",
+        description: "本館改装および新館建設プロジェクト（400室規模）における資材調達・施工管理支援。",
       },
       project2: {
         title: "ホテル管理システム",
@@ -333,9 +343,9 @@ const translations: Record<Language, Translations> = {
       title: "香港拠点のビジネスパートナー",
       description: "Tengcle Limitedは、Tengcle Groupのグローバル本社として香港に拠点を置き、ホスピタリティ、IT、国際貿易サービスを提供しています。",
       story: {
-        title: "私たちについて",
-        p1: "Tengcle Groupは2021年に日本で創業し、東南アジアのプロジェクト開始を機に本社を香港に移転しました。Tengcle Limitedはグループのグローバル本社として、調達、プロジェクト管理、ITソリューションを提供しています。",
-        p2: "香港拠点から、サプライチェーン調整、プロジェクト管理、アジア各地のクライアントへのソリューション提供を行っています。",
+        title: "沿革",
+        p1: "Tengcle Groupは、国境を越えたビジネスを円滑に進めるために設立されました。香港という国際金融都市の利点を活かし、アジア全域の機会を繋ぐハブとしての役割を果たしています。",
+        p2: "調達、IT、貿易の各分野において、現地の専門知識とグローバルな基準を組み合わせ、プロジェクトを成功へと導きます。",
       },
       info: {
         title: "会社情報",
@@ -389,6 +399,11 @@ const translations: Record<Language, Translations> = {
       globalNetworkDesc: "世界各国のサプライヤー",
       countries: "カ国以上",
     },
+    meta: {
+      title: "Tengcle Limited | 香港発・戦略的ハブ",
+      description: "ホスピタリティ、IT、国際貿易の分野で専門的なソリューションを提供する、アジアの戦略的パートナー企業。",
+      keywords: "Tengcle Limited, 香港企業, ホスピタリティ調達, ITソリューション, 国際貿易",
+    },
   },
   zh: {
     nav: {
@@ -399,15 +414,15 @@ const translations: Record<Language, Translations> = {
       contact: "联系我们",
     },
     hero: {
-      tagline: "香港出发的商业解决方案",
-      headline1: "连接亚洲",
-      headline2: "商业伙伴",
-      subtitle: "香港团队，提供酒店采购、IT系统和贸易服务。",
-      cta1: "查看服务",
+      tagline: "Strategic Hub in Hong Kong",
+      headline1: "连接市场",
+      headline2: "创造价值",
+      subtitle: "Tengcle Limited 是您在亚洲的战略合作伙伴，在酒店、IT 和国际贸易领域提供专业解决方案。",
+      cta1: "由于服务",
       cta2: "联系我们",
-      trust1: "TCSP持牌",
+      trust1: "TCSP 持牌",
       trust2: "香港注册",
-      trust3: "多地区运营",
+      trust3: "全球网络",
     },
     services: {
       subtitle: "我们的服务",
@@ -516,6 +531,11 @@ const translations: Record<Language, Translations> = {
       globalNetworkDesc: "世界各地的供应商",
       countries: "个国家以上",
     },
+    meta: {
+      title: "Tengcle Limited | 香港战略商务中心",
+      description: "Tengcle Limited 是您在亚洲的战略合作伙伴，在酒店、IT 和国际贸易领域提供专业解决方案。",
+      keywords: "Tengcle Limited, 香港公司, 酒店采购, IT解决方案, 国际贸易",
+    },
   },
 };
 
@@ -556,7 +576,7 @@ export function getFontClass(language: Language, type: "heading" | "body" | "num
   if (type === "numbers") {
     return "font-numbers";
   }
-  
+
   switch (language) {
     case "ja":
       return "font-jp";

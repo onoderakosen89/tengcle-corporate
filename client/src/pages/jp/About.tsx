@@ -142,16 +142,12 @@ export default function About() {
                 <p className={`text-slate leading-relaxed mb-8 ${getFontClass()}`}>
                   {t.about.story.p2}
                 </p>
-                <a
-                  href="https://www.tengcle.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link href="/hk/en">
                   <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-6 py-5 text-sm tracking-wider ${getFontClass()}`}>
                     {t.footer.hongkong}
                     <ExternalLink className="ml-2 h-4 w-4" />
                   </Button>
-                </a>
+                </Link>
               </motion.div>
             </AnimatedSection>
           </div>
@@ -213,15 +209,13 @@ export default function About() {
                       {language === "ja" ? "グループ本社" : language === "zh" ? "集团总部" : "Group HQ"}
                     </th>
                     <td className={`py-5 px-6 text-charcoal ${getFontClass()}`}>
-                      <a
-                        href="https://www.tengcle.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Link
+                        href="/hk/en"
                         className="text-navy hover:text-gold transition-colors flex items-center gap-2"
                       >
                         Tengcle Limited (Hong Kong)
                         <ExternalLink className="h-4 w-4" />
-                      </a>
+                      </Link>
                     </td>
                   </tr>
                 </tbody>

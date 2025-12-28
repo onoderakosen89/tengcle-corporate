@@ -86,19 +86,19 @@ const easeElegant: Easing = [0.25, 0.46, 0.45, 0.94];
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: easeElegant } 
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: easeElegant }
   },
 };
 
 const scaleIn = {
   hidden: { opacity: 0, scale: 0.9 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     scale: 1,
-    transition: { duration: 0.6, ease: easeElegant } 
+    transition: { duration: 0.6, ease: easeElegant }
   },
 };
 
@@ -120,19 +120,19 @@ export default function GlobalGateway() {
       <div className="absolute inset-0">
         {/* Base gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a] via-[#0d1420] to-[#0a0f1a]" />
-        
+
         {/* Seigaiha pattern layer - static */}
-        <div 
+        <div
           className="absolute inset-0"
           style={{
             backgroundImage: seigaihaPattern,
             backgroundSize: '180px 90px',
           }}
         />
-        
+
         {/* Gradient overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] via-transparent to-[#0a0f1a]/50" />
-        
+
         {/* Radial glow in center */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,169,98,0.08)_0%,_transparent_60%)]" />
       </div>
@@ -170,7 +170,7 @@ export default function GlobalGateway() {
               <motion.div variants={scaleIn} className="flex justify-center mb-6">
                 <div className="relative">
                   <Globe className="w-14 h-14 md:w-16 md:h-16 text-gold" strokeWidth={1} />
-                  <motion.div 
+                  <motion.div
                     className="absolute inset-0 bg-gold/20 rounded-full blur-xl"
                     animate={{
                       scale: [1, 1.2, 1],
@@ -184,7 +184,7 @@ export default function GlobalGateway() {
                   />
                 </div>
               </motion.div>
-              
+
               <motion.h1
                 variants={fadeInUp}
                 className="font-heading text-3xl md:text-4xl lg:text-5xl mb-5"
@@ -192,15 +192,15 @@ export default function GlobalGateway() {
                 <span className="text-gold">Tengcle</span>{" "}
                 <span className="text-white/90">Group</span>
               </motion.h1>
-              
+
               <motion.div variants={fadeInUp} className="space-y-1.5">
-                <p className="text-lg md:text-xl text-white/70 font-light tracking-wide">
+                <p className="text-lg md:text-xl text-white/90 font-light tracking-wide">
                   Select your region and language
                 </p>
-                <p className="text-sm md:text-base text-white/50 font-jp">
+                <p className="text-sm md:text-base text-white/80 font-jp">
                   地域と言語を選択してください
                 </p>
-                <p className="text-sm md:text-base text-white/50 font-zh">
+                <p className="text-sm md:text-base text-white/80 font-zh">
                   选择您的地区和语言
                 </p>
               </motion.div>
@@ -221,20 +221,20 @@ export default function GlobalGateway() {
                 >
                   <div className="relative h-full">
                     {/* Elegant shadow on hover - no gradient glow */}
-                    <div 
+                    <div
                       className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500"
                       style={{
                         boxShadow: '0 25px 50px -12px rgba(201, 169, 98, 0.25), 0 0 0 1px rgba(201, 169, 98, 0.1)'
                       }}
                     />
-                    
+
                     {/* Card */}
                     <div className="relative bg-[#12182a]/90 backdrop-blur-sm border border-white/10 rounded-xl p-6 md:p-8 h-full transition-all duration-500 group-hover:bg-[#1a2236] group-hover:border-gold/40 group-hover:-translate-y-2 group-hover:shadow-2xl">
                       {/* Flag & Region Info - Simplified */}
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-12 h-8 md:w-14 md:h-10 rounded overflow-hidden shadow-lg flex-shrink-0">
-                          <img 
-                            src={region.flagImage} 
+                          <img
+                            src={region.flagImage}
                             alt={`${region.name} flag`}
                             className="w-full h-full object-cover"
                           />
@@ -254,7 +254,7 @@ export default function GlobalGateway() {
                         <p className="text-base text-white/90 font-medium mb-1">
                           {region.company}
                         </p>
-                        <p className="text-white/50 text-sm leading-relaxed">
+                        <p className="text-white/70 text-sm leading-relaxed">
                           {region.description}
                         </p>
                       </div>
@@ -264,7 +264,7 @@ export default function GlobalGateway() {
 
                       {/* Language Selection */}
                       <div>
-                        <p className="text-xs text-white/40 uppercase tracking-[0.1em] mb-3">
+                        <p className="text-xs text-white/60 uppercase tracking-[0.1em] mb-3">
                           Language
                         </p>
                         <div className="flex flex-wrap gap-2">
@@ -272,7 +272,7 @@ export default function GlobalGateway() {
                             <Link
                               key={lang.code}
                               href={lang.path}
-                              className="px-4 py-2 text-sm font-medium text-white/70 bg-white/5 border border-white/10 rounded-lg hover:bg-gold/20 hover:border-gold/50 hover:text-gold transition-all duration-300"
+                              className="px-4 py-2 text-sm font-medium text-white/90 bg-white/10 border border-white/20 rounded-lg hover:bg-gold/20 hover:border-gold/50 hover:text-gold transition-all duration-300"
                             >
                               {lang.label}
                             </Link>

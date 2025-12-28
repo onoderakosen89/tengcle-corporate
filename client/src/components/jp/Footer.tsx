@@ -42,11 +42,15 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Logo & Description */}
           <div className="lg:col-span-1">
-            <img
-              src="/images/tengcle-logo-white.png"
-              alt="Tengcle"
-              className="h-12 w-auto mb-6"
-            />
+            <Link href={basePath}>
+              <img
+                src="/images/tengcle-logo-white.png"
+                alt="Tengcle"
+                className="h-12 w-auto mb-6 cursor-pointer"
+                width="180"
+                height="48"
+              />
+            </Link>
             <p className={`text-gray-300 text-sm leading-relaxed ${getFontClass()}`}>
               {t.footer.description}
             </p>

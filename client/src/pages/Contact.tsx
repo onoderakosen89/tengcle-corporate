@@ -6,11 +6,12 @@
  */
 
 import { useRef } from "react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { motion, useInView, type Variants, type Easing } from "framer-motion";
 import { Mail, MapPin, ExternalLink } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { toast } from "sonner";
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -106,12 +107,16 @@ export default function Contact() {
                 <h2 className={`${getHeadingFontClass()} text-2xl text-navy mb-4`}>
                   {t.contact.email}
                 </h2>
-                <a
-                  href="mailto:info@tengcle.com"
-                  className="text-2xl md:text-3xl text-navy hover:text-gold transition-colors font-heading"
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText("info@tengcle.com");
+                    toast.success("Email copied / メールアドレスをコピーしました / 已复制邮箱地址");
+                  }}
+                  className="text-2xl md:text-3xl text-navy hover:text-gold transition-colors font-heading cursor-pointer"
+                  title="Click to copy email"
                 >
                   info@tengcle.com
-                </a>
+                </button>
               </motion.div>
             </AnimatedSection>
 
@@ -204,24 +209,20 @@ export default function Contact() {
             {/* Group Site Links */}
             <AnimatedSection className="mt-12">
               <motion.div variants={fadeInUp} className="text-center flex flex-wrap justify-center gap-6">
-                <a
-                  href="https://www.tengcle.com/jp/ja"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/jp/ja"
                   className={`inline-flex items-center gap-2 text-navy hover:text-gold transition-colors ${getFontClass()}`}
                 >
                   <span>{t.footer.japan}</span>
                   <ExternalLink className="h-4 w-4" />
-                </a>
-                <a
-                  href="https://www.tengcle.com/us/en"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                </Link>
+                <Link
+                  href="/us/en"
                   className={`inline-flex items-center gap-2 text-navy hover:text-gold transition-colors ${getFontClass()}`}
                 >
                   <span>{t.footer.usa}</span>
                   <ExternalLink className="h-4 w-4" />
-                </a>
+                </Link>
               </motion.div>
             </AnimatedSection>
           </div>

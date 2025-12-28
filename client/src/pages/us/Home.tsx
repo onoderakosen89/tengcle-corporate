@@ -14,7 +14,7 @@ import { Building2, Home as HomeIcon, Key, Shield, ArrowRight, CheckCircle } fro
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
-import SEOHead from "@/components/SEOHead";
+import SEOHead, { generateOrganizationSchema, generateWebPageSchema } from "@/components/SEOHead";
 
 // Animation variants - USA: Bold & Dynamic
 const easeAmerican: Easing = [0.4, 0, 0.2, 1];
@@ -57,6 +57,10 @@ function UsHeroSection({ basePath, t }: { basePath: string; t: (key: string) => 
           src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1920&q=80"
           alt="New York City Skyline"
           className="w-full h-[120%] object-cover opacity-60"
+          width="1920"
+          height="1080"
+          // @ts-ignore
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-purple-deep/70 via-purple-deep/50 to-transparent" />
       </motion.div>
@@ -157,36 +161,43 @@ export default function UsHome() {
     },
   ];
 
-  // SEO meta data based on language - Optimized for maximum SEO score
-  const seoData = {
-    en: {
-      title: "Tengcle LLC | Property Management & Vacation Rentals Weehawken NJ",
-      description: "Professional property management and Airbnb/VRBO vacation rental services in Weehawken, New Jersey and the NYC metro area. Tenant screening, maintenance, dynamic pricing.",
-      keywords: "Tengcle LLC, property management NJ, vacation rentals Weehawken, Airbnb management, VRBO, New Jersey real estate, NYC metro property, tenant screening",
-    },
-    ja: {
-      title: "Tengcle LLC | ニュージャージーの不動産管理・バケーションレンタル",
-      description: "ニュージャージー州ウィーホーケンとNYCメトロエリアでプロフェッショナルな不動産管理とAirbnb/VRBOバケーションレンタルサービスを提供。",
-      keywords: "Tengcle LLC, ニュージャージー 不動産, バケーションレンタル, Airbnb管理, ウィーホーケン, NYCメトロ",
-    },
-    zh: {
-      title: "Tengcle LLC | 新泽西州房产管理与度假租赁",
-      description: "在新泽西州Weehawken和纽约大都会圈提供专业的房产管理和Airbnb/VRBO度假租赁服务。租户筛选、维护、动态定价。",
-      keywords: "Tengcle LLC, 新泽西房产, 度假租赁, Airbnb管理, Weehawken, 纽约大都会圈",
-    },
-  };
-
-  const currentSeo = seoData[language as keyof typeof seoData] || seoData.en;
-
   return (
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
-        title={currentSeo.title}
-        description={currentSeo.description}
+        title={t('meta.title')}
+        description={t('meta.description')}
         canonical={`https://www.tengcle.com/us/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
         ogImage="/images/og-image-us.jpg"
-        keywords={(currentSeo as any).keywords}
+        keywords={t('meta.keywords')}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@graph": [
+            generateOrganizationSchema({
+              name: "Tengcle LLC",
+              description: "Expert property management and vacation rental solutions in the USA.",
+              url: "https://www.tengcle.com/us/en",
+              logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
+              email: "info@tengcle.com",
+              address: {
+                street: "123 Business Ave",
+                city: "New York",
+                region: "NY",
+                country: "US",
+                postalCode: "10001"
+              },
+              sameAs: [
+                "https://www.tengcle.com/hk/en",
+                "https://www.tengcle.com/jp/ja"
+              ]
+            }),
+            generateWebPageSchema({
+              name: t('meta.title'),
+              description: t('meta.description'),
+              url: `https://www.tengcle.com/us/${language}`,
+            })["@graph"][0]
+          ]
+        }}
       />
       <UsHeader />
 
@@ -301,6 +312,8 @@ export default function UsHome() {
                 alt="Property Management"
                 className="w-full aspect-[4/3] object-cover us-img-hover"
                 loading="lazy"
+                width="800"
+                height="600"
               />
             </motion.div>
           </div>

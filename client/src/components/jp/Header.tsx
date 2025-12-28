@@ -73,25 +73,26 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100"
-          : "bg-white/80 backdrop-blur-sm"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+        ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100"
+        : "bg-white/80 backdrop-blur-sm"
+        }`}
     >
       <div className="container">
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/">
+          <Link href={basePath}>
             <motion.div
               className="flex items-center"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
-              <img 
-                src="/images/tengcle-logo.png" 
-                alt="Tengcle - think into the future" 
+              <img
+                src="/images/tengcle-logo.png"
+                alt="Tengcle - think into the future"
                 className="w-auto object-contain"
+                width="180"
+                height="46"
                 style={{ height: '46px', maxHeight: '46px' }}
               />
             </motion.div>
@@ -102,9 +103,8 @@ export default function Header() {
             {navItems.map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
-                  className={`text-sm tracking-wide transition-colors duration-300 hover:text-gold ${
-                    location === item.href ? "text-gold" : "text-charcoal"
-                  } ${getFontClass()}`}
+                  className={`text-sm tracking-wide transition-colors duration-300 hover:text-gold ${location === item.href ? "text-gold" : "text-charcoal"
+                    } ${getFontClass()}`}
                 >
                   {item.label}
                 </span>
@@ -139,9 +139,8 @@ export default function Header() {
                           handleLanguageChange(lang.code);
                           setIsLangMenuOpen(false);
                         }}
-                        className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-50 transition-colors ${
-                          language === lang.code ? "text-gold bg-gray-50" : "text-charcoal"
-                        }`}
+                        className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-50 transition-colors ${language === lang.code ? "text-gold bg-gray-50" : "text-charcoal"
+                          }`}
                       >
                         {lang.label}
                       </button>
@@ -150,6 +149,16 @@ export default function Header() {
                 )}
               </AnimatePresence>
             </div>
+            {/* Global Site Link */}
+            <Link
+              href="/"
+              className={`text-xs px-3 py-1.5 border transition-colors duration-300 ml-4 ${isScrolled
+                ? "border-navy/30 text-navy hover:bg-navy hover:text-white"
+                : "border-navy/30 text-navy hover:bg-navy hover:text-white"
+                }`}
+            >
+              Global
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -158,7 +167,7 @@ export default function Header() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMobileMenuOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
           </button>
         </nav>
       </div>
@@ -176,9 +185,8 @@ export default function Header() {
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href}>
                   <span
-                    className={`block py-3 text-sm tracking-wide ${
-                      location === item.href ? "text-gold" : "text-charcoal"
-                    } ${getFontClass()}`}
+                    className={`block py-3 text-sm tracking-wide ${location === item.href ? "text-gold" : "text-charcoal"
+                      } ${getFontClass()}`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.label}
@@ -197,16 +205,25 @@ export default function Header() {
                         handleLanguageChange(lang.code);
                         setIsMobileMenuOpen(false);
                       }}
-                      className={`px-3 py-1 text-sm border ${
-                        language === lang.code
-                          ? "border-gold text-gold"
-                          : "border-gray-200 text-charcoal"
-                      }`}
+                      className={`px-3 py-1 text-sm border ${language === lang.code
+                        ? "border-gold text-gold"
+                        : "border-gray-200 text-charcoal"
+                        }`}
                     >
                       {lang.label}
                     </button>
                   ))}
                 </div>
+              </div>
+
+              <div className="pt-4 mt-4 border-t border-gray-100">
+                <Link
+                  href="/"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block w-full text-center py-2 border border-navy text-navy text-sm hover:bg-navy hover:text-white transition-colors"
+                >
+                  Global Site
+                </Link>
               </div>
             </div>
           </motion.div>

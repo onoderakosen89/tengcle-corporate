@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { useLocation } from "wouter";
+import { toast } from "sonner";
+import { useLocation, Link } from "wouter";
 import { Mail, MapPin, Phone, Globe } from "lucide-react";
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
@@ -133,12 +134,25 @@ export default function UsContact() {
                     <div>
                       <h3 className="font-medium text-charcoal mb-2">{item.title}</h3>
                       {item.href ? (
-                        <a
-                          href={item.href}
-                          className="text-slate hover:text-gold transition-colors"
-                        >
-                          {item.content.join(", ")}
-                        </a>
+                        item.href.startsWith("mailto:") ? (
+                          <button
+                            onClick={() => {
+                              navigator.clipboard.writeText(item.content[0]);
+                              toast.success("Email copied to clipboard");
+                            }}
+                            className="text-slate hover:text-gold transition-colors text-left"
+                            title="Click to copy email"
+                          >
+                            {item.content.join(", ")}
+                          </button>
+                        ) : (
+                          <a
+                            href={item.href}
+                            className="text-slate hover:text-gold transition-colors"
+                          >
+                            {item.content.join(", ")}
+                          </a>
+                        )
                       ) : (
                         item.content.map((line, idx) => (
                           <p key={idx} className="text-slate">{line}</p>
@@ -155,20 +169,20 @@ export default function UsContact() {
                   Tengcle Group Offices
                 </h3>
                 <div className="space-y-4">
-                  <a
+                  <Link
                     href="/hk/en/contact"
                     className="flex items-center gap-3 text-slate hover:text-gold transition-colors"
                   >
                     <span>🇭🇰</span>
                     <span>Hong Kong (Global Headquarters)</span>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/jp/ja/contact"
                     className="flex items-center gap-3 text-slate hover:text-gold transition-colors"
                   >
                     <span>🇯🇵</span>
                     <span>Japan Office</span>
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             </motion.div>

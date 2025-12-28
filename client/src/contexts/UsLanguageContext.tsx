@@ -39,34 +39,34 @@ const translations: Translations = {
     ja: 'お問い合わせ',
     zh: '联系我们',
   },
-  
+
   // Hero Section
   'hero.tagline': {
-    en: 'Real Estate Solutions in the United States',
-    ja: 'アメリカの不動産ソリューション',
-    zh: '美国房地产解决方案',
+    en: 'Your Partner in US Real Estate',
+    ja: '米国不動産運用のパートナー',
+    zh: '美国房地产投资合作伙伴',
   },
   'hero.title': {
-    en: 'Property Management & Vacation Rentals',
-    ja: '不動産管理と民泊サービス',
-    zh: '物业管理与度假租赁',
+    en: 'Maximizing Asset Value',
+    ja: '資産価値の最大化',
+    zh: '最大化资产价值',
   },
   'hero.subtitle': {
-    en: 'Tengcle LLC offers real estate management and vacation rental services in New Jersey and the New York metro area.',
-    ja: 'Tengcle LLCは、ニュージャージー州およびニューヨーク都市圏で不動産管理・民泊サービスを提供しています。',
-    zh: 'Tengcle LLC在新泽西州和纽约都会区提供房地产管理和度假租赁服务。',
+    en: 'Professional property management and vacation rental solutions in New Jersey and the New York metropolitan area.',
+    ja: 'ニュージャージー・ニューヨークエリアにおける、プロフェッショナルな不動産管理とバケーションレンタル運用。',
+    zh: '新泽西和纽约都会区的专业物业管理及度假租赁解决方案。',
   },
   'hero.cta.services': {
     en: 'Our Services',
-    ja: '事業内容を見る',
-    zh: '查看服务',
+    ja: 'サービス一覧',
+    zh: '服务一览',
   },
   'hero.cta.contact': {
-    en: 'Contact Us',
+    en: 'Get a Quote',
     ja: 'お問い合わせ',
-    zh: '联系我们',
+    zh: '获取报价',
   },
-  
+
   // Services Section
   'services.title': {
     en: 'Our Services',
@@ -78,7 +78,7 @@ const translations: Translations = {
     ja: '不動産オーナー・投資家向けサービス',
     zh: '为业主和投资者提供服务',
   },
-  
+
   // Service 1: Property Management
   'service.property.title': {
     en: 'Property Management',
@@ -86,63 +86,63 @@ const translations: Translations = {
     zh: '物业管理',
   },
   'service.property.desc': {
-    en: 'Property management for residential and commercial properties. Tenant relations, maintenance, rent collection, and inspections.',
-    ja: '住宅・商業物件の不動産管理。入居者対応、メンテナンス、家賃回収、物件点検。',
-    zh: '住宅和商业物业管理。租户关系、维护、租金收取和物业检查。',
+    en: 'Full-service management for residential and commercial assets. We handle everything from tenant placement to maintenance, ensuring steady returns.',
+    ja: '住宅・商業物件の包括的管理サービス。入居者募集からメンテナンス、収支管理まで、現地のプロフェッショナルが一貫してサポートします。',
+    zh: '住宅和商业资产的全方位管理服务。从租户安置到维护，确保稳定的投资回报。',
   },
   'service.property.feature1': {
-    en: 'Tenant screening and placement',
-    ja: '入居者審査・入居手続き',
-    zh: '租户筛选和安置',
+    en: 'Rigorous Tenant Screening',
+    ja: '厳格な入居者審査',
+    zh: '严格的租户筛选',
   },
   'service.property.feature2': {
-    en: 'Rent collection and accounting',
-    ja: '家賃回収・会計管理',
-    zh: '租金收取和会计',
+    en: 'Rent Collection & Financial Reporting',
+    ja: '家賃回収・収支レポート',
+    zh: '租金收取与财务报告',
   },
   'service.property.feature3': {
-    en: 'Maintenance coordination',
-    ja: 'メンテナンス調整',
-    zh: '维护协调',
+    en: '24/7 Maintenance Coordination',
+    ja: '24時間メンテナンス対応',
+    zh: '24/7 维护协调',
   },
   'service.property.feature4': {
-    en: 'Regular property inspections',
-    ja: '定期物件点検',
-    zh: '定期物业检查',
+    en: 'Regular Inspections',
+    ja: '定期巡回・点検',
+    zh: '定期检查',
   },
-  
+
   // Service 2: Vacation Rentals
   'service.vacation.title': {
-    en: 'Vacation Rentals',
-    ja: '民泊サービス',
-    zh: '度假租赁',
+    en: 'Vacation Rental Management',
+    ja: 'バケーションレンタル運用',
+    zh: '度假租赁管理',
   },
   'service.vacation.desc': {
-    en: 'Short-term rental management for Airbnb and VRBO properties.',
-    ja: 'Airbnb・VRBO物件の短期レンタル管理。',
-    zh: 'Airbnb和VRBO物业的短期租赁管理。',
+    en: 'Optimizing short-term rentals on Airbnb & VRBO. We deploy dynamic pricing and professional hospitality to maximize occupancy and revenue.',
+    ja: 'Airbnb・VRBOでの短期賃貸運用を最適化。ダイナミックプライシングと質の高いホスピタリティで、稼働率と収益を最大化します。',
+    zh: '优化 Airbnb 和 VRBO 短期租赁。我们利用动态定价和专业服务，最大化入住率和收入。',
   },
   'service.vacation.feature1': {
-    en: 'Listing optimization',
-    ja: 'リスティング最適化',
-    zh: '房源优化',
+    en: 'Listing & SEO Optimization',
+    ja: 'リスティング最適化 (SEO)',
+    zh: '房源及 SEO 优化',
   },
   'service.vacation.feature2': {
-    en: 'Guest communication',
-    ja: 'ゲスト対応',
-    zh: '客人沟通',
+    en: 'Guest Communication & Support',
+    ja: '多言語ゲスト対応',
+    zh: '与客人沟通及支持',
   },
   'service.vacation.feature3': {
-    en: 'Professional cleaning',
-    ja: 'プロフェッショナル清掃',
-    zh: '专业清洁',
+    en: 'Professional Cleaning & turnover',
+    ja: '専門スタッフによる清掃',
+    zh: '专业清洁与周转',
   },
   'service.vacation.feature4': {
-    en: 'Dynamic pricing',
-    ja: 'ダイナミックプライシング',
-    zh: '动态定价',
+    en: 'Revenue Management',
+    ja: 'レベニューマネジメント',
+    zh: '收益管理',
   },
-  
+
   // About Section
   'about.title': {
     en: 'About Tengcle LLC',
@@ -155,11 +155,11 @@ const translations: Translations = {
     zh: 'Tengcle集团美国办事处',
   },
   'about.description': {
-    en: 'Tengcle LLC is the US office of Tengcle Group. We provide real estate management and vacation rental services in New Jersey and the New York metro area.',
-    ja: 'Tengcle LLCは、Tengcleグループの米国拠点です。ニュージャージー州およびニューヨーク都市圏で不動産管理・民泊サービスを提供しています。',
-    zh: 'Tengcle LLC是Tengcle集团的美国办事处。在新泽西州和纽约都会区提供房地产管理和度假租赁服务。',
+    en: 'Tengcle LLC represents the US operations of the global Tengcle Group. Based in New Jersey, we bring Japanese service standards to the competitive NY/NJ real estate market.',
+    ja: 'Tengcle LLCは、Tengcle Groupの米国拠点です。ニュージャージーを拠点に、日本クオリティのきめ細やかなサービスを、NY/NJの不動産市場で提供しています。',
+    zh: 'Tengcle LLC 代表 Tengcle Group 的美国业务。我们立足新泽西，将日式服务标准带入竞争激烈的纽约/新泽西房地产市场。',
   },
-  
+
   // Company Info
   'company.name': {
     en: 'Tengcle LLC',
@@ -176,7 +176,7 @@ const translations: Translations = {
     ja: '米国拠点',
     zh: '美国办事处',
   },
-  
+
   // Contact Section
   'contact.title': {
     en: 'Contact Us',
@@ -198,7 +198,7 @@ const translations: Translations = {
     ja: '住所',
     zh: '地址',
   },
-  
+
   // Footer
   'footer.rights': {
     en: 'All rights reserved.',
@@ -215,7 +215,7 @@ const translations: Translations = {
     ja: 'Tengcle Inc.（日本）',
     zh: 'Tengcle Inc.（日本）',
   },
-  
+
   // CTA
   'cta.title': {
     en: "Let's Get Started",
@@ -231,6 +231,23 @@ const translations: Translations = {
     en: 'Contact Us',
     ja: 'お問い合わせ',
     zh: '联系我们',
+  },
+
+  // SEO Meta
+  'meta.title': {
+    en: 'Tengcle LLC | NJ/NY Asset Management',
+    ja: 'Tengcle LLC | 米国資産管理パートナー',
+    zh: 'Tengcle LLC | 资产管理合作伙伴',
+  },
+  'meta.description': {
+    en: 'Maximizing real estate value in NJ & NY. Professional property management and vacation rental solutions with Japanese hospitality standards.',
+    ja: 'ニュージャージー・NYエリアの不動産価値を最大化。日本基準のきめ細やかな管理とバケーションレンタル運用を提供します。',
+    zh: '最大化新泽西和纽约的房地产价值。提供符合日式服务标准的专业物业管理和度假租赁解决方案。',
+  },
+  'meta.keywords': {
+    en: 'Tengcle LLC, NJ property management, vacation rentals NY, Japanese hospitality, real estate investment',
+    ja: 'Tengcle LLC, NJ不動産管理, NY民泊運用, 日本式サービス, 米国不動産投資',
+    zh: 'Tengcle LLC, 新泽西物业管理, 纽约度假租赁, 日式服务, 美国房地产投资',
   },
 };
 

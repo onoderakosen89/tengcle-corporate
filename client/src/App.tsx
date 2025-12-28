@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
 import { motion, AnimatePresence, type Easing } from "framer-motion";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -9,45 +8,49 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { JpLanguageProvider } from "./contexts/JpLanguageContext";
 import { UsLanguageProvider } from "./contexts/UsLanguageContext";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./lib/queryClient";
 import SplashScreen from "./components/SplashScreen";
 import CookieConsent from "./components/CookieConsent";
 import ScrollRestoration from "./components/ScrollRestoration";
-import ScrollToTop from "./components/ScrollToTop";
-
+import ScrollToTop from "@/components/ScrollToTop";
+import PageLoader from "./components/PageLoader";
+// Lazy load pages for better performance
 // Global Gateway
-import GlobalGateway from "./pages/GlobalGateway";
+const GlobalGateway = lazy(() => import("./pages/GlobalGateway"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
 
 // Hong Kong Pages
-import Home from "./pages/Home";
-import Services from "./pages/Services";
-import Portfolio from "./pages/Portfolio";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import FAQ from "./pages/FAQ";
-import News from "./pages/News";
-import NewsArticle from "./pages/NewsArticle";
+const Home = lazy(() => import("./pages/Home"));
+const Services = lazy(() => import("./pages/Services"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const News = lazy(() => import("./pages/News"));
+const NewsArticle = lazy(() => import("./pages/NewsArticle"));
 
 // Japan Pages
-import JpHome from "./pages/jp/Home";
-import JpServices from "./pages/jp/Services";
-import JpAbout from "./pages/jp/About";
-import JpCareers from "./pages/jp/Careers";
-import JpContact from "./pages/jp/Contact";
-import JpFAQ from "./pages/jp/FAQ";
-import JpNews from "./pages/jp/News";
-import JpNewsArticle from "./pages/jp/NewsArticle";
+const JpHome = lazy(() => import("./pages/jp/Home"));
+const JpServices = lazy(() => import("./pages/jp/Services"));
+const JpAbout = lazy(() => import("./pages/jp/About"));
+const JpCareers = lazy(() => import("./pages/jp/Careers"));
+const JpContact = lazy(() => import("./pages/jp/Contact"));
+const JpFAQ = lazy(() => import("./pages/jp/FAQ"));
+const JpNews = lazy(() => import("./pages/jp/News"));
+const JpNewsArticle = lazy(() => import("./pages/jp/NewsArticle"));
 
 // US Pages
-import UsHome from "./pages/us/Home";
-import UsServices from "./pages/us/Services";
-import UsAbout from "./pages/us/About";
-import UsContact from "./pages/us/Contact";
-import UsFAQ from "./pages/us/FAQ";
-import UsNews from "./pages/us/News";
-import UsNewsArticle from "./pages/us/NewsArticle";
+const UsHome = lazy(() => import("./pages/us/Home"));
+const UsServices = lazy(() => import("./pages/us/Services"));
+const UsAbout = lazy(() => import("./pages/us/About"));
+const UsContact = lazy(() => import("./pages/us/Contact"));
+const UsFAQ = lazy(() => import("./pages/us/FAQ"));
+const UsNews = lazy(() => import("./pages/us/News"));
+const UsNewsArticle = lazy(() => import("./pages/us/NewsArticle"));
 
 // Shared Pages
-import Privacy from "./pages/Privacy";
+const Privacy = lazy(() => import("./pages/Privacy"));
 
 // Page transition variants for each region
 const pageTransitions = {
@@ -341,17 +344,21 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
-        <TooltipProvider>
-          <ScrollRestoration />
-          <Toaster />
-          {isGateway && showSplash && !hasSeenSplash && (
-            <SplashScreen onComplete={handleSplashComplete} />
-          )}
-          <MainRouter />
-          <CookieConsent lang="en" position="bottom" />
-        </TooltipProvider>
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider defaultTheme="light">
+          <TooltipProvider>
+            <ScrollRestoration />
+            <Toaster />
+            {isGateway && showSplash && !hasSeenSplash && (
+              <SplashScreen onComplete={handleSplashComplete} />
+            )}
+            <Suspense fallback={<PageLoader />}>
+              <MainRouter />
+            </Suspense>
+            <CookieConsent lang="en" position="bottom" />
+          </TooltipProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
     </ErrorBoundary>
   );
 }

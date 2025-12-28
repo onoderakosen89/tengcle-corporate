@@ -211,6 +211,11 @@ interface Translations {
     partTime: string;
     contract: string;
   };
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
 }
 
 const translations: Record<Language, Translations> = {
@@ -223,69 +228,69 @@ const translations: Record<Language, Translations> = {
       careers: "採用情報",
     },
     hero: {
-      tagline: "Tengcle Inc. 日本法人",
-      headline1: "5つの事業で",
-      headline2: "日本を支える",
-      subtitle: "不動産管理、飲食、フィットネス、宿泊、人材。日本市場でサービスを提供しています。",
-      cta1: "事業内容を見る",
+      tagline: "Tengcle Inc.",
+      headline1: "多様な事業で、",
+      headline2: "新しい価値を創造する",
+      subtitle: "不動産・飲食・ウェルネス・宿泊・人材。5つの事業領域を通じて、人々の生活とビジネスをトータルにサポートします。",
+      cta1: "事業内容",
       cta2: "お問い合わせ",
       trust1: "日本法人",
-      trust2: "香港グループ",
+      trust2: "グローバル連携",
       trust3: "5事業展開",
     },
     services: {
-      subtitle: "事業内容",
-      title: "5つの事業",
-      description: "不動産、飲食、フィットネス、宿泊、人材の5分野でサービスを提供しています。",
-      viewAll: "詳細を見る",
+      subtitle: "Our Business",
+      title: "事業紹介",
+      description: "Tengcle Inc.は、多角的なアプローチで社会のニーズに応えます。各事業が連携し、相乗効果を生み出すことで、より質の高いサービスを提供します。",
+      viewAll: "事業一覧を見る",
       realEstate: {
         title: "不動産管理",
-        description: "賃貸物件の管理・運営。入居者様とオーナー様の双方に対応します。",
+        description: "オーナー様の大切な資産を守り、収益最大化をサポート。地域に根ざしたきめ細やかな管理で、入居者様にも快適な暮らしを提供します。",
       },
       restaurant: {
-        title: "飲食店オペレーション",
-        description: "レストラン・カフェの企画・運営、店舗開発、メニュー開発、スタッフ教育。",
+        title: "飲食事業",
+        description: "「食」を通じて、心豊かな時間を提供。カフェからレストランまで、地域や顧客層に合わせた店舗開発と運営を行っています。",
       },
       gym: {
         title: "レンタルジム",
-        description: "プライベート空間でトレーニングできるレンタルジムを運営しています。",
+        description: "集中できるプライベート空間。高品質な設備と清潔な環境で、健康的なライフスタイルをサポートします。",
       },
       capsuleHotel: {
-        title: "カプセルホテル運営",
-        description: "ビジネス・観光のお客様向けにカプセルホテルを運営しています。",
+        title: "宿泊事業",
+        description: "快適性と機能性を追求したカプセルホテル運営。ビジネスや観光の拠点として、安らぎの空間を提供します。",
       },
       recruitment: {
         title: "人材紹介",
-        description: "企業と求職者のマッチング。業界知識とネットワークを活かします。",
+        description: "企業と人の最適なマッチングを実現。グローバルなネットワークを活かし、双方の成長に貢献する人材ソリューションを提案します。",
       },
     },
     about: {
-      subtitle: "会社概要",
+      subtitle: "About Us",
       title: "Tengcle Inc.について",
-      description: "Tengcle Inc.は、2021年に日本で創業したTengcle Groupの創業法人です。",
+      description: "2021年の創業以来、私たちは常に挑戦を続けてきました。香港を拠点とするTengcle Groupの一員として、グローバルな視点と日本のおもてなしの心を融合させた事業を展開しています。",
       story: {
-        title: "私たちについて",
-        p1: "Tengcle Inc.は2021年10月に日本で創業し、現在は香港本社のTengcle Limitedのグループ企業として事業を展開しています。",
-        p2: "不動産管理、飲食店オペレーション、レンタルジム、カプセルホテル運営、人材紹介の5つの事業を展開しています。",
+        title: "沿革・背景",
+        p1: "Tengcle Inc.は2021年10月、日本でその歩みを開始しました。その後、事業の拡大に伴い香港にTengcle Limitedを設立。現在はその日本法人として、グループの中核を担っています。",
+        p2: "「衣・食・住」、そして「人」。私たちの生活に欠かせないこれらの領域で、誠実かつ革新的なサービスを提供し続けること。それが私たちの使命です。",
       },
       info: {
-        title: "会社情報",
-        legalName: "法人名",
+        title: "会社概要",
+        legalName: "商号",
         established: "設立",
         location: "所在地",
       },
       philosophy: {
-        title: "私たちの理念",
-        mission: "ミッション",
-        missionText: "5つの事業を通じて、お客様の生活とビジネスに貢献する。",
-        values: "バリュー",
-        valuesText: "誠実さ、品質へのこだわり、お客様第一の姿勢。",
+        title: "企業理念",
+        mission: "Mission",
+        missionText: "事業を通じて、関わるすべての人々の人生を豊かにする。",
+        values: "Values",
+        valuesText: "誠実 (Integrity) ・ クオリティ (Quality) ・ 挑戦 (Challenge)。",
       },
     },
     contact: {
-      subtitle: "お問い合わせ",
-      title: "お気軽にご連絡ください",
-      description: "事業に関するご質問、お見積もりのご依頼など、お気軽にお問い合わせください。",
+      subtitle: "Contact",
+      title: "お問い合わせ",
+      description: "事業に関するご相談やご質問は、こちらからお気軽にお問い合わせください。",
       email: "メール",
       info: {
         tokyoOffice1: "東京オフィス（高輪）",
@@ -445,10 +450,15 @@ const translations: Record<Language, Translations> = {
     common: {
       learnMore: "詳細を見る",
       getInTouch: "お問い合わせ",
-      japanCorporate: "日本法人",
+      japanCorporate: "Tengcle Inc.",
       fullTime: "正社員",
       partTime: "パート",
       contract: "契約社員",
+    },
+    meta: {
+      title: "Tengcle Inc. | 多角事業で価値創造",
+      description: "不動産・飲食・ウェルネス・宿泊・人材。5つの事業領域を通じて、日本市場で新しい価値を創造するTengcle Inc.の公式サイトです。",
+      keywords: "Tengcle Inc, 東京ビジネス, 不動産管理, 飲食事業, 人材紹介, 港区高輪",
     },
   },
   en: {
@@ -687,6 +697,11 @@ const translations: Record<Language, Translations> = {
       partTime: "Part-time",
       contract: "Contract",
     },
+    meta: {
+      title: "Tengcle Inc. | Value Creation in Japan",
+      description: "Creating new value in the Japanese market through real estate, dining, wellness, hospitality, and recruitment services.",
+      keywords: "Tengcle Inc, Tokyo business, real estate Japan, recruitment Japan, Minato-ku business",
+    },
   },
   zh: {
     nav: {
@@ -923,6 +938,11 @@ const translations: Record<Language, Translations> = {
       fullTime: "正式员工",
       partTime: "兼职",
       contract: "合同工",
+    },
+    meta: {
+      title: "Tengcle Inc. | 在日多元化价值创造",
+      description: "通过房地产、餐饮、健康、住宿和人才服务，在日本市场创造新价值。",
+      keywords: "Tengcle Inc, 东京商务, 日本房地产, 日本招聘, 港区高轮",
     },
   },
 };

@@ -43,11 +43,13 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <Link href="/">
+            <Link href={basePath}>
               <img
                 src="/images/tengcle-logo-white.png"
                 alt="Tengcle"
                 className="h-12 w-auto mb-6"
+                width="180"
+                height="48"
               />
             </Link>
             <p className={`text-white/70 text-sm leading-relaxed mb-6 max-w-md ${getFontClass()}`}>

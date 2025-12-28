@@ -16,7 +16,7 @@ import Header from "@/components/jp/Header";
 import Footer from "@/components/jp/Footer";
 import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
-import SEOHead from "@/components/SEOHead";
+import SEOHead, { generateOrganizationSchema, generateWebPageSchema } from "@/components/SEOHead";
 import ImageWithFallback from "@/components/ImageWithFallback";
 
 // Animation variants with proper typing - Japan: Refined & Delicate
@@ -87,6 +87,10 @@ function JpHeroSection({
             src="/images/hero-japan-corporate.jpg"
             alt="Tokyo Business District"
             className="w-full h-[120%] object-cover"
+            width="1920"
+            height="1080"
+            // @ts-ignore
+            fetchPriority="high"
           />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
@@ -249,36 +253,44 @@ export default function Home() {
     },
   ];
 
-  // SEO meta data based on language - Optimized for maximum SEO score
-  const seoData = {
-    ja: {
-      title: "Tengcle Inc. | 東京の不動産管理・飲食・レンタルジム・カプセルホテル",
-      description: "東京都港区高輪を拠点に不動産管理、レストラン運営、レンタルジム、カプセルホテル、人材紹介サービスを提供。おもてなしの心で事業を展開。",
-      keywords: "Tengcle Inc, 東京 不動産管理, レンタルジム, カプセルホテル, 人材紹介, 港区, 高輪, 飲食店運営",
-    },
-    en: {
-      title: "Tengcle Inc. | Real Estate, Rental Gym, Capsule Hotel & Recruitment Tokyo",
-      description: "Tokyo-based company in Minato-ku offering real estate management, restaurant operations, rental gym, capsule hotel, and recruitment services with Japanese hospitality.",
-      keywords: "Tengcle Inc, Tokyo real estate, rental gym Tokyo, capsule hotel, recruitment Japan, Minato-ku, Takanawa, property management",
-    },
-    zh: {
-      title: "Tengcle Inc. | 东京房地产管理・健身房・胶囊酒店・人才招聘",
-      description: "以东京都港区高轮为基地，提供房地产管理、餐厅运营、租赁健身房、胶囊酒店和人才介绍服务。以日式待客之道开展事业。",
-      keywords: "Tengcle Inc, 东京房地产, 租赁健身房, 胶囊酒店, 人才招聘, 港区, 高轮",
-    },
-  };
-
-  const currentSeo = seoData[language as keyof typeof seoData] || seoData.ja;
-
   return (
     <div className="min-h-screen bg-white" data-region="jp">
       <SEOHead
-        title={currentSeo.title}
-        description={currentSeo.description}
+        title={t.meta.title}
+        description={t.meta.description}
         canonical={`https://www.tengcle.com/jp/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
         ogImage="/images/og-image-jp.jpg"
-        keywords={(currentSeo as any).keywords}
+        keywords={t.meta.keywords}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@graph": [
+            generateOrganizationSchema({
+              name: "Tengcle Inc.",
+              description: "株式会社Tengcle - ホスピタリティ、IT、国際貿易のプロフェッショナル。",
+              url: "https://www.tengcle.com/jp/ja",
+              logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
+              email: "info@tengcle.com",
+              address: {
+                street: "3-14-1 Takanawa",
+                city: "Minato-ku",
+                region: "Tokyo",
+                country: "JP",
+                postalCode: "108-0074"
+              },
+              foundingDate: "2021-10-05",
+              sameAs: [
+                "https://www.tengcle.com/hk/en",
+                "https://www.tengcle.com/us/en"
+              ]
+            }),
+            generateWebPageSchema({
+              name: t.meta.title,
+              description: t.meta.description,
+              url: `https://www.tengcle.com/jp/${language}`,
+            })["@graph"][0]
+          ]
+        }}
       />
       <Header />
 
@@ -321,6 +333,9 @@ export default function Home() {
                       className="w-full h-full transition-transform duration-1000 group-hover:scale-105"
                       fallbackText="Coming Soon"
                       fallbackSubText="準備中"
+                      // @ts-ignore - passing standard img props
+                      width={600}
+                      height={400}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
