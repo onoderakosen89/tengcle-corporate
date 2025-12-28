@@ -110,15 +110,15 @@ export default function News() {
   };
 
   const pageTitle = language === "ja" ? "ニュース" : language === "zh" ? "新闻动态" : "News";
-  const pageSubtitle = language === "ja" 
-    ? "Tengcle Inc.の最新情報とマイルストーン" 
-    : language === "zh" 
-    ? "Tengcle Inc.的最新动态与里程碑" 
-    : "Latest updates and milestones from Tengcle Inc.";
+  const pageSubtitle = language === "ja"
+    ? "Tengcle Inc.の最新情報とマイルストーン"
+    : language === "zh"
+      ? "Tengcle Inc.的最新动态与里程碑"
+      : "Latest updates and milestones from Tengcle Inc.";
   const readMore = language === "ja" ? "詳細を見る" : language === "zh" ? "查看详情" : "Read More";
 
   // Sort by date descending
-  const sortedArticles = [...newsArticles].sort((a, b) => 
+  const sortedArticles = [...newsArticles].sort((a, b) =>
     new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
@@ -128,12 +128,12 @@ export default function News() {
         title={`${pageTitle} | Tengcle Inc.`}
         description={pageSubtitle}
         keywords="Tengcle Inc., ニュース, 会社情報, 東京, 不動産管理, レンタルジム"
-        canonical={`https://tengcle.com${basePath}/news`}
+        canonical={`https://www.tengcle.com${basePath}/news`}
         ogType="website"
       />
       <div className="min-h-screen bg-cream">
         <Header />
-        
+
         {/* Hero Section */}
         <section className="pt-24 pb-16 bg-gradient-to-b from-navy to-navy/95">
           <div className="container">
@@ -172,7 +172,7 @@ export default function News() {
                         <div className="flex-shrink-0 w-12 h-12 bg-gold/10 rounded-lg flex items-center justify-center text-gold">
                           {article.icon}
                         </div>
-                        
+
                         {/* Content */}
                         <div className="flex-1 min-w-0">
                           {/* Meta */}
@@ -185,17 +185,17 @@ export default function News() {
                               {article.category}
                             </span>
                           </div>
-                          
+
                           {/* Title */}
                           <h2 className={`text-xl md:text-2xl font-bold text-navy mb-3 group-hover:text-gold transition-colors ${getFontClass()}`}>
                             {article.title[language as keyof typeof article.title]}
                           </h2>
-                          
+
                           {/* Excerpt */}
                           <p className={`text-gray-600 leading-relaxed mb-4 ${getFontClass()}`}>
                             {article.excerpt[language as keyof typeof article.excerpt]}
                           </p>
-                          
+
                           {/* Read More */}
                           <span className={`inline-flex items-center gap-2 text-gold font-medium group-hover:gap-3 transition-all ${getFontClass()}`}>
                             {readMore}

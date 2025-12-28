@@ -153,7 +153,7 @@ function FAQAccordion({ items, language }: { items: FAQItem[]; language: string 
               <ChevronDown className="h-5 w-5 text-purple" />
             </motion.div>
           </button>
-          
+
           <AnimatePresence>
             {openIndex === index && (
               <motion.div
@@ -181,7 +181,7 @@ export default function JpFAQ() {
 
   // Select FAQ data based on language
   const faqData = pathLang === "en" ? faqDataEn : pathLang === "zh" ? faqDataZh : faqDataJa;
-  
+
   // Translations
   const translations = {
     ja: {
@@ -230,14 +230,14 @@ export default function JpFAQ() {
       <SEOHead
         title={t.metaTitle}
         description={t.metaDescription}
-        canonical={`https://tengcle.com/jp/${pathLang}/faq`}
+        canonical={`https://www.tengcle.com/jp/${pathLang}/faq`}
         locale={pathLang === "ja" ? "ja_JP" : pathLang === "zh" ? "zh_CN" : "en_US"}
         keywords={t.metaKeywords}
         structuredData={faqSchema}
       />
-      
+
       <JpHeader />
-      
+
       <main className="pt-20">
         {/* Hero Section */}
         <section className="relative py-20 bg-purple overflow-hidden">
@@ -246,7 +246,7 @@ export default function JpFAQ() {
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             }} />
           </div>
-          
+
           <div className="container relative">
             <Link href={basePath}>
               <Button variant="ghost" className="mb-6 text-white/80 hover:text-white hover:bg-white/10">
@@ -254,7 +254,7 @@ export default function JpFAQ() {
                 <span className={fontClass}>{t.backToHome}</span>
               </Button>
             </Link>
-            
+
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center">
                 <HelpCircle className="h-6 w-6 text-gold" />
@@ -294,7 +294,7 @@ export default function JpFAQ() {
           </div>
         </section>
       </main>
-      
+
       <JpFooter />
     </>
   );

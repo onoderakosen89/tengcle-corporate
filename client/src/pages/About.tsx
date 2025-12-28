@@ -14,49 +14,28 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import AnimatedSection from "@/components/AnimatedSection";
+import SEOHead, { generateBreadcrumbSchema, generateOrganizationSchema } from "@/components/SEOHead";
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: easeOut } 
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    y: 0,
+    transition: { duration: 0.8, ease: easeOut }
   },
 };
 
-function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={staggerContainer}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+
 
 export default function About() {
   const { t, language } = useLanguage();
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "en";
   const basePath = `/hk/${pathLang}`;
-  
+
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
@@ -71,8 +50,38 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-white" data-region="hk">
+      <SEOHead
+        title={t.about.title + " | Tengcle Limited"}
+        description={t.about.description}
+        locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@graph": [
+            generateOrganizationSchema({
+              name: "Tengcle Limited",
+              description: t.about.description,
+              url: "https://www.tengcle.com",
+              email: "info@tengcle.com",
+              address: {
+                street: "No. 5, 17/F, Strand 50, 50 Bonham Strand",
+                city: "Sheung Wan",
+                region: "Hong Kong",
+                country: "HK"
+              },
+              sameAs: [
+                "https://www.tengcle.com/jp",
+                "https://www.tengcle.com/us"
+              ]
+            }),
+            generateBreadcrumbSchema([
+              { name: "Home", url: "https://www.tengcle.com" },
+              { name: t.about.title, url: `https://www.tengcle.com/hk/${language}/about` }
+            ])
+          ]
+        }}
+      />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-light-gray">
         <div className="container">
@@ -106,7 +115,7 @@ export default function About() {
                 />
               </motion.div>
             </AnimatedSection>
-            
+
             <AnimatedSection>
               <motion.div variants={fadeInUp}>
                 <h2 className={`${getHeadingFontClass()} text-3xl text-navy mb-6`}>
@@ -137,7 +146,7 @@ export default function About() {
               </h2>
             </motion.div>
           </AnimatedSection>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
@@ -193,7 +202,7 @@ export default function About() {
               </h2>
             </motion.div>
           </AnimatedSection>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Hong Kong */}
             <AnimatedSection>
@@ -212,7 +221,7 @@ export default function About() {
                 </p>
               </motion.div>
             </AnimatedSection>
-            
+
             {/* Tokyo Takanawa */}
             <AnimatedSection>
               <motion.div
@@ -224,13 +233,13 @@ export default function About() {
                   {t.contact.info.jpOffice1}
                 </h3>
                 <p className="text-slate text-sm leading-relaxed">
-                  {language === "ja" || language === "zh" 
-                    ? "東京都港区高輪2-19-20" 
+                  {language === "ja" || language === "zh"
+                    ? "東京都港区高輪2-19-20"
                     : "2-19-20 Takanawa, Minato-ku, Tokyo, Japan"}
                 </p>
               </motion.div>
             </AnimatedSection>
-            
+
             {/* Tokyo Tsukiji */}
             <AnimatedSection>
               <motion.div
@@ -242,13 +251,13 @@ export default function About() {
                   {t.contact.info.jpOffice2}
                 </h3>
                 <p className="text-slate text-sm leading-relaxed">
-                  {language === "ja" || language === "zh" 
-                    ? "東京都中央区築地2-12-14" 
+                  {language === "ja" || language === "zh"
+                    ? "東京都中央区築地2-12-14"
                     : "2-12-14 Tsukiji, Chuo-ku, Tokyo, Japan"}
                 </p>
               </motion.div>
             </AnimatedSection>
-            
+
             {/* USA Office */}
             <AnimatedSection>
               <motion.div

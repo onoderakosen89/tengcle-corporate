@@ -4,6 +4,7 @@ import { Mail, MapPin, Phone, Globe } from "lucide-react";
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
+import SEOHead, { generateLocalBusinessSchema } from "@/components/SEOHead";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -45,6 +46,29 @@ export default function UsContact() {
 
   return (
     <div className="min-h-screen bg-white" data-region="us">
+      <SEOHead
+        title={t('contact.title') + " | Tengcle LLC"}
+        description={t('contact.subtitle')}
+        canonical={`https://www.tengcle.com/us/${language}/contact`}
+        structuredData={generateLocalBusinessSchema({
+          name: "Tengcle LLC",
+          url: "https://www.tengcle.com/us",
+          email: "us@tengcle.com",
+          address: {
+            street: "17 Hamilton Ave",
+            city: "Weehawken",
+            region: "NJ",
+            postalCode: "07086",
+            country: "US"
+          },
+          geo: {
+            latitude: "40.7686",
+            longitude: "-74.0224"
+          },
+          openingHours: ["Mo-Fr 09:00-17:00"]
+        })}
+        locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
+      />
       <UsHeader />
 
       {/* Hero Section */}

@@ -285,12 +285,12 @@ export default function NewsArticle() {
   const [location] = useLocation();
   const params = useParams();
   const articleSlug = params.slug;
-  
+
   const pathLang = location.split("/")[2] || "en";
   const basePath = `/hk/${pathLang}`;
 
   const article = newsArticles.find(a => a.slug === articleSlug);
-  
+
   const fontClass = pathLang === "ja" ? "font-jp" : pathLang === "zh" ? "font-zh" : "";
 
   const translations = {
@@ -319,7 +319,7 @@ export default function NewsArticle() {
         <SEOHead
           title="Article Not Found | Tengcle Limited"
           description="The requested article could not be found."
-          canonical={`https://tengcle.com${basePath}/news`}
+          canonical={`https://www.tengcle.com${basePath}/news`}
         />
         <div className="min-h-screen bg-cream">
           <Header />
@@ -361,14 +361,14 @@ export default function NewsArticle() {
       <SEOHead
         title={`${title} | Tengcle Limited`}
         description={excerpt}
-        canonical={`https://tengcle.com${basePath}/news/${article.slug}`}
+        canonical={`https://www.tengcle.com${basePath}/news/${article.slug}`}
         keywords="Tengcle news, hotel FF&E, hospitality projects, company updates"
       />
       <div className="min-h-screen bg-cream">
         <Header />
-        
+
         {/* Hero Section */}
-        <section 
+        <section
           className="relative pt-24 pb-16 bg-cover bg-center"
           style={{ backgroundImage: `linear-gradient(rgba(88, 28, 135, 0.85), rgba(88, 28, 135, 0.9)), url(${article.image})` }}
         >
@@ -379,7 +379,7 @@ export default function NewsArticle() {
                 {text.backToNews}
               </Button>
             </Link>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -436,7 +436,7 @@ export default function NewsArticle() {
                 {relatedArticles.map((related) => {
                   const relatedTitle = related.title[pathLang as keyof typeof related.title] || related.title.en;
                   const relatedExcerpt = related.excerpt[pathLang as keyof typeof related.excerpt] || related.excerpt.en;
-                  
+
                   return (
                     <Link key={related.id} href={`${basePath}/news/${related.slug}`}>
                       <motion.article

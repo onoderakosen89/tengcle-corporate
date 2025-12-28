@@ -14,7 +14,6 @@ import { motion, useInView, useScroll, useTransform, type Variants, type Easing 
 import { ArrowRight, Building2, Globe, Users, Home as HomeIcon, Utensils, Dumbbell, BedDouble } from "lucide-react";
 import Header from "@/components/jp/Header";
 import Footer from "@/components/jp/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
 import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
 import SEOHead from "@/components/SEOHead";
@@ -25,66 +24,43 @@ import ImageWithFallback from "@/components/ImageWithFallback";
 const easeJapanese: Easing = [0.22, 1, 0.36, 1]; // Gentle, flowing easing
 
 const fadeInUp: Variants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 40,
     filter: "blur(4px)"
   },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
+  visible: {
+    opacity: 1,
+    y: 0,
     filter: "blur(0px)",
-    transition: { duration: 1.2, ease: easeJapanese } 
+    transition: { duration: 1.2, ease: easeJapanese }
   },
 };
 
 const fadeInDelicate: Variants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     scale: 0.98
   },
-  visible: { 
-    opacity: 1, 
-    scale: 1,
-    transition: { duration: 1.0, ease: easeJapanese } 
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+    scale: 1,
+    transition: { duration: 1.0, ease: easeJapanese }
   },
 };
 
-function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={staggerContainer}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import AnimatedSection from "@/components/AnimatedSection";
 
 // Hero Section with Parallax Effect - 日本的な優雅なパララックス
-function JpHeroSection({ 
-  getFontClass, 
-  getHeadingFontClass, 
-  t, 
-  basePath 
-}: { 
-  getFontClass: () => string; 
-  getHeadingFontClass: () => string; 
-  t: any; 
+function JpHeroSection({
+  getFontClass,
+  getHeadingFontClass,
+  t,
+  basePath
+}: {
+  getFontClass: () => string;
+  getHeadingFontClass: () => string;
+  t: any;
   basePath: string;
 }) {
   const heroRef = useRef(null);
@@ -92,7 +68,7 @@ function JpHeroSection({
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  
+
   // Parallax transforms - 繊細で優雅な動き
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
@@ -101,7 +77,7 @@ function JpHeroSection({
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center bg-white overflow-hidden">
       {/* Background Image with Parallax */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0"
         style={{ y: backgroundY }}
       >
@@ -116,9 +92,9 @@ function JpHeroSection({
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
       </motion.div>
-      
+
       {/* Content with Parallax */}
-      <motion.div 
+      <motion.div
         className="container relative z-10 pt-24 pb-20"
         style={{ y: contentY, opacity }}
       >
@@ -137,7 +113,7 @@ function JpHeroSection({
           >
             {t.hero.tagline}
           </motion.p>
-          
+
           {/* Main Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -149,7 +125,7 @@ function JpHeroSection({
             <br />
             <span className="text-gradient-gold">{t.hero.headline2}</span>
           </motion.h1>
-          
+
           {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -159,7 +135,7 @@ function JpHeroSection({
           >
             {t.hero.subtitle}
           </motion.p>
-          
+
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -179,7 +155,7 @@ function JpHeroSection({
               </Button>
             </Link>
           </motion.div>
-          
+
           {/* Trust Indicators */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -202,7 +178,7 @@ function JpHeroSection({
           </motion.div>
         </motion.div>
       </motion.div>
-      
+
       {/* Scroll Indicator - 繊細なアニメーション */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -210,7 +186,7 @@ function JpHeroSection({
         transition={{ delay: 1.5, duration: 1.0 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
       >
-        <motion.div 
+        <motion.div
           className="w-px h-16 bg-gradient-to-b from-gold to-transparent"
           animate={{ scaleY: [1, 1.15, 1] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
@@ -225,7 +201,7 @@ export default function Home() {
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "ja";
   const basePath = `/jp/${pathLang}`;
-  
+
   // Get body font class based on language
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
@@ -299,19 +275,19 @@ export default function Home() {
       <SEOHead
         title={currentSeo.title}
         description={currentSeo.description}
-        canonical={`https://tengcle.com/jp/${language}`}
+        canonical={`https://www.tengcle.com/jp/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
         ogImage="/images/og-image-jp.jpg"
         keywords={(currentSeo as any).keywords}
       />
       <Header />
-      
+
       {/* Hero Section with Parallax */}
-      <JpHeroSection 
-        getFontClass={getFontClass} 
-        getHeadingFontClass={getHeadingFontClass} 
-        t={t} 
-        basePath={basePath} 
+      <JpHeroSection
+        getFontClass={getFontClass}
+        getHeadingFontClass={getHeadingFontClass}
+        t={t}
+        basePath={basePath}
       />
 
       {/* Services Overview */}
@@ -330,7 +306,7 @@ export default function Home() {
               </p>
             </motion.div>
           </AnimatedSection>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service) => (
               <AnimatedSection key={service.title}>
@@ -361,7 +337,7 @@ export default function Home() {
               </AnimatedSection>
             ))}
           </div>
-          
+
           <AnimatedSection className="text-center mt-12">
             <motion.div variants={fadeInUp}>
               <Link href={`${basePath}/services`}>
@@ -398,7 +374,6 @@ export default function Home() {
       </section>
 
       <Footer />
-      <ScrollToTop region="jp" />
     </div>
   );
 }

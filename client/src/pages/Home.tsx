@@ -13,7 +13,6 @@ import { Link, useLocation } from "wouter";
 import { motion, useInView, useScroll, useTransform, type Variants, type Easing } from "framer-motion";
 import { ArrowRight, Building2, Globe, Shield, Award, CheckCircle2, Package, Cpu, Palette, TrendingUp, Zap } from "lucide-react";
 import AnimatedCounter, { AnimatedCounterPlus } from "@/components/AnimatedCounter";
-import ScrollToTop from "@/components/ScrollToTop";
 import OptimizedImage from "@/components/OptimizedImage";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -26,10 +25,10 @@ const easeOut: Easing = [0.16, 1, 0.3, 1];
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: easeOut } 
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: easeOut }
   },
 };
 
@@ -44,7 +43,7 @@ const staggerContainer: Variants = {
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+
   return (
     <motion.div
       ref={ref}
@@ -59,15 +58,15 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 }
 
 // Hero Section with Parallax Effect
-function HeroSection({ 
-  getFontClass, 
-  getHeadingFontClass, 
-  t, 
-  basePath 
-}: { 
-  getFontClass: () => string; 
-  getHeadingFontClass: () => string; 
-  t: any; 
+function HeroSection({
+  getFontClass,
+  getHeadingFontClass,
+  t,
+  basePath
+}: {
+  getFontClass: () => string;
+  getHeadingFontClass: () => string;
+  t: any;
   basePath: string;
 }) {
   const heroRef = useRef(null);
@@ -75,7 +74,7 @@ function HeroSection({
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  
+
   // Parallax transforms
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
@@ -84,7 +83,7 @@ function HeroSection({
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center bg-white overflow-hidden">
       {/* Background Image with Parallax */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0"
         style={{ y: backgroundY }}
       >
@@ -99,9 +98,9 @@ function HeroSection({
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
       </motion.div>
-      
+
       {/* Content with Parallax */}
-      <motion.div 
+      <motion.div
         className="container relative z-10 pt-24 pb-20"
         style={{ y: contentY, opacity }}
       >
@@ -120,7 +119,7 @@ function HeroSection({
           >
             {t.hero.tagline}
           </motion.p>
-          
+
           {/* Main Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -132,7 +131,7 @@ function HeroSection({
             <br />
             <span className="text-gradient-gold">{t.hero.headline2}</span>
           </motion.h1>
-          
+
           {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -142,7 +141,7 @@ function HeroSection({
           >
             {t.hero.subtitle}
           </motion.p>
-          
+
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -162,7 +161,7 @@ function HeroSection({
               </Button>
             </Link>
           </motion.div>
-          
+
           {/* Trust Indicators */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -185,7 +184,7 @@ function HeroSection({
           </motion.div>
         </motion.div>
       </motion.div>
-      
+
       {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -193,7 +192,7 @@ function HeroSection({
         transition={{ delay: 1.5, duration: 0.8 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
       >
-        <motion.div 
+        <motion.div
           className="w-px h-16 bg-gradient-to-b from-gold to-transparent"
           animate={{ scaleY: [1, 1.2, 1] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -208,7 +207,7 @@ export default function Home() {
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "en";
   const basePath = `/hk/${pathLang}`;
-  
+
   // Get body font class based on language
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
@@ -249,19 +248,19 @@ export default function Home() {
       <SEOHead
         title={currentSeo.title}
         description={currentSeo.description}
-        canonical={`https://tengcle.com/hk/${language}`}
+        canonical={`https://www.tengcle.com/hk/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
         ogImage="/images/og-image-hk.jpg"
         keywords={currentSeo.keywords}
       />
       <Header />
-      
+
       {/* Hero Section with Parallax */}
-      <HeroSection 
-        getFontClass={getFontClass} 
-        getHeadingFontClass={getHeadingFontClass} 
-        t={t} 
-        basePath={basePath} 
+      <HeroSection
+        getFontClass={getFontClass}
+        getHeadingFontClass={getHeadingFontClass}
+        t={t}
+        basePath={basePath}
       />
 
       {/* Services Overview */}
@@ -280,7 +279,7 @@ export default function Home() {
               </p>
             </motion.div>
           </AnimatedSection>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -330,7 +329,7 @@ export default function Home() {
               </AnimatedSection>
             ))}
           </div>
-          
+
           <AnimatedSection className="text-center mt-12">
             <motion.div variants={fadeInUp}>
               <Link href={`${basePath}/services`}>
@@ -360,7 +359,7 @@ export default function Home() {
               </p>
             </motion.div>
           </AnimatedSection>
-          
+
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Project 1 */}
             <AnimatedSection>
@@ -391,7 +390,7 @@ export default function Home() {
                 </div>
               </motion.div>
             </AnimatedSection>
-            
+
             {/* Project 2 */}
             <AnimatedSection>
               <motion.div
@@ -422,7 +421,7 @@ export default function Home() {
               </motion.div>
             </AnimatedSection>
           </div>
-          
+
           <AnimatedSection className="text-center mt-12">
             <motion.div variants={fadeInUp}>
               <Link href={`${basePath}/portfolio`}>
@@ -452,7 +451,7 @@ export default function Home() {
               </p>
             </motion.div>
           </AnimatedSection>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
@@ -527,7 +526,6 @@ export default function Home() {
       </section>
 
       <Footer />
-      <ScrollToTop region="hk" />
     </div>
   );
 }

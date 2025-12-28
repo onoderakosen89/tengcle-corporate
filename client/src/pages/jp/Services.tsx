@@ -15,49 +15,28 @@ import Header from "@/components/jp/Header";
 import Footer from "@/components/jp/Footer";
 import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
+import AnimatedSection from "@/components/AnimatedSection";
+import SEOHead, { generateBreadcrumbSchema } from "@/components/SEOHead";
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: easeOut } 
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    y: 0,
+    transition: { duration: 0.8, ease: easeOut }
   },
 };
 
-function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={staggerContainer}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+
 
 export default function Services() {
   const { t, language } = useJpLanguage();
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "ja";
   const basePath = `/jp/${pathLang}`;
-  
+
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
@@ -76,11 +55,11 @@ export default function Services() {
       title: t.services.realEstate.title,
       description: t.services.realEstate.description,
       image: "/images/service-real-estate.jpg",
-      features: language === "ja" 
+      features: language === "ja"
         ? ["賃貸物件の管理・運営", "入居者対応・クレーム処理", "収益最大化のご提案", "定期メンテナンス"]
         : language === "zh"
-        ? ["租赁物业管理运营", "租户对应・投诉处理", "收益最大化建议", "定期维护"]
-        : ["Rental property management", "Tenant support & complaint handling", "Revenue maximization proposals", "Regular maintenance"],
+          ? ["租赁物业管理运营", "租户对应・投诉处理", "收益最大化建议", "定期维护"]
+          : ["Rental property management", "Tenant support & complaint handling", "Revenue maximization proposals", "Regular maintenance"],
     },
     {
       icon: Utensils,
@@ -90,8 +69,8 @@ export default function Services() {
       features: language === "ja"
         ? ["レストラン・カフェの企画・運営", "店舗開発・内装設計", "メニュー開発", "スタッフ教育・研修"]
         : language === "zh"
-        ? ["餐厅咖啡馆策划运营", "店铺开发・室内设计", "菜单开发", "员工教育培训"]
-        : ["Restaurant & cafe planning", "Store development & interior design", "Menu development", "Staff training & education"],
+          ? ["餐厅咖啡馆策划运营", "店铺开发・室内设计", "菜单开发", "员工教育培训"]
+          : ["Restaurant & cafe planning", "Store development & interior design", "Menu development", "Staff training & education"],
     },
     {
       icon: Dumbbell,
@@ -101,8 +80,8 @@ export default function Services() {
       features: language === "ja"
         ? ["プライベートジムスペース", "最新トレーニング機器", "清潔な環境", "柔軟な予約システム"]
         : language === "zh"
-        ? ["私人健身空间", "最新训练设备", "清洁环境", "灵活预约系统"]
-        : ["Private gym space", "Latest training equipment", "Clean environment", "Flexible booking system"],
+          ? ["私人健身空间", "最新训练设备", "清洁环境", "灵活预约系统"]
+          : ["Private gym space", "Latest training equipment", "Clean environment", "Flexible booking system"],
     },
     {
       icon: BedDouble,
@@ -112,8 +91,8 @@ export default function Services() {
       features: language === "ja"
         ? ["次世代カプセル設計", "快適な睡眠環境", "充実のアメニティ", "リーズナブルな料金"]
         : language === "zh"
-        ? ["新一代胶囊设计", "舒适睡眠环境", "充实的设施", "实惠的价格"]
-        : ["Next-gen capsule design", "Comfortable sleep environment", "Full amenities", "Affordable pricing"],
+          ? ["新一代胶囊设计", "舒适睡眠环境", "充实的设施", "实惠的价格"]
+          : ["Next-gen capsule design", "Comfortable sleep environment", "Full amenities", "Affordable pricing"],
     },
     {
       icon: Users,
@@ -123,32 +102,37 @@ export default function Services() {
       features: language === "ja"
         ? ["企業と求職者のマッチング", "業界専門知識", "キャリアカウンセリング", "入社後フォロー"]
         : language === "zh"
-        ? ["企业与求职者匹配", "行业专业知识", "职业咨询", "入职后跟进"]
-        : ["Company-candidate matching", "Industry expertise", "Career counseling", "Post-hire follow-up"],
+          ? ["企业与求职者匹配", "行业专业知识", "职业咨询", "入职后跟进"]
+          : ["Company-candidate matching", "Industry expertise", "Career counseling", "Post-hire follow-up"],
     },
   ];
 
   return (
     <div className="min-h-screen bg-white" data-region="jp">
+      <SEOHead
+        title={t.services.title + " | Tengcle Inc."}
+        description={t.services.description}
+        canonical={`https://www.tengcle.com/jp/${language}/services`}
+      />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-light-gray">
         <div className="container">
           <AnimatedSection className="text-center">
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}
             >
               {t.services.subtitle}
             </motion.p>
-            <motion.h1 
+            <motion.h1
               variants={fadeInUp}
               className={`${getHeadingFontClass()} text-4xl md:text-5xl text-navy mb-6`}
             >
               {t.services.title}
             </motion.h1>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className={`text-slate max-w-2xl mx-auto ${getFontClass()}`}
             >
@@ -160,7 +144,7 @@ export default function Services() {
 
       {/* Services Detail */}
       {services.map((service, index) => (
-        <section 
+        <section
           key={service.title}
           className={`py-20 lg:py-28 ${index % 2 === 0 ? 'bg-white' : 'bg-light-gray'}`}
         >
@@ -168,7 +152,7 @@ export default function Services() {
             <div className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
               {/* Image */}
               <AnimatedSection className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-                <motion.div 
+                <motion.div
                   variants={fadeInUp}
                   className="relative overflow-hidden rounded-lg shadow-lg"
                 >

@@ -4,6 +4,7 @@ import { Building2, Home as HomeIcon, CheckCircle, ArrowRight } from "lucide-rea
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
+import SEOHead, { generateBreadcrumbSchema } from "@/components/SEOHead";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -52,6 +53,16 @@ export default function UsServices() {
 
   return (
     <div className="min-h-screen bg-white" data-region="us">
+      <SEOHead
+        title={t('services.title') + " | Tengcle LLC"}
+        description={t('services.subtitle')}
+        canonical={`https://www.tengcle.com/us/${language}/services`}
+        locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
+        structuredData={generateBreadcrumbSchema([
+          { name: "Home", url: "https://www.tengcle.com/us" },
+          { name: t('services.title'), url: `https://www.tengcle.com/us/${language}/services` }
+        ])}
+      />
       <UsHeader />
 
       {/* Hero Section */}
@@ -96,9 +107,8 @@ export default function UsServices() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={staggerContainer}
-                className={`grid lg:grid-cols-2 gap-16 items-center ${
-                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                }`}
+                className={`grid lg:grid-cols-2 gap-16 items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                  }`}
               >
                 <motion.div
                   variants={fadeInUp}

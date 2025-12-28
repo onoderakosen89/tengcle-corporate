@@ -22,44 +22,23 @@ const easeOut: Easing = [0.16, 1, 0.3, 1];
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: easeOut } 
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    y: 0,
+    transition: { duration: 0.8, ease: easeOut }
   },
 };
 
-function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={staggerContainer}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import AnimatedSection from "@/components/AnimatedSection";
+
+import SEOHead, { generateBreadcrumbSchema } from "@/components/SEOHead";
 
 export default function Services() {
   const { t, language } = useLanguage();
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "en";
   const basePath = `/hk/${pathLang}`;
-  
+
   // Get body font class based on language
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
@@ -211,8 +190,13 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-white" data-region="hk">
+      <SEOHead
+        title={t.services.title + " | Tengcle Limited"}
+        description={t.services.description}
+        canonical={`https://www.tengcle.com/hk/${language}/services`}
+      />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-light-gray">
         <div className="container">
@@ -240,9 +224,8 @@ export default function Services() {
               <AnimatedSection key={service.title}>
                 <motion.div
                   variants={fadeInUp}
-                  className={`grid lg:grid-cols-2 gap-12 items-center ${
-                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                  }`}
+                  className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                    }`}
                 >
                   {/* Content */}
                   <div className={index % 2 === 1 ? "lg:order-2" : ""}>
@@ -262,7 +245,7 @@ export default function Services() {
                       ))}
                     </ul>
                   </div>
-                  
+
                   {/* Image */}
                   <div className={`relative ${index % 2 === 1 ? "lg:order-1" : ""}`}>
                     <div className="relative overflow-hidden shadow-xl">
@@ -277,7 +260,7 @@ export default function Services() {
 
                   </div>
                 </motion.div>
-                
+
                 {index < services.length - 1 && (
                   <div className="section-divider mt-20" />
                 )}

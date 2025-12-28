@@ -203,46 +203,46 @@ function NewsCard({ article, language, basePath }: { article: NewsArticle; langu
 
   return (
     <Link href={`${basePath}/news/${article.slug}`}>
-    <motion.article
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.6 }}
-      className="group bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer"
-    >
-      <div className="aspect-video overflow-hidden">
-        <img
-          src={article.image}
-          alt={article.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-      </div>
-      <div className="p-6">
-        <div className="flex items-center gap-4 mb-4">
-          <span className="px-3 py-1 bg-gold/10 text-gold text-xs font-medium">
-            {article.category}
-          </span>
-          <span className="flex items-center gap-1 text-slate text-xs">
-            <Calendar className="h-3 w-3" />
-            {formatDate(article.date)}
-          </span>
-          <span className="flex items-center gap-1 text-slate text-xs">
-            <Clock className="h-3 w-3" />
-            {article.readTime}
+      <motion.article
+        ref={ref}
+        initial={{ opacity: 0, y: 30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.6 }}
+        className="group bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+      >
+        <div className="aspect-video overflow-hidden">
+          <img
+            src={article.image}
+            alt={article.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+        <div className="p-6">
+          <div className="flex items-center gap-4 mb-4">
+            <span className="px-3 py-1 bg-gold/10 text-gold text-xs font-medium">
+              {article.category}
+            </span>
+            <span className="flex items-center gap-1 text-slate text-xs">
+              <Calendar className="h-3 w-3" />
+              {formatDate(article.date)}
+            </span>
+            <span className="flex items-center gap-1 text-slate text-xs">
+              <Clock className="h-3 w-3" />
+              {article.readTime}
+            </span>
+          </div>
+          <h3 className={`text-xl font-heading text-charcoal mb-3 group-hover:text-purple transition-colors ${fontClass}`}>
+            {article.title}
+          </h3>
+          <p className={`text-slate text-sm leading-relaxed mb-4 ${fontClass}`}>
+            {article.excerpt}
+          </p>
+          <span className="flex items-center gap-2 text-purple text-sm font-medium group-hover:gap-3 transition-all">
+            {language === "ja" ? "続きを読む" : language === "zh" ? "阅读更多" : "Read More"}
+            <ArrowRight className="h-4 w-4" />
           </span>
         </div>
-        <h3 className={`text-xl font-heading text-charcoal mb-3 group-hover:text-purple transition-colors ${fontClass}`}>
-          {article.title}
-        </h3>
-        <p className={`text-slate text-sm leading-relaxed mb-4 ${fontClass}`}>
-          {article.excerpt}
-        </p>
-        <span className="flex items-center gap-2 text-purple text-sm font-medium group-hover:gap-3 transition-all">
-          {language === "ja" ? "続きを読む" : language === "zh" ? "阅读更多" : "Read More"}
-          <ArrowRight className="h-4 w-4" />
-        </span>
-      </div>
-    </motion.article>
+      </motion.article>
     </Link>
   );
 }
@@ -299,12 +299,12 @@ export default function News() {
       <SEOHead
         title={text.metaTitle}
         description={text.metaDescription}
-        canonical={`https://tengcle.com${basePath}/news`}
+        canonical={`https://www.tengcle.com${basePath}/news`}
         keywords="Tengcle news, hotel FF&E, hospitality projects, company updates, Hong Kong business"
       />
       <div className="min-h-screen bg-cream">
         <Header />
-        
+
         {/* Hero Section */}
         <section className="relative pt-24 pb-16 bg-gradient-to-br from-purple via-purple/95 to-purple-dark overflow-hidden">
           <div className="absolute inset-0 opacity-10">
@@ -312,7 +312,7 @@ export default function News() {
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             }} />
           </div>
-          
+
           <div className="container relative z-10">
             <Link href={basePath}>
               <Button variant="ghost" className="text-white/80 hover:text-white hover:bg-white/10 mb-6">
@@ -320,7 +320,7 @@ export default function News() {
                 {text.backToHome}
               </Button>
             </Link>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -341,9 +341,9 @@ export default function News() {
           <div className="container">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {articles.map((article) => (
-                <NewsCard 
-                  key={article.id} 
-                  article={article} 
+                <NewsCard
+                  key={article.id}
+                  article={article}
                   language={pathLang}
                   basePath={basePath}
                 />

@@ -15,7 +15,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import SEOHead, { generateFAQSchema } from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
 import { cn } from "@/lib/utils";
 
 interface FAQItem {
@@ -245,7 +244,7 @@ export default function FAQ() {
       <SEOHead
         title={currentSeo.title}
         description={currentSeo.description}
-        canonical={`https://tengcle.com/hk/${language}/faq`}
+        canonical={`https://www.tengcle.com/hk/${language}/faq`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
         ogImage="/images/og-image-hk.jpg"
         keywords={currentSeo.keywords}
@@ -307,7 +306,6 @@ export default function FAQ() {
       </section>
 
       <Footer />
-      <ScrollToTop region="hk" />
     </div>
   );
 }

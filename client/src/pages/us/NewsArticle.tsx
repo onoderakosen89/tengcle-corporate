@@ -151,12 +151,12 @@ export default function NewsArticle() {
   const [location] = useLocation();
   const params = useParams();
   const articleId = params.id;
-  
+
   const pathLang = location.split("/")[2] || "en";
   const basePath = `/us/${pathLang}`;
 
   const article = newsArticles.find(a => a.id === articleId);
-  
+
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
@@ -189,12 +189,12 @@ export default function NewsArticle() {
         title={`${article.title[language as keyof typeof article.title]} | Tengcle LLC`}
         description={article.excerpt[language as keyof typeof article.excerpt]}
         keywords="Tengcle LLC, News, Property Management, New Jersey"
-        canonical={`https://tengcle.com${basePath}/news/${articleId}`}
+        canonical={`https://www.tengcle.com${basePath}/news/${articleId}`}
         ogType="article"
       />
       <div className="min-h-screen bg-white">
         <Header />
-        
+
         {/* Hero Section */}
         <section className="pt-24 pb-12 bg-gradient-to-b from-navy to-navy/95">
           <div className="container max-w-4xl">
@@ -210,7 +210,7 @@ export default function NewsArticle() {
                   {backToNews}
                 </span>
               </Link>
-              
+
               {/* Meta */}
               <div className="flex flex-wrap items-center gap-3 mb-4">
                 <span className="inline-flex items-center gap-1.5 text-sm text-white/70">
@@ -221,7 +221,7 @@ export default function NewsArticle() {
                   {article.category}
                 </span>
               </div>
-              
+
               {/* Title */}
               <h1 className={`text-3xl md:text-4xl font-bold text-white ${getFontClass()}`}>
                 {article.title[language as keyof typeof article.title]}

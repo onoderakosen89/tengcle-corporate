@@ -13,51 +13,31 @@ import { motion, useInView, type Variants, type Easing } from "framer-motion";
 import { ArrowRight, Building2, Target, Heart, ExternalLink } from "lucide-react";
 import Header from "@/components/jp/Header";
 import Footer from "@/components/jp/Footer";
+
 import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
+import AnimatedSection from "@/components/AnimatedSection";
+import SEOHead, { generateBreadcrumbSchema, generateOrganizationSchema } from "@/components/SEOHead";
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: easeOut } 
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    y: 0,
+    transition: { duration: 0.8, ease: easeOut }
   },
 };
 
-function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={staggerContainer}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+
 
 export default function About() {
   const { t, language } = useJpLanguage();
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "ja";
   const basePath = `/jp/${pathLang}`;
-  
+
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
@@ -72,25 +52,56 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-white" data-region="jp">
+      <SEOHead
+        title={t.about.title + " | Tengcle Inc."}
+        description={t.about.description}
+        canonical={`https://www.tengcle.com/jp/${language}/about`}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@graph": [
+            generateOrganizationSchema({
+              name: "Tengcle Inc.",
+              description: t.about.description,
+              url: "https://www.tengcle.com/jp",
+              email: "info@tengcle.com",
+              address: {
+                street: "2-19-20 Takanawa",
+                city: "Minato-ku",
+                region: "Tokyo",
+                country: "JP",
+                postalCode: "108-0074"
+              },
+              sameAs: [
+                "https://www.tengcle.com",
+                "https://www.tengcle.com/us"
+              ]
+            }),
+            generateBreadcrumbSchema([
+              { name: "Home", url: "https://www.tengcle.com/jp" },
+              { name: t.about.title, url: `https://www.tengcle.com/jp/${language}/about` }
+            ])
+          ]
+        }}
+      />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-light-gray">
         <div className="container">
           <AnimatedSection className="text-center">
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}
             >
               {t.about.subtitle}
             </motion.p>
-            <motion.h1 
+            <motion.h1
               variants={fadeInUp}
               className={`${getHeadingFontClass()} text-4xl md:text-5xl text-navy mb-6`}
             >
               {t.about.title}
             </motion.h1>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className={`text-slate max-w-2xl mx-auto ${getFontClass()}`}
             >
@@ -106,7 +117,7 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Image */}
             <AnimatedSection>
-              <motion.div 
+              <motion.div
                 variants={fadeInUp}
                 className="relative overflow-hidden rounded-lg shadow-lg"
               >
@@ -131,9 +142,9 @@ export default function About() {
                 <p className={`text-slate leading-relaxed mb-8 ${getFontClass()}`}>
                   {t.about.story.p2}
                 </p>
-                <a 
-                  href="https://tengcle.com" 
-                  target="_blank" 
+                <a
+                  href="https://www.tengcle.com"
+                  target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-6 py-5 text-sm tracking-wider ${getFontClass()}`}>
@@ -151,7 +162,7 @@ export default function About() {
       <section className="py-20 lg:py-28 bg-light-gray">
         <div className="container">
           <AnimatedSection className="text-center mb-16">
-            <motion.h2 
+            <motion.h2
               variants={fadeInUp}
               className={`${getHeadingFontClass()} text-3xl md:text-4xl text-navy mb-6`}
             >
@@ -160,7 +171,7 @@ export default function About() {
           </AnimatedSection>
 
           <AnimatedSection>
-            <motion.div 
+            <motion.div
               variants={fadeInUp}
               className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg overflow-hidden"
             >
@@ -202,9 +213,9 @@ export default function About() {
                       {language === "ja" ? "グループ本社" : language === "zh" ? "集团总部" : "Group HQ"}
                     </th>
                     <td className={`py-5 px-6 text-charcoal ${getFontClass()}`}>
-                      <a 
-                        href="https://tengcle.com" 
-                        target="_blank" 
+                      <a
+                        href="https://www.tengcle.com"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="text-navy hover:text-gold transition-colors flex items-center gap-2"
                       >
@@ -224,7 +235,7 @@ export default function About() {
       <section className="py-20 lg:py-28 bg-white">
         <div className="container">
           <AnimatedSection className="text-center mb-16">
-            <motion.h2 
+            <motion.h2
               variants={fadeInUp}
               className={`${getHeadingFontClass()} text-3xl md:text-4xl text-navy mb-6`}
             >
@@ -234,7 +245,7 @@ export default function About() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <AnimatedSection>
-              <motion.div 
+              <motion.div
                 variants={fadeInUp}
                 className="bg-light-gray p-8 rounded-lg"
               >
@@ -249,7 +260,7 @@ export default function About() {
             </AnimatedSection>
 
             <AnimatedSection>
-              <motion.div 
+              <motion.div
                 variants={fadeInUp}
                 className="bg-light-gray p-8 rounded-lg"
               >

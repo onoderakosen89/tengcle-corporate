@@ -64,7 +64,7 @@ export default function SEOHead({
     updateMeta("og:title", title, true);
     updateMeta("og:description", description, true);
     updateMeta("og:type", ogType, true);
-    updateMeta("og:image", ogImage.startsWith("http") ? ogImage : `https://tengcle.com${ogImage}`, true);
+    updateMeta("og:image", ogImage.startsWith("http") ? ogImage : `https://www.tengcle.com${ogImage}`, true);
     updateMeta("og:image:width", "1200", true);
     updateMeta("og:image:height", "630", true);
     updateMeta("og:locale", locale, true);
@@ -74,7 +74,7 @@ export default function SEOHead({
     updateMeta("twitter:card", "summary_large_image");
     updateMeta("twitter:title", title);
     updateMeta("twitter:description", description);
-    updateMeta("twitter:image", ogImage.startsWith("http") ? ogImage : `https://tengcle.com${ogImage}`);
+    updateMeta("twitter:image", ogImage.startsWith("http") ? ogImage : `https://www.tengcle.com${ogImage}`);
     updateMeta("twitter:image:alt", title);
 
     // Article specific meta tags
@@ -214,10 +214,10 @@ export function generateWebPageSchema(page: {
         "name": page.name,
         "description": page.description,
         "isPartOf": {
-          "@id": "https://tengcle.com/#website"
+          "@id": "https://www.tengcle.com/#website"
         },
         "about": {
-          "@id": "https://tengcle.com/#organization"
+          "@id": "https://www.tengcle.com/#organization"
         },
         "inLanguage": "en"
       }
@@ -273,6 +273,8 @@ export function generateOrganizationSchema(org: {
     postalCode?: string;
   };
   sameAs?: string[];
+  foundingDate?: string;
+  founders?: { name: string }[];
 }) {
   return {
     "@context": "https://schema.org",
@@ -297,6 +299,64 @@ export function generateOrganizationSchema(org: {
         ...(org.address.postalCode && { "postalCode": org.address.postalCode })
       }
     }),
-    ...(org.sameAs && { "sameAs": org.sameAs })
+    ...(org.sameAs && { "sameAs": org.sameAs }),
+    ...(org.foundingDate && { "foundingDate": org.foundingDate }),
+    ...(org.founders && {
+      "founders": org.founders.map(f => ({
+        "@type": "Person",
+        "name": f.name
+      }))
+    })
+  };
+}
+
+/**
+ * Generate LocalBusiness structured data
+ */
+export function generateLocalBusinessSchema(business: {
+  name: string;
+  image?: string;
+  telephone?: string;
+  email?: string;
+  url: string;
+  address: {
+    street: string;
+    city: string;
+    region: string;
+    postalCode: string;
+    country: string;
+  };
+  geo?: {
+    latitude: string;
+    longitude: string;
+  };
+  openingHours?: string[];
+  priceRange?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": business.name,
+    ...(business.image && { "image": business.image }),
+    "url": business.url,
+    ...(business.telephone && { "telephone": business.telephone }),
+    ...(business.email && { "email": business.email }),
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": business.address.street,
+      "addressLocality": business.address.city,
+      "addressRegion": business.address.region,
+      "postalCode": business.address.postalCode,
+      "addressCountry": business.address.country
+    },
+    ...(business.geo && {
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": business.geo.latitude,
+        "longitude": business.geo.longitude
+      }
+    }),
+    ...(business.openingHours && { "openingHours": business.openingHours }),
+    ...(business.priceRange && { "priceRange": business.priceRange })
   };
 }

@@ -10,15 +10,16 @@ import { Link, useLocation } from "wouter";
 import { motion, type Easing } from "framer-motion";
 import { ArrowLeft, Shield, Cookie, Database, Lock, Mail, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SEOHead from "@/components/SEOHead";
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.6, ease: easeOut } 
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: easeOut }
   },
 };
 
@@ -260,17 +261,17 @@ const translations = {
 
 export default function Privacy() {
   const [location] = useLocation();
-  
+
   // Determine language from URL
   const getLang = (): "en" | "ja" | "zh" => {
     if (location.includes("/ja")) return "ja";
     if (location.includes("/zh")) return "zh";
     return "en";
   };
-  
+
   const lang = getLang();
   const t = translations[lang];
-  
+
   // Determine back link based on current path
   const getBackLink = () => {
     if (location.startsWith("/hk")) return `/hk/${lang}`;
@@ -285,6 +286,12 @@ export default function Privacy() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <SEOHead
+        title={`${t.title} | Tengcle Group`}
+        description={t.intro.substring(0, 150) + "..."}
+        canonical={`https://www.tengcle.com${location === "/" ? "" : location}`}
+        locale={lang === "ja" ? "ja_JP" : lang === "zh" ? "zh_CN" : "en_US"}
+      />
       {/* Header */}
       <header className="bg-navy text-white py-6">
         <div className="container px-4">

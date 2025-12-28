@@ -13,7 +13,6 @@ import { Link, useLocation } from "wouter";
 import { Building2, Home as HomeIcon, Key, Shield, ArrowRight, CheckCircle } from "lucide-react";
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import SEOHead from "@/components/SEOHead";
 
@@ -40,7 +39,7 @@ function UsHeroSection({ basePath, t }: { basePath: string; t: (key: string) => 
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  
+
   // Parallax transforms - Bold and dynamic movement
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
@@ -50,7 +49,7 @@ function UsHeroSection({ basePath, t }: { basePath: string; t: (key: string) => 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center bg-purple-deep overflow-hidden">
       {/* Background Image with Parallax */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0"
         style={{ y: backgroundY, scale: backgroundScale }}
       >
@@ -63,7 +62,7 @@ function UsHeroSection({ basePath, t }: { basePath: string; t: (key: string) => 
       </motion.div>
 
       {/* Content with Parallax */}
-      <motion.div 
+      <motion.div
         className="container relative z-10 pt-32 pb-20"
         style={{ y: contentY, opacity }}
       >
@@ -184,7 +183,7 @@ export default function UsHome() {
       <SEOHead
         title={currentSeo.title}
         description={currentSeo.description}
-        canonical={`https://tengcle.com/us/${language}`}
+        canonical={`https://www.tengcle.com/us/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
         ogImage="/images/og-image-us.jpg"
         keywords={(currentSeo as any).keywords}
@@ -335,7 +334,6 @@ export default function UsHome() {
       </section>
 
       <UsFooter />
-      <ScrollToTop region="us" />
     </div>
   );
 }

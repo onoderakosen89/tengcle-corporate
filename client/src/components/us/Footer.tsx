@@ -10,7 +10,7 @@ export default function UsFooter() {
 
   const faqLabel = language === "ja" ? "よくある質問" : language === "zh" ? "常见问题" : "FAQ";
   const newsLabel = language === "ja" ? "ニュース" : language === "zh" ? "新闻动态" : "News";
-  
+
   const navLinks = [
     { href: basePath, label: t('nav.home') },
     { href: `${basePath}/services`, label: t('nav.services') },

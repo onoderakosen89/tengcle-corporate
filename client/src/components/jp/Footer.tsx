@@ -25,7 +25,7 @@ export default function Footer() {
 
   const faqLabel = language === "ja" ? "よくある質問" : language === "zh" ? "常见问题" : "FAQ";
   const newsLabel = language === "ja" ? "ニュース" : language === "zh" ? "新闻动态" : "News";
-  
+
   const navItems = [
     { href: basePath, label: t.nav.home },
     { href: `${basePath}/services`, label: t.nav.services },
@@ -42,9 +42,9 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Logo & Description */}
           <div className="lg:col-span-1">
-            <img 
-              src="/images/tengcle-logo-white.png" 
-              alt="Tengcle" 
+            <img
+              src="/images/tengcle-logo-white.png"
+              alt="Tengcle"
               className="h-12 w-auto mb-6"
             />
             <p className={`text-gray-300 text-sm leading-relaxed ${getFontClass()}`}>
@@ -80,8 +80,8 @@ export default function Footer() {
                 <Mail className="h-4 w-4 text-gold mt-1 flex-shrink-0" />
                 <div>
                   <p className={`text-gray-400 text-xs mb-1 ${getFontClass()}`}>{t.contact.email}</p>
-                  <a 
-                    href="mailto:info@tengcle.com" 
+                  <a
+                    href="mailto:info@tengcle.com"
                     className="text-gray-300 hover:text-white transition-colors text-sm"
                   >
                     info@tengcle.com

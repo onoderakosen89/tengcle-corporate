@@ -4,6 +4,7 @@ import { Building2, MapPin, Globe, ArrowRight, ExternalLink } from "lucide-react
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
+import SEOHead, { generateBreadcrumbSchema, generateOrganizationSchema } from "@/components/SEOHead";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -50,6 +51,38 @@ export default function UsAbout() {
 
   return (
     <div className="min-h-screen bg-white" data-region="us">
+      <SEOHead
+        title={t('about.title') + " | Tengcle LLC"}
+        description={t('about.description')}
+        canonical={`https://www.tengcle.com/us/${language}/about`}
+        locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@graph": [
+            generateOrganizationSchema({
+              name: "Tengcle LLC",
+              description: t('about.description'),
+              url: "https://www.tengcle.com/us",
+              email: "us@tengcle.com",
+              address: {
+                street: "17 Hamilton Ave",
+                city: "Weehawken",
+                region: "NJ",
+                country: "US",
+                postalCode: "07086"
+              },
+              sameAs: [
+                "https://www.tengcle.com",
+                "https://www.tengcle.com/jp"
+              ]
+            }),
+            generateBreadcrumbSchema([
+              { name: "Home", url: "https://www.tengcle.com/us" },
+              { name: t('about.title'), url: `https://www.tengcle.com/us/${language}/about` }
+            ])
+          ]
+        }}
+      />
       <UsHeader />
 
       {/* Hero Section */}
@@ -96,7 +129,7 @@ export default function UsAbout() {
               <p className="text-slate leading-relaxed mb-6">
                 {t('about.description')}
               </p>
-                <div className="bg-light-gray p-6 mb-6">
+              <div className="bg-light-gray p-6 mb-6">
                 <h3 className="font-heading text-lg text-charcoal mb-4">Company Information</h3>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
@@ -117,9 +150,9 @@ export default function UsAbout() {
                   <div className="flex items-start gap-3">
                     <Globe className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
                     <div>
-                      <a 
-                        href="https://tengcle.com/us/en" 
-                        target="_blank" 
+                      <a
+                        href="https://tengcle.com/us/en"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="text-purple hover:text-gold transition-colors flex items-center gap-1"
                       >
@@ -187,26 +220,22 @@ export default function UsAbout() {
               >
                 <Link
                   href={office.href}
-                  className={`block p-8 transition-all ${
-                    office.current
-                      ? "bg-purple text-white"
-                      : "bg-white hover:shadow-lg"
-                  }`}
+                  className={`block p-8 transition-all ${office.current
+                    ? "bg-purple text-white"
+                    : "bg-white hover:shadow-lg"
+                    }`}
                 >
                   <span className="text-4xl mb-4 block">{office.flag}</span>
-                  <h3 className={`font-heading text-xl mb-2 ${
-                    office.current ? "text-white" : "text-charcoal"
-                  }`}>
+                  <h3 className={`font-heading text-xl mb-2 ${office.current ? "text-white" : "text-charcoal"
+                    }`}>
                     {office.name}
                   </h3>
-                  <p className={`text-sm mb-2 ${
-                    office.current ? "text-gold" : "text-gold"
-                  }`}>
+                  <p className={`text-sm mb-2 ${office.current ? "text-gold" : "text-gold"
+                    }`}>
                     {office.role}
                   </p>
-                  <p className={`text-sm ${
-                    office.current ? "text-gray-300" : "text-slate"
-                  }`}>
+                  <p className={`text-sm ${office.current ? "text-gray-300" : "text-slate"
+                    }`}>
                     {office.location}
                   </p>
                 </Link>

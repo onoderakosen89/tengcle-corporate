@@ -11,15 +11,15 @@
 
 import { useRef } from "react";
 import { motion, useInView, type Variants, type Easing } from "framer-motion";
-import { 
-  Briefcase, 
-  MapPin, 
-  Clock, 
-  CheckCircle2, 
-  Shield, 
-  Calendar, 
-  Gift, 
-  Train, 
+import {
+  Briefcase,
+  MapPin,
+  Clock,
+  CheckCircle2,
+  Shield,
+  Calendar,
+  Gift,
+  Train,
   Home,
   Mail,
   ArrowRight,
@@ -36,49 +36,28 @@ import Footer from "@/components/jp/Footer";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
+import AnimatedSection from "@/components/AnimatedSection";
+import SEOHead from "@/components/SEOHead";
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: easeOut } 
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    y: 0,
+    transition: { duration: 0.8, ease: easeOut }
   },
 };
 
-function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={staggerContainer}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+
 
 export default function Careers() {
   const { t, language } = useJpLanguage();
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "ja";
   const basePath = `/jp/${pathLang}`;
-  
+
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
@@ -93,23 +72,23 @@ export default function Careers() {
 
   // Full-time positions
   const fullTimePositions = [
-    { 
-      key: "realEstateManager", 
+    {
+      key: "realEstateManager",
       data: t.careers.positionsList.realEstateManager,
       icon: <Building className="h-6 w-6" />,
     },
-    { 
-      key: "cafeManager", 
+    {
+      key: "cafeManager",
       data: t.careers.positionsList.cafeManager,
       icon: <Utensils className="h-6 w-6" />,
     },
-    { 
-      key: "hotelFrontStaff", 
+    {
+      key: "hotelFrontStaff",
       data: t.careers.positionsList.hotelFrontStaff,
       icon: <BedDouble className="h-6 w-6" />,
     },
-    { 
-      key: "recruitmentSales", 
+    {
+      key: "recruitmentSales",
       data: t.careers.positionsList.recruitmentSales,
       icon: <Users className="h-6 w-6" />,
     },
@@ -117,18 +96,18 @@ export default function Careers() {
 
   // Part-time and Arubaito positions
   const partTimePositions = [
-    { 
-      key: "realEstateAssistant", 
+    {
+      key: "realEstateAssistant",
       data: t.careers.positionsList.realEstateAssistant,
       icon: <Building className="h-6 w-6" />,
     },
-    { 
-      key: "cafeStaff", 
+    {
+      key: "cafeStaff",
       data: t.careers.positionsList.cafeStaff,
       icon: <Utensils className="h-6 w-6" />,
     },
-    { 
-      key: "hotelCleaningStaff", 
+    {
+      key: "hotelCleaningStaff",
       data: t.careers.positionsList.hotelCleaningStaff,
       icon: <BedDouble className="h-6 w-6" />,
     },
@@ -144,38 +123,43 @@ export default function Careers() {
 
   return (
     <div className="min-h-screen bg-white" data-region="jp">
+      <SEOHead
+        title={t.careers.title + " | Tengcle Inc."}
+        description={t.careers.description}
+        canonical={`https://www.tengcle.com/jp/${language}/careers`}
+      />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-light-gray to-white">
         <div className="container">
           <AnimatedSection className="text-center max-w-3xl mx-auto">
-            <motion.div 
+            <motion.div
               variants={fadeInUp}
               className="inline-flex items-center gap-2 bg-navy/10 px-4 py-2 rounded-full mb-6"
             >
               <UserCheck className="h-4 w-4 text-navy" />
               <span className={`text-navy text-sm font-medium ${getFontClass()}`}>{t.careers.midCareer}</span>
             </motion.div>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}
             >
               {t.careers.subtitle}
             </motion.p>
-            <motion.h1 
+            <motion.h1
               variants={fadeInUp}
               className={`${getHeadingFontClass()} text-4xl md:text-5xl text-navy mb-6`}
             >
               {t.careers.title}
             </motion.h1>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className={`text-slate text-lg leading-relaxed mb-4 ${getFontClass()}`}
             >
               {t.careers.description}
             </motion.p>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className={`text-gold-dark font-semibold ${getFontClass()}`}
             >
@@ -199,7 +183,7 @@ export default function Careers() {
                 </h2>
               </div>
             </motion.div>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className={`text-slate max-w-2xl ${getFontClass()}`}
             >
@@ -210,13 +194,13 @@ export default function Careers() {
           <div className="grid lg:grid-cols-2 gap-6">
             {fullTimePositions.map((position) => (
               <AnimatedSection key={position.key}>
-                <motion.div 
+                <motion.div
                   variants={fadeInUp}
                   className="bg-white border-2 border-navy/20 rounded-xl p-6 hover:shadow-xl hover:border-navy/40 transition-all duration-300 h-full flex flex-col relative overflow-hidden"
                 >
                   {/* Navy accent bar */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-navy to-navy/70" />
-                  
+
                   <div className="flex items-start gap-4 mb-4">
                     <div className="bg-navy/10 p-3 rounded-lg text-navy">
                       {position.icon}
@@ -292,7 +276,7 @@ export default function Careers() {
                 </h2>
               </div>
             </motion.div>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className={`text-slate max-w-2xl ${getFontClass()}`}
             >
@@ -303,7 +287,7 @@ export default function Careers() {
           <div className="grid lg:grid-cols-3 gap-6">
             {partTimePositions.map((position) => (
               <AnimatedSection key={position.key}>
-                <motion.div 
+                <motion.div
                   variants={fadeInUp}
                   className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-gold/30 transition-all duration-300 h-full flex flex-col"
                 >
@@ -372,13 +356,13 @@ export default function Careers() {
       <section className="py-20 lg:py-28 bg-white">
         <div className="container">
           <AnimatedSection className="mb-12">
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className={`text-gold-dark text-sm tracking-[0.3em] uppercase mb-4 ${getFontClass()}`}
             >
               {t.careers.benefits.title}
             </motion.p>
-            <motion.h2 
+            <motion.h2
               variants={fadeInUp}
               className={`${getHeadingFontClass()} text-3xl md:text-4xl text-navy mb-4`}
             >
@@ -404,7 +388,7 @@ export default function Careers() {
           </AnimatedSection>
 
           <AnimatedSection className="mt-8">
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className={`text-slate/70 text-sm text-center ${getFontClass()}`}
             >
@@ -418,14 +402,14 @@ export default function Careers() {
       <section className="py-20 lg:py-28 bg-navy text-white">
         <div className="container">
           <AnimatedSection className="text-center max-w-2xl mx-auto">
-            <motion.div 
+            <motion.div
               variants={fadeInUp}
               className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full mb-6"
             >
               <Mail className="h-4 w-4" />
               <span className={`text-sm ${getFontClass()}`}>{t.careers.apply.title}</span>
             </motion.div>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className={`text-white/80 mb-8 ${getFontClass()}`}
             >

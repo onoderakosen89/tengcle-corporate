@@ -11,50 +11,30 @@ import { motion, useInView, type Variants, type Easing } from "framer-motion";
 import { Mail, MapPin, ExternalLink } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
 import { useLanguage } from "@/contexts/LanguageContext";
+import AnimatedSection from "@/components/AnimatedSection";
+import SEOHead, { generateLocalBusinessSchema } from "@/components/SEOHead";
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: easeOut } 
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    y: 0,
+    transition: { duration: 0.8, ease: easeOut }
   },
 };
 
-function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={staggerContainer}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+
 
 export default function Contact() {
   const { t, language } = useLanguage();
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "en";
   const basePath = `/hk/${pathLang}`;
-  
+
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
@@ -69,8 +49,30 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-white" data-region="hk">
+      <SEOHead
+        title={t.contact.title + " | Tengcle Limited"}
+        description={t.contact.description}
+        canonical={`https://www.tengcle.com/hk/${language}/contact`}
+        structuredData={generateLocalBusinessSchema({
+          name: "Tengcle Limited",
+          url: "https://www.tengcle.com",
+          email: "info@tengcle.com",
+          address: {
+            street: "No. 5, 17/F, Strand 50, 50 Bonham Strand",
+            city: "Sheung Wan",
+            region: "Hong Kong",
+            postalCode: "",
+            country: "HK"
+          },
+          geo: {
+            latitude: "22.2863",
+            longitude: "114.1516"
+          },
+          openingHours: ["Mo-Fr 09:00-18:00"]
+        })}
+      />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-light-gray">
         <div className="container">
@@ -104,7 +106,7 @@ export default function Contact() {
                 <h2 className={`${getHeadingFontClass()} text-2xl text-navy mb-4`}>
                   {t.contact.email}
                 </h2>
-                <a 
+                <a
                   href="mailto:info@tengcle.com"
                   className="text-2xl md:text-3xl text-navy hover:text-gold transition-colors font-heading"
                 >
@@ -112,7 +114,7 @@ export default function Contact() {
                 </a>
               </motion.div>
             </AnimatedSection>
-            
+
             {/* Offices */}
             <AnimatedSection>
               <motion.div variants={fadeInUp} className="text-center mb-12">
@@ -121,7 +123,7 @@ export default function Contact() {
                 </h2>
               </motion.div>
             </AnimatedSection>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {/* Hong Kong */}
               <AnimatedSection>
@@ -140,7 +142,7 @@ export default function Contact() {
                   </p>
                 </motion.div>
               </AnimatedSection>
-              
+
               {/* Tokyo Takanawa */}
               <AnimatedSection>
                 <motion.div
@@ -152,13 +154,13 @@ export default function Contact() {
                     {t.contact.info.jpOffice1}
                   </h3>
                   <p className="text-slate text-sm leading-relaxed">
-                    {language === "ja" || language === "zh" 
-                      ? "東京都港区高輪2-19-20" 
+                    {language === "ja" || language === "zh"
+                      ? "東京都港区高輪2-19-20"
                       : "2-19-20 Takanawa, Minato-ku, Tokyo, Japan"}
                   </p>
                 </motion.div>
               </AnimatedSection>
-              
+
               {/* Tokyo Tsukiji */}
               <AnimatedSection>
                 <motion.div
@@ -170,13 +172,13 @@ export default function Contact() {
                     {t.contact.info.jpOffice2}
                   </h3>
                   <p className="text-slate text-sm leading-relaxed">
-                    {language === "ja" || language === "zh" 
-                      ? "東京都中央区築地2-12-14" 
+                    {language === "ja" || language === "zh"
+                      ? "東京都中央区築地2-12-14"
                       : "2-12-14 Tsukiji, Chuo-ku, Tokyo, Japan"}
                   </p>
                 </motion.div>
               </AnimatedSection>
-              
+
               {/* USA Office */}
               <AnimatedSection>
                 <motion.div
@@ -198,22 +200,22 @@ export default function Contact() {
                 </motion.div>
               </AnimatedSection>
             </div>
-            
+
             {/* Group Site Links */}
             <AnimatedSection className="mt-12">
               <motion.div variants={fadeInUp} className="text-center flex flex-wrap justify-center gap-6">
-                <a 
-                  href="https://tengcle.com/jp/ja" 
-                  target="_blank" 
+                <a
+                  href="https://www.tengcle.com/jp/ja"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className={`inline-flex items-center gap-2 text-navy hover:text-gold transition-colors ${getFontClass()}`}
                 >
                   <span>{t.footer.japan}</span>
                   <ExternalLink className="h-4 w-4" />
                 </a>
-                <a 
-                  href="https://tengcle.com/us/en" 
-                  target="_blank" 
+                <a
+                  href="https://www.tengcle.com/us/en"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className={`inline-flex items-center gap-2 text-navy hover:text-gold transition-colors ${getFontClass()}`}
                 >

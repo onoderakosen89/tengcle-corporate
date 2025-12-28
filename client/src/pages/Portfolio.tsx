@@ -13,49 +13,28 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import AnimatedSection from "@/components/AnimatedSection";
+import SEOHead from "@/components/SEOHead";
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: easeOut } 
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    y: 0,
+    transition: { duration: 0.8, ease: easeOut }
   },
 };
 
-function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={staggerContainer}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+
 
 export default function Portfolio() {
   const { t, language } = useLanguage();
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "en";
   const basePath = `/hk/${pathLang}`;
-  
+
   const getFontClass = () => {
     if (language === "ja") return "font-jp";
     if (language === "zh") return "font-zh";
@@ -135,8 +114,13 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-white" data-region="hk">
+      <SEOHead
+        title={t.portfolio.title + " | Tengcle Limited"}
+        description={t.portfolio.description}
+        canonical={`https://www.tengcle.com/hk/${language}/portfolio`}
+      />
       <Header />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-light-gray">
         <div className="container">
@@ -179,7 +163,7 @@ export default function Portfolio() {
                     </div>
 
                   </div>
-                  
+
                   {/* Content */}
                   <div className={index % 2 === 1 ? "lg:order-1" : ""}>
                     <project.icon className="h-12 w-12 text-gold mb-6" />
@@ -189,7 +173,7 @@ export default function Portfolio() {
                     <p className={`text-slate leading-relaxed mb-8 ${getFontClass()}`}>
                       {project.description}
                     </p>
-                    
+
                     {/* Stats */}
                     <div className="grid grid-cols-3 gap-4 mb-8">
                       {project.stats.map((stat, i) => (
@@ -199,7 +183,7 @@ export default function Portfolio() {
                         </div>
                       ))}
                     </div>
-                    
+
                     {/* Scope */}
                     <h3 className={`${getHeadingFontClass()} text-lg text-navy mb-4`}>
                       {language === "ja" ? "プロジェクト範囲" : language === "zh" ? "项目范围" : "Project Scope"}
@@ -214,7 +198,7 @@ export default function Portfolio() {
                     </ul>
                   </div>
                 </motion.div>
-                
+
                 {index < projects.length - 1 && (
                   <div className="section-divider mt-16" />
                 )}

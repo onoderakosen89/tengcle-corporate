@@ -25,7 +25,7 @@ export default function Footer() {
 
   const faqLabel = language === "ja" ? "よくある質問" : language === "zh" ? "常见问题" : "FAQ";
   const newsLabel = language === "ja" ? "ニュース" : language === "zh" ? "新闻动态" : "News";
-  
+
   const navItems = [
     { href: basePath, label: t.nav.home },
     { href: `${basePath}/services`, label: t.nav.services },
@@ -44,23 +44,23 @@ export default function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <Link href="/">
-              <img 
-                src="/images/tengcle-logo-white.png" 
-                alt="Tengcle" 
+              <img
+                src="/images/tengcle-logo-white.png"
+                alt="Tengcle"
                 className="h-12 w-auto mb-6"
               />
             </Link>
             <p className={`text-white/70 text-sm leading-relaxed mb-6 max-w-md ${getFontClass()}`}>
               {t.footer.description}
             </p>
-            
+
             {/* Licenses */}
             <div className="flex flex-wrap gap-4 text-xs text-white/50">
               <span>TCSP License: TC007820</span>
               <span>BR No: 65188837</span>
             </div>
           </div>
-          
+
           {/* Navigation */}
           <div>
             <h4 className={`text-gold text-sm tracking-wider uppercase mb-6 ${getFontClass()}`}>
@@ -78,7 +78,7 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          
+
           {/* Contact */}
           <div>
             <h4 className={`text-gold text-sm tracking-wider uppercase mb-6 ${getFontClass()}`}>
@@ -89,8 +89,8 @@ export default function Footer() {
                 <Mail className="h-4 w-4 text-gold flex-shrink-0 mt-1" />
                 <div>
                   <p className={`text-white/50 text-xs mb-1 ${getFontClass()}`}>{t.contact.email}</p>
-                  <a 
-                    href="mailto:info@tengcle.com" 
+                  <a
+                    href="mailto:info@tengcle.com"
                     className="text-white/90 hover:text-white transition-colors text-sm"
                   >
                     info@tengcle.com
@@ -112,7 +112,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      
+
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
         <div className="container py-6">
@@ -120,7 +120,7 @@ export default function Footer() {
             <p className="text-white/50 text-xs">
               © {new Date().getFullYear()} Tengcle Limited. All rights reserved.
             </p>
-            
+
             {/* Group Companies */}
             <div className="flex items-center gap-6">
               <Link href={`/jp/${pathLang === "zh" ? "zh" : pathLang === "ja" ? "ja" : "ja"}`}>

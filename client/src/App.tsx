@@ -12,6 +12,7 @@ import { UsLanguageProvider } from "./contexts/UsLanguageContext";
 import SplashScreen from "./components/SplashScreen";
 import CookieConsent from "./components/CookieConsent";
 import ScrollRestoration from "./components/ScrollRestoration";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Global Gateway
 import GlobalGateway from "./pages/GlobalGateway";
@@ -80,9 +81,10 @@ const pageTransitions = {
 function HkRouter() {
   const [location] = useLocation();
   const transition = pageTransitions.hk;
-  
+
   return (
     <LanguageProvider>
+      <ScrollToTop region="hk" />
       <AnimatePresence mode="wait">
         <motion.div
           key={location}
@@ -98,26 +100,26 @@ function HkRouter() {
             <Route path="/hk/en/portfolio" component={Portfolio} />
             <Route path="/hk/en/about" component={About} />
             <Route path="/hk/en/contact" component={Contact} />
-            
+
             {/* Hong Kong Routes - Japanese */}
             <Route path="/hk/ja" component={Home} />
             <Route path="/hk/ja/services" component={Services} />
             <Route path="/hk/ja/portfolio" component={Portfolio} />
             <Route path="/hk/ja/about" component={About} />
             <Route path="/hk/ja/contact" component={Contact} />
-            
+
             {/* Hong Kong Routes - Chinese */}
             <Route path="/hk/zh" component={Home} />
             <Route path="/hk/zh/services" component={Services} />
             <Route path="/hk/zh/portfolio" component={Portfolio} />
             <Route path="/hk/zh/about" component={About} />
             <Route path="/hk/zh/contact" component={Contact} />
-            
+
             {/* FAQ */}
             <Route path="/hk/en/faq" component={FAQ} />
             <Route path="/hk/ja/faq" component={FAQ} />
             <Route path="/hk/zh/faq" component={FAQ} />
-            
+
             {/* News */}
             <Route path="/hk/en/news" component={News} />
             <Route path="/hk/ja/news" component={News} />
@@ -125,12 +127,12 @@ function HkRouter() {
             <Route path="/hk/en/news/:slug" component={NewsArticle} />
             <Route path="/hk/ja/news/:slug" component={NewsArticle} />
             <Route path="/hk/zh/news/:slug" component={NewsArticle} />
-            
+
             {/* Privacy Policy */}
             <Route path="/hk/en/privacy" component={Privacy} />
             <Route path="/hk/ja/privacy" component={Privacy} />
             <Route path="/hk/zh/privacy" component={Privacy} />
-            
+
             <Route component={NotFound} />
           </Switch>
         </motion.div>
@@ -143,9 +145,10 @@ function HkRouter() {
 function JpRouter() {
   const [location] = useLocation();
   const transition = pageTransitions.jp;
-  
+
   return (
     <JpLanguageProvider>
+      <ScrollToTop region="jp" />
       <AnimatePresence mode="wait">
         <motion.div
           key={location}
@@ -164,7 +167,7 @@ function JpRouter() {
             <Route path="/jp/ja/faq" component={JpFAQ} />
             <Route path="/jp/ja/news" component={JpNews} />
             <Route path="/jp/ja/news/:id" component={JpNewsArticle} />
-            
+
             {/* Japan Routes - English */}
             <Route path="/jp/en" component={JpHome} />
             <Route path="/jp/en/services" component={JpServices} />
@@ -174,7 +177,7 @@ function JpRouter() {
             <Route path="/jp/en/faq" component={JpFAQ} />
             <Route path="/jp/en/news" component={JpNews} />
             <Route path="/jp/en/news/:id" component={JpNewsArticle} />
-            
+
             {/* Japan Routes - Chinese */}
             <Route path="/jp/zh" component={JpHome} />
             <Route path="/jp/zh/services" component={JpServices} />
@@ -184,12 +187,12 @@ function JpRouter() {
             <Route path="/jp/zh/faq" component={JpFAQ} />
             <Route path="/jp/zh/news" component={JpNews} />
             <Route path="/jp/zh/news/:id" component={JpNewsArticle} />
-            
+
             {/* Privacy Policy */}
             <Route path="/jp/ja/privacy" component={Privacy} />
             <Route path="/jp/en/privacy" component={Privacy} />
             <Route path="/jp/zh/privacy" component={Privacy} />
-            
+
             <Route component={NotFound} />
           </Switch>
         </motion.div>
@@ -202,9 +205,10 @@ function JpRouter() {
 function UsRouter() {
   const [location] = useLocation();
   const transition = pageTransitions.us;
-  
+
   return (
     <UsLanguageProvider>
+      <ScrollToTop region="us" />
       <AnimatePresence mode="wait">
         <motion.div
           key={location}
@@ -222,7 +226,7 @@ function UsRouter() {
             <Route path="/us/en/faq" component={UsFAQ} />
             <Route path="/us/en/news" component={UsNews} />
             <Route path="/us/en/news/:id" component={UsNewsArticle} />
-            
+
             {/* US Routes - Japanese */}
             <Route path="/us/ja" component={UsHome} />
             <Route path="/us/ja/services" component={UsServices} />
@@ -231,7 +235,7 @@ function UsRouter() {
             <Route path="/us/ja/faq" component={UsFAQ} />
             <Route path="/us/ja/news" component={UsNews} />
             <Route path="/us/ja/news/:id" component={UsNewsArticle} />
-            
+
             {/* US Routes - Chinese */}
             <Route path="/us/zh" component={UsHome} />
             <Route path="/us/zh/services" component={UsServices} />
@@ -240,12 +244,12 @@ function UsRouter() {
             <Route path="/us/zh/faq" component={UsFAQ} />
             <Route path="/us/zh/news" component={UsNews} />
             <Route path="/us/zh/news/:id" component={UsNewsArticle} />
-            
+
             {/* Privacy Policy */}
             <Route path="/us/en/privacy" component={Privacy} />
             <Route path="/us/ja/privacy" component={Privacy} />
             <Route path="/us/zh/privacy" component={Privacy} />
-            
+
             <Route component={NotFound} />
           </Switch>
         </motion.div>
@@ -257,14 +261,14 @@ function UsRouter() {
 function MainRouter() {
   const [location] = useLocation();
   const transition = pageTransitions.gateway;
-  
+
   // Determine which region we're in
   const isHk = location.startsWith("/hk");
   const isJp = location.startsWith("/jp");
   const isUs = location.startsWith("/us");
   const isGateway = location === "/";
   const isPrivacy = location === "/privacy";
-  
+
   if (isGateway) {
     return (
       <AnimatePresence mode="wait">
@@ -280,7 +284,7 @@ function MainRouter() {
       </AnimatePresence>
     );
   }
-  
+
   if (isPrivacy) {
     return (
       <AnimatePresence mode="wait">
@@ -296,19 +300,19 @@ function MainRouter() {
       </AnimatePresence>
     );
   }
-  
+
   if (isHk) {
     return <HkRouter />;
   }
-  
+
   if (isJp) {
     return <JpRouter />;
   }
-  
+
   if (isUs) {
     return <UsRouter />;
   }
-  
+
   return <NotFound />;
 }
 
