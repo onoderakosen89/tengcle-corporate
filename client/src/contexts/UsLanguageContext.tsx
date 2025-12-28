@@ -205,6 +205,11 @@ const translations: Translations = {
     ja: 'All rights reserved.',
     zh: '版权所有。',
   },
+  'footer.navigation': {
+    en: 'Navigation',
+    ja: 'ナビゲーション',
+    zh: '导航',
+  },
   'footer.hk': {
     en: 'Tengcle Limited (Hong Kong)',
     ja: 'Tengcle Limited（香港本社）',

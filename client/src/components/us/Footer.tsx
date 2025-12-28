@@ -64,7 +64,7 @@ export default function UsFooter() {
 
           {/* Navigation */}
           <div>
-            <h4 className="font-heading text-lg mb-6 text-gold">Navigation</h4>
+            <h4 className="font-heading text-lg mb-6 text-gold">{t('footer.navigation')}</h4>
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.href}>

@@ -8,8 +8,6 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { JpLanguageProvider } from "./contexts/JpLanguageContext";
 import { UsLanguageProvider } from "./contexts/UsLanguageContext";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "./lib/queryClient";
 import SplashScreen from "./components/SplashScreen";
 import CookieConsent from "./components/CookieConsent";
 import ScrollRestoration from "./components/ScrollRestoration";
@@ -344,21 +342,19 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider defaultTheme="light">
-          <TooltipProvider>
-            <ScrollRestoration />
-            <Toaster />
-            {isGateway && showSplash && !hasSeenSplash && (
-              <SplashScreen onComplete={handleSplashComplete} />
-            )}
-            <Suspense fallback={<PageLoader />}>
-              <MainRouter />
-            </Suspense>
-            <CookieConsent lang="en" position="bottom" />
-          </TooltipProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
+      <ThemeProvider defaultTheme="light">
+        <TooltipProvider>
+          <ScrollRestoration />
+          <Toaster />
+          {isGateway && showSplash && !hasSeenSplash && (
+            <SplashScreen onComplete={handleSplashComplete} />
+          )}
+          <Suspense fallback={<PageLoader />}>
+            <MainRouter />
+          </Suspense>
+          <CookieConsent lang="en" position="bottom" />
+        </TooltipProvider>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 }
