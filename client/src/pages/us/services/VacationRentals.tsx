@@ -310,8 +310,8 @@ export default function VacationRentals() {
             style={{ y: backgroundY }}
           >
             <img
-              src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1920&q=80"
-              alt="Vacation Rental Interior"
+              src="/images/us-service-vacation.jpg"
+              alt="Luxurious Vacation Rental Interior"
               className="w-full h-[120%] object-cover opacity-40"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-purple-deep/80 via-purple-deep/60 to-transparent" />

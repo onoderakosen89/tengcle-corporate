@@ -234,10 +234,10 @@ export default function PropertyDevelopment() {
   const basePath = `/us/${language}`;
 
   const processSteps = [
-    { icon: Target, titleKey: 'process.step1.title', descKey: 'process.step1.desc', number: '01' },
-    { icon: Wrench, titleKey: 'process.step2.title', descKey: 'process.step2.desc', number: '02' },
-    { icon: TrendingUp, titleKey: 'process.step3.title', descKey: 'process.step3.desc', number: '03' },
-    { icon: Building2, titleKey: 'process.step4.title', descKey: 'process.step4.desc', number: '04' },
+    { icon: Target, titleKey: 'process.step1.title', descKey: 'process.step1.desc', number: '01', image: '/images/us-process-acquisition.jpg' },
+    { icon: Wrench, titleKey: 'process.step2.title', descKey: 'process.step2.desc', number: '02', image: '/images/us-process-renovation.jpg' },
+    { icon: TrendingUp, titleKey: 'process.step3.title', descKey: 'process.step3.desc', number: '03', image: '/images/us-process-value.jpg' },
+    { icon: Building2, titleKey: 'process.step4.title', descKey: 'process.step4.desc', number: '04', image: '/images/us-process-holding.jpg' },
   ];
 
   const benefits = [
@@ -265,8 +265,8 @@ export default function PropertyDevelopment() {
             style={{ y: backgroundY }}
           >
             <img
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
-              alt="Modern Building Development"
+              src="/images/us-service-development.jpg"
+              alt="Property Development - Before and After"
               className="w-full h-[120%] object-cover opacity-40"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-purple-deep/80 via-purple-deep/60 to-transparent" />
@@ -365,23 +365,34 @@ export default function PropertyDevelopment() {
                   variants={fadeInUp}
                   className="relative"
                 >
-                  <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow h-full">
-                    <div className="text-5xl font-heading text-gold/20 absolute top-4 right-4">
-                      {step.number}
+                  <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow h-full">
+                    {/* Process Image */}
+                    <div className="relative h-40 overflow-hidden">
+                      <img
+                        src={step.image}
+                        alt={t(step.titleKey)}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute top-3 right-3 text-4xl font-heading text-white/80 drop-shadow-lg">
+                        {step.number}
+                      </div>
                     </div>
-                    <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center mb-6">
-                      <step.icon className="w-7 h-7 text-gold" />
+                    <div className="p-6">
+                      <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mb-4 -mt-10 relative z-10 border-4 border-white shadow-md">
+                        <step.icon className="w-6 h-6 text-gold" />
+                      </div>
+                      <h3 className="font-heading text-lg text-purple-deep mb-2">
+                        {t(step.titleKey)}
+                      </h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {t(step.descKey)}
+                      </p>
                     </div>
-                    <h3 className="font-heading text-xl text-purple-deep mb-3">
-                      {t(step.titleKey)}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {t(step.descKey)}
-                    </p>
                   </div>
                   {index < processSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                      <ArrowRight className="w-8 h-8 text-gold/30" />
+                    <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
+                      <ArrowRight className="w-8 h-8 text-gold/50" />
                     </div>
                   )}
                 </motion.div>

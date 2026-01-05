@@ -54,8 +54,8 @@ function UsHeroSection({ basePath, t }: { basePath: string; t: (key: string) => 
         style={{ y: backgroundY, scale: backgroundScale }}
       >
         <img
-          src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1920&q=80"
-          alt="New York City Skyline"
+          src="/images/us-hero-skyline.jpg"
+          alt="New Jersey and Manhattan Skyline at Sunset"
           className="w-full h-[120%] object-cover opacity-60"
           width="1920"
           height="1080"
@@ -148,6 +148,7 @@ export default function UsHome() {
         t('service.development.feature4'),
       ],
       isMain: true,
+      image: '/images/us-service-development.jpg',
     },
     {
       icon: Building2,
@@ -160,6 +161,7 @@ export default function UsHome() {
         t('service.property.feature4'),
       ],
       isMain: false,
+      image: '/images/us-service-management.jpg',
     },
     {
       icon: HomeIcon,
@@ -172,6 +174,7 @@ export default function UsHome() {
         t('service.vacation.feature4'),
       ],
       isMain: false,
+      image: '/images/us-service-vacation.jpg',
     },
   ];
 
@@ -250,28 +253,39 @@ export default function UsHome() {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className={`bg-white p-8 us-card-hover ${service.isMain ? 'ring-2 ring-gold/30' : ''}`}
+                className={`bg-white overflow-hidden us-card-hover ${service.isMain ? 'ring-2 ring-gold/30' : ''}`}
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <service.icon className="w-12 h-12 text-gold" />
+                {/* Service Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
                   {service.isMain && (
-                    <span className="px-2 py-1 bg-gold/10 text-gold text-xs font-medium rounded-full">
-                      {language === 'ja' ? 'メイン' : language === 'zh' ? '核心' : 'Core'}
+                    <span className="absolute top-4 right-4 px-3 py-1 bg-gold text-purple-deep text-xs font-bold rounded-full shadow-lg">
+                      {language === 'ja' ? 'メイン事業' : language === 'zh' ? '核心业务' : 'Core Business'}
                     </span>
                   )}
                 </div>
-                <h3 className="font-heading text-xl text-charcoal mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-slate mb-6 text-sm">{service.description}</p>
-                <ul className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-sm text-charcoal">
-                      <CheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <service.icon className="w-10 h-10 text-gold" />
+                    <h3 className="font-heading text-xl text-charcoal">
+                      {service.title}
+                    </h3>
+                  </div>
+                  <p className="text-slate mb-6 text-sm">{service.description}</p>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-sm text-charcoal">
+                        <CheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </motion.div>
             ))}
           </motion.div>

@@ -267,8 +267,8 @@ export default function PropertyManagement() {
             style={{ y: backgroundY }}
           >
             <img
-              src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&q=80"
-              alt="Property Management"
+              src="/images/us-service-management.jpg"
+              alt="Property Management - Key Handover"
               className="w-full h-[120%] object-cover opacity-40"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-purple-deep/80 via-purple-deep/60 to-transparent" />
