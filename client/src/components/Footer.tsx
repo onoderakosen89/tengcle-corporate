@@ -48,8 +48,6 @@ export default function Footer() {
                 src="/images/tengcle-logo-white.png"
                 alt="Tengcle"
                 className="h-12 w-auto mb-6"
-                width="180"
-                height="48"
               />
             </Link>
             <p className={`text-white/70 text-sm leading-relaxed mb-6 max-w-md ${getFontClass()}`}>

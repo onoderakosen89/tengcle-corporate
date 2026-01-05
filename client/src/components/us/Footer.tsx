@@ -36,9 +36,7 @@ export default function UsFooter() {
               <img
                 src="/images/tengcle-logo-white.png"
                 alt="Tengcle"
-                className="h-10 mb-6 cursor-pointer"
-                width="150"
-                height="40"
+                className="h-12 w-auto mb-6 cursor-pointer"
               />
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed mb-6 max-w-md">
