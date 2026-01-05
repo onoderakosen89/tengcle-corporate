@@ -47,6 +47,9 @@ const UsContact = lazy(() => import("./pages/us/Contact"));
 const UsFAQ = lazy(() => import("./pages/us/FAQ"));
 const UsNews = lazy(() => import("./pages/us/News"));
 const UsNewsArticle = lazy(() => import("./pages/us/NewsArticle"));
+const UsPropertyDevelopment = lazy(() => import("./pages/us/services/PropertyDevelopment"));
+const UsPropertyManagement = lazy(() => import("./pages/us/services/PropertyManagement"));
+const UsVacationRentals = lazy(() => import("./pages/us/services/VacationRentals"));
 
 // Shared Pages
 const Privacy = lazy(() => import("./pages/Privacy"));
@@ -223,6 +226,9 @@ function UsRouter() {
             {/* US Routes - English */}
             <Route path="/us/en" component={UsHome} />
             <Route path="/us/en/services" component={UsServices} />
+            <Route path="/us/en/services/property-development" component={UsPropertyDevelopment} />
+            <Route path="/us/en/services/property-management" component={UsPropertyManagement} />
+            <Route path="/us/en/services/vacation-rentals" component={UsVacationRentals} />
             <Route path="/us/en/about" component={UsAbout} />
             <Route path="/us/en/contact" component={UsContact} />
             <Route path="/us/en/faq" component={UsFAQ} />
@@ -232,6 +238,9 @@ function UsRouter() {
             {/* US Routes - Japanese */}
             <Route path="/us/ja" component={UsHome} />
             <Route path="/us/ja/services" component={UsServices} />
+            <Route path="/us/ja/services/property-development" component={UsPropertyDevelopment} />
+            <Route path="/us/ja/services/property-management" component={UsPropertyManagement} />
+            <Route path="/us/ja/services/vacation-rentals" component={UsVacationRentals} />
             <Route path="/us/ja/about" component={UsAbout} />
             <Route path="/us/ja/contact" component={UsContact} />
             <Route path="/us/ja/faq" component={UsFAQ} />
@@ -241,6 +250,9 @@ function UsRouter() {
             {/* US Routes - Chinese */}
             <Route path="/us/zh" component={UsHome} />
             <Route path="/us/zh/services" component={UsServices} />
+            <Route path="/us/zh/services/property-development" component={UsPropertyDevelopment} />
+            <Route path="/us/zh/services/property-management" component={UsPropertyManagement} />
+            <Route path="/us/zh/services/vacation-rentals" component={UsVacationRentals} />
             <Route path="/us/zh/about" component={UsAbout} />
             <Route path="/us/zh/contact" component={UsContact} />
             <Route path="/us/zh/faq" component={UsFAQ} />

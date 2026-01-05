@@ -10,7 +10,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, type Easing } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import { Building2, Home as HomeIcon, Key, Shield, ArrowRight, CheckCircle } from "lucide-react";
+import { Building2, Home as HomeIcon, Key, Shield, ArrowRight, CheckCircle, TrendingUp } from "lucide-react";
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
@@ -138,6 +138,18 @@ export default function UsHome() {
 
   const services = [
     {
+      icon: TrendingUp,
+      title: t('service.development.title'),
+      description: t('service.development.desc'),
+      features: [
+        t('service.development.feature1'),
+        t('service.development.feature2'),
+        t('service.development.feature3'),
+        t('service.development.feature4'),
+      ],
+      isMain: true,
+    },
+    {
       icon: Building2,
       title: t('service.property.title'),
       description: t('service.property.desc'),
@@ -147,6 +159,7 @@ export default function UsHome() {
         t('service.property.feature3'),
         t('service.property.feature4'),
       ],
+      isMain: false,
     },
     {
       icon: HomeIcon,
@@ -158,6 +171,7 @@ export default function UsHome() {
         t('service.vacation.feature3'),
         t('service.vacation.feature4'),
       ],
+      isMain: false,
     },
   ];
 
@@ -230,22 +244,29 @@ export default function UsHome() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid md:grid-cols-2 gap-8"
+            className="grid md:grid-cols-3 gap-8"
           >
             {services.map((service, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="bg-white p-8 us-card-hover"
+                className={`bg-white p-8 us-card-hover ${service.isMain ? 'ring-2 ring-gold/30' : ''}`}
               >
-                <service.icon className="w-12 h-12 text-gold mb-6" />
-                <h3 className="font-heading text-2xl text-charcoal mb-4">
+                <div className="flex items-center gap-3 mb-6">
+                  <service.icon className="w-12 h-12 text-gold" />
+                  {service.isMain && (
+                    <span className="px-2 py-1 bg-gold/10 text-gold text-xs font-medium rounded-full">
+                      {language === 'ja' ? 'メイン' : language === 'zh' ? '核心' : 'Core'}
+                    </span>
+                  )}
+                </div>
+                <h3 className="font-heading text-xl text-charcoal mb-4">
                   {service.title}
                 </h3>
-                <p className="text-slate mb-6">{service.description}</p>
-                <ul className="space-y-3">
+                <p className="text-slate mb-6 text-sm">{service.description}</p>
+                <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-sm text-charcoal">
+                    <li key={idx} className="flex items-center gap-2 text-sm text-charcoal">
                       <CheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
                       {feature}
                     </li>

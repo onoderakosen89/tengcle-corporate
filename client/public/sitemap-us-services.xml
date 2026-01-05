@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- US Service Detail Pages - to be merged into main sitemap.xml -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Property Development -->
+  <url>
+    <loc>https://www.tengcle.com/us/en/services/property-development</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tengcle.com/us/en/services/property-development"/>
+    <xhtml:link rel="alternate" hreflang="ja-US" href="https://www.tengcle.com/us/ja/services/property-development"/>
+    <xhtml:link rel="alternate" hreflang="zh-US" href="https://www.tengcle.com/us/zh/services/property-development"/>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/us/ja/services/property-development</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/us/zh/services/property-development</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Property Management -->
+  <url>
+    <loc>https://www.tengcle.com/us/en/services/property-management</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tengcle.com/us/en/services/property-management"/>
+    <xhtml:link rel="alternate" hreflang="ja-US" href="https://www.tengcle.com/us/ja/services/property-management"/>
+    <xhtml:link rel="alternate" hreflang="zh-US" href="https://www.tengcle.com/us/zh/services/property-management"/>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/us/ja/services/property-management</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/us/zh/services/property-management</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Vacation Rentals -->
+  <url>
+    <loc>https://www.tengcle.com/us/en/services/vacation-rentals</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tengcle.com/us/en/services/vacation-rentals"/>
+    <xhtml:link rel="alternate" hreflang="ja-US" href="https://www.tengcle.com/us/ja/services/vacation-rentals"/>
+    <xhtml:link rel="alternate" hreflang="zh-US" href="https://www.tengcle.com/us/zh/services/vacation-rentals"/>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/us/ja/services/vacation-rentals</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tengcle.com/us/zh/services/vacation-rentals</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

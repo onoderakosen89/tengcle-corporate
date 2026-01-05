@@ -79,6 +79,38 @@ const translations: Translations = {
     zh: '为业主和投资者提供服务',
   },
 
+  // Service 0: Property Development (Core Business)
+  'service.development.title': {
+    en: 'Property Development',
+    ja: '不動産開発',
+    zh: '房地产开发',
+  },
+  'service.development.desc': {
+    en: 'Our core business focuses on acquiring distressed or underperforming properties, revitalizing them through strategic renovation, and holding them as long-term income-generating assets.',
+    ja: '私たちの中核事業は、問題を抱えた物件や低パフォーマンス物件を取得し、戦略的な修繕・改修によって再生させ、長期的な収益資産として保有することです。',
+    zh: '我们的核心业务专注于收购困境或低效物业，通过战略性翻新使其焕发新生，并作为长期收益资产持有。',
+  },
+  'service.development.feature1': {
+    en: 'Distressed Property Acquisition',
+    ja: '問題物件の取得',
+    zh: '困境物业收购',
+  },
+  'service.development.feature2': {
+    en: 'Strategic Renovation & Revitalization',
+    ja: '戦略的修繕・再生',
+    zh: '战略性翻新与复兴',
+  },
+  'service.development.feature3': {
+    en: 'Value Enhancement',
+    ja: '価値向上',
+    zh: '价值提升',
+  },
+  'service.development.feature4': {
+    en: 'Long-term Asset Holding',
+    ja: '長期資産保有',
+    zh: '长期资产持有',
+  },
+
   // Service 1: Property Management
   'service.property.title': {
     en: 'Property Management',

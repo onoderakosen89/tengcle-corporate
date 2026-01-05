@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import { Building2, Home as HomeIcon, CheckCircle, ArrowRight } from "lucide-react";
+import { Building2, Home as HomeIcon, CheckCircle, ArrowRight, TrendingUp, Wrench } from "lucide-react";
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
@@ -19,48 +19,114 @@ const staggerContainer = {
   },
 };
 
+// Additional translations for new service
+const serviceTranslations = {
+  'service.development.title': {
+    en: 'Property Development',
+    ja: '不動産開発',
+    zh: '房地产开发',
+  },
+  'service.development.desc': {
+    en: 'Our core business focuses on acquiring distressed or underperforming properties, revitalizing them through strategic renovation, and holding them as long-term income-generating assets.',
+    ja: '私たちの中核事業は、問題を抱えた物件や低パフォーマンス物件を取得し、戦略的な修繕・改修によって再生させ、長期的な収益資産として保有することです。',
+    zh: '我们的核心业务专注于收购困境或低效物业，通过战略性翻新使其焕发新生，并作为长期收益资产持有。',
+  },
+  'service.development.feature1': {
+    en: 'Distressed Property Acquisition',
+    ja: '問題物件の取得',
+    zh: '困境物业收购',
+  },
+  'service.development.feature2': {
+    en: 'Strategic Renovation & Revitalization',
+    ja: '戦略的修繕・再生',
+    zh: '战略性翻新与复兴',
+  },
+  'service.development.feature3': {
+    en: 'Value Enhancement',
+    ja: '価値向上',
+    zh: '价值提升',
+  },
+  'service.development.feature4': {
+    en: 'Long-term Asset Holding',
+    ja: '長期資産保有',
+    zh: '长期资产持有',
+  },
+  'learn.more': {
+    en: 'Learn More',
+    ja: '詳細を見る',
+    zh: '了解更多',
+  },
+};
+
 export default function UsServices() {
-  const { language, t } = useUsLanguage();
+  const { language, t: globalT } = useUsLanguage();
   const [location] = useLocation();
   const basePath = `/us/${language}`;
 
+  // Combined translation function
+  const t = (key: string) => {
+    const localTranslation = serviceTranslations[key as keyof typeof serviceTranslations];
+    if (localTranslation) {
+      return localTranslation[language] || localTranslation.en;
+    }
+    return globalT(key);
+  };
+
   const services = [
     {
-      icon: Building2,
-      title: t('service.property.title'),
-      description: t('service.property.desc'),
+      icon: TrendingUp,
+      title: t('service.development.title'),
+      description: t('service.development.desc'),
       features: [
-        t('service.property.feature1'),
-        t('service.property.feature2'),
-        t('service.property.feature3'),
-        t('service.property.feature4'),
+        t('service.development.feature1'),
+        t('service.development.feature2'),
+        t('service.development.feature3'),
+        t('service.development.feature4'),
+      ],
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+      link: `${basePath}/services/property-development`,
+      isMain: true,
+    },
+    {
+      icon: Building2,
+      title: globalT('service.property.title'),
+      description: globalT('service.property.desc'),
+      features: [
+        globalT('service.property.feature1'),
+        globalT('service.property.feature2'),
+        globalT('service.property.feature3'),
+        globalT('service.property.feature4'),
       ],
       image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
+      link: `${basePath}/services/property-management`,
+      isMain: false,
     },
     {
       icon: HomeIcon,
-      title: t('service.vacation.title'),
-      description: t('service.vacation.desc'),
+      title: globalT('service.vacation.title'),
+      description: globalT('service.vacation.desc'),
       features: [
-        t('service.vacation.feature1'),
-        t('service.vacation.feature2'),
-        t('service.vacation.feature3'),
-        t('service.vacation.feature4'),
+        globalT('service.vacation.feature1'),
+        globalT('service.vacation.feature2'),
+        globalT('service.vacation.feature3'),
+        globalT('service.vacation.feature4'),
       ],
       image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80",
+      link: `${basePath}/services/vacation-rentals`,
+      isMain: false,
     },
   ];
 
   return (
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
-        title={t('services.title') + " | Tengcle LLC"}
-        description={t('services.subtitle')}
+        title={globalT('services.title') + " | Tengcle Development LLC"}
+        description={globalT('services.subtitle')}
         canonical={`https://www.tengcle.com/us/${language}/services`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
         structuredData={generateBreadcrumbSchema([
           { name: "Home", url: "https://www.tengcle.com/us" },
-          { name: t('services.title'), url: `https://www.tengcle.com/us/${language}/services` }
+          { name: globalT('services.title'), url: `https://www.tengcle.com/us/${language}/services` }
         ])}
       />
       <UsHeader />
@@ -81,16 +147,16 @@ export default function UsServices() {
               variants={fadeInUp}
               className="text-gold text-sm tracking-widest uppercase mb-4"
             >
-              Tengcle LLC
+              Tengcle Development LLC
             </motion.p>
             <motion.h1
               variants={fadeInUp}
               className="font-heading text-4xl md:text-5xl text-white mb-6"
             >
-              {t('services.title')}
+              {globalT('services.title')}
             </motion.h1>
             <motion.p variants={fadeInUp} className="text-xl text-gray-300">
-              {t('services.subtitle')}
+              {globalT('services.subtitle')}
             </motion.p>
           </motion.div>
         </div>
@@ -114,14 +180,21 @@ export default function UsServices() {
                   variants={fadeInUp}
                   className={index % 2 === 1 ? "lg:order-2" : ""}
                 >
-                  <service.icon className="w-12 h-12 text-gold mb-6" />
+                  <div className="flex items-center gap-3 mb-6">
+                    <service.icon className="w-12 h-12 text-gold" />
+                    {service.isMain && (
+                      <span className="px-3 py-1 bg-gold/10 text-gold text-sm font-medium rounded-full">
+                        {language === 'ja' ? 'メイン事業' : language === 'zh' ? '核心业务' : 'Core Business'}
+                      </span>
+                    )}
+                  </div>
                   <h2 className="font-heading text-3xl text-charcoal mb-4">
                     {service.title}
                   </h2>
                   <p className="text-slate mb-8 leading-relaxed">
                     {service.description}
                   </p>
-                  <ul className="space-y-4">
+                  <ul className="space-y-4 mb-8">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center gap-3">
                         <CheckCircle className="w-5 h-5 text-gold flex-shrink-0" />
@@ -129,6 +202,13 @@ export default function UsServices() {
                       </li>
                     ))}
                   </ul>
+                  <Link
+                    href={service.link}
+                    className="inline-flex items-center gap-2 text-purple-deep font-medium hover:text-gold transition-colors group"
+                  >
+                    {t('learn.more')}
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </motion.div>
                 <motion.div
                   variants={fadeInUp}
@@ -157,16 +237,16 @@ export default function UsServices() {
             className="text-center max-w-2xl mx-auto"
           >
             <h2 className="font-heading text-3xl md:text-4xl text-charcoal mb-4">
-              {t('cta.title')}
+              {globalT('cta.title')}
             </h2>
             <p className="text-slate mb-8">
-              {t('cta.subtitle')}
+              {globalT('cta.subtitle')}
             </p>
             <Link
               href={`${basePath}/contact`}
               className="inline-flex items-center gap-2 px-8 py-4 bg-purple text-white font-medium hover:bg-purple-dark transition-colors"
             >
-              {t('cta.button')}
+              {globalT('cta.button')}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
