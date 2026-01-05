@@ -13,6 +13,7 @@ import CookieConsent from "./components/CookieConsent";
 import ScrollRestoration from "./components/ScrollRestoration";
 import ScrollToTop from "@/components/ScrollToTop";
 import PageLoader from "./components/PageLoader";
+import GeoRedirect from "./components/GeoRedirect";
 // Lazy load pages for better performance
 // Global Gateway
 const GlobalGateway = lazy(() => import("./pages/GlobalGateway"));
@@ -345,6 +346,7 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <ScrollRestoration />
+          <GeoRedirect />
           <Toaster />
           {isGateway && showSplash && !hasSeenSplash && (
             <SplashScreen onComplete={handleSplashComplete} />
