@@ -145,9 +145,9 @@ const translations: Translations = {
 
   // About Section
   'about.title': {
-    en: 'About Tengcle LLC',
-    ja: 'Tengcle LLCについて',
-    zh: '关于Tengcle LLC',
+    en: 'About Tengcle Development LLC',
+    ja: 'Tengcle Development LLCについて',
+    zh: '关于Tengcle Development LLC',
   },
   'about.subtitle': {
     en: 'US Office of Tengcle Group',
@@ -155,16 +155,16 @@ const translations: Translations = {
     zh: 'Tengcle集团美国办事处',
   },
   'about.description': {
-    en: 'Tengcle LLC represents the US operations of the global Tengcle Group. Based in New Jersey, we bring Japanese service standards to the competitive NY/NJ real estate market.',
-    ja: 'Tengcle LLCは、Tengcle Groupの米国拠点です。ニュージャージーを拠点に、日本クオリティのきめ細やかなサービスを、NY/NJの不動産市場で提供しています。',
-    zh: 'Tengcle LLC 代表 Tengcle Group 的美国业务。我们立足新泽西，将日式服务标准带入竞争激烈的纽约/新泽西房地产市场。',
+    en: 'Tengcle Development LLC represents the US operations of the global Tengcle Group. Based in New Jersey, we bring Japanese service standards to the competitive NY/NJ real estate market.',
+    ja: 'Tengcle Development LLCは、Tengcle Groupの米国拠点です。ニュージャージーを拠点に、日本クオリティのきめ細やかなサービスを、NY/NJの不動産市場で提供しています。',
+    zh: 'Tengcle Development LLC 代表 Tengcle Group 的美国业务。我们立足新泽西，将日式服务标准带入竞争激烈的纽约/新泽西房地产市场。',
   },
 
   // Company Info
   'company.name': {
-    en: 'Tengcle LLC',
-    ja: 'Tengcle LLC',
-    zh: 'Tengcle LLC',
+    en: 'Tengcle Development LLC',
+    ja: 'Tengcle Development LLC',
+    zh: 'Tengcle Development LLC',
   },
   'company.address': {
     en: '17 Hamilton Ave, Weehawken, NJ 07086, USA',
@@ -240,9 +240,9 @@ const translations: Translations = {
 
   // SEO Meta
   'meta.title': {
-    en: 'Tengcle LLC | NJ/NY Asset Management',
-    ja: 'Tengcle LLC | 米国資産管理パートナー',
-    zh: 'Tengcle LLC | 资产管理合作伙伴',
+    en: 'Tengcle Development LLC | NJ/NY Asset Management',
+    ja: 'Tengcle Development LLC | 米国資産管理パートナー',
+    zh: 'Tengcle Development LLC | 资产管理合作伙伴',
   },
   'meta.description': {
     en: 'Maximizing real estate value in NJ & NY. Professional property management and vacation rental solutions with Japanese hospitality standards.',
@@ -250,9 +250,9 @@ const translations: Translations = {
     zh: '最大化新泽西和纽约的房地产价值。提供符合日式服务标准的专业物业管理和度假租赁解决方案。',
   },
   'meta.keywords': {
-    en: 'Tengcle LLC, NJ property management, vacation rentals NY, Japanese hospitality, real estate investment',
-    ja: 'Tengcle LLC, NJ不動産管理, NY民泊運用, 日本式サービス, 米国不動産投資',
-    zh: 'Tengcle LLC, 新泽西物业管理, 纽约度假租赁, 日式服务, 美国房地产投资',
+    en: 'Tengcle Development LLC, NJ property management, vacation rentals NY, Japanese hospitality, real estate investment',
+    ja: 'Tengcle Development LLC, NJ不動産管理, NY民泊運用, 日本式サービス, 米国不動産投資',
+    zh: 'Tengcle Development LLC, 新泽西物业管理, 纽约度假租赁, 日式服务, 美国房地产投资',
   },
 };
 

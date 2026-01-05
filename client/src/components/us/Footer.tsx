@@ -112,7 +112,7 @@ export default function UsFooter() {
         <div className="container py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © {currentYear} Tengcle LLC. {t('footer.rights')}
+              © {currentYear} Tengcle Development LLC. {t('footer.rights')}
             </p>
             <p className="text-gray-500 text-xs">
               Part of Tengcle Group

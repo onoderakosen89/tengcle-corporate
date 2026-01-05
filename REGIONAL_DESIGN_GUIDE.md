@@ -71,7 +71,7 @@ This document explains the design differences between each regional website and 
 
 ---
 
-## United States (アメリカ) - Tengcle LLC
+## United States (アメリカ) - Tengcle Development LLC
 
 ### Design Philosophy
 - **Bold & Direct**: Confident, action-oriented communication

@@ -62,7 +62,7 @@ const regions = [
     name: "United States",
     nameJa: "アメリカ",
     nameZh: "美国",
-    company: "Tengcle LLC",
+    company: "Tengcle Development LLC",
     role: "US Office",
     roleJa: "米国拠点",
     roleZh: "美国办事处",
