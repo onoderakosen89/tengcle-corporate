@@ -273,10 +273,10 @@ export default function VacationRentals() {
   const basePath = `/us/${language}`;
 
   const services = [
-    { icon: Camera, titleKey: 'service1.title', descKey: 'service1.desc' },
-    { icon: TrendingUp, titleKey: 'service2.title', descKey: 'service2.desc' },
-    { icon: MessageSquare, titleKey: 'service3.title', descKey: 'service3.desc' },
-    { icon: Sparkles, titleKey: 'service4.title', descKey: 'service4.desc' },
+    { icon: Camera, titleKey: 'service1.title', descKey: 'service1.desc', image: '/images/us-vr-listing.jpg' },
+    { icon: TrendingUp, titleKey: 'service2.title', descKey: 'service2.desc', image: '/images/us-vr-pricing.jpg' },
+    { icon: MessageSquare, titleKey: 'service3.title', descKey: 'service3.desc', image: '/images/us-vr-guest.jpg' },
+    { icon: Sparkles, titleKey: 'service4.title', descKey: 'service4.desc', image: '/images/us-vr-cleaning.jpg' },
   ];
 
   const results = [
@@ -408,17 +408,29 @@ export default function VacationRentals() {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeInUp}
-                  className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+                  className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center mb-6">
-                    <service.icon className="w-7 h-7 text-gold" />
+                  {/* Service Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={t(service.titleKey)}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                   </div>
-                  <h3 className="font-heading text-xl text-purple-deep mb-3">
-                    {t(service.titleKey)}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {t(service.descKey)}
-                  </p>
+                  <div className="p-6">
+                    <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mb-4 -mt-10 relative z-10 border-4 border-white shadow-md">
+                      <service.icon className="w-6 h-6 text-gold" />
+                    </div>
+                    <h3 className="font-heading text-xl text-purple-deep mb-3">
+                      {t(service.titleKey)}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      {t(service.descKey)}
+                    </p>
+                  </div>
                 </motion.div>
               ))}
             </div>
