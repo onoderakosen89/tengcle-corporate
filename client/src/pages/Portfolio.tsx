@@ -115,8 +115,10 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-white" data-region="hk">
       <SEOHead
-        title={t.portfolio.title + " | Tengcle Limited"}
-        description={t.portfolio.description}
+        title={language === "ja" ? "実績 | Tengcle Limited 香港 - ホテルFF&Eプロジェクト" : language === "zh" ? "项目案例 | Tengcle Limited 香港 - 酒店FF&E项目" : "Portfolio | Tengcle Limited Hong Kong - Hotel FF&E Projects"}
+        description={language === "ja" ? "ホテルFF&E調達・ホテルITソリューションの実績。アジア各地のホテルプロジェクト。" : language === "zh" ? "酒店FF&E采购及IT解决方案项目案例。亚洲各地酒店项目。" : "Hotel FF&E procurement & IT solutions portfolio. Hotel projects across Asia."}
+        keywords={language === "ja" ? "Tengcle Limited, 実績, ポートフォリオ, ホテルFF&E, ホテルIT" : language === "zh" ? "Tengcle Limited, 项目案例, 酒店FF&E, 酒店IT" : "Tengcle Limited, portfolio, hotel FF&E, hotel IT, projects"}
+        locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
         canonical={`https://www.tengcle.com/hk/${language}/portfolio`}
       />
       <Header />

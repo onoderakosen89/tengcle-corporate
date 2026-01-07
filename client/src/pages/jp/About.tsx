@@ -53,8 +53,10 @@ export default function About() {
   return (
     <div className="min-h-screen bg-white" data-region="jp">
       <SEOHead
-        title={t.about.title + " | Tengcle Inc."}
-        description={t.about.description}
+        title={language === "ja" ? "会社概要 | Tengcle Inc. 東京 - 不動産管理・飲食・レンタルジム" : language === "zh" ? "关于我们 | Tengcle Inc. 东京 - 不动产管理·餐饮·租赁健身房" : "About Us | Tengcle Inc. Tokyo - Property, F&B & Rental Gym"}
+        description={language === "ja" ? "Tengcle Inc.の会社情報。東京拠点で不動産管理、飲食店運営、レンタルジム事業を展開。" : language === "zh" ? "Tengcle Inc.公司信息。东京总部，提供不动产管理、餐饮运营、租赁健身房服务。" : "About Tengcle Inc. Tokyo-based property management, F&B operations & rental gym business."}
+        keywords={language === "ja" ? "Tengcle Inc., 会社概要, 東京, 不動産管理, 飲食店" : language === "zh" ? "Tengcle Inc., 关于我们, 东京, 不动产管理, 餐饮" : "Tengcle Inc., about us, Tokyo, property management, F&B"}
+        locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
         canonical={`https://www.tengcle.com/jp/${language}/about`}
         structuredData={{
           "@context": "https://schema.org",

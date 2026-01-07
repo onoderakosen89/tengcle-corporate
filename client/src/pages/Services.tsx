@@ -191,8 +191,10 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-white" data-region="hk">
       <SEOHead
-        title={t.services.title + " | Tengcle Limited"}
-        description={t.services.description}
+        title={language === "ja" ? "サービス | Tengcle Limited 香港 - ホテルFF&E・TCSP・IT" : language === "zh" ? "服务内容 | Tengcle Limited 香港 - 酒店FF&E·TCSP·IT" : "Services | Tengcle Limited Hong Kong - Hotel FF&E, TCSP & IT"}
+        description={language === "ja" ? "ホテルFF&E調達、TCSPライセンス、ホテルITソリューション、IPキャラクターグッズ、貿易サービス。" : language === "zh" ? "酒店FF&E采购、TCSP许可证、酒店IT解决方案、IP角色商品、贸易服务。" : "Hotel FF&E procurement, TCSP licensing, hotel IT solutions, IP character goods & trading services."}
+        keywords={language === "ja" ? "Tengcle Limited, サービス, ホテルFF&E, TCSP, ITソリューション" : language === "zh" ? "Tengcle Limited, 服务, 酒店FF&E, TCSP, IT解决方案" : "Tengcle Limited, services, hotel FF&E, TCSP, IT solutions"}
+        locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
         canonical={`https://www.tengcle.com/hk/${language}/services`}
       />
       <Header />

@@ -120,8 +120,9 @@ export default function UsServices() {
   return (
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
-        title={globalT('services.title') + " | Tengcle Development LLC"}
-        description={globalT('services.subtitle')}
+        title={language === "ja" ? "サービス | Tengcle Development LLC - 不動産開発・管理・民泊" : language === "zh" ? "服务内容 | Tengcle Development LLC - 房地产开发·管理·短租" : "Services | Tengcle Development LLC - Real Estate Development & Management"}
+        description={language === "ja" ? "不動産開発、不動産管理、民泊運用サービス。NJ・ニューヨークエリア。" : language === "zh" ? "房地产开发、物业管理、短租运营服务。新泽西·纽约地区。" : "Real estate development, property management & vacation rental services. NJ & NY metropolitan area."}
+        keywords={language === "ja" ? "Tengcle Development LLC, サービス, 不動産開発, 不動産管理, 民泊" : language === "zh" ? "Tengcle Development LLC, 服务, 房地产开发, 物业管理, 短租" : "Tengcle Development LLC, services, real estate development, property management, vacation rentals"}
         canonical={`https://www.tengcle.com/us/${language}/services`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
         structuredData={generateBreadcrumbSchema([

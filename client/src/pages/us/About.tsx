@@ -52,8 +52,9 @@ export default function UsAbout() {
   return (
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
-        title={t('about.title') + " | Tengcle LLC"}
-        description={t('about.description')}
+        title={language === "ja" ? "会社概要 | Tengcle Development LLC NJ - 不動産開発" : language === "zh" ? "关于我们 | Tengcle Development LLC NJ - 房地产开发" : "About Us | Tengcle Development LLC NJ - Real Estate Development"}
+        description={language === "ja" ? "Tengcle Development LLCの会社情報。NJ・ニューヨーク拠点で不動産開発・管理・民泊運用を展開。" : language === "zh" ? "Tengcle Development LLC公司信息。新泽西·纽约总部，提供房地产开发、管理、短租运营服务。" : "About Tengcle Development LLC. NJ & NY-based real estate development, property management & vacation rentals."}
+        keywords={language === "ja" ? "Tengcle Development LLC, 会社概要, ニュージャージー, 不動産開発" : language === "zh" ? "Tengcle Development LLC, 关于我们, 新泽西, 房地产开发" : "Tengcle Development LLC, about us, New Jersey, real estate development"}
         canonical={`https://www.tengcle.com/us/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
         structuredData={{

@@ -51,8 +51,10 @@ export default function About() {
   return (
     <div className="min-h-screen bg-white" data-region="hk">
       <SEOHead
-        title={t.about.title + " | Tengcle Limited"}
-        description={t.about.description}
+        title={language === "ja" ? "会社概要 | Tengcle Limited 香港 - ホテルFF&E・TCSP" : language === "zh" ? "关于我们 | Tengcle Limited 香港 - 酒店FF&E·TCSP" : "About Us | Tengcle Limited Hong Kong - Hotel FF&E & TCSP"}
+        description={language === "ja" ? "Tengcle Limitedの会社情報。香港拠点でホテルFF&E調達、TCSPライセンス、ITソリューションを提供。" : language === "zh" ? "Tengcle Limited公司信息。香港总部，提供酒店FF&E采购、TCSP许可证、IT解决方案。" : "About Tengcle Limited. Hong Kong-based hotel FF&E procurement, TCSP licensing & IT solutions provider."}
+        keywords={language === "ja" ? "Tengcle Limited, 会社概要, 香港, ホテルFF&E, TCSP" : language === "zh" ? "Tengcle Limited, 关于我们, 香港, 酒店FF&E, TCSP" : "Tengcle Limited, about us, Hong Kong, hotel FF&E, TCSP"}
+        canonical={`https://www.tengcle.com/hk/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
         structuredData={{
           "@context": "https://schema.org",

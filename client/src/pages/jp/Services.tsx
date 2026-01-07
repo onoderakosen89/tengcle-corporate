@@ -110,8 +110,10 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-white" data-region="jp">
       <SEOHead
-        title={t.services.title + " | Tengcle Inc."}
-        description={t.services.description}
+        title={language === "ja" ? "事業紹介 | Tengcle Inc. 東京 - 不動産・飲食・ジム" : language === "zh" ? "业务介绍 | Tengcle Inc. 东京 - 不动产·餐饮·健身房" : "Services | Tengcle Inc. Tokyo - Property, F&B & Gym"}
+        description={language === "ja" ? "不動産管理、飲食店運営、レンタルジム、ホテルITソリューション、貿易事業。" : language === "zh" ? "不动产管理、餐饮运营、租赁健身房、酒店IT解决方案、贸易业务。" : "Property management, F&B operations, rental gym, hotel IT solutions & trading business."}
+        keywords={language === "ja" ? "Tengcle Inc., 事業紹介, 不動産管理, 飲食店, レンタルジム" : language === "zh" ? "Tengcle Inc., 业务介绍, 不动产管理, 餐饮, 健身房" : "Tengcle Inc., services, property management, F&B, rental gym"}
+        locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
         canonical={`https://www.tengcle.com/jp/${language}/services`}
       />
       <Header />
