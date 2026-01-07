@@ -22,8 +22,8 @@ interface FAQItem {
 // FAQ data for Japan site
 const faqDataJa: FAQItem[] = [
   {
-    question: "Tengcle Inc.はどのようなサービスを提供していますか？",
-    answer: "Tengcle Inc.は、不動産管理、飲食店オペレーション、レンタルジム運営、カプセルホテル運営、人材紹介の5つの事業を展開しています。東京を中心に、日本市場でサービスを提供しています。"
+    question: "Tengcle株式会社はどのようなサービスを提供していますか？",
+    answer: "Tengcle株式会社は、不動産管理、飲食店オペレーション、レンタルジム運営、カプセルホテル運営、人材紹介の5つの事業を展開しています。東京を中心に、日本市場でサービスを提供しています。"
   },
   {
     question: "不動産管理サービスの内容を教えてください。",
@@ -43,7 +43,7 @@ const faqDataJa: FAQItem[] = [
   },
   {
     question: "Tengcle Groupとの関係を教えてください。",
-    answer: "Tengcle Inc.は、香港に本社を置くTengcle Groupの日本法人です。グループ全体で、香港、日本、アメリカの3拠点でビジネスを展開しています。"
+    answer: "Tengcle株式会社は、香港に本社を置くTengcle Groupの日本法人です。グループ全体で、香港、日本、アメリカの3拠点でビジネスを展開しています。"
   },
   {
     question: "会社の所在地はどこですか？",
@@ -57,8 +57,8 @@ const faqDataJa: FAQItem[] = [
 
 const faqDataEn: FAQItem[] = [
   {
-    question: "What services does Tengcle Inc. provide?",
-    answer: "Tengcle Inc. operates five business divisions: real estate management, restaurant operations, rental gym, capsule hotel, and recruitment services. We provide services in the Japanese market, primarily in Tokyo."
+    question: "What services does Tengcle株式会社 provide?",
+    answer: "Tengcle株式会社 operates five business divisions: real estate management, restaurant operations, rental gym, capsule hotel, and recruitment services. We provide services in the Japanese market, primarily in Tokyo."
   },
   {
     question: "What does your property management service include?",
@@ -78,7 +78,7 @@ const faqDataEn: FAQItem[] = [
   },
   {
     question: "What is the relationship with Tengcle Group?",
-    answer: "Tengcle Inc. is the Japan subsidiary of Tengcle Group, headquartered in Hong Kong. The group operates across three locations: Hong Kong, Japan, and the United States."
+    answer: "Tengcle株式会社 is the Japan subsidiary of Tengcle Group, headquartered in Hong Kong. The group operates across three locations: Hong Kong, Japan, and the United States."
   },
   {
     question: "Where is your office located?",
@@ -92,8 +92,8 @@ const faqDataEn: FAQItem[] = [
 
 const faqDataZh: FAQItem[] = [
   {
-    question: "Tengcle Inc.提供哪些服务？",
-    answer: "Tengcle Inc.经营五大业务：房地产管理、餐饮运营、租赁健身房、胶囊酒店和人才招聘服务。我们主要在东京为日本市场提供服务。"
+    question: "Tengcle株式会社提供哪些服务？",
+    answer: "Tengcle株式会社经营五大业务：房地产管理、餐饮运营、租赁健身房、胶囊酒店和人才招聘服务。我们主要在东京为日本市场提供服务。"
   },
   {
     question: "物业管理服务包括哪些内容？",
@@ -113,7 +113,7 @@ const faqDataZh: FAQItem[] = [
   },
   {
     question: "与Tengcle Group是什么关系？",
-    answer: "Tengcle Inc.是总部位于香港的Tengcle Group的日本子公司。集团在香港、日本和美国三个地点开展业务。"
+    answer: "Tengcle株式会社是总部位于香港的Tengcle Group的日本子公司。集团在香港、日本和美国三个地点开展业务。"
   },
   {
     question: "办公室在哪里？",
@@ -191,9 +191,9 @@ export default function JpFAQ() {
       contactTitle: "お問い合わせ",
       contactText: "ご不明な点がございましたら、お気軽にお問い合わせください。",
       contactButton: "お問い合わせ",
-      metaTitle: "よくある質問 | Tengcle Inc. 東京",
-      metaDescription: "Tengcle Inc.の事業に関するFAQ。不動産・飲食・レンタルジム・カプセルホテル・人材紹介。",
-      metaKeywords: "Tengcle Inc, FAQ, 不動産, レンタルジム, カプセルホテル, 東京"
+      metaTitle: "よくある質問 | Tengcle株式会社 東京",
+      metaDescription: "Tengcle株式会社の事業に関するFAQ。不動産・飲食・レンタルジム・カプセルホテル・人材紹介。",
+      metaKeywords: "Tengcle株式会社, FAQ, 不動産, レンタルジム, カプセルホテル, 東京"
     },
     en: {
       title: "Frequently Asked Questions",
@@ -202,9 +202,9 @@ export default function JpFAQ() {
       contactTitle: "Contact Us",
       contactText: "If you have any questions, please feel free to contact us.",
       contactButton: "Contact Us",
-      metaTitle: "FAQ | Tengcle Inc. Tokyo Japan",
-      metaDescription: "FAQ about Tengcle Inc. services: real estate, restaurant, rental gym, capsule hotel & recruitment in Tokyo.",
-      metaKeywords: "Tengcle Inc, FAQ, real estate, rental gym, capsule hotel, Tokyo"
+      metaTitle: "FAQ | Tengcle株式会社 Tokyo Japan",
+      metaDescription: "FAQ about Tengcle株式会社 services: real estate, restaurant, rental gym, capsule hotel & recruitment in Tokyo.",
+      metaKeywords: "Tengcle株式会社, FAQ, real estate, rental gym, capsule hotel, Tokyo"
     },
     zh: {
       title: "常见问题",
@@ -213,9 +213,9 @@ export default function JpFAQ() {
       contactTitle: "联系我们",
       contactText: "如有任何问题，请随时与我们联系。",
       contactButton: "联系我们",
-      metaTitle: "常见问题 | Tengcle Inc. 东京",
-      metaDescription: "Tengcle Inc.事业相关FAQ。房地产・餐饮・租赁健身房・胶囊酒店・人才介绍。",
-      metaKeywords: "Tengcle Inc, FAQ, 房地产, 租赁健身房, 胶囊酒店, 东京"
+      metaTitle: "常见问题 | Tengcle株式会社 东京",
+      metaDescription: "Tengcle株式会社事业相关FAQ。房地产・餐饮・租赁健身房・胶囊酒店・人才介绍。",
+      metaKeywords: "Tengcle株式会社, FAQ, 房地产, 租赁健身房, 胶囊酒店, 东京"
     }
   };
 

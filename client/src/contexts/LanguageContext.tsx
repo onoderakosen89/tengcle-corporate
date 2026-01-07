@@ -245,7 +245,7 @@ const translations: Record<Language, Translations> = {
       description: "Hong Kong-based company offering hospitality, IT, and trade services.",
       navigation: "Navigation",
       contact: "Contact",
-      japan: "Tengcle Inc. (Japan)",
+      japan: "Tengcle株式会社 (Japan)",
       usa: "Tengcle LCC (USA)",
     },
     common: {
@@ -377,7 +377,7 @@ const translations: Record<Language, Translations> = {
       description: "ホスピタリティ、IT、国際貿易サービスを提供する香港拠点の企業。",
       navigation: "ナビゲーション",
       contact: "お問い合わせ",
-      japan: "Tengcle Inc.（日本）",
+      japan: "Tengcle株式会社（日本）",
       usa: "Tengcle LCC（米国）",
     },
     common: {
@@ -509,7 +509,7 @@ const translations: Record<Language, Translations> = {
       description: "香港公司，提供酒店、IT和贸易服务。",
       navigation: "导航",
       contact: "联系方式",
-      japan: "Tengcle Inc.（日本）",
+      japan: "Tengcle株式会社（日本）",
       usa: "Tengcle LCC（美国）",
     },
     common: {

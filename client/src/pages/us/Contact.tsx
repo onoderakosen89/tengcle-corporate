@@ -55,7 +55,7 @@ export default function UsContact() {
         ogImage="/images/og-image-us.jpg"
         canonical={`https://www.tengcle.com/us/${language}/contact`}
         structuredData={generateLocalBusinessSchema({
-          name: "Tengcle LLC",
+          name: "Tengcle Development LLC",
           url: "https://www.tengcle.com/us",
           email: "us@tengcle.com",
           address: {
@@ -90,7 +90,7 @@ export default function UsContact() {
               variants={fadeInUp}
               className="text-gold text-sm tracking-widest uppercase mb-4"
             >
-              Tengcle LLC
+              Tengcle Development LLC
             </motion.p>
             <motion.h1
               variants={fadeInUp}

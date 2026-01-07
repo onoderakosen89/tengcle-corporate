@@ -53,9 +53,9 @@ export default function About() {
   return (
     <div className="min-h-screen bg-white" data-region="jp">
       <SEOHead
-        title={language === "ja" ? "会社概要 | Tengcle Inc. 東京 - 不動産管理・飲食・レンタルジム" : language === "zh" ? "关于我们 | Tengcle Inc. 东京 - 不动产管理·餐饮·租赁健身房" : "About Us | Tengcle Inc. Tokyo - Property, F&B & Rental Gym"}
-        description={language === "ja" ? "Tengcle Inc.の会社情報。東京拠点で不動産管理、飲食店運営、レンタルジム事業を展開。" : language === "zh" ? "Tengcle Inc.公司信息。东京总部，提供不动产管理、餐饮运营、租赁健身房服务。" : "About Tengcle Inc. Tokyo-based property management, F&B operations & rental gym business."}
-        keywords={language === "ja" ? "Tengcle Inc., 会社概要, 東京, 不動産管理, 飲食店" : language === "zh" ? "Tengcle Inc., 关于我们, 东京, 不动产管理, 餐饮" : "Tengcle Inc., about us, Tokyo, property management, F&B"}
+        title={language === "ja" ? "会社概要 | Tengcle株式会社 東京 - 不動産管理・飲食・レンタルジム" : language === "zh" ? "关于我们 | Tengcle株式会社 东京 - 不动产管理·餐饮·租赁健身房" : "About Us | Tengcle株式会社 Tokyo - Property, F&B & Rental Gym"}
+        description={language === "ja" ? "Tengcle株式会社の会社情報。東京拠点で不動産管理、飲食店運営、レンタルジム事業を展開。" : language === "zh" ? "Tengcle株式会社公司信息。东京总部，提供不动产管理、餐饮运营、租赁健身房服务。" : "About Tengcle株式会社 Tokyo-based property management, F&B operations & rental gym business."}
+        keywords={language === "ja" ? "Tengcle株式会社, 会社概要, 東京, 不動産管理, 飲食店" : language === "zh" ? "Tengcle株式会社, 关于我们, 东京, 不动产管理, 餐饮" : "Tengcle株式会社, about us, Tokyo, property management, F&B"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
         ogImage="/images/og-image-jp.jpg"
         canonical={`https://www.tengcle.com/jp/${language}/about`}
@@ -63,7 +63,7 @@ export default function About() {
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
-              name: "Tengcle Inc.",
+              name: "Tengcle株式会社",
               description: t.about.description,
               url: "https://www.tengcle.com/jp",
               email: "info@tengcle.com",
@@ -126,7 +126,7 @@ export default function About() {
               >
                 <img
                   src="/images/hero-japan-corporate.jpg"
-                  alt="Tengcle Inc. Japan"
+                  alt="Tengcle株式会社 Japan"
                   className="w-full h-80 lg:h-[500px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent" />
@@ -181,7 +181,7 @@ export default function About() {
                       {t.about.info.legalName}
                     </th>
                     <td className={`py-5 px-6 text-charcoal ${getFontClass()}`}>
-                      Tengcle Inc.
+                      Tengcle株式会社
                     </td>
                   </tr>
                   <tr className="border-b border-gray-100">

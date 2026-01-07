@@ -110,9 +110,9 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-white" data-region="jp">
       <SEOHead
-        title={language === "ja" ? "事業紹介 | Tengcle Inc. 東京 - 不動産・飲食・ジム" : language === "zh" ? "业务介绍 | Tengcle Inc. 东京 - 不动产·餐饮·健身房" : "Services | Tengcle Inc. Tokyo - Property, F&B & Gym"}
+        title={language === "ja" ? "事業紹介 | Tengcle株式会社 東京 - 不動産・飲食・ジム" : language === "zh" ? "业务介绍 | Tengcle株式会社 东京 - 不动产·餐饮·健身房" : "Services | Tengcle株式会社 Tokyo - Property, F&B & Gym"}
         description={language === "ja" ? "不動産管理、飲食店運営、レンタルジム、ホテルITソリューション、貿易事業。" : language === "zh" ? "不动产管理、餐饮运营、租赁健身房、酒店IT解决方案、贸易业务。" : "Property management, F&B operations, rental gym, hotel IT solutions & trading business."}
-        keywords={language === "ja" ? "Tengcle Inc., 事業紹介, 不動産管理, 飲食店, レンタルジム" : language === "zh" ? "Tengcle Inc., 业务介绍, 不动产管理, 餐饮, 健身房" : "Tengcle Inc., services, property management, F&B, rental gym"}
+        keywords={language === "ja" ? "Tengcle株式会社, 事業紹介, 不動産管理, 飲食店, レンタルジム" : language === "zh" ? "Tengcle株式会社, 业务介绍, 不动产管理, 餐饮, 健身房" : "Tengcle株式会社, services, property management, F&B, rental gym"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
         ogImage="/images/og-image-jp.jpg"
         canonical={`https://www.tengcle.com/jp/${language}/services`}

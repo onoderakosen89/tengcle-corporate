@@ -248,9 +248,9 @@ const translations: Translations = {
     zh: 'Tengcle Limited（香港总部）',
   },
   'footer.jp': {
-    en: 'Tengcle Inc. (Japan)',
-    ja: 'Tengcle Inc.（日本）',
-    zh: 'Tengcle Inc.（日本）',
+    en: 'Tengcle株式会社 (Japan)',
+    ja: 'Tengcle株式会社（日本）',
+    zh: 'Tengcle株式会社（日本）',
   },
 
   // CTA

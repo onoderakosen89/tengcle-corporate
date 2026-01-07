@@ -22,8 +22,8 @@ interface FAQItem {
 // FAQ data for US site
 const faqDataEn: FAQItem[] = [
   {
-    question: "What services does Tengcle LLC provide?",
-    answer: "Tengcle LLC specializes in property management and vacation rental services in New Jersey and the New York metropolitan area. We handle residential and commercial property management, as well as short-term rental management for Airbnb and VRBO properties."
+    question: "What services does Tengcle Development LLC provide?",
+    answer: "Tengcle Development LLC specializes in property management and vacation rental services in New Jersey and the New York metropolitan area. We handle residential and commercial property management, as well as short-term rental management for Airbnb and VRBO properties."
   },
   {
     question: "What areas do you serve?",
@@ -47,7 +47,7 @@ const faqDataEn: FAQItem[] = [
   },
   {
     question: "What is the relationship with Tengcle Group?",
-    answer: "Tengcle LLC is the US office of Tengcle Group, headquartered in Hong Kong. The group operates across three locations: Hong Kong (headquarters), Japan (founding office), and the United States, providing various business services in each region."
+    answer: "Tengcle Development LLC is the US office of Tengcle Group, headquartered in Hong Kong. The group operates across three locations: Hong Kong (headquarters), Japan (founding office), and the United States, providing various business services in each region."
   },
   {
     question: "How can I contact you?",
@@ -57,8 +57,8 @@ const faqDataEn: FAQItem[] = [
 
 const faqDataJa: FAQItem[] = [
   {
-    question: "Tengcle LLCはどのようなサービスを提供していますか？",
-    answer: "Tengcle LLCは、ニュージャージー州およびニューヨーク都市圏で不動産管理とバケーションレンタルサービスを専門としています。住宅・商業用不動産の管理、AirbnbやVRBO物件の短期レンタル管理を行っています。"
+    question: "Tengcle Development LLCはどのようなサービスを提供していますか？",
+    answer: "Tengcle Development LLCは、ニュージャージー州およびニューヨーク都市圏で不動産管理とバケーションレンタルサービスを専門としています。住宅・商業用不動産の管理、AirbnbやVRBO物件の短期レンタル管理を行っています。"
   },
   {
     question: "どのエリアでサービスを提供していますか？",
@@ -82,7 +82,7 @@ const faqDataJa: FAQItem[] = [
   },
   {
     question: "Tengcle Groupとの関係は？",
-    answer: "Tengcle LLCは、香港に本社を置くTengcle Groupの米国オフィスです。グループは香港（本社）、日本（創業地）、米国の3拠点で事業を展開し、各地域で様々なビジネスサービスを提供しています。"
+    answer: "Tengcle Development LLCは、香港に本社を置くTengcle Groupの米国オフィスです。グループは香港（本社）、日本（創業地）、米国の3拠点で事業を展開し、各地域で様々なビジネスサービスを提供しています。"
   },
   {
     question: "連絡方法を教えてください。",
@@ -92,8 +92,8 @@ const faqDataJa: FAQItem[] = [
 
 const faqDataZh: FAQItem[] = [
   {
-    question: "Tengcle LLC提供哪些服务？",
-    answer: "Tengcle LLC专注于新泽西州和纽约大都会区的物业管理和度假租赁服务。我们处理住宅和商业物业管理，以及Airbnb和VRBO物业的短期租赁管理。"
+    question: "Tengcle Development LLC提供哪些服务？",
+    answer: "Tengcle Development LLC专注于新泽西州和纽约大都会区的物业管理和度假租赁服务。我们处理住宅和商业物业管理，以及Airbnb和VRBO物业的短期租赁管理。"
   },
   {
     question: "你们服务哪些地区？",
@@ -117,7 +117,7 @@ const faqDataZh: FAQItem[] = [
   },
   {
     question: "与Tengcle Group是什么关系？",
-    answer: "Tengcle LLC是总部位于香港的Tengcle Group的美国办事处。集团在香港（总部）、日本（创业地）和美国三个地点运营，在每个地区提供各种商业服务。"
+    answer: "Tengcle Development LLC是总部位于香港的Tengcle Group的美国办事处。集团在香港（总部）、日本（创业地）和美国三个地点运营，在每个地区提供各种商业服务。"
   },
   {
     question: "如何联系你们？",

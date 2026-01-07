@@ -124,9 +124,9 @@ export default function Careers() {
   return (
     <div className="min-h-screen bg-white" data-region="jp">
       <SEOHead
-        title={language === "ja" ? "採用情報 | Tengcle Inc. 東京 - 一緒に働きませんか" : language === "zh" ? "招聘信息 | Tengcle Inc. 东京 - 加入我们" : "Careers | Tengcle Inc. Tokyo - Join Our Team"}
-        description={language === "ja" ? "Tengcle Inc.の採用情報。不動産管理、飲食、ジム事業で一緒に働く仲間を募集中。" : language === "zh" ? "Tengcle Inc.招聘信息。不动产管理、餐饮、健身房业务招聘中。" : "Tengcle Inc. career opportunities. Join our property management, F&B & gym business team."}
-        keywords={language === "ja" ? "Tengcle Inc., 採用情報, 求人, 東京, 不動産" : language === "zh" ? "Tengcle Inc., 招聘, 东京, 不动产" : "Tengcle Inc., careers, jobs, Tokyo, property management"}
+        title={language === "ja" ? "採用情報 | Tengcle株式会社 東京 - 一緒に働きませんか" : language === "zh" ? "招聘信息 | Tengcle株式会社 东京 - 加入我们" : "Careers | Tengcle株式会社 Tokyo - Join Our Team"}
+        description={language === "ja" ? "Tengcle株式会社の採用情報。不動産管理、飲食、ジム事業で一緒に働く仲間を募集中。" : language === "zh" ? "Tengcle株式会社招聘信息。不动产管理、餐饮、健身房业务招聘中。" : "Tengcle株式会社 career opportunities. Join our property management, F&B & gym business team."}
+        keywords={language === "ja" ? "Tengcle株式会社, 採用情報, 求人, 東京, 不動産" : language === "zh" ? "Tengcle株式会社, 招聘, 东京, 不动产" : "Tengcle株式会社, careers, jobs, Tokyo, property management"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
         ogImage="/images/og-image-jp.jpg"
         canonical={`https://www.tengcle.com/jp/${language}/careers`}

@@ -1,5 +1,5 @@
 /**
- * Language Context - Multi-language Support for Tengcle Inc. Japan
+ * Language Context - Multi-language Support for Tengcle株式会社 Japan
  * Supports: Japanese (JA - Primary), English (EN), Chinese Simplified (ZH)
  */
 
@@ -228,7 +228,7 @@ const translations: Record<Language, Translations> = {
       careers: "採用情報",
     },
     hero: {
-      tagline: "Tengcle Inc.",
+      tagline: "Tengcle株式会社",
       headline1: "多様な事業で、",
       headline2: "新しい価値を創造する",
       subtitle: "不動産・飲食・ウェルネス・宿泊・人材。5つの事業領域を通じて、人々の生活とビジネスをトータルにサポートします。",
@@ -241,7 +241,7 @@ const translations: Record<Language, Translations> = {
     services: {
       subtitle: "Our Business",
       title: "事業紹介",
-      description: "Tengcle Inc.は、多角的なアプローチで社会のニーズに応えます。各事業が連携し、相乗効果を生み出すことで、より質の高いサービスを提供します。",
+      description: "Tengcle株式会社は、多角的なアプローチで社会のニーズに応えます。各事業が連携し、相乗効果を生み出すことで、より質の高いサービスを提供します。",
       viewAll: "事業一覧を見る",
       realEstate: {
         title: "不動産管理",
@@ -266,11 +266,11 @@ const translations: Record<Language, Translations> = {
     },
     about: {
       subtitle: "About Us",
-      title: "Tengcle Inc.について",
+      title: "Tengcle株式会社について",
       description: "2021年の創業以来、私たちは常に挑戦を続けてきました。香港を拠点とするTengcle Groupの一員として、グローバルな視点と日本のおもてなしの心を融合させた事業を展開しています。",
       story: {
         title: "沿革・背景",
-        p1: "Tengcle Inc.は2021年10月、日本でその歩みを開始しました。その後、事業の拡大に伴い香港にTengcle Limitedを設立。現在はその日本法人として、グループの中核を担っています。",
+        p1: "Tengcle株式会社は2021年10月、日本でその歩みを開始しました。その後、事業の拡大に伴い香港にTengcle Limitedを設立。現在はその日本法人として、グループの中核を担っています。",
         p2: "「衣・食・住」、そして「人」。私たちの生活に欠かせないこれらの領域で、誠実かつ革新的なサービスを提供し続けること。それが私たちの使命です。",
       },
       info: {
@@ -301,7 +301,7 @@ const translations: Record<Language, Translations> = {
     careers: {
       subtitle: "採用情報",
       title: "一緒に働く仲間を募集しています",
-      description: "Tengcle Inc.では、各事業部門で活躍いただけるスタッフを募集しています。経験者優遇、未経験者も歓迎します。",
+      description: "Tengcle株式会社では、各事業部門で活躍いただけるスタッフを募集しています。経験者優遇、未経験者も歓迎します。",
       midCareer: "中途採用",
       salaryNote: "※給与は経験・能力を考慮の上、決定いたします",
       totalPositions: "正社員9名・パート3名・アルバイト4名 募集中",
@@ -441,7 +441,7 @@ const translations: Record<Language, Translations> = {
       },
     },
     footer: {
-      description: "Tengcle Inc.は、不動産管理、飲食店オペレーション、レンタルジム、カプセルホテル運営、人材紹介の5つの事業を展開する日本法人です。",
+      description: "Tengcle株式会社は、不動産管理、飲食店オペレーション、レンタルジム、カプセルホテル運営、人材紹介の5つの事業を展開する日本法人です。",
       navigation: "ナビゲーション",
       contact: "お問い合わせ",
       hongkong: "Tengcle Limited（香港本社）",
@@ -450,15 +450,15 @@ const translations: Record<Language, Translations> = {
     common: {
       learnMore: "詳細を見る",
       getInTouch: "お問い合わせ",
-      japanCorporate: "Tengcle Inc.",
+      japanCorporate: "Tengcle株式会社",
       fullTime: "正社員",
       partTime: "パート",
       contract: "契約社員",
     },
     meta: {
-      title: "Tengcle Inc. | 東京の不動産・飲食・レンタルジム・宿泊事業",
+      title: "Tengcle株式会社 | 東京の不動産・飲食・レンタルジム・宿泊事業",
       description: "東京・港区拠点。5事業展開：不動産管理、飲食、レンタルジム、カプセルホテル、人材紹介。",
-      keywords: "Tengcle Inc, 東京, 不動産管理, レンタルジム, カプセルホテル, 港区",
+      keywords: "Tengcle株式会社, 東京, 不動産管理, レンタルジム, カプセルホテル, 港区",
     },
   },
   en: {
@@ -470,7 +470,7 @@ const translations: Record<Language, Translations> = {
       careers: "Careers",
     },
     hero: {
-      tagline: "Tengcle Inc. Japan",
+      tagline: "Tengcle株式会社 Japan",
       headline1: "5 Businesses",
       headline2: "in Japan",
       subtitle: "Real estate, dining, fitness, accommodation, and recruitment services in Japan.",
@@ -508,11 +508,11 @@ const translations: Record<Language, Translations> = {
     },
     about: {
       subtitle: "About Us",
-      title: "About Tengcle Inc.",
-      description: "Tengcle Inc. is the founding company of Tengcle Group, established in Japan in 2021.",
+      title: "About Tengcle株式会社",
+      description: "Tengcle株式会社 is the founding company of Tengcle Group, established in Japan in 2021.",
       story: {
         title: "Our Story",
-        p1: "Tengcle Inc. was founded in Japan in October 2021 and now operates as a group company under Tengcle Limited, headquartered in Hong Kong.",
+        p1: "Tengcle株式会社 was founded in Japan in October 2021 and now operates as a group company under Tengcle Limited, headquartered in Hong Kong.",
         p2: "We operate 5 businesses: real estate, restaurants, rental gyms, capsule hotels, and recruitment.",
       },
       info: {
@@ -543,7 +543,7 @@ const translations: Record<Language, Translations> = {
     careers: {
       subtitle: "Careers",
       title: "Join Our Team",
-      description: "Tengcle Inc. is looking for staff to work in various business divisions. Experienced candidates preferred, but beginners are also welcome.",
+      description: "Tengcle株式会社 is looking for staff to work in various business divisions. Experienced candidates preferred, but beginners are also welcome.",
       midCareer: "Mid-Career",
       salaryNote: "※Salary determined based on experience and skills",
       totalPositions: "Hiring: 9 Full-time, 3 Part-time, 4 Arubaito",
@@ -683,7 +683,7 @@ const translations: Record<Language, Translations> = {
       },
     },
     footer: {
-      description: "Tengcle Inc. is a Japanese corporation operating five businesses: real estate management, restaurant operations, rental gyms, capsule hotel operations, and recruitment services.",
+      description: "Tengcle株式会社 is a Japanese corporation operating five businesses: real estate management, restaurant operations, rental gyms, capsule hotel operations, and recruitment services.",
       navigation: "Navigation",
       contact: "Contact",
       hongkong: "Tengcle Limited (Hong Kong HQ)",
@@ -698,9 +698,9 @@ const translations: Record<Language, Translations> = {
       contract: "Contract",
     },
     meta: {
-      title: "Tengcle Inc. | Real Estate, F&B & Hospitality in Tokyo Japan",
+      title: "Tengcle株式会社 | Real Estate, F&B & Hospitality in Tokyo Japan",
       description: "Tokyo-based company with 5 business lines: real estate, restaurant, rental gym, capsule hotel & recruitment.",
-      keywords: "Tengcle Inc, Tokyo, real estate, rental gym, capsule hotel, Minato-ku",
+      keywords: "Tengcle株式会社, Tokyo, real estate, rental gym, capsule hotel, Minato-ku",
     },
   },
   zh: {
@@ -715,7 +715,7 @@ const translations: Record<Language, Translations> = {
       tagline: "来自日本的商业解决方案",
       headline1: "通过多元化业务",
       headline2: "创造价值",
-      subtitle: "从房地产到餐饮、健身、住宿和人才服务。Tengcle Inc.在日本市场提供多样化服务，支持您的生活和事业。",
+      subtitle: "从房地产到餐饮、健身、住宿和人才服务。Tengcle株式会社在日本市场提供多样化服务，支持您的生活和事业。",
       cta1: "查看业务内容",
       cta2: "联系我们",
       trust1: "日本法人",
@@ -750,11 +750,11 @@ const translations: Record<Language, Translations> = {
     },
     about: {
       subtitle: "公司概要",
-      title: "关于Tengcle Inc.",
-      description: "Tengcle Inc.是Tengcle Group的2021年在日本创立的创业法人。",
+      title: "关于Tengcle株式会社",
+      description: "Tengcle株式会社是Tengcle Group的2021年在日本创立的创业法人。",
       story: {
         title: "关于我们",
-        p1: "Tengcle Inc.于2021年10月在日本创立，现作为香港总部Tengcle Limited的集团企业开展业务。",
+        p1: "Tengcle株式会社于2021年10月在日本创立，现作为香港总部Tengcle Limited的集团企业开展业务。",
         p2: "通过房地产管理、餐饮运营、租赁健身房、胶囊酒店运营、人才介绍五大业务，为日本各界人士的生活和事业做出贡献。",
       },
       info: {
@@ -785,7 +785,7 @@ const translations: Record<Language, Translations> = {
     careers: {
       subtitle: "招聘信息",
       title: "诚聘英才",
-      description: "Tengcle Inc.正在寻找各业务部门的员工。欢迎有经验者，也欢迎新人。",
+      description: "Tengcle株式会社正在寻找各业务部门的员工。欢迎有经验者，也欢迎新人。",
       midCareer: "社会招聘",
       salaryNote: "※薪资根据经验和能力确定",
       totalPositions: "招聘中：正式员工9名、兼职3名、小时工4名",
@@ -925,7 +925,7 @@ const translations: Record<Language, Translations> = {
       },
     },
     footer: {
-      description: "Tengcle Inc.是开展房地产管理、餐饮运营、租赁健身房、胶囊酒店运营、人才介绍五大业务的日本法人。",
+      description: "Tengcle株式会社是开展房地产管理、餐饮运营、租赁健身房、胶囊酒店运营、人才介绍五大业务的日本法人。",
       navigation: "导航",
       contact: "联系方式",
       hongkong: "Tengcle Limited（香港总部）",
@@ -940,9 +940,9 @@ const translations: Record<Language, Translations> = {
       contract: "合同工",
     },
     meta: {
-      title: "Tengcle Inc. | 东京房地产・餐饮・健身・住宿事业",
+      title: "Tengcle株式会社 | 东京房地产・餐饮・健身・住宿事业",
       description: "东京港区总部。5大事业：房地产管理、餐饮、租赁健身房、胶囊酒店、人才介绍。",
-      keywords: "Tengcle Inc, 东京, 房地产管理, 租赁健身房, 胶囊酒店, 港区",
+      keywords: "Tengcle株式会社, 东京, 房地产管理, 租赁健身房, 胶囊酒店, 港区",
     },
   },
 };

@@ -34,14 +34,14 @@ export default function UsAbout() {
     },
     {
       flag: "🇯🇵",
-      name: "Tengcle Inc.",
+      name: "Tengcle株式会社",
       role: "Japan Office",
       location: "Tokyo, Japan",
       href: "/jp/ja",
     },
     {
       flag: "🇺🇸",
-      name: "Tengcle LLC",
+      name: "Tengcle Development LLC",
       role: "US Office",
       location: "Weehawken, NJ",
       href: basePath,
@@ -62,7 +62,7 @@ export default function UsAbout() {
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
-              name: "Tengcle LLC",
+              name: "Tengcle Development LLC",
               description: t('about.description'),
               url: "https://www.tengcle.com/us",
               email: "us@tengcle.com",
@@ -137,7 +137,7 @@ export default function UsAbout() {
                   <div className="flex items-start gap-3">
                     <Building2 className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-medium text-charcoal">Tengcle LLC</p>
+                      <p className="font-medium text-charcoal">Tengcle Development LLC</p>
                       <p className="text-sm text-slate">{t('company.role')}</p>
                     </div>
                   </div>

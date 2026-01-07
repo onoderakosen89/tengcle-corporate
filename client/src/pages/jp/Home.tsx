@@ -266,7 +266,7 @@ export default function Home() {
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
-              name: "Tengcle Inc.",
+              name: "Tengcle株式会社",
               description: "株式会社Tengcle - ホスピタリティ、IT、国際貿易のプロフェッショナル。",
               url: "https://www.tengcle.com/jp/ja",
               logo: "https://www.tengcle.com/images/tengcle-logo-white.png",

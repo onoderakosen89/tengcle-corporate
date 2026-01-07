@@ -191,7 +191,7 @@ export default function UsHome() {
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
-              name: "Tengcle LLC",
+              name: "Tengcle Development LLC",
               description: "Expert property management and vacation rental solutions in the USA.",
               url: "https://www.tengcle.com/us/en",
               logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
@@ -329,7 +329,7 @@ export default function UsHome() {
               <div className="flex items-center gap-4">
                 <Shield className="w-8 h-8 text-gold" />
                 <div>
-                  <p className="font-medium text-charcoal">Tengcle LLC</p>
+                  <p className="font-medium text-charcoal">Tengcle Development LLC</p>
                   <p className="text-sm text-slate">{t('company.role')}</p>
                 </div>
               </div>
