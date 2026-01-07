@@ -480,7 +480,7 @@ export default function Home() {
               {
                 icon: Building2,
                 title: t.trust?.businessReg || "Business Registration",
-                value: "65188837",
+                value: "78077104",
                 description: t.trust?.businessRegDesc || "Hong Kong Companies Registry",
               },
               {

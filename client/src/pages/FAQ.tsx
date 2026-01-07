@@ -50,7 +50,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "What quality certifications does Tengcle hold?",
-      answer: "Tengcle maintains international quality standards and works with ISO-certified suppliers. Our Hong Kong office holds TCSP license TC007820 and is registered with the Hong Kong Companies Registry (BR: 65188837). We conduct rigorous quality inspections at every stage of the procurement process."
+      answer: "Tengcle maintains international quality standards and works with ISO-certified suppliers. Our Hong Kong office holds TCSP license TC007820 and is registered with the Hong Kong Companies Registry (BR: 78077104). We conduct rigorous quality inspections at every stage of the procurement process."
     },
     {
       question: "Can Tengcle handle international shipping and logistics?",
@@ -84,7 +84,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcleはどのような品質認証を取得していますか？",
-      answer: "Tengcleは国際品質基準を維持し、ISO認証を取得したサプライヤーと協力しています。香港オフィスはTCSPライセンスTC007820を保有し、香港会社登記所に登録されています（BR: 65188837）。調達プロセスのすべての段階で厳格な品質検査を実施しています。"
+      answer: "Tengcleは国際品質基準を維持し、ISO認証を取得したサプライヤーと協力しています。香港オフィスはTCSPライセンスTC007820を保有し、香港会社登記所に登録されています（BR: 78077104）。調達プロセスのすべての段階で厳格な品質検査を実施しています。"
     },
     {
       question: "Tengcleは国際配送と物流を扱えますか？",
@@ -118,7 +118,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcle持有哪些质量认证？",
-      answer: "Tengcle保持国际质量标准，并与ISO认证的供应商合作。我们的香港办事处持有TCSP许可证TC007820，并在香港公司注册处注册（BR: 65188837）。我们在采购过程的每个阶段进行严格的质量检查。"
+      answer: "Tengcle保持国际质量标准，并与ISO认证的供应商合作。我们的香港办事处持有TCSP许可证TC007820，并在香港公司注册处注册（BR: 78077104）。我们在采购过程的每个阶段进行严格的质量检查。"
     },
     {
       question: "Tengcle能处理国际运输和物流吗？",

@@ -161,7 +161,7 @@ export default function About() {
               {
                 icon: Building2,
                 title: language === "ja" ? "商業登記" : language === "zh" ? "商业登记" : "Business Registration",
-                value: "65188837",
+                value: "78077104",
                 description: language === "ja" ? "香港会社登記所" : language === "zh" ? "香港公司注册处" : "Hong Kong Companies Registry",
               },
               {
