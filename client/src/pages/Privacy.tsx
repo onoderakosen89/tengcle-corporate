@@ -287,10 +287,11 @@ export default function Privacy() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <SEOHead
-        title={`${t.title} | Tengcle Group`}
-        description={t.intro.substring(0, 150) + "..."}
+        title={lang === "ja" ? "プライバシーポリシー | Tengcle Group" : lang === "zh" ? "隐私政策 | Tengcle Group" : "Privacy Policy | Tengcle Group"}
+        description={lang === "ja" ? "Tengcle Groupのプライバシーポリシー。個人情報の収集・利用・保護について。" : lang === "zh" ? "Tengcle Group隐私政策。个人信息的收集、使用和保护。" : "Tengcle Group privacy policy. How we collect, use and protect your personal information."}
         canonical={`https://www.tengcle.com${location === "/" ? "" : location}`}
         locale={lang === "ja" ? "ja_JP" : lang === "zh" ? "zh_CN" : "en_US"}
+        keywords={lang === "ja" ? "Tengcle, プライバシー, 個人情報, データ保護" : lang === "zh" ? "Tengcle, 隐私, 个人信息, 数据保护" : "Tengcle, privacy policy, personal information, data protection"}
       />
       {/* Header */}
       <header className="bg-navy text-white py-6">

@@ -456,9 +456,9 @@ const translations: Record<Language, Translations> = {
       contract: "契約社員",
     },
     meta: {
-      title: "Tengcle Inc. | 多角事業で価値創造",
-      description: "不動産・飲食・ウェルネス・宿泊・人材。5つの事業領域を通じて、日本市場で新しい価値を創造するTengcle Inc.の公式サイトです。",
-      keywords: "Tengcle Inc, 東京ビジネス, 不動産管理, 飲食事業, 人材紹介, 港区高輪",
+      title: "Tengcle Inc. | 東京の不動産・飲食・レンタルジム・宿泊事業",
+      description: "東京・港区拠点。5事業展開：不動産管理、飲食、レンタルジム、カプセルホテル、人材紹介。",
+      keywords: "Tengcle Inc, 東京, 不動産管理, レンタルジム, カプセルホテル, 港区",
     },
   },
   en: {
@@ -698,9 +698,9 @@ const translations: Record<Language, Translations> = {
       contract: "Contract",
     },
     meta: {
-      title: "Tengcle Inc. | Value Creation in Japan",
-      description: "Creating new value in the Japanese market through real estate, dining, wellness, hospitality, and recruitment services.",
-      keywords: "Tengcle Inc, Tokyo business, real estate Japan, recruitment Japan, Minato-ku business",
+      title: "Tengcle Inc. | Real Estate, F&B & Hospitality in Tokyo Japan",
+      description: "Tokyo-based company with 5 business lines: real estate, restaurant, rental gym, capsule hotel & recruitment.",
+      keywords: "Tengcle Inc, Tokyo, real estate, rental gym, capsule hotel, Minato-ku",
     },
   },
   zh: {
@@ -940,9 +940,9 @@ const translations: Record<Language, Translations> = {
       contract: "合同工",
     },
     meta: {
-      title: "Tengcle Inc. | 在日多元化价值创造",
-      description: "通过房地产、餐饮、健康、住宿和人才服务，在日本市场创造新价值。",
-      keywords: "Tengcle Inc, 东京商务, 日本房地产, 日本招聘, 港区高轮",
+      title: "Tengcle Inc. | 东京房地产・餐饮・健身・住宿事业",
+      description: "东京港区总部。5大事业：房地产管理、餐饮、租赁健身房、胶囊酒店、人才介绍。",
+      keywords: "Tengcle Inc, 东京, 房地产管理, 租赁健身房, 胶囊酒店, 港区",
     },
   },
 };

@@ -272,19 +272,19 @@ const translations: Translations = {
 
   // SEO Meta
   'meta.title': {
-    en: 'Tengcle Development LLC | NJ/NY Asset Management',
-    ja: 'Tengcle Development LLC | 米国資産管理パートナー',
-    zh: 'Tengcle Development LLC | 资产管理合作伙伴',
+    en: 'Tengcle Development LLC | Real Estate Development & Property Management in NJ/NY',
+    ja: 'Tengcle Development LLC | NJ/NYの不動産開発・管理',
+    zh: 'Tengcle Development LLC | 新泽西/纽约房地产开发与管理',
   },
   'meta.description': {
-    en: 'Maximizing real estate value in NJ & NY. Professional property management and vacation rental solutions with Japanese hospitality standards.',
-    ja: 'ニュージャージー・NYエリアの不動産価値を最大化。日本基準のきめ細やかな管理とバケーションレンタル運用を提供します。',
-    zh: '最大化新泽西和纽约的房地产价值。提供符合日式服务标准的专业物业管理和度假租赁解决方案。',
+    en: 'NJ/NY real estate development & property management. Value-add investments, vacation rentals & long-term leasing.',
+    ja: 'NJ/NYの不動産開発・管理。バリューアップ投資、民泊・長期賃貸運用。',
+    zh: '新泽西/纽约房地产开发与管理。增值投资、民宿及长期租赁运营。',
   },
   'meta.keywords': {
-    en: 'Tengcle Development LLC, NJ property management, vacation rentals NY, Japanese hospitality, real estate investment',
-    ja: 'Tengcle Development LLC, NJ不動産管理, NY民泊運用, 日本式サービス, 米国不動産投資',
-    zh: 'Tengcle Development LLC, 新泽西物业管理, 纽约度假租赁, 日式服务, 美国房地产投资',
+    en: 'Tengcle Development LLC, NJ real estate, property development, vacation rentals, property management, New Jersey',
+    ja: 'Tengcle Development LLC, NJ不動産, 不動産開発, 民泊運用, 物件管理, ニュージャージー',
+    zh: 'Tengcle Development LLC, 新泽西房地产, 房地产开发, 民宿运营, 物业管理, 新泽西',
   },
 };
 

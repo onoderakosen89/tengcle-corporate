@@ -191,9 +191,9 @@ export default function JpFAQ() {
       contactTitle: "お問い合わせ",
       contactText: "ご不明な点がございましたら、お気軽にお問い合わせください。",
       contactButton: "お問い合わせ",
-      metaTitle: "よくある質問 | Tengcle Inc. - FAQ",
-      metaDescription: "Tengcle Inc.のサービスに関するよくある質問と回答。不動産管理、飲食、レンタルジム、カプセルホテル、人材紹介について。",
-      metaKeywords: "Tengcle Inc, FAQ, よくある質問, 不動産管理, レンタルジム, カプセルホテル, 人材紹介, 東京"
+      metaTitle: "よくある質問 | Tengcle Inc. 東京",
+      metaDescription: "Tengcle Inc.の事業に関するFAQ。不動産・飲食・レンタルジム・カプセルホテル・人材紹介。",
+      metaKeywords: "Tengcle Inc, FAQ, 不動産, レンタルジム, カプセルホテル, 東京"
     },
     en: {
       title: "Frequently Asked Questions",
@@ -202,9 +202,9 @@ export default function JpFAQ() {
       contactTitle: "Contact Us",
       contactText: "If you have any questions, please feel free to contact us.",
       contactButton: "Contact Us",
-      metaTitle: "FAQ | Tengcle Inc. - Frequently Asked Questions",
-      metaDescription: "Frequently asked questions about Tengcle Inc. services. Property management, restaurant operations, rental gym, capsule hotel, and recruitment services in Tokyo.",
-      metaKeywords: "Tengcle Inc, FAQ, frequently asked questions, property management, rental gym, capsule hotel, recruitment, Tokyo"
+      metaTitle: "FAQ | Tengcle Inc. Tokyo Japan",
+      metaDescription: "FAQ about Tengcle Inc. services: real estate, restaurant, rental gym, capsule hotel & recruitment in Tokyo.",
+      metaKeywords: "Tengcle Inc, FAQ, real estate, rental gym, capsule hotel, Tokyo"
     },
     zh: {
       title: "常见问题",
@@ -213,9 +213,9 @@ export default function JpFAQ() {
       contactTitle: "联系我们",
       contactText: "如有任何问题，请随时与我们联系。",
       contactButton: "联系我们",
-      metaTitle: "常见问题 | Tengcle Inc. - FAQ",
-      metaDescription: "关于Tengcle Inc.服务的常见问题。房地产管理、餐饮运营、租赁健身房、胶囊酒店和人才招聘服务。",
-      metaKeywords: "Tengcle Inc, FAQ, 常见问题, 房地产管理, 租赁健身房, 胶囊酒店, 人才招聘, 东京"
+      metaTitle: "常见问题 | Tengcle Inc. 东京",
+      metaDescription: "Tengcle Inc.事业相关FAQ。房地产・餐饮・租赁健身房・胶囊酒店・人才介绍。",
+      metaKeywords: "Tengcle Inc, FAQ, 房地产, 租赁健身房, 胶囊酒店, 东京"
     }
   };
 

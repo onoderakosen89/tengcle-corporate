@@ -268,9 +268,9 @@ const translations: Record<Language, Translations> = {
       countries: "Countries",
     },
     meta: {
-      title: "Tengcle | Hong Kong Strategic Hub",
-      description: "Tengcle Limited serves as your strategic partner in Asia, delivering specialized solutions in hospitality, IT, and international trade.",
-      keywords: "Tengcle Limited, Hong Kong business, hospitality procurement, IT solutions, international trade",
+      title: "Tengcle Limited | Hotel FF&E & Asset Management in Hong Kong",
+      description: "TCSP licensed Hong Kong company providing hotel FF&E procurement, asset management & IT solutions across Asia.",
+      keywords: "Tengcle Limited, hotel FF&E, asset management, Hong Kong, TCSP licensed, hospitality",
     },
   },
   ja: {
@@ -400,9 +400,9 @@ const translations: Record<Language, Translations> = {
       countries: "カ国以上",
     },
     meta: {
-      title: "Tengcle Limited | 香港発・戦略的ハブ",
-      description: "ホスピタリティ、IT、国際貿易の分野で専門的なソリューションを提供する、アジアの戦略的パートナー企業。",
-      keywords: "Tengcle Limited, 香港企業, ホスピタリティ調達, ITソリューション, 国際貿易",
+      title: "Tengcle Limited | 香港のホテルFF&E調達・資産管理",
+      description: "TCSP認可の香港企業。ホテルFF&E調達、資産管理、ITソリューションをアジア全域で提供。",
+      keywords: "Tengcle Limited, ホテルFF&E, 資産管理, 香港, TCSP認可, ホスピタリティ",
     },
   },
   zh: {
@@ -532,9 +532,9 @@ const translations: Record<Language, Translations> = {
       countries: "个国家以上",
     },
     meta: {
-      title: "Tengcle Limited | 香港战略商务中心",
-      description: "Tengcle Limited 是您在亚洲的战略合作伙伴，在酒店、IT 和国际贸易领域提供专业解决方案。",
-      keywords: "Tengcle Limited, 香港公司, 酒店采购, IT解决方案, 国际贸易",
+      title: "Tengcle Limited | 香港酒店FF&E采购与资产管理",
+      description: "TCSP许可香港公司，提供酒店FF&E采购、资产管理及IT解决方案，服务亚洲全境。",
+      keywords: "Tengcle Limited, 酒店FF&E, 资产管理, 香港, TCSP许可, 酒店业",
     },
   },
 };

@@ -191,9 +191,9 @@ export default function UsFAQ() {
       contactTitle: "Still Have Questions?",
       contactText: "Our team is here to help. Contact us for personalized assistance.",
       contactButton: "Contact Us",
-      metaTitle: "FAQ | Tengcle LLC - Property Management Questions",
-      metaDescription: "Frequently asked questions about Tengcle LLC property management and vacation rental services in New Jersey and New York metro area.",
-      metaKeywords: "Tengcle LLC, FAQ, property management, vacation rentals, Airbnb management, New Jersey, Weehawken, NYC metro"
+      metaTitle: "FAQ | Tengcle Development LLC - NJ/NY Real Estate",
+      metaDescription: "FAQ about Tengcle Development LLC real estate development, property management & vacation rentals in NJ/NY.",
+      metaKeywords: "Tengcle Development LLC, FAQ, real estate, property management, vacation rentals, New Jersey"
     },
     ja: {
       title: "よくある質問",
@@ -202,9 +202,9 @@ export default function UsFAQ() {
       contactTitle: "まだ質問がありますか？",
       contactText: "私たちのチームがお手伝いします。お気軽にお問い合わせください。",
       contactButton: "お問い合わせ",
-      metaTitle: "よくある質問 | Tengcle LLC - FAQ",
-      metaDescription: "Tengcle LLCの不動産管理とバケーションレンタルサービスに関するよくある質問。ニュージャージー州とニューヨーク都市圏でサービス提供。",
-      metaKeywords: "Tengcle LLC, FAQ, よくある質問, 不動産管理, バケーションレンタル, ニュージャージー, ウィーホーケン"
+      metaTitle: "よくある質問 | Tengcle Development LLC NJ/NY",
+      metaDescription: "Tengcle Development LLCのNJ/NY不動産開発・管理・民泊に関するFAQ。",
+      metaKeywords: "Tengcle Development LLC, FAQ, 不動産開発, 物件管理, 民泊, NJ"
     },
     zh: {
       title: "常见问题",
@@ -213,9 +213,9 @@ export default function UsFAQ() {
       contactTitle: "还有问题吗？",
       contactText: "我们的团队随时为您提供帮助。请联系我们获取个性化协助。",
       contactButton: "联系我们",
-      metaTitle: "常见问题 | Tengcle LLC - FAQ",
-      metaDescription: "关于Tengcle LLC在新泽西州和纽约大都会区的物业管理和度假租赁服务的常见问题。",
-      metaKeywords: "Tengcle LLC, FAQ, 常见问题, 物业管理, 度假租赁, 新泽西, 威霍肯"
+      metaTitle: "常见问题 | Tengcle Development LLC NJ/NY",
+      metaDescription: "Tengcle Development LLC的NJ/NY房地产开发・管理・民宿相关FAQ。",
+      metaKeywords: "Tengcle Development LLC, FAQ, 房地产开发, 物业管理, 民宿, NJ"
     }
   };
 
