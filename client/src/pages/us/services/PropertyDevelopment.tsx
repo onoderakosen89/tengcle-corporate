@@ -200,14 +200,19 @@ const pageTranslations = {
     zh: '联系我们',
   },
   'meta.title': {
-    en: 'Property Development | Tengcle Development LLC',
-    ja: '不動産開発 | Tengcle Development LLC',
-    zh: '房地产开发 | Tengcle Development LLC',
+    en: 'Property Development | Tengcle Development LLC NJ - Real Estate Value Creation',
+    ja: '不動産開発 | Tengcle Development LLC NJ - 物件再生・価値創造',
+    zh: '房地产开发 | Tengcle Development LLC NJ - 物业再生·价值创造',
   },
   'meta.description': {
-    en: 'Transform underperforming properties into high-value assets. Tengcle Development LLC specializes in property acquisition, renovation, and long-term value creation in NJ/NY.',
-    ja: '問題物件を高価値資産へ再生。Tengcle Development LLCは、NJ/NYエリアでの物件取得、修繕、長期的価値創造を専門としています。',
-    zh: '将低效物业转化为高价值资产。Tengcle Development LLC专注于新泽西/纽约地区的物业收购、翻新和长期价值创造。',
+    en: 'Transform distressed properties into high-value assets. Property acquisition, renovation & long-term holding in NJ/NY metro area.',
+    ja: '問題物件を高価値資産へ再生。NJ/NYエリアでの物件取得・修繕・長期保有。',
+    zh: '将困境物业转化为高价值资产。新泽西/纽约地区的物业收购、翻新与长期持有。',
+  },
+  'meta.keywords': {
+    en: 'property development, real estate development, NJ real estate, distressed properties, renovation, Tengcle Development LLC',
+    ja: '不動産開発, 物件再生, NJ不動産, 問題物件, 修繕, Tengcle Development LLC',
+    zh: '房地产开发, 物业再生, NJ房地产, 困境物业, 翻新, Tengcle Development LLC',
   },
 };
 
@@ -252,8 +257,10 @@ export default function PropertyDevelopment() {
       <SEOHead
         title={t('meta.title')}
         description={t('meta.description')}
+        keywords={t('meta.keywords')}
         canonical={`https://www.tengcle.com${basePath}/services/property-development`}
         locale={language === 'ja' ? 'ja_JP' : language === 'zh' ? 'zh_CN' : 'en_US'}
+        ogImage="/images/og-image-us.jpg"
       />
       <UsHeader />
       

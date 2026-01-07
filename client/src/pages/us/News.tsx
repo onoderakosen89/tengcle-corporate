@@ -114,6 +114,7 @@ export default function News() {
         keywords="Tengcle LLC, News, Property Management, New Jersey, Weehawken"
         canonical={`https://www.tengcle.com${basePath}/news`}
         ogType="website"
+        ogImage="/images/og-image-us.jpg"
       />
       <div className="min-h-screen bg-white">
         <Header />

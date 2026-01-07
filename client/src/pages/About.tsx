@@ -56,6 +56,7 @@ export default function About() {
         keywords={language === "ja" ? "Tengcle Limited, 会社概要, 香港, ホテルFF&E, TCSP" : language === "zh" ? "Tengcle Limited, 关于我们, 香港, 酒店FF&E, TCSP" : "Tengcle Limited, about us, Hong Kong, hotel FF&E, TCSP"}
         canonical={`https://www.tengcle.com/hk/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
+        ogImage="/images/og-image-hk.jpg"
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [

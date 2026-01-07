@@ -128,6 +128,7 @@ export default function Careers() {
         description={language === "ja" ? "Tengcle Inc.の採用情報。不動産管理、飲食、ジム事業で一緒に働く仲間を募集中。" : language === "zh" ? "Tengcle Inc.招聘信息。不动产管理、餐饮、健身房业务招聘中。" : "Tengcle Inc. career opportunities. Join our property management, F&B & gym business team."}
         keywords={language === "ja" ? "Tengcle Inc., 採用情報, 求人, 東京, 不動産" : language === "zh" ? "Tengcle Inc., 招聘, 东京, 不动产" : "Tengcle Inc., careers, jobs, Tokyo, property management"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
+        ogImage="/images/og-image-jp.jpg"
         canonical={`https://www.tengcle.com/jp/${language}/careers`}
       />
       <Header />

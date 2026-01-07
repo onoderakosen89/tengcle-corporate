@@ -85,6 +85,7 @@ export default function Contact() {
         description={language === "ja" ? "Tengcle Inc.へのお問い合わせ。東京・高輪オフィス。不動産管理、飲食、レンタルジムのご相談。" : language === "zh" ? "联系Tengcle Inc.。东京高轮办公室。不动产管理、餐饮、租赁健身房咨询。" : "Contact Tengcle Inc. Tokyo Takanawa office. Property management, F&B & rental gym inquiries."}
         keywords={language === "ja" ? "Tengcle Inc., お問い合わせ, 東京, 高輪, 不動産管理" : language === "zh" ? "Tengcle Inc., 联系我们, 东京, 高轮, 不动产管理" : "Tengcle Inc., contact, Tokyo, Takanawa, property management"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
+        ogImage="/images/og-image-jp.jpg"
         canonical={`https://www.tengcle.com/jp/${language}/contact`}
         structuredData={generateLocalBusinessSchema({
           name: "Tengcle Inc.",

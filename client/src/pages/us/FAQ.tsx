@@ -232,6 +232,7 @@ export default function UsFAQ() {
         description={t.metaDescription}
         canonical={`https://www.tengcle.com/us/${pathLang}/faq`}
         locale={pathLang === "ja" ? "ja_JP" : pathLang === "zh" ? "zh_CN" : "en_US"}
+        ogImage="/images/og-image-us.jpg"
         keywords={t.metaKeywords}
         structuredData={faqSchema}
       />

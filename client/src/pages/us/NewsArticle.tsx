@@ -191,6 +191,7 @@ export default function NewsArticle() {
         keywords="Tengcle LLC, News, Property Management, New Jersey"
         canonical={`https://www.tengcle.com${basePath}/news/${articleId}`}
         ogType="article"
+        ogImage="/images/og-image-us.jpg"
       />
       <div className="min-h-screen bg-white">
         <Header />

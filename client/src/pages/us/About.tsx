@@ -57,6 +57,7 @@ export default function UsAbout() {
         keywords={language === "ja" ? "Tengcle Development LLC, 会社概要, ニュージャージー, 不動産開発" : language === "zh" ? "Tengcle Development LLC, 关于我们, 新泽西, 房地产开发" : "Tengcle Development LLC, about us, New Jersey, real estate development"}
         canonical={`https://www.tengcle.com/us/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
+        ogImage="/images/og-image-us.jpg"
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [

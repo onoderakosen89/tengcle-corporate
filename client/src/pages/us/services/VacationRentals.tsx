@@ -240,14 +240,19 @@ const pageTranslations = {
     zh: '开始赚取更多',
   },
   'meta.title': {
-    en: 'Vacation Rental Management | Tengcle Development LLC',
-    ja: '民泊運用 | Tengcle Development LLC',
-    zh: '度假租赁管理 | Tengcle Development LLC',
+    en: 'Vacation Rental Management | Tengcle Development LLC NJ - Airbnb & VRBO',
+    ja: '民泊運用 | Tengcle Development LLC NJ - Airbnb・VRBO管理',
+    zh: '短租管理 | Tengcle Development LLC NJ - Airbnb·VRBO运营',
   },
   'meta.description': {
-    en: 'Professional Airbnb and VRBO management in NJ/NY. Maximize your vacation rental revenue with Japanese hospitality standards.',
-    ja: 'NJ/NYエリアのプロフェッショナルなAirbnb・VRBO管理。日本式ホスピタリティ基準で民泊収益を最大化。',
-    zh: '新泽西/纽约地区专业的Airbnb和VRBO管理。以日式酒店服务标准最大化您的度假租赁收益。',
+    en: 'Professional Airbnb & VRBO management in NJ/NY. Maximize vacation rental revenue with Japanese hospitality.',
+    ja: 'NJ/NYエリアのAirbnb・VRBOプロ管理。日本式おもてなしで収益最大化。',
+    zh: '新泽西/纽约地区专业Airbnb、VRBO管理。日式服务最大化短租收益。',
+  },
+  'meta.keywords': {
+    en: 'vacation rental management, Airbnb management, VRBO management, NJ short-term rental, Tengcle Development LLC',
+    ja: '民泊運用, Airbnb管理, VRBO管理, NJ短期賃貸, Tengcle Development LLC',
+    zh: '短租管理, Airbnb管理, VRBO管理, NJ短期租赁, Tengcle Development LLC',
   },
 };
 
@@ -297,8 +302,10 @@ export default function VacationRentals() {
       <SEOHead
         title={t('meta.title')}
         description={t('meta.description')}
+        keywords={t('meta.keywords')}
         canonical={`https://www.tengcle.com${basePath}/services/vacation-rentals`}
         locale={language === 'ja' ? 'ja_JP' : language === 'zh' ? 'zh_CN' : 'en_US'}
+        ogImage="/images/og-image-us.jpg"
       />
       <UsHeader />
       

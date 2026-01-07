@@ -130,6 +130,7 @@ export default function News() {
         keywords="Tengcle Inc., ニュース, 会社情報, 東京, 不動産管理, レンタルジム"
         canonical={`https://www.tengcle.com${basePath}/news`}
         ogType="website"
+        ogImage="/images/og-image-jp.jpg"
       />
       <div className="min-h-screen bg-cream">
         <Header />

@@ -200,14 +200,19 @@ const pageTranslations = {
     zh: '开始咨询',
   },
   'meta.title': {
-    en: 'Property Management | Tengcle Development LLC',
-    ja: '不動産管理 | Tengcle Development LLC',
-    zh: '物业管理 | Tengcle Development LLC',
+    en: 'Property Management | Tengcle Development LLC NJ - Dormitory, Office & Rental',
+    ja: '不動産管理 | Tengcle Development LLC NJ - 寮・オフィス・賃貸',
+    zh: '物业管理 | Tengcle Development LLC NJ - 宿舍·办公·租赁',
   },
   'meta.description': {
-    en: 'Professional property management for dormitories, offices, and residential rentals in NJ/NY. Japanese service standards with local expertise.',
-    ja: 'NJ/NYエリアの寮、オフィス、住宅賃貸のプロフェッショナル不動産管理。日本式サービス基準と地域専門知識。',
-    zh: '新泽西/纽约地区宿舍、办公室和住宅租赁的专业物业管理。日式服务标准与本地专业知识。',
+    en: 'Professional property management for dormitories, offices & residential rentals in NJ/NY. Japanese service quality.',
+    ja: 'NJ/NYエリアの寮・オフィス・住宅賃貸のプロ管理。日本品質のサービス。',
+    zh: '新泽西/纽约地区宿舍、办公室、住宅租赁的专业物业管理。日式服务品质。',
+  },
+  'meta.keywords': {
+    en: 'property management, NJ property management, dormitory management, office rental, residential rental, Tengcle Development LLC',
+    ja: '不動産管理, NJ不動産管理, 寮管理, オフィス賃貸, 住宅賃貸, Tengcle Development LLC',
+    zh: '物业管理, NJ物业管理, 宿舍管理, 办公租赁, 住宅租赁, Tengcle Development LLC',
   },
 };
 
@@ -254,8 +259,10 @@ export default function PropertyManagement() {
       <SEOHead
         title={t('meta.title')}
         description={t('meta.description')}
+        keywords={t('meta.keywords')}
         canonical={`https://www.tengcle.com${basePath}/services/property-management`}
         locale={language === 'ja' ? 'ja_JP' : language === 'zh' ? 'zh_CN' : 'en_US'}
+        ogImage="/images/og-image-us.jpg"
       />
       <UsHeader />
       

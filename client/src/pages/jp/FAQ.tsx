@@ -234,6 +234,7 @@ export default function JpFAQ() {
         locale={pathLang === "ja" ? "ja_JP" : pathLang === "zh" ? "zh_CN" : "en_US"}
         keywords={t.metaKeywords}
         structuredData={faqSchema}
+        ogImage="/images/og-image-jp.jpg"
       />
 
       <JpHeader />

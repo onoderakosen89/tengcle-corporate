@@ -55,6 +55,7 @@ export default function Contact() {
         description={language === "ja" ? "Tengcle Limitedへのお問い合わせ。香港・上環オフィス。ホテルFF&E、TCSP、ITソリューションのご相談。" : language === "zh" ? "联系Tengcle Limited。香港上璯办公室。酒店FF&E、TCSP、IT解决方案咨询。" : "Contact Tengcle Limited. Hong Kong Sheung Wan office. Hotel FF&E, TCSP & IT solutions inquiries."}
         keywords={language === "ja" ? "Tengcle Limited, お問い合わせ, 香港, 上環, ホテルFF&E" : language === "zh" ? "Tengcle Limited, 联系我们, 香港, 上璯, 酒店FF&E" : "Tengcle Limited, contact, Hong Kong, Sheung Wan, hotel FF&E"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
+        ogImage="/images/og-image-hk.jpg"
         canonical={`https://www.tengcle.com/hk/${language}/contact`}
         structuredData={generateLocalBusinessSchema({
           name: "Tengcle Limited",

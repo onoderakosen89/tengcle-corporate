@@ -292,6 +292,7 @@ export default function Privacy() {
         canonical={`https://www.tengcle.com${location === "/" ? "" : location}`}
         locale={lang === "ja" ? "ja_JP" : lang === "zh" ? "zh_CN" : "en_US"}
         keywords={lang === "ja" ? "Tengcle, プライバシー, 個人情報, データ保護" : lang === "zh" ? "Tengcle, 隐私, 个人信息, 数据保护" : "Tengcle, privacy policy, personal information, data protection"}
+        ogImage="/images/og-image.jpg"
       />
       {/* Header */}
       <header className="bg-navy text-white py-6">

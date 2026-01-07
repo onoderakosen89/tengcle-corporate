@@ -114,6 +114,7 @@ export default function Services() {
         description={language === "ja" ? "不動産管理、飲食店運営、レンタルジム、ホテルITソリューション、貿易事業。" : language === "zh" ? "不动产管理、餐饮运营、租赁健身房、酒店IT解决方案、贸易业务。" : "Property management, F&B operations, rental gym, hotel IT solutions & trading business."}
         keywords={language === "ja" ? "Tengcle Inc., 事業紹介, 不動産管理, 飲食店, レンタルジム" : language === "zh" ? "Tengcle Inc., 业务介绍, 不动产管理, 餐饮, 健身房" : "Tengcle Inc., services, property management, F&B, rental gym"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
+        ogImage="/images/og-image-jp.jpg"
         canonical={`https://www.tengcle.com/jp/${language}/services`}
       />
       <Header />

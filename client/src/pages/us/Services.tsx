@@ -125,6 +125,7 @@ export default function UsServices() {
         keywords={language === "ja" ? "Tengcle Development LLC, サービス, 不動産開発, 不動産管理, 民泊" : language === "zh" ? "Tengcle Development LLC, 服务, 房地产开发, 物业管理, 短租" : "Tengcle Development LLC, services, real estate development, property management, vacation rentals"}
         canonical={`https://www.tengcle.com/us/${language}/services`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
+        ogImage="/images/og-image-us.jpg"
         structuredData={generateBreadcrumbSchema([
           { name: "Home", url: "https://www.tengcle.com/us" },
           { name: globalT('services.title'), url: `https://www.tengcle.com/us/${language}/services` }

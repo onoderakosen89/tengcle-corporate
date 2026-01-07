@@ -117,6 +117,23 @@ const seigaihaPattern = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org
 export default function GlobalGateway() {
   useEffect(() => {
     document.title = "Tengcle Group | Hotel FF&E, Real Estate & Hospitality Services in Asia & USA";
+    
+    // OGP meta tags
+    const updateMeta = (name: string, content: string, isProperty = false) => {
+      const attr = isProperty ? "property" : "name";
+      let meta = document.querySelector(`meta[${attr}="${name}"]`);
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.setAttribute(attr, name);
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute("content", content);
+    };
+    
+    updateMeta("og:image", "https://www.tengcle.com/images/og-image.jpg", true);
+    updateMeta("og:image:width", "1200", true);
+    updateMeta("og:image:height", "630", true);
+    updateMeta("twitter:image", "https://www.tengcle.com/images/og-image.jpg");
   }, []);
 
   return (
