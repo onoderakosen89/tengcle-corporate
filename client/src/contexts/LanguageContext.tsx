@@ -123,10 +123,12 @@ interface Translations {
     subtitle: string;
     title: string;
     description: string;
-    tcspLicensed: string;
-    tcspDesc: string;
+    established: string;
+    establishedDesc: string;
     businessReg: string;
     businessRegDesc: string;
+    director: string;
+    directorDesc: string;
     qualityCertified: string;
     qualityDesc: string;
     globalNetwork: string;
@@ -257,10 +259,12 @@ const translations: Record<Language, Translations> = {
       subtitle: "Trust & Compliance",
       title: "Built on Integrity",
       description: "As a fully licensed Hong Kong entity, we maintain high standards of corporate governance and regulatory compliance.",
-      tcspLicensed: "TCSP Licensed",
-      tcspDesc: "Trust or Company Service Provider License",
+      established: "Established",
+      establishedDesc: "Hong Kong Incorporated",
       businessReg: "Business Registration",
       businessRegDesc: "Hong Kong Companies Registry",
+      director: "Director",
+      directorDesc: "Sole Director",
       qualityCertified: "Quality Certified",
       qualityDesc: "International quality management",
       globalNetwork: "Global Network",
@@ -389,10 +393,12 @@ const translations: Record<Language, Translations> = {
       subtitle: "信頼とコンプライアンス",
       title: "誠実な運営",
       description: "香港で正式にライセンスを取得した法人として、企業統治と法令遵守の基準を維持しています。",
-      tcspLicensed: "TCSPライセンス取得",
-      tcspDesc: "信託・会社サービス提供者ライセンス",
+      established: "設立",
+      establishedDesc: "香港法人設立",
       businessReg: "商業登記",
       businessRegDesc: "香港会社登記処",
+      director: "代表取締役",
+      directorDesc: "小野寺 紘",
       qualityCertified: "品質認証",
       qualityDesc: "国際品質管理基準",
       globalNetwork: "グローバルネットワーク",
@@ -521,10 +527,12 @@ const translations: Record<Language, Translations> = {
       subtitle: "信任与合规",
       title: "诚信经营",
       description: "作为香港正式持牌的法人实体，我们维护企业治理和法规遵循的标准。",
-      tcspLicensed: "TCSP持牌",
-      tcspDesc: "信托或公司服务提供者许可证",
+      established: "成立",
+      establishedDesc: "香港法人成立",
       businessReg: "商业登记",
       businessRegDesc: "香港公司注册处",
+      director: "董事",
+      directorDesc: "小野寺 紘",
       qualityCertified: "质量认证",
       qualityDesc: "国际质量管理标准",
       globalNetwork: "全球网络",

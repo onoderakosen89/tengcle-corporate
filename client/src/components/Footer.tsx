@@ -56,8 +56,8 @@ export default function Footer() {
 
             {/* Licenses */}
             <div className="flex flex-wrap gap-4 text-xs text-white/50">
-              <span>TCSP License: TC007820</span>
               <span>BR No: 78077104</span>
+              <span>Est. 2025</span>
             </div>
           </div>
 

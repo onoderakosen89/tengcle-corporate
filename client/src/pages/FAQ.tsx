@@ -29,8 +29,8 @@ const faqData: Record<string, FAQItem[]> = {
       answer: "Tengcle Limited specializes in hotel FF&E (Furniture, Fixtures & Equipment) procurement, project integration services, IT solutions including Odoo ERP implementation, and international trading. We serve clients across Asia-Pacific, with a focus on hospitality and real estate development projects."
     },
     {
-      question: "What is TCSP licensing and why is it important?",
-      answer: "TCSP (Trust or Company Service Provider) licensing is a regulatory requirement in Hong Kong for companies providing corporate services. Our TCSP license (TC007820) demonstrates our compliance with Hong Kong's anti-money laundering regulations and ensures we maintain the highest standards of corporate governance and due diligence."
+      question: "What regulatory compliance does Tengcle maintain?",
+      answer: "Tengcle Limited is a fully registered Hong Kong company (BR: 78077104) that maintains the highest standards of corporate governance and regulatory compliance. We adhere to Hong Kong's anti-money laundering regulations and conduct thorough due diligence in all our business operations."
     },
     {
       question: "Which regions does Tengcle Group operate in?",
@@ -50,7 +50,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "What quality certifications does Tengcle hold?",
-      answer: "Tengcle maintains international quality standards and works with ISO-certified suppliers. Our Hong Kong office holds TCSP license TC007820 and is registered with the Hong Kong Companies Registry (BR: 78077104). We conduct rigorous quality inspections at every stage of the procurement process."
+      answer: "Tengcle maintains international quality standards and works with ISO-certified suppliers. Our Hong Kong office is registered with the Hong Kong Companies Registry (BR: 78077104). We conduct rigorous quality inspections at every stage of the procurement process."
     },
     {
       question: "Can Tengcle handle international shipping and logistics?",
@@ -63,8 +63,8 @@ const faqData: Record<string, FAQItem[]> = {
       answer: "Tengcle Limitedは、ホテルFF&E（家具・備品・設備）調達、プロジェクト統合サービス、Odoo ERP導入を含むITソリューション、国際貿易を専門としています。アジア太平洋地域のお客様に、ホスピタリティおよび不動産開発プロジェクトを中心にサービスを提供しています。"
     },
     {
-      question: "TCSPライセンスとは何ですか？なぜ重要ですか？",
-      answer: "TCSP（信託または会社サービスプロバイダー）ライセンスは、香港で企業サービスを提供する会社に必要な規制要件です。当社のTCSPライセンス（TC007820）は、香港のマネーロンダリング防止規制への準拠を証明し、最高水準のコーポレートガバナンスとデューデリジェンスを維持していることを保証します。"
+      question: "Tengcleはどのような法令遵守を行っていますか？",
+      answer: "Tengcle Limitedは香港会社登記所に正式に登録された会社（BR: 78077104）であり、最高水準のコーポレートガバナンスと法令遵守を維持しています。香港のマネーロンダリング防止規制を遵守し、すべての事業運営において徹底したデューデリジェンスを実施しています。"
     },
     {
       question: "Tengcle Groupはどの地域で事業を展開していますか？",
@@ -84,7 +84,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcleはどのような品質認証を取得していますか？",
-      answer: "Tengcleは国際品質基準を維持し、ISO認証を取得したサプライヤーと協力しています。香港オフィスはTCSPライセンスTC007820を保有し、香港会社登記所に登録されています（BR: 78077104）。調達プロセスのすべての段階で厳格な品質検査を実施しています。"
+      answer: "Tengcleは国際品質基準を維持し、ISO認証を取得したサプライヤーと協力しています。香港オフィスは香港会社登記所に登録されています（BR: 78077104）。調達プロセスのすべての段階で厳格な品質検査を実施しています。"
     },
     {
       question: "Tengcleは国際配送と物流を扱えますか？",
@@ -97,8 +97,8 @@ const faqData: Record<string, FAQItem[]> = {
       answer: "Tengcle Limited专注于酒店FF&E（家具、固定装置和设备）采购、项目整合服务、包括Odoo ERP实施在内的IT解决方案以及国际贸易。我们为亚太地区的客户提供服务，重点关注酒店和房地产开发项目。"
     },
     {
-      question: "什么是TCSP许可证？为什么它很重要？",
-      answer: "TCSP（信托或公司服务提供商）许可证是香港对提供企业服务的公司的监管要求。我们的TCSP许可证（TC007820）证明我们符合香港的反洗钱法规，并确保我们保持最高标准的公司治理和尽职调查。"
+      question: "Tengcle遵守哪些法规？",
+      answer: "Tengcle Limited是在香港公司注册处正式注册的公司（BR: 78077104），保持最高标准的公司治理和法规遵循。我们遵守香港的反洗钱法规，并在所有业务运营中进行彻底的尽职调查。"
     },
     {
       question: "Tengcle Group在哪些地区运营？",
@@ -118,7 +118,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcle持有哪些质量认证？",
-      answer: "Tengcle保持国际质量标准，并与ISO认证的供应商合作。我们的香港办事处持有TCSP许可证TC007820，并在香港公司注册处注册（BR: 78077104）。我们在采购过程的每个阶段进行严格的质量检查。"
+      answer: "Tengcle保持国际质量标准，并与ISO认证的供应商合作。我们的香港办事处在香港公司注册处注册（BR: 78077104）。我们在采购过程的每个阶段进行严格的质量检查。"
     },
     {
       question: "Tengcle能处理国际运输和物流吗？",

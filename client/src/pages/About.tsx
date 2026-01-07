@@ -150,19 +150,25 @@ export default function About() {
             </motion.div>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               {
                 icon: Shield,
-                title: language === "ja" ? "TCSPライセンス" : language === "zh" ? "TCSP牌照" : "TCSP Licensed",
-                value: "TC007820",
-                description: language === "ja" ? "信託・会社サービス提供者ライセンス" : language === "zh" ? "信托或公司服务提供者牌照" : "Trust or Company Service Provider License",
+                title: language === "ja" ? "設立" : language === "zh" ? "成立" : "Established",
+                value: "2025",
+                description: language === "ja" ? "香港法人設立" : language === "zh" ? "香港法人成立" : "Hong Kong Incorporated",
               },
               {
                 icon: Building2,
                 title: language === "ja" ? "商業登記" : language === "zh" ? "商业登记" : "Business Registration",
                 value: "78077104",
                 description: language === "ja" ? "香港会社登記所" : language === "zh" ? "香港公司注册处" : "Hong Kong Companies Registry",
+              },
+              {
+                icon: Award,
+                title: language === "ja" ? "代表取締役" : language === "zh" ? "董事" : "Director",
+                value: "ONODERA Kosen",
+                description: language === "ja" ? "小野寺 紘" : language === "zh" ? "小野寺 紘" : "Sole Director",
               },
               {
                 icon: Award,

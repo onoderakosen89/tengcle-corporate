@@ -469,19 +469,25 @@ export default function Home() {
             </motion.div>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               {
                 icon: Shield,
-                title: t.trust?.tcspLicensed || "TCSP Licensed",
-                value: "TC007820",
-                description: t.trust?.tcspDesc || "Trust or Company Service Provider License",
+                title: t.trust?.established || "Established",
+                value: "2025",
+                description: t.trust?.establishedDesc || "Hong Kong Incorporated",
               },
               {
                 icon: Building2,
                 title: t.trust?.businessReg || "Business Registration",
                 value: "78077104",
                 description: t.trust?.businessRegDesc || "Hong Kong Companies Registry",
+              },
+              {
+                icon: Award,
+                title: t.trust?.director || "Director",
+                value: "ONODERA Kosen",
+                description: t.trust?.directorDesc || "Sole Director",
               },
               {
                 icon: Award,
