@@ -19,6 +19,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import SEOHead, { generateOrganizationSchema, generateWebPageSchema, generateLocalBusinessSchema } from "@/components/SEOHead";
+import CookieConsent from "@/components/CookieConsent";
 
 // Animation variants with proper typing
 const easeOut: Easing = [0.16, 1, 0.3, 1];
@@ -542,6 +543,12 @@ export default function Home() {
       </section>
 
       <Footer />
+      
+      {/* Cookie Consent Banner - Language aware */}
+      <CookieConsent 
+        lang={language as "en" | "ja" | "zh"} 
+        privacyPolicyPath={`${basePath}/privacy`}
+      />
     </div>
   );
 }

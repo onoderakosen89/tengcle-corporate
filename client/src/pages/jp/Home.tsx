@@ -17,6 +17,7 @@ import Footer from "@/components/jp/Footer";
 import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
 import SEOHead, { generateOrganizationSchema, generateWebPageSchema } from "@/components/SEOHead";
+import CookieConsent from "@/components/CookieConsent";
 import ImageWithFallback from "@/components/ImageWithFallback";
 
 // Animation variants with proper typing - Japan: Refined & Delicate
@@ -389,6 +390,12 @@ export default function Home() {
       </section>
 
       <Footer />
+      
+      {/* Cookie Consent Banner - Language aware */}
+      <CookieConsent 
+        lang={language as "en" | "ja" | "zh"} 
+        privacyPolicyPath={`${basePath}/privacy`}
+      />
     </div>
   );
 }

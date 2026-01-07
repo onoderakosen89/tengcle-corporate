@@ -15,6 +15,7 @@ import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import SEOHead, { generateOrganizationSchema, generateWebPageSchema } from "@/components/SEOHead";
+import CookieConsent from "@/components/CookieConsent";
 
 // Animation variants - USA: Bold & Dynamic
 const easeAmerican: Easing = [0.4, 0, 0.2, 1];
@@ -382,6 +383,12 @@ export default function UsHome() {
       </section>
 
       <UsFooter />
+      
+      {/* Cookie Consent Banner - Language aware */}
+      <CookieConsent 
+        lang={language as "en" | "ja" | "zh"} 
+        privacyPolicyPath={`${basePath}/privacy`}
+      />
     </div>
   );
 }

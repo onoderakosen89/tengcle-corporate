@@ -17,6 +17,8 @@ interface CookieConsentProps {
   lang?: "en" | "ja" | "zh";
   /** Position of the banner */
   position?: "bottom" | "bottom-left" | "bottom-right";
+  /** Base path for privacy policy link */
+  privacyPolicyPath?: string;
   /** Additional class names */
   className?: string;
 }
@@ -55,6 +57,7 @@ type ConsentStatus = "accepted-all" | "accepted-necessary" | null;
 export default function CookieConsent({
   lang = "en",
   position = "bottom",
+  privacyPolicyPath = "/privacy",
   className = "",
 }: CookieConsentProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -152,7 +155,7 @@ export default function CookieConsent({
             {/* Privacy Policy Link */}
             <div className="px-4 md:px-6 pb-4 text-center">
               <a
-                href="/privacy"
+                href={privacyPolicyPath}
                 className="text-xs text-gray-500 hover:text-gold transition-colors underline"
               >
                 {t.privacyPolicy}

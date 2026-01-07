@@ -366,7 +366,7 @@ function App() {
           <Suspense fallback={<PageLoader />}>
             <MainRouter />
           </Suspense>
-          <CookieConsent lang="en" position="bottom" />
+          {/* CookieConsent is now handled per-page for proper language support */}
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
