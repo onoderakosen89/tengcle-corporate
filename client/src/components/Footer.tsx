@@ -121,21 +121,24 @@ export default function Footer() {
               © {new Date().getFullYear()} Tengcle Limited. All rights reserved.
             </p>
 
-            {/* Group Companies */}
-            <div className="flex items-center gap-6">
-              <Link href={`/jp/${pathLang === "zh" ? "zh" : pathLang === "ja" ? "ja" : "ja"}`}>
+            {/* Group Companies - Important for SEO Sitelinks */}
+            <nav aria-label="Tengcle Group Regional Sites" className="flex items-center gap-6">
+              <Link href="/hk/en" aria-label="Tengcle Limited - Hong Kong Headquarters">
                 <span className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}>
-                  <span>{t.footer.japan}</span>
-                  <ExternalLink className="h-3 w-3" />
+                  <span>🇭🇰 Hong Kong</span>
                 </span>
               </Link>
-              <Link href="/us/en">
+              <Link href="/jp/ja" aria-label="Tengcle株式会社 - Japan Office">
                 <span className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}>
-                  <span>US Office</span>
-                  <ExternalLink className="h-3 w-3" />
+                  <span>🇯🇵 {t.footer.japan}</span>
                 </span>
               </Link>
-            </div>
+              <Link href="/us/en" aria-label="Tengcle Development LLC - US Office">
+                <span className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}>
+                  <span>🇺🇸 US Office</span>
+                </span>
+              </Link>
+            </nav>
           </div>
         </div>
       </div>

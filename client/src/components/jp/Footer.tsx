@@ -113,30 +113,35 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Group Companies */}
-          <div>
+          {/* Group Companies - Important for SEO Sitelinks */}
+          <nav aria-label="Tengcle Group Regional Sites">
             <h4 className={`text-gold text-sm tracking-wider uppercase mb-6 ${getFontClass()}`}>
               {t.footer.group}
             </h4>
             <ul className="space-y-3">
               <li>
-                <Link href={`/hk/${pathLang === "zh" ? "zh" : pathLang === "en" ? "en" : "en"}`}>
+                <Link href="/hk/en" aria-label="Tengcle Limited - Hong Kong Headquarters">
                   <span className={`text-gray-300 hover:text-white transition-colors text-sm flex items-center gap-2 ${getFontClass()}`}>
-                    {t.footer.hongkong}
-                    <ExternalLink className="h-3 w-3" />
+                    🇭🇰 {t.footer.hongkong}
                   </span>
                 </Link>
               </li>
               <li>
-                <Link href="/us/en">
+                <Link href="/jp/ja" aria-label="Tengcle株式会社 - Japan Office">
                   <span className={`text-gray-300 hover:text-white transition-colors text-sm flex items-center gap-2 ${getFontClass()}`}>
-                    US Office
-                    <ExternalLink className="h-3 w-3" />
+                    🇯🇵 日本
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/us/en" aria-label="Tengcle Development LLC - US Office">
+                  <span className={`text-gray-300 hover:text-white transition-colors text-sm flex items-center gap-2 ${getFontClass()}`}>
+                    🇺🇸 US Office
                   </span>
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Bottom Bar */}

@@ -290,11 +290,12 @@ export default function GlobalGateway() {
                           Language
                         </p>
                         <div className="flex flex-wrap gap-2">
-                          {region.languages.map((lang) => (
+                          {region.languages.map((lang, index) => (
                             <Link
                               key={lang.code}
                               href={lang.path}
                               className="px-4 py-2 text-sm font-medium text-white/90 bg-white/10 border border-white/20 rounded-lg hover:bg-gold/20 hover:border-gold/50 hover:text-gold transition-all duration-300"
+                              aria-label={`Visit ${region.company} website in ${lang.label}`}
                             >
                               {lang.label}
                             </Link>

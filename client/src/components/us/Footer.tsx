@@ -21,8 +21,9 @@ export default function UsFooter() {
   ];
 
   const groupSites = [
-    { href: "/hk/en", label: "Tengcle Limited (Hong Kong)" },
-    { href: "/jp/ja", label: "Tengcle株式会社 (Japan)" },
+    { href: "/hk/en", label: "🇭🇰 Tengcle Limited (Hong Kong)", ariaLabel: "Tengcle Limited - Hong Kong Headquarters" },
+    { href: "/jp/ja", label: "🇯🇵 Tengcle株式会社 (Japan)", ariaLabel: "Tengcle株式会社 - Japan Office" },
+    { href: "/us/en", label: "🇺🇸 Tengcle Development LLC (US)", ariaLabel: "Tengcle Development LLC - US Office" },
   ];
 
   return (
@@ -77,14 +78,15 @@ export default function UsFooter() {
             </ul>
           </div>
 
-          {/* Group Sites */}
-          <div>
+          {/* Group Sites - Important for SEO Sitelinks */}
+          <nav aria-label="Tengcle Group Regional Sites">
             <h4 className="font-heading text-lg mb-6 text-gold">Tengcle Group</h4>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/"
                   className="text-gray-300 text-sm hover:text-gold transition-colors flex items-center gap-2"
+                  aria-label="Tengcle Group - Global Gateway"
                 >
                   <Globe className="w-4 h-4 text-gold flex-shrink-0" />
                   Global Site
@@ -95,13 +97,14 @@ export default function UsFooter() {
                   <Link
                     href={site.href}
                     className="text-gray-300 text-sm hover:text-gold transition-colors"
+                    aria-label={site.ariaLabel}
                   >
                     {site.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
         </div>
       </div>
 
