@@ -167,8 +167,8 @@ export default function About() {
               {
                 icon: Award,
                 title: language === "ja" ? "代表取締役" : language === "zh" ? "董事" : "Director",
-                value: "ONODERA Kosen",
-                description: language === "ja" ? "小野寺 紘" : language === "zh" ? "小野寺 紘" : "Sole Director",
+                value: "Kosen Onodera",
+                description: language === "ja" ? "小野寺 紘宣" : language === "zh" ? "小野寺 紘宣" : "Director & CEO",
               },
               {
                 icon: Award,

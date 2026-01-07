@@ -486,8 +486,8 @@ export default function Home() {
               {
                 icon: Award,
                 title: t.trust?.director || "Director",
-                value: "ONODERA Kosen",
-                description: t.trust?.directorDesc || "Sole Director",
+                value: "Kosen Onodera",
+                description: t.trust?.directorDesc || "Director & CEO",
               },
               {
                 icon: Award,
