@@ -1,12 +1,12 @@
 # Robots.txt for Tengcle Group
-# https://tengcle.com
+# https://www.tengcle.com
 
 # Allow all crawlers
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://tengcle.com/sitemap.xml
+Sitemap: https://www.tengcle.com/sitemap.xml
 
 # Disallow admin and private directories
 Disallow: /api/
@@ -61,4 +61,4 @@ User-agent: DotBot
 Disallow: /
 
 # Host directive
-Host: https://tengcle.com
+Host: https://www.tengcle.com
