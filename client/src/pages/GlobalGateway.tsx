@@ -8,6 +8,7 @@
  * - Elegant hover effects with glow
  */
 
+import { useEffect } from "react";
 import { motion, type Easing } from "framer-motion";
 import { Link } from "wouter";
 import { Globe, Building2, ArrowRight } from "lucide-react";
@@ -114,6 +115,10 @@ const staggerContainer = {
 const seigaihaPattern = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='90' viewBox='0 0 180 90'%3E%3Cg fill='none' stroke='%23c9a962'%3E%3Ccircle cx='0' cy='45' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='0' cy='45' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='0' cy='45' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='0' cy='45' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='60' cy='45' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='60' cy='45' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='60' cy='45' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='60' cy='45' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='120' cy='45' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='120' cy='45' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='120' cy='45' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='120' cy='45' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='180' cy='45' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='180' cy='45' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='180' cy='45' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='180' cy='45' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='30' cy='0' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='30' cy='0' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='30' cy='0' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='30' cy='0' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='90' cy='0' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='90' cy='0' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='90' cy='0' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='90' cy='0' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='150' cy='0' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='150' cy='0' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='150' cy='0' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='150' cy='0' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='30' cy='90' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='30' cy='90' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='30' cy='90' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='30' cy='90' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='90' cy='90' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='90' cy='90' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='90' cy='90' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='90' cy='90' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3Ccircle cx='150' cy='90' r='40' stroke-width='1' stroke-opacity='0.3'/%3E%3Ccircle cx='150' cy='90' r='30' stroke-width='1' stroke-opacity='0.25'/%3E%3Ccircle cx='150' cy='90' r='20' stroke-width='1' stroke-opacity='0.2'/%3E%3Ccircle cx='150' cy='90' r='10' stroke-width='1' stroke-opacity='0.15'/%3E%3C/g%3E%3C/svg%3E")`;
 
 export default function GlobalGateway() {
+  useEffect(() => {
+    document.title = "Tengcle Group | Hotel FF&E, Real Estate & Hospitality Services in Asia & USA";
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-white overflow-hidden relative">
       {/* Animated Seigaiha Background */}
