@@ -4,9 +4,10 @@
  * GDPR and privacy law compliant cookie consent UI.
  * Stores user preference in localStorage.
  * Supports multiple languages.
+ * Controls Google Analytics tracking based on consent.
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cookie, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -51,8 +52,121 @@ const translations = {
 };
 
 const COOKIE_CONSENT_KEY = "tengcle-cookie-consent";
+const GA_MEASUREMENT_ID = "G-JE6B15C29Q";
 
-type ConsentStatus = "accepted-all" | "accepted-necessary" | null;
+export type ConsentStatus = "accepted-all" | "accepted-necessary" | null;
+
+// Extend window interface for gtag
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+    gaLoaded?: boolean;
+    gaConsentInitialized?: boolean;
+  }
+}
+
+/**
+ * Initialize Google Analytics with consent mode
+ * This should be called before any GA tracking
+ */
+export function initializeGAConsent() {
+  if (typeof window === "undefined" || window.gaConsentInitialized) return;
+  
+  window.dataLayer = window.dataLayer || [];
+  function gtag(...args: unknown[]) {
+    window.dataLayer!.push(args);
+  }
+  window.gtag = gtag;
+  
+  // Set default consent to denied
+  gtag("consent", "default", {
+    analytics_storage: "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    wait_for_update: 500,
+  });
+  
+  window.gaConsentInitialized = true;
+}
+
+/**
+ * Update Google Analytics consent based on user choice
+ */
+export function updateGAConsent(consentStatus: ConsentStatus) {
+  if (typeof window === "undefined" || !window.gtag) return;
+  
+  if (consentStatus === "accepted-all") {
+    // User accepted all cookies - enable analytics
+    window.gtag("consent", "update", {
+      analytics_storage: "granted",
+      ad_storage: "granted",
+      ad_user_data: "granted",
+      ad_personalization: "granted",
+    });
+    
+    // Load GA script if not already loaded
+    loadGoogleAnalytics();
+  } else if (consentStatus === "accepted-necessary") {
+    // User only accepted necessary cookies - keep analytics disabled
+    window.gtag("consent", "update", {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
+  }
+}
+
+/**
+ * Load Google Analytics script
+ */
+function loadGoogleAnalytics() {
+  if (typeof window === "undefined" || window.gaLoaded) return;
+  
+  window.gaLoaded = true;
+  
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.appendChild(script);
+  
+  script.onload = () => {
+    if (window.gtag) {
+      window.gtag("js", new Date());
+      window.gtag("config", GA_MEASUREMENT_ID, {
+        anonymize_ip: true,
+        cookie_flags: "SameSite=None;Secure",
+      });
+    }
+  };
+}
+
+/**
+ * Delete Google Analytics cookies
+ */
+function deleteGACookies() {
+  const cookies = document.cookie.split(";");
+  const gaCookiePatterns = ["_ga", "_gid", "_gat", "_gcl"];
+  
+  cookies.forEach((cookie) => {
+    const cookieName = cookie.split("=")[0].trim();
+    if (gaCookiePatterns.some((pattern) => cookieName.startsWith(pattern))) {
+      // Delete cookie by setting expiry in the past
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.tengcle.com;`;
+    }
+  });
+}
+
+/**
+ * Get current consent status from localStorage
+ */
+export function getConsentStatus(): ConsentStatus {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem(COOKIE_CONSENT_KEY) as ConsentStatus;
+}
 
 export default function CookieConsent({
   lang = "en",
@@ -61,34 +175,40 @@ export default function CookieConsent({
   className = "",
 }: CookieConsentProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const t = translations[lang];
 
   useEffect(() => {
+    // Initialize GA consent mode
+    initializeGAConsent();
+    
     // Check if user has already made a choice
-    const consent = localStorage.getItem(COOKIE_CONSENT_KEY) as ConsentStatus;
-    if (!consent) {
-      // Small delay to prevent flash on page load
+    const consent = getConsentStatus();
+    if (consent) {
+      // Apply existing consent
+      updateGAConsent(consent);
+    } else {
+      // Show banner after small delay
       const timer = setTimeout(() => {
         setIsVisible(true);
       }, 1000);
       return () => clearTimeout(timer);
     }
-    setIsLoaded(true);
   }, []);
 
-  const handleAcceptAll = () => {
+  const handleAcceptAll = useCallback(() => {
     localStorage.setItem(COOKIE_CONSENT_KEY, "accepted-all");
     setIsVisible(false);
-    // Here you would typically enable all cookies/tracking
-  };
+    updateGAConsent("accepted-all");
+  }, []);
 
-  const handleAcceptNecessary = () => {
+  const handleAcceptNecessary = useCallback(() => {
     localStorage.setItem(COOKIE_CONSENT_KEY, "accepted-necessary");
     setIsVisible(false);
-    // Here you would only enable necessary cookies
-  };
+    updateGAConsent("accepted-necessary");
+    // Delete any existing GA cookies
+    deleteGACookies();
+  }, []);
 
   const positionClasses = {
     bottom: "bottom-0 left-0 right-0",
@@ -175,8 +295,38 @@ export function useCookieConsent() {
   const [consent, setConsent] = useState<ConsentStatus>(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem(COOKIE_CONSENT_KEY) as ConsentStatus;
+    const stored = getConsentStatus();
     setConsent(stored);
+    
+    // Listen for storage changes (in case user changes consent in another tab)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === COOKIE_CONSENT_KEY) {
+        const newConsent = e.newValue as ConsentStatus;
+        setConsent(newConsent);
+        updateGAConsent(newConsent);
+      }
+    };
+    
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
+  const updateConsent = useCallback((newConsent: ConsentStatus) => {
+    if (newConsent) {
+      localStorage.setItem(COOKIE_CONSENT_KEY, newConsent);
+    } else {
+      localStorage.removeItem(COOKIE_CONSENT_KEY);
+    }
+    setConsent(newConsent);
+    updateGAConsent(newConsent);
+  }, []);
+
+  const revokeConsent = useCallback(() => {
+    localStorage.removeItem(COOKIE_CONSENT_KEY);
+    setConsent(null);
+    deleteGACookies();
+    // Reload page to reset GA state
+    window.location.reload();
   }, []);
 
   return {
@@ -184,5 +334,7 @@ export function useCookieConsent() {
     hasConsent: consent !== null,
     acceptedAll: consent === "accepted-all",
     acceptedNecessary: consent === "accepted-necessary",
+    updateConsent,
+    revokeConsent,
   };
 }

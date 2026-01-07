@@ -161,33 +161,59 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
     rel="stylesheet" />
 
-  <!-- Google Analytics 4 (Deferred for Performance) -->
+  <!-- Google Analytics 4 with Consent Mode -->
   <script>
-    // Defer Google Analytics loading to reduce main thread blocking
+    // Initialize dataLayer and gtag function
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.gtag = gtag;
+    
+    // Set default consent to denied (GDPR compliant)
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'wait_for_update': 500
+    });
+    
+    // Check for existing consent and update accordingly
+    (function() {
+      var consent = localStorage.getItem('tengcle-cookie-consent');
+      if (consent === 'accepted-all') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted'
+        });
+      }
+    })();
+    
+    // Load GA script (consent mode will control what data is collected)
     function loadGA() {
       if (window.gaLoaded) return;
       window.gaLoaded = true;
-
+      
       var script = document.createElement('script');
       script.async = true;
       script.src = 'https://www.googletagmanager.com/gtag/js?id=G-JE6B15C29Q';
       document.head.appendChild(script);
-
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', 'G-JE6B15C29Q', {
-        'anonymize_ip': true,
-        'cookie_flags': 'SameSite=None;Secure'
-      });
+      
+      script.onload = function() {
+        gtag('js', new Date());
+        gtag('config', 'G-JE6B15C29Q', {
+          'anonymize_ip': true,
+          'cookie_flags': 'SameSite=None;Secure'
+        });
+      };
     }
-
-    // Load GA after user interaction or after 3 seconds (whichever comes first)
-    ['scroll', 'click', 'keydown', 'mousemove', 'touchstart'].forEach(function (event) {
+    
+    // Load GA after user interaction or after 2 seconds
+    ['scroll', 'click', 'keydown', 'mousemove', 'touchstart'].forEach(function(event) {
       window.addEventListener(event, loadGA, { once: true, passive: true });
     });
-    setTimeout(loadGA, 3000);
+    setTimeout(loadGA, 2000);
   </script>
 
   <!-- Structured Data (JSON-LD) for Rich Search Results & Sitelinks -->
