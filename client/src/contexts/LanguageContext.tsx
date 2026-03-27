@@ -85,7 +85,6 @@ interface Translations {
       title: string;
       legalName: string;
       brNo: string;
-      tcsp: string;
     };
     philosophy: {
       title: string;
@@ -158,8 +157,8 @@ const translations: Record<Language, Translations> = {
       subtitle: "Tengcle Limited serves as your strategic partner in Asia, delivering specialized solutions in hospitality, IT, and international trade.",
       cta1: "Our Services",
       cta2: "Contact Us",
-      trust1: "TCSP Licensed",
-      trust2: "HK Registered",
+      trust1: "HK Registered",
+      trust2: "Professional Team",
       trust3: "Global Network",
     },
     services: {
@@ -193,19 +192,19 @@ const translations: Record<Language, Translations> = {
       },
     },
     portfolio: {
-      subtitle: "Our Portfolio",
-      title: "Past Projects",
-      description: "Hotel developments and IT system implementations we have delivered.",
-      viewCase: "View Details",
+      subtitle: "Our Expertise",
+      title: "Proven Track Record",
+      description: "Delivering results in hospitality management and project coordination across Southeast Asia.",
+      viewCase: "Learn More",
       project1: {
-        title: "Hotel Complex",
+        title: "Hotel Management Services",
         location: "Southeast Asia",
-        description: "Main building renovation, annex interior fit-out, and 400+ room new hotel construction.",
+        description: "Board of Management dispatch, strategic planning, brand management, and operations consulting for hotel development projects.",
       },
       project2: {
-        title: "Hotel Management System",
+        title: "Supplier Coordination",
         location: "Southeast Asia",
-        description: "Odoo ERP setup with customization, API development, and system integration.",
+        description: "International procurement coordination, supply chain management, and project integration for hotel completion and renovation.",
       },
     },
     about: {
@@ -221,7 +220,6 @@ const translations: Record<Language, Translations> = {
         title: "Company Information",
         legalName: "Legal Name",
         brNo: "Business Registration",
-        tcsp: "TCSP License",
       },
       philosophy: {
         title: "Our Philosophy",
@@ -273,8 +271,8 @@ const translations: Record<Language, Translations> = {
     },
     meta: {
       title: "Tengcle Limited | Hotel FF&E & Asset Management in Hong Kong",
-      description: "TCSP licensed Hong Kong company providing hotel FF&E procurement, asset management & IT solutions across Asia.",
-      keywords: "Tengcle Limited, hotel FF&E, asset management, Hong Kong, TCSP licensed, hospitality",
+      description: "Hong Kong company providing hotel FF&E procurement, asset management & IT solutions across Asia.",
+      keywords: "Tengcle Limited, hotel FF&E, asset management, Hong Kong, hospitality",
     },
   },
   ja: {
@@ -292,8 +290,8 @@ const translations: Record<Language, Translations> = {
       subtitle: "Tengcle Limitedは、ホスピタリティ、IT、国際貿易の分野で専門的なソリューションを提供する、アジアの戦略的パートナーです。",
       cta1: "サービス一覧",
       cta2: "お問い合わせ",
-      trust1: "TCSPライセンス",
-      trust2: "香港法人",
+      trust1: "香港法人",
+      trust2: "プロフェッショナル",
       trust3: "グローバル",
     },
     services: {
@@ -328,18 +326,18 @@ const translations: Record<Language, Translations> = {
     },
     portfolio: {
       subtitle: "実績",
-      title: "過去のプロジェクト",
-      description: "これまでに手がけたホテル開発とITシステム導入。",
-      viewCase: "詳細を見る",
+      title: "実績事例",
+      description: "東南アジアのホテル管理、プロジェクト調整での実績。",
+      viewCase: "詳細を確認",
       project1: {
-        title: "ホテルコンプレックス開発",
+        title: "ホテル管理サービス",
         location: "東南アジア",
-        description: "本館改装および新館建設プロジェクト（400室規模）における資材調達・施工管理支援。",
+        description: "統括会の派遣、戦略計画、ブランド管理、運営コンサルティング。",
       },
       project2: {
-        title: "ホテル管理システム",
+        title: "サプライヤーコーディネーター",
         location: "東南アジア",
-        description: "Odoo ERP導入、カスタマイズ、API開発、システム統合。",
+        description: "国際調達調整、サプライチェーン管理、ホテル完成・改装プロジェクトの統整。",
       },
     },
     about: {
@@ -354,8 +352,7 @@ const translations: Record<Language, Translations> = {
       info: {
         title: "会社情報",
         legalName: "法人名",
-        brNo: "商業登記番号",
-        tcsp: "TCSPライセンス",
+        brNo: "商業登録",
       },
       philosophy: {
         title: "私たちの理念",
@@ -406,9 +403,9 @@ const translations: Record<Language, Translations> = {
       countries: "カ国以上",
     },
     meta: {
-      title: "Tengcle Limited | 香港のホテルFF&E調達・資産管理",
-      description: "TCSP認可の香港企業。ホテルFF&E調達、資産管理、ITソリューションをアジア全域で提供。",
-      keywords: "Tengcle Limited, ホテルFF&E, 資産管理, 香港, TCSP認可, ホスピタリティ",
+      title: "Tengcle Limited | ホテルFF&E・資産管理 香港",
+      description: "香港企業。ホテルFF&E調達、資産管理、ITソリューションをアジア全域で提供。",
+      keywords: "Tengcle Limited, ホテルFF&E, 資産管理, 香港, ホスピタリティ",
     },
   },
   zh: {
@@ -426,8 +423,8 @@ const translations: Record<Language, Translations> = {
       subtitle: "Tengcle Limited 是您在亚洲的战略合作伙伴，在酒店、IT 和国际贸易领域提供专业解决方案。",
       cta1: "由于服务",
       cta2: "联系我们",
-      trust1: "TCSP 持牌",
-      trust2: "香港注册",
+      trust1: "香港法人",
+      trust2: "专业团队",
       trust3: "全球网络",
     },
     services: {
@@ -461,19 +458,19 @@ const translations: Record<Language, Translations> = {
       },
     },
     portfolio: {
-      subtitle: "我们的案例",
-      title: "过往项目",
-      description: "我们完成的酒店开发和IT系统实施。",
+      subtitle: "実績",
+      title: "成功案例",
+      description: "东南亚酒店管理、项目协调的实績。",
       viewCase: "查看详情",
       project1: {
-        title: "酒店综合体",
+        title: "酒店管理服务",
         location: "东南亚",
-        description: "主楼翻新、附楼室内装修和400多间客房的新酒店建设。",
+        description: "管理会派遣、战略规划、品牌管理、运营咨询。",
       },
       project2: {
-        title: "酒店管理系统",
+        title: "供应商协调员",
         location: "东南亚",
-        description: "Odoo ERP实施、定制、API开发和系统集成。",
+        description: "国际采购协调、供应链管理、酒店完成与改装项目的整合。",
       },
     },
     about: {
@@ -487,9 +484,8 @@ const translations: Record<Language, Translations> = {
       },
       info: {
         title: "公司信息",
-        legalName: "法人名称",
+        legalName: "法人名",
         brNo: "商业登记",
-        tcsp: "TCSP牌照",
       },
       philosophy: {
         title: "我们的理念",
@@ -541,8 +537,8 @@ const translations: Record<Language, Translations> = {
     },
     meta: {
       title: "Tengcle Limited | 香港酒店FF&E采购与资产管理",
-      description: "TCSP许可香港公司，提供酒店FF&E采购、资产管理及IT解决方案，服务亚洲全境。",
-      keywords: "Tengcle Limited, 酒店FF&E, 资产管理, 香港, TCSP许可, 酒店业",
+      description: "香港公司，提供酒店FF&E采购、资产管理及IT解决方案，服务亚洲全境。",
+      keywords: "Tengcle Limited, 酒店FF&E, 资产管理, 香港, 酒店业",
     },
   },
 };

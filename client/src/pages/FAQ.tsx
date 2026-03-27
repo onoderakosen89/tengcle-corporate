@@ -202,18 +202,18 @@ export default function FAQ() {
   const seoData = {
     en: {
       title: "FAQ | Tengcle Limited Hong Kong",
-      description: "Answers about Tengcle Limited's hotel FF&E procurement, TCSP licensing & IT solutions in Hong Kong.",
-      keywords: "Tengcle FAQ, hotel FF&E, TCSP license, Hong Kong, hospitality"
+      description: "Answers about Tengcle Limited's hotel FF&E procurement & IT solutions in Hong Kong.",
+      keywords: "Tengcle FAQ, hotel FF&E, Hong Kong, hospitality"
     },
     ja: {
       title: "よくある質問 | Tengcle Limited 香港",
-      description: "Tengcle LimitedのホテルFF&E調達、TCSPライセンス、ITソリューションに関するFAQ。",
-      keywords: "Tengcle FAQ, ホテルFF&E, TCSP, 香港, ホスピタリティ"
+      description: "Tengcle LimitedのホテルFF&E調達、ITソリューションに関するFAQ。",
+      keywords: "Tengcle FAQ, ホテルFF&E, 香港, ホスピタリティ"
     },
     zh: {
       title: "常见问题 | Tengcle Limited 香港",
-      description: "关于Tengcle Limited酒店FF&E采购、TCSP许可证及IT解决方案的常见问题解答。",
-      keywords: "Tengcle FAQ, 酒店FF&E, TCSP, 香港, 酒店业"
+      description: "关于Tengcle Limited酒店FF&E采购及IT解决方案的常见问题解答。",
+      keywords: "Tengcle FAQ, 酒店FF&E, 香港, 酒店业"
     }
   };
 

@@ -42,19 +42,19 @@ const translations: Translations = {
 
   // Hero Section
   'hero.tagline': {
-    en: 'Your Partner in US Real Estate',
-    ja: '米国不動産運用のパートナー',
-    zh: '美国房地产投资合作伙伴',
+    en: 'Building Our US Real Estate Portfolio',
+    ja: '米国不動産ポートフォリオを汋策中',
+    zh: '正在构建我们的美国房地产组合',
   },
   'hero.title': {
-    en: 'Maximizing Asset Value',
-    ja: '資産価値の最大化',
-    zh: '最大化资产价值',
+    en: 'Strategic Growth in Real Estate',
+    ja: '不動産での戦略的成長',
+    zh: '房地产战略性增長',
   },
   'hero.subtitle': {
-    en: 'Professional property management and vacation rental solutions in New Jersey and the New York metropolitan area.',
-    ja: 'ニュージャージー・ニューヨークエリアにおける、プロフェッショナルな不動産管理とバケーションレンタル運用。',
-    zh: '新泽西和纽约都会区的专业物业管理及度假租赁解决方案。',
+    en: 'Established in January 2026, we are building our presence in New Jersey and the New York metropolitan area. We are preparing to launch property management and vacation rental services.',
+    ja: '2026年1月設立。ニュージャージー・ニューヨーク都会地域で不動産管理とバケーションレンタルサービスの汋策を進めています。',
+    zh: '成立于2026年1月。我们正在新泽西和纽约都会区汋策物业管理和度假租赁服务。',
   },
   'hero.cta.services': {
     en: 'Our Services',
@@ -86,9 +86,9 @@ const translations: Translations = {
     zh: '房地产开发',
   },
   'service.development.desc': {
-    en: 'Our core business focuses on acquiring distressed or underperforming properties, revitalizing them through strategic renovation, and holding them as long-term income-generating assets.',
-    ja: '私たちの中核事業は、問題を抱えた物件や低パフォーマンス物件を取得し、戦略的な修繕・改修によって再生させ、長期的な収益資産として保有することです。',
-    zh: '我们的核心业务专注于收购困境或低效物业，通过战略性翻新使其焕发新生，并作为长期收益资产持有。',
+    en: 'We are developing our real estate portfolio in the New Jersey and New York metropolitan area. Our strategy focuses on identifying opportunities, conducting thorough market analysis, and building a diversified portfolio of income-generating properties.',
+    ja: 'ニュージャージー、ニューヨーク都会地域で不動産ポートフォリオを汋策中です。機会を探索し、市場分析を実施し、多様化した収益物件ポートフォリオを構築していきます。',
+    zh: '我们正在新泽西和纽约都会地区开发我们的房地产组合。我们的战略专注于识别机会、进行彻底的市场分析，并构建多样化的收益物业组合。',
   },
   'service.development.feature1': {
     en: 'Distressed Property Acquisition',
@@ -118,9 +118,9 @@ const translations: Translations = {
     zh: '物业管理',
   },
   'service.property.desc': {
-    en: 'Full-service management for residential and commercial assets. We handle everything from tenant placement to maintenance, ensuring steady returns.',
-    ja: '住宅・商業物件の包括的管理サービス。入居者募集からメンテナンス、収支管理まで、現地のプロフェッショナルが一貫してサポートします。',
-    zh: '住宅和商业资产的全方位管理服务。从租户安置到维护，确保稳定的投资回报。',
+    en: 'We are building our property management capabilities. Our services will include tenant placement, rent collection, maintenance coordination, and comprehensive financial reporting for residential and commercial assets.',
+    ja: '不動産管理能力を汋策中です。入居者募集、家賃回収、メンテナンス协调、包括的な詳支管理を提供予定です。',
+    zh: '我们正在建设我们的物业管理能力。我们的服务将包括租户安置、租金收取、维护协调和全面的财务报告。'
   },
   'service.property.feature1': {
     en: 'Rigorous Tenant Screening',
@@ -150,19 +150,19 @@ const translations: Translations = {
     zh: '度假租赁管理',
   },
   'service.vacation.desc': {
-    en: 'Optimizing short-term rentals on Airbnb & VRBO. We deploy dynamic pricing and professional hospitality to maximize occupancy and revenue.',
-    ja: 'Airbnb・VRBOでの短期賃貸運用を最適化。ダイナミックプライシングと質の高いホスピタリティで、稼働率と収益を最大化します。',
-    zh: '优化 Airbnb 和 VRBO 短期租赁。我们利用动态定价和专业服务，最大化入住率和收入。',
+    en: 'We are preparing to launch vacation rental management services. Our approach will focus on optimizing short-term rentals through dynamic pricing, professional guest communication, and revenue optimization.',
+    ja: 'バケーションレンタル管理サービスを汋策中です。ダイナミックプライシング、プロフェッショナルなゲスト対応、収益最適化を提供予定です。',
+    zh: '我们正在汋策度假租赁管理服务。我们的方法将专注于通过动态定价、专业客人沟通和收益优化来优化短期租赁。',
   },
   'service.vacation.feature1': {
-    en: 'Listing & SEO Optimization',
-    ja: 'リスティング最適化 (SEO)',
-    zh: '房源及 SEO 优化',
+    en: 'Market Analysis & Strategy',
+    ja: '市場分析・戦略立案',
+    zh: '市场分析与战略',
   },
   'service.vacation.feature2': {
-    en: 'Guest Communication & Support',
-    ja: '多言語ゲスト対応',
-    zh: '与客人沟通及支持',
+    en: 'Operational Planning',
+    ja: '運営計画立案',
+    zh: '运营规划与执行'
   },
   'service.vacation.feature3': {
     en: 'Professional Cleaning & turnover',
