@@ -41,7 +41,7 @@ const regions = [
     name: "Japan",
     nameJa: "日本",
     nameZh: "日本",
-    company: "Tengcle株式会社",
+    company: "株式会社 Tengcle",
     role: "Founding Office",
     roleJa: "創業地",
     roleZh: "创业地",
