@@ -272,7 +272,7 @@ export default function PropertyDevelopment() {
             style={{ y: backgroundY }}
           >
             <img
-              src="/images/us-service-development.jpg"
+              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/WaMxaejDVBiYfcRk.jpg"
               alt="Property Development - Before and After"
               className="w-full h-[120%] object-cover opacity-40"
             />

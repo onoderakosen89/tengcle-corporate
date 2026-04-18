@@ -55,7 +55,7 @@ function UsHeroSection({ basePath, t }: { basePath: string; t: (key: string) => 
         style={{ y: backgroundY, scale: backgroundScale }}
       >
         <img
-          src="/images/us-hero-skyline.jpg"
+          src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/JiunFLgUsEDKxOsk.jpg"
           alt="New Jersey and Manhattan Skyline at Sunset"
           className="w-full h-[120%] object-cover opacity-60"
           width="1920"

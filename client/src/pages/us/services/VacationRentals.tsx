@@ -317,7 +317,7 @@ export default function VacationRentals() {
             style={{ y: backgroundY }}
           >
             <img
-              src="/images/us-service-vacation.jpg"
+              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/MacoEYqgQKDEOVOW.jpg"
               alt="Luxurious Vacation Rental Interior"
               className="w-full h-[120%] object-cover opacity-40"
             />
