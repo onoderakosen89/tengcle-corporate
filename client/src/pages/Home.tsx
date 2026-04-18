@@ -91,7 +91,7 @@ function HeroSection({
         <picture>
           <source srcSet="/images/hero-global-network.webp" type="image/webp" />
           <img
-            src="/images/hero-global-network.jpg"
+            src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/WpIwdKNRwnDMtQUR.jpg"
             alt="Hong Kong Victoria Harbour"
             className="w-full h-[120%] object-cover"
             width="1920"
@@ -384,7 +384,7 @@ export default function Home() {
                   <picture>
                     <source srcSet="/images/hotel-lobby-realistic.webp" type="image/webp" />
                     <img
-                      src="/images/hotel-lobby-realistic.jpg"
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/kDSQyJQNxKSMhfOs.jpg"
                       alt={t.portfolio.project1.title}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -416,7 +416,7 @@ export default function Home() {
                   <picture>
                     <source srcSet="/images/portfolio-it-realistic.webp" type="image/webp" />
                     <img
-                      src="/images/portfolio-it-realistic.jpg"
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/KgGsTahuYpprkouF.jpg"
                       alt={t.portfolio.project2.title}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

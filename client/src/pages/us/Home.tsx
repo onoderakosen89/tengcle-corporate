@@ -149,7 +149,7 @@ export default function UsHome() {
         t('service.development.feature4'),
       ],
       isMain: true,
-      image: '/images/us-service-development.jpg',
+      image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/WaMxaejDVBiYfcRk.jpg',
     },
     {
       icon: Building2,
@@ -162,7 +162,7 @@ export default function UsHome() {
         t('service.property.feature4'),
       ],
       isMain: false,
-      image: '/images/us-service-management.jpg',
+      image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/zhLbLLFJzSBdCJiq.jpg',
     },
     {
       icon: HomeIcon,
@@ -175,7 +175,7 @@ export default function UsHome() {
         t('service.vacation.feature4'),
       ],
       isMain: false,
-      image: '/images/us-service-vacation.jpg',
+      image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/MacoEYqgQKDEOVOW.jpg',
     },
   ];
 

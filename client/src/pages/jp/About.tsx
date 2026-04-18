@@ -125,7 +125,7 @@ export default function About() {
                 className="relative overflow-hidden rounded-lg shadow-lg"
               >
                 <img
-                  src="/images/hero-japan-corporate.jpg"
+                  src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/doKdEdQloYfwfKNo.jpg"
                   alt="Tengcle株式会社 Japan"
                   className="w-full h-80 lg:h-[500px] object-cover"
                 />

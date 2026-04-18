@@ -85,7 +85,7 @@ function JpHeroSection({
         <picture>
           <source srcSet="/images/hero-japan-corporate.webp" type="image/webp" />
           <img
-            src="/images/hero-japan-corporate.jpg"
+            src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/doKdEdQloYfwfKNo.jpg"
             alt="Tokyo Business District"
             className="w-full h-[120%] object-cover"
             width="1920"
@@ -226,31 +226,31 @@ export default function Home() {
       icon: Building2,
       title: t.services.realEstate.title,
       description: t.services.realEstate.description,
-      image: "/images/service-real-estate.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/mhDhNEddQTnrGsgr.jpg",
     },
     {
       icon: Utensils,
       title: t.services.restaurant.title,
       description: t.services.restaurant.description,
-      image: "/images/service-restaurant.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/GbBOTbJEBhPJnnuc.jpg",
     },
     {
       icon: Dumbbell,
       title: t.services.gym.title,
       description: t.services.gym.description,
-      image: "/images/service-gym.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/McrNnWGEkGoUppRL.jpg",
     },
     {
       icon: BedDouble,
       title: t.services.capsuleHotel.title,
       description: t.services.capsuleHotel.description,
-      image: "/images/service-hospitality.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/MkiafRyjuYPAiLSk.jpg",
     },
     {
       icon: Users,
       title: t.services.recruitment.title,
       description: t.services.recruitment.description,
-      image: "/images/service-recruitment.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/ZDUfIqfyEtVHsGVL.jpg",
     },
   ];
 
