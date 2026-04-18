@@ -278,10 +278,10 @@ export default function VacationRentals() {
   const basePath = `/us/${language}`;
 
   const services = [
-    { icon: Camera, titleKey: 'service1.title', descKey: 'service1.desc', image: '/images/us-vr-listing.jpg' },
-    { icon: TrendingUp, titleKey: 'service2.title', descKey: 'service2.desc', image: '/images/us-vr-pricing.jpg' },
-    { icon: MessageSquare, titleKey: 'service3.title', descKey: 'service3.desc', image: '/images/us-vr-guest.jpg' },
-    { icon: Sparkles, titleKey: 'service4.title', descKey: 'service4.desc', image: '/images/us-vr-cleaning.jpg' },
+    { icon: Camera, titleKey: 'service1.title', descKey: 'service1.desc', image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/OxqKFAxFhjMtKpZv.jpg' },
+    { icon: TrendingUp, titleKey: 'service2.title', descKey: 'service2.desc', image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/psTYXFiKpATkGnKJ.jpg' },
+    { icon: MessageSquare, titleKey: 'service3.title', descKey: 'service3.desc', image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/LIdZKeUHbGsPbCLL.jpg' },
+    { icon: Sparkles, titleKey: 'service4.title', descKey: 'service4.desc', image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/GKDzJlpsLviIPcRn.jpg' },
   ];
 
   const results = [

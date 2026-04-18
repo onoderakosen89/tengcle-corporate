@@ -238,10 +238,10 @@ export default function PropertyManagement() {
   const basePath = `/us/${language}`;
 
   const services = [
-    { icon: Users, titleKey: 'service1.title', descKey: 'service1.desc', image: '/images/us-pm-tenant.jpg' },
-    { icon: DollarSign, titleKey: 'service2.title', descKey: 'service2.desc', image: '/images/us-pm-rent.jpg' },
-    { icon: Wrench, titleKey: 'service3.title', descKey: 'service3.desc', image: '/images/us-pm-maintenance.jpg' },
-    { icon: FileText, titleKey: 'service4.title', descKey: 'service4.desc', image: '/images/us-pm-lease.jpg' },
+    { icon: Users, titleKey: 'service1.title', descKey: 'service1.desc', image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/djhGoKFTYfVXsabw.jpg' },
+    { icon: DollarSign, titleKey: 'service2.title', descKey: 'service2.desc', image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/lqSmVpcFmUpDhvLF.jpg' },
+    { icon: Wrench, titleKey: 'service3.title', descKey: 'service3.desc', image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/lVeJfacwfMWTLYUM.jpg' },
+    { icon: FileText, titleKey: 'service4.title', descKey: 'service4.desc', image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/mTRRqKEDqlDmiBMU.jpg' },
   ];
 
   const propertyTypes = [
