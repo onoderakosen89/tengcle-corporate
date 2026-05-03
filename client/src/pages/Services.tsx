@@ -58,7 +58,7 @@ export default function Services() {
       icon: Package,
       title: t.services.hospitality.title,
       description: t.services.hospitality.description,
-      image: "/images/service-hospitality.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/MkiafRyjuYPAiLSk.jpg",
       features: language === "ja" ? [
         "FF&E（家具・什器・設備）調達",
         "OS&E（運営備品）調達",
@@ -80,7 +80,7 @@ export default function Services() {
       icon: Building2,
       title: t.services.integration.title,
       description: t.services.integration.description,
-      image: "/images/service-integration.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/MkiafRyjuYPAiLSk.jpg",
       features: language === "ja" ? [
         "エンドツーエンドプロジェクト管理",
         "サプライチェーン最適化",
@@ -102,7 +102,7 @@ export default function Services() {
       icon: Cpu,
       title: t.services.operations.title,
       description: t.services.operations.description,
-      image: "/images/service-it.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/MkiafRyjuYPAiLSk.jpg",
       features: language === "ja" ? [
         "Odoo ERP導入・カスタマイズ",
         "API開発・システム連携",
@@ -124,7 +124,7 @@ export default function Services() {
       icon: Palette,
       title: t.services.ip.title,
       description: t.services.ip.description,
-      image: "/images/service-character-new.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/MkiafRyjuYPAiLSk.jpg",
       features: language === "ja" ? [
         "キャラクターグッズ企画・開発",
         "製造発注・品質検査",
@@ -146,7 +146,7 @@ export default function Services() {
       icon: TrendingUp,
       title: t.services.trading.title,
       description: t.services.trading.description,
-      image: "/images/service-trading.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/MkiafRyjuYPAiLSk.jpg",
       features: language === "ja" ? [
         "国際貿易（輸出入）",
         "建設会社向け資材卸売",
@@ -168,7 +168,7 @@ export default function Services() {
       icon: Zap,
       title: t.services.dx.title,
       description: t.services.dx.description,
-      image: "/images/service-dx.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/MkiafRyjuYPAiLSk.jpg",
       features: language === "ja" ? [
         "Google Apps Scriptによる業務自動化",
         "ワークフロー最適化・効率化",
