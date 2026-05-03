@@ -87,7 +87,7 @@ export default function Services() {
       icon: BedDouble,
       title: t.services.capsuleHotel.title,
       description: t.services.capsuleHotel.description,
-      image: "/images/service-capsule-hotel.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/rMWgdVSpZfSErTGL.jpg",
       features: language === "ja"
         ? ["次世代カプセル設計", "快適な睡眠環境", "充実のアメニティ", "リーズナブルな料金"]
         : language === "zh"
