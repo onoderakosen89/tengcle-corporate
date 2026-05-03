@@ -54,7 +54,7 @@ export default function Services() {
       icon: Building2,
       title: t.services.realEstate.title,
       description: t.services.realEstate.description,
-      image: "/images/service-real-estate.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/mhDhNEddQTnrGsgr.jpg",
       features: language === "ja"
         ? ["賃貸物件の管理・運営", "入居者対応・クレーム処理", "収益最大化のご提案", "定期メンテナンス"]
         : language === "zh"
@@ -65,7 +65,7 @@ export default function Services() {
       icon: Utensils,
       title: t.services.restaurant.title,
       description: t.services.restaurant.description,
-      image: "/images/service-restaurant.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/GbBOTbJEBhPJnnuc.jpg",
       features: language === "ja"
         ? ["レストラン・カフェの企画・運営", "店舗開発・内装設計", "メニュー開発", "スタッフ教育・研修"]
         : language === "zh"
@@ -76,7 +76,7 @@ export default function Services() {
       icon: Dumbbell,
       title: t.services.gym.title,
       description: t.services.gym.description,
-      image: "/images/service-gym.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/McrNnWGEkGoUppRL.jpg",
       features: language === "ja"
         ? ["プライベートジムスペース", "最新トレーニング機器", "清潔な環境", "柔軟な予約システム"]
         : language === "zh"
@@ -98,7 +98,7 @@ export default function Services() {
       icon: Users,
       title: t.services.recruitment.title,
       description: t.services.recruitment.description,
-      image: "/images/service-recruitment.jpg",
+      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/ZDUfIqfyEtVHsGVL.jpg",
       features: language === "ja"
         ? ["企業と求職者のマッチング", "業界専門知識", "キャリアカウンセリング", "入社後フォロー"]
         : language === "zh"
