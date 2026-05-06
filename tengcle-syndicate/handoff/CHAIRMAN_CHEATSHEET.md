@@ -11,7 +11,7 @@
 | 項目 | 状態 | 担当 |
 |---|---|---|
 | `agent.update`（nickname = Tengcle Manus） | ✅ 完了 | 🟠 Manus Co. |
-| `project.create`（id = `i5uMqsk9pGmDokzWPN7Sgp`） | ✅ 完了 | 🟠 Manus Co. |
+| `project.create`（id = `hvQHvMyQBXdnjUgSm3EEvM`） | ✅ 完了 | 🟠 Manus Co. |
 | GitHub commit `1aaec24`（handoff bundle） | ✅ 完了 | 🟠 Manus Co. |
 | Slack `/invite @manus`（#task-board / #manus-co） | ✅ 完了（Bot 参加確認済み） | 👑 Chairman |
 | Cloud Computer `.env.slack` 書き込み | ⏳ 要対応 | 👑 Chairman |
@@ -93,9 +93,9 @@ python3 board_watcher.py --dry-run
 | Base URL | `https://api.manus.im/v2` |
 | 認証ヘッダ | `x-manus-api-key: <YOUR_KEY>`（Bearer 不可） |
 | Agent ID | `MCg5qeekAaDeRibWNTXoAr` |
-| Project ID（canonical） | `i5uMqsk9pGmDokzWPN7Sgp` |
+| Project ID（canonical） | `hvQHvMyQBXdnjUgSm3EEvM` |
 
-**重要**: 以後の `task.create` は必ず `project_id=i5uMqsk9pGmDokzWPN7Sgp` を指定すること。これにより Chairman プロフィールと Slack 運用ルールが全タスクに自動注入される。
+**重要**: 以後の `task.create` は必ず `project_id=hvQHvMyQBXdnjUgSm3EEvM` を指定すること。これにより Chairman プロフィールと Slack 運用ルールが全タスクに自動注入される。
 
 ### サンプルリクエスト（task.create）
 
@@ -105,7 +105,7 @@ curl -X POST https://api.manus.im/v2/task.create \
   -H "Content-Type: application/json" \
   -d '{
     "agent_id": "MCg5qeekAaDeRibWNTXoAr",
-    "project_id": "i5uMqsk9pGmDokzWPN7Sgp",
+    "project_id": "hvQHvMyQBXdnjUgSm3EEvM",
     "prompt": "タスク内容をここに記述"
   }'
 ```

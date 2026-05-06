@@ -15,9 +15,9 @@
 - **Base URL**: `https://api.manus.im/v2`
 - **認証**: `x-manus-api-key` ヘッダ (Bearer 不可)
 - **Agent ID**: `MCg5qeekAaDeRibWNTXoAr`
-- **Project ID (canonical)**: `i5uMqsk9pGmDokzWPN7Sgp`
-- **注意**: 以後の `task.create` では `project_id=i5uMqsk9pGmDokzWPN7Sgp` を必ず指定すること。
-- 重複 project（`hvQHvMyQBXdnjUgSm3EEvM` / `dHUXUWrARjXsZSZZggyRSk` / `9cpaLSsWQJW6zMtezFHGYo`）は使用しない。Web UI で削除するまでは無視する。
+- **Project ID (canonical)**: `hvQHvMyQBXdnjUgSm3EEvM`
+- **注意**: 以後の `task.create` では `project_id=hvQHvMyQBXdnjUgSm3EEvM` を必ず指定すること。
+- 重複 project（`i5uMqsk9pGmDokzWPN7Sgp`（既削除）/ `dHUXUWrARjXsZSZZggyRSk`（既削除）/ `9cpaLSsWQJW6zMtezFHGYo`（既削除））は使用しない。Web UI で削除するまでは無視する。
 
 ## 2. Slack 運用ルール
 - `#task-board` と `#manus-co` を読むときは **必ずスレッド本体まで含めて読む**（`slack_read_channel` で `Thread: N replies` がある投稿は `slack_read_thread` でフル取得）。タスク着手前と完了報告前の合計 2 回必ず実行する。
