@@ -1,24 +1,18 @@
 {
   "name": "Tengcle Group",
   "short_name": "Tengcle",
-  "description": "Global Business Solutions - Hong Kong, Japan & United States",
+  "description": "Affiliated companies in Hong Kong, Japan and the United States.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#2d1b4e",
+  "theme_color": "#0f1b35",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
+      "src": "/favicon.png",
+      "sizes": "32x32",
       "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ],
   "categories": ["business", "finance"],

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { Home, ArrowLeft, Globe } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 type Language = "en" | "ja" | "zh";
 type Region = "hk" | "jp" | "us" | "global";
@@ -114,7 +115,12 @@ export default function NotFound() {
 
   return (
     <div className={`min-h-screen ${style.bg} ${style.text} flex items-center justify-center px-4`}>
-      <div className="max-w-lg w-full text-center">
+      <SEOHead
+        title={`${t.subtitle} | Tengcle Group`}
+        description={t.description}
+        noindex
+      />
+      <main id="main-content" tabIndex={-1} className="max-w-lg w-full text-center">
         {/* 404 Number */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
@@ -184,7 +190,7 @@ export default function NotFound() {
             region === "jp" ? "bg-[#b8956e]" : "bg-[#c9a962]"
           } blur-[150px] opacity-20`} />
         </motion.div>
-      </div>
+      </main>
     </div>
   );
 }

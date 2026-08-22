@@ -17,8 +17,6 @@ import Footer from "@/components/jp/Footer";
 import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
 import SEOHead, { generateOrganizationSchema, generateWebPageSchema } from "@/components/SEOHead";
-import CookieConsent from "@/components/CookieConsent";
-import ImageWithFallback from "@/components/ImageWithFallback";
 
 // Animation variants with proper typing - Japan: Refined & Delicate
 // 日本的な繊細さと優雅さを表現するアニメーション
@@ -82,18 +80,15 @@ function JpHeroSection({
         className="absolute inset-0"
         style={{ y: backgroundY }}
       >
-        <picture>
-          <source srcSet="/images/hero-japan-corporate.webp" type="image/webp" />
-          <img
-            src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/doKdEdQloYfwfKNo.jpg"
-            alt="Tokyo Business District"
-            className="w-full h-[120%] object-cover"
-            width="1920"
-            height="1080"
-            // @ts-ignore
-            fetchPriority="high"
-          />
-        </picture>
+        <img
+          src="/images/hero-japan-corporate.webp"
+          alt="Tokyo Business District"
+          className="w-full h-[120%] object-cover"
+          width="1920"
+          height="1080"
+          fetchPriority="high"
+          decoding="async"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
       </motion.div>
@@ -148,17 +143,17 @@ function JpHeroSection({
             transition={{ delay: 0.9, duration: 1.0 }}
             className="flex flex-wrap gap-4"
           >
-            <Link href={`${basePath}/services`}>
-              <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
+            <Button asChild className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
+              <Link href={`${basePath}/services`}>
                 {t.hero.cta1}
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href={`${basePath}/contact`}>
-              <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
+              <Link href={`${basePath}/contact`}>
                 {t.hero.cta2}
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </motion.div>
 
           {/* Trust Indicators */}
@@ -226,31 +221,31 @@ export default function Home() {
       icon: Building2,
       title: t.services.realEstate.title,
       description: t.services.realEstate.description,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/mhDhNEddQTnrGsgr.jpg",
+      image: "/images/service-real-estate.webp",
     },
     {
       icon: Utensils,
       title: t.services.restaurant.title,
       description: t.services.restaurant.description,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/GbBOTbJEBhPJnnuc.jpg",
+      image: "/images/service-restaurant.webp",
     },
     {
       icon: Dumbbell,
       title: t.services.gym.title,
       description: t.services.gym.description,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/McrNnWGEkGoUppRL.jpg",
+      image: "/images/service-gym.webp",
     },
     {
       icon: BedDouble,
       title: t.services.capsuleHotel.title,
       description: t.services.capsuleHotel.description,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/MkiafRyjuYPAiLSk.jpg",
+      image: "/images/service-capsule-hotel.webp",
     },
     {
       icon: Users,
       title: t.services.recruitment.title,
       description: t.services.recruitment.description,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/ZDUfIqfyEtVHsGVL.jpg",
+      image: "/images/service-recruitment.webp",
     },
   ];
 
@@ -261,25 +256,25 @@ export default function Home() {
         description={t.meta.description}
         canonical={`https://www.tengcle.com/jp/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
-        ogImage="/images/og-image-jp.jpg"
+        ogImage="/images/og-image.webp"
         keywords={t.meta.keywords}
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
-              name: "Tengcle株式会社",
-              description: "株式会社Tengcle - ホスピタリティ、IT、国際貿易のプロフェッショナル。",
+              name: "株式会社Tengcle",
+              description: "株式会社Tengcle - 不動産管理を中心に、段階的に事業を展開する日本法人。",
               url: "https://www.tengcle.com/jp/ja",
               logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
               email: "info@tengcle.com",
               address: {
-                street: "3-14-1 Takanawa",
+                street: "2-19-20 Takanawa",
                 city: "Minato-ku",
                 region: "Tokyo",
                 country: "JP",
                 postalCode: "108-0074"
               },
-              foundingDate: "2021-10-05",
+              foundingDate: "2021-10-25",
               sameAs: [
                 "https://www.tengcle.com/hk/en",
                 "https://www.tengcle.com/us/en"
@@ -295,6 +290,7 @@ export default function Home() {
       />
       <Header />
 
+      <main id="main-content" tabIndex={-1}>
       {/* Hero Section with Parallax */}
       <JpHeroSection
         getFontClass={getFontClass}
@@ -328,15 +324,14 @@ export default function Home() {
                   className="group bg-white border border-gray-200 overflow-hidden jp-card-hover"
                 >
                   <div className="relative h-48 overflow-hidden">
-                    <ImageWithFallback
+                    <img
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full transition-transform duration-1000 group-hover:scale-105"
-                      fallbackText="Coming Soon"
-                      fallbackSubText="準備中"
-                      // @ts-ignore - passing standard img props
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                       width={600}
                       height={400}
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
@@ -356,12 +351,12 @@ export default function Home() {
 
           <AnimatedSection className="text-center mt-12">
             <motion.div variants={fadeInUp}>
-              <Link href={`${basePath}/services`}>
-                <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
+              <Button asChild variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider jp-btn-hover ${getFontClass()}`}>
+                <Link href={`${basePath}/services`}>
                   {t.services.viewAll}
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </motion.div>
           </AnimatedSection>
         </div>
@@ -378,24 +373,19 @@ export default function Home() {
               <p className={`text-gray-300 max-w-2xl mx-auto mb-10 ${getFontClass()}`}>
                 {t.contact.description}
               </p>
-              <Link href={`${basePath}/contact`}>
-                <Button className={`bg-gold hover:bg-gold-dark text-navy px-8 py-6 text-sm tracking-wider font-medium jp-btn-hover ${getFontClass()}`}>
+              <Button asChild className={`bg-gold hover:bg-gold-dark text-navy px-8 py-6 text-sm tracking-wider font-medium jp-btn-hover ${getFontClass()}`}>
+                <Link href={`${basePath}/contact`}>
                   {t.common.getInTouch}
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </motion.div>
           </AnimatedSection>
         </div>
       </section>
 
+      </main>
       <Footer />
-      
-      {/* Cookie Consent Banner - Language aware */}
-      <CookieConsent 
-        lang={language as "en" | "ja" | "zh"} 
-        privacyPolicyPath={`${basePath}/privacy`}
-      />
     </div>
   );
 }

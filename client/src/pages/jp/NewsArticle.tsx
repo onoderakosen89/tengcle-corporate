@@ -37,146 +37,35 @@ interface NewsArticle {
 
 const newsArticles: NewsArticle[] = [
   {
-    id: "hotel-staffing-2024",
-    date: "2024-12",
-    category: "新事業",
-    icon: <Hotel className="w-5 h-5" />,
-    title: {
-      ja: "ホテル運営事業・人材紹介事業を開始",
-      en: "Launch of Hotel Operations & Staffing Services",
-      zh: "酒店运营及人才介绍业务启动"
-    },
-    excerpt: {
-      ja: "Tengcle株式会社は2024年より、ホテル運営事業および人材紹介事業を新たに開始しました。",
-      en: "Tengcle株式会社 has launched hotel operations and staffing services in 2024.",
-      zh: "Tengcle株式会社于2024年启动酒店运营及人才介绍业务。"
-    },
-    content: {
-      ja: [
-        "Tengcle株式会社は2024年より、ホテル運営事業および人材紹介事業を新たに開始しました。これにより、不動産管理、飲食、フィットネス、宿泊、人材の5事業体制となりました。",
-        "ホテル運営事業では、カプセルホテルを中心に、ビジネス・観光のお客様向けに快適な宿泊環境を提供しています。効率的なオペレーションと高いホスピタリティを両立させることで、お客様満足度の向上に努めています。",
-        "人材紹介事業では、企業と求職者のマッチングサービスを提供しています。不動産、飲食、ホスピタリティ業界での経験を活かし、業界知識とネットワークを駆使して最適な人材をご紹介します。",
-        "今後も事業の多角化を進め、お客様のニーズに幅広くお応えしてまいります。"
-      ],
-      en: [
-        "Tengcle株式会社 has launched hotel operations and staffing services in 2024, expanding to five business segments: real estate management, F&B, fitness, hospitality, and staffing.",
-        "Our hotel operations focus on capsule hotels, providing comfortable accommodation for business and leisure travelers. We strive to achieve both operational efficiency and high hospitality standards.",
-        "Our staffing services connect companies with job seekers. Leveraging our experience in real estate, F&B, and hospitality industries, we utilize our industry knowledge and network to introduce the best candidates.",
-        "We will continue to diversify our business to meet a wide range of customer needs."
-      ],
-      zh: [
-        "Tengcle株式会社于2024年启动酒店运营及人才介绍业务，形成不动产管理、餐饮、健身、住宿、人才五大业务体系。",
-        "酒店运营业务以胶囊酒店为中心，为商务及观光客人提供舒适的住宿环境。我们致力于实现高效运营与优质服务的平衡。",
-        "人才介绍业务为企业和求职者提供匹配服务。凭借在不动产、餐饮、酒店行业的经验，我们运用行业知识和人脉网络，为您推荐最合适的人才。",
-        "我们将继续推进业务多元化，满足客户的广泛需求。"
-      ]
-    }
-  },
-  {
-    id: "cafe-restaurant-2023",
-    date: "2023-10",
-    category: "新事業",
-    icon: <Coffee className="w-5 h-5" />,
-    title: {
-      ja: "カフェ・レストラン事業を開始",
-      en: "Launch of Cafe & Restaurant Business",
-      zh: "咖啡厅・餐厅业务启动"
-    },
-    excerpt: {
-      ja: "創業から2年、Tengcle株式会社は飲食事業に参入しました。",
-      en: "Two years after founding, Tengcle株式会社 entered the F&B industry.",
-      zh: "创业两年后，Tengcle株式会社进军餐饮行业。"
-    },
-    content: {
-      ja: [
-        "創業から2年、Tengcle株式会社は飲食事業に参入しました。店舗の企画・運営からメニュー開発、スタッフ教育まで一貫したサービスを提供しています。",
-        "私たちの飲食事業は、単なる店舗運営にとどまらず、お客様に特別な体験を提供することを目指しています。空間デザイン、メニュー構成、サービス品質のすべてにおいて、細部までこだわりを持って取り組んでいます。",
-        "不動産管理事業で培った物件選定のノウハウと、レンタルジム事業で培った顧客サービスの経験を活かし、飲食事業においても高品質なサービスを提供しています。",
-        "今後も新しい店舗形態やコンセプトに挑戦し、お客様に喜んでいただける空間づくりを続けてまいります。"
-      ],
-      en: [
-        "Two years after founding, Tengcle株式会社 entered the F&B industry, offering comprehensive services from concept development to staff training.",
-        "Our F&B business aims to provide customers with special experiences beyond simple store operations. We pay attention to every detail in space design, menu composition, and service quality.",
-        "Leveraging our property selection expertise from real estate management and customer service experience from the rental gym business, we deliver high-quality services in our F&B operations.",
-        "We will continue to challenge new store formats and concepts, creating spaces that delight our customers."
-      ],
-      zh: [
-        "创业两年后，Tengcle株式会社进军餐饮行业，提供从企划运营到员工培训的一站式服务。",
-        "我们的餐饮业务不仅仅是店铺运营，更致力于为客人提供特别的体验。在空间设计、菜单构成、服务品质等各方面，我们都注重细节。",
-        "我们将不动产管理业务积累的选址经验和租赁健身房业务培养的客户服务经验运用到餐饮业务中，提供高品质服务。",
-        "今后我们将继续挑战新的店铺形态和概念，持续打造令客人满意的空间。"
-      ]
-    }
-  },
-  {
-    id: "founding-2021",
-    date: "2021-10",
+    id: "company-incorporation-2021",
+    date: "2021-10-25",
     category: "会社設立",
     icon: <Building2 className="w-5 h-5" />,
     title: {
-      ja: "Tengcle株式会社 設立 - レンタルジム・不動産管理事業を開始",
-      en: "Tengcle株式会社 Founded - Rental Gym & Property Management Launch",
-      zh: "Tengcle株式会社成立 - 租赁健身房・不动产管理业务启动"
+      ja: "株式会社Tengcle 設立",
+      en: "Incorporation of Tengcle Co., Ltd.",
+      zh: "株式会社Tengcle成立"
     },
     excerpt: {
-      ja: "2021年10月、東京にてTengcle株式会社を設立しました。",
-      en: "Tengcle株式会社 was founded in Tokyo in October 2021.",
-      zh: "2021年10月，Tengcle株式会社在东京成立。"
+      ja: "2021年10月25日、株式会社Tengcleを東京都で設立しました。",
+      en: "株式会社Tengcle was incorporated in Tokyo on 25 October 2021.",
+      zh: "株式会社Tengcle于2021年10月25日在东京成立。"
     },
     content: {
       ja: [
-        "2021年10月、東京にてTengcle株式会社を設立しました。創業と同時にレンタルジム事業と不動産管理事業を開始し、日本市場でのサービス提供を開始しました。",
-        "レンタルジム事業では、プライベート空間でトレーニングできる環境を提供しています。周りを気にせず、自分のペースでトレーニングに集中できる空間として、多くのお客様にご利用いただいています。",
-        "不動産管理事業では、賃貸物件の管理・運営を行っています。入居者様とオーナー様の双方にとって最適なサービスを提供し、物件の価値向上に貢献しています。",
-        "創業から3年、私たちは着実に事業を拡大してきました。「think into the future」の理念のもと、これからも新しい価値を創造し続けてまいります。"
+        "2021年10月25日、株式会社Tengcleを東京都で設立しました。",
+        "現在は、不動産物件の家賃回収、修繕手配、テナント対応などの不動産管理業務を行っています。",
+        "その他の事業は、実態に合わせて慎重に準備・再開を検討しています。"
       ],
       en: [
-        "Tengcle株式会社 was founded in Tokyo in October 2021, launching rental gym and property management services simultaneously.",
-        "Our rental gym business provides private training spaces where customers can focus on their workouts at their own pace without worrying about others.",
-        "Our property management business handles the management and operation of rental properties, providing optimal services for both tenants and property owners while contributing to property value enhancement.",
-        "Over three years since founding, we have steadily expanded our business. Under our philosophy of 'think into the future,' we will continue to create new value."
+        "株式会社Tengcle was incorporated in Tokyo on 25 October 2021.",
+        "Its active operations include property management, such as rent collection, repair coordination, and tenant communication.",
+        "Other activities are being reviewed or prepared in line with their actual operational status."
       ],
       zh: [
-        "2021年10月，Tengcle株式会社在东京成立，同时启动租赁健身房和不动产管理业务。",
-        "租赁健身房业务提供私人训练空间，让客人可以不受他人干扰，按自己的节奏专注训练。",
-        "不动产管理业务负责租赁物业的管理和运营，为租户和业主双方提供最优服务，助力物业价值提升。",
-        "创业三年来，我们稳步扩展业务。秉承'think into the future'的理念，我们将继续创造新价值。"
-      ]
-    }
-  },
-  {
-    id: "group-expansion-2024",
-    date: "2024-01",
-    category: "グループ展開",
-    icon: <Building2 className="w-5 h-5" />,
-    title: {
-      ja: "Tengcle Group グローバル展開開始",
-      en: "Tengcle Group Global Expansion Begins",
-      zh: "Tengcle Group全球扩展启动"
-    },
-    excerpt: {
-      ja: "2024年、香港法人Tengcle Limitedを設立し、Tengcle Groupとしてグローバル展開を開始しました。",
-      en: "In 2024, Tengcle Limited was established in Hong Kong, marking the beginning of Tengcle Group's global expansion.",
-      zh: "2024年，香港法人Tengcle Limited成立，标志着Tengcle Group开始全球扩展。"
-    },
-    content: {
-      ja: [
-        "2024年、香港法人Tengcle Limitedを設立し、Tengcle Groupとしてグローバル展開を開始しました。アジアを中心としたビジネスネットワークの構築を進めています。",
-        "香港法人では、ホテルオペレーション事業を中心に、FF&E（家具・什器・備品）調達、ITシステム構築など、ホスピタリティ業界向けの総合サービスを提供しています。",
-        "また、同年にはアメリカ法人Tengcle Development LLCも設立し、ニュージャージー州を拠点に不動産管理・バケーションレンタル事業を展開しています。",
-        "日本、香港、アメリカの3拠点体制により、グローバルなサービス提供が可能となりました。今後もネットワークを拡大し、お客様のグローバルなビジネス展開をサポートしてまいります。"
-      ],
-      en: [
-        "In 2024, Tengcle Limited was established in Hong Kong, marking the beginning of Tengcle Group's global expansion across Asia.",
-        "Our Hong Kong entity focuses on hotel operations, FF&E procurement, and IT system development, providing comprehensive services for the hospitality industry.",
-        "In the same year, Tengcle Development LLC was also established in the United States, operating property management and vacation rental services based in New Jersey.",
-        "With three locations in Japan, Hong Kong, and the United States, we can now provide global services. We will continue to expand our network to support our customers' global business development."
-      ],
-      zh: [
-        "2024年，香港法人Tengcle Limited成立，标志着Tengcle Group开始全球扩展。",
-        "香港法人以酒店运营业务为中心，提供FF&E（家具・设备・用品）采购、IT系统构建等酒店行业综合服务。",
-        "同年，美国法人Tengcle Development LLC也在新泽西州成立，开展不动产管理和度假租赁业务。",
-        "日本、香港、美国三地布局，使我们能够提供全球化服务。今后我们将继续扩展网络，支持客户的全球业务发展。"
+        "株式会社Tengcle于2021年10月25日在东京成立。",
+        "目前的运营包括房地产管理，例如租金回收、维修协调和租户沟通。",
+        "其他活动将根据实际运营状态进行审慎评估或准备。"
       ]
     }
   }
@@ -222,12 +111,12 @@ export default function NewsArticle() {
   return (
     <>
       <SEOHead
-        title={`${article.title[language as keyof typeof article.title]} | Tengcle株式会社`}
+        title={`${article.title[language as keyof typeof article.title]} | 株式会社Tengcle`}
         description={article.excerpt[language as keyof typeof article.excerpt]}
-        keywords="Tengcle株式会社, ニュース, 会社情報, 東京"
+        keywords="株式会社Tengcle, ニュース, 会社情報, 東京"
         canonical={`https://www.tengcle.com${basePath}/news/${articleId}`}
         ogType="article"
-        ogImage="/images/og-image-jp.jpg"
+        ogImage="/images/og-image.webp"
       />
       <div className="min-h-screen bg-cream">
         <Header />

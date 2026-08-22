@@ -22,8 +22,8 @@ interface FAQItem {
 // FAQ data for Japan site
 const faqDataJa: FAQItem[] = [
   {
-    question: "Tengcle株式会社はどのようなサービスを提供していますか？",
-    answer: "Tengcle株式会社は、不動産管理、飲食店オペレーション、レンタルジム運営、カプセルホテル運営、人材紹介の5つの事業を展開しています。東京を中心に、日本市場でサービスを提供しています。"
+    question: "株式会社Tengcleはどのようなサービスを提供していますか？",
+    answer: "株式会社Tengcleの現在の中核事業は不動産管理です。家賃回収、修繕手配、テナント対応などを行っています。飲食、ウェルネス、宿泊、人材紹介に関する活動は、実態に応じて準備または検討しています。"
   },
   {
     question: "不動産管理サービスの内容を教えてください。",
@@ -31,19 +31,19 @@ const faqDataJa: FAQItem[] = [
   },
   {
     question: "レンタルジムはどこにありますか？",
-    answer: "東京都内でプライベートレンタルジムを運営しています。完全予約制で、他のお客様を気にせずトレーニングできる空間を提供しています。詳細はお問い合わせください。"
+    answer: "Tengcle Fitness & Lounge with Golfの施設は保有していますが、現在は営業停止中です。将来の再開については、運営状況を踏まえて検討しています。"
   },
   {
     question: "カプセルホテルの予約方法を教えてください。",
-    answer: "当社運営のカプセルホテルは、公式サイトまたは各種予約サイト（Booking.com、楽天トラベル等）からご予約いただけます。ビジネス・観光のお客様にご利用いただいています。"
+    answer: "宿泊事業は将来の展開に向けて準備・検討中です。現在、当社が運営するカプセルホテルの予約受付は行っていません。"
   },
   {
     question: "人材紹介サービスはどのような業界に対応していますか？",
-    answer: "飲食、ホスピタリティ、不動産業界を中心に、企業と求職者のマッチングを行っています。業界知識とネットワークを活かし、最適な人材をご紹介します。"
+    answer: "人材紹介事業は、今後の展開に向けて準備・検討中です。現在、紹介サービスの提供実績としては掲載していません。"
   },
   {
     question: "Tengcle Groupとの関係を教えてください。",
-    answer: "Tengcle株式会社は、香港に本社を置くTengcle Groupの日本法人です。グループ全体で、香港、日本、アメリカの3拠点でビジネスを展開しています。"
+    answer: "株式会社Tengcle、Tengcle Limited、Tengcle Development LLCは、いずれも小野寺紘宣が100%を保有する関連会社です。親会社・子会社の関係ではありません。"
   },
   {
     question: "会社の所在地はどこですか？",
@@ -57,8 +57,8 @@ const faqDataJa: FAQItem[] = [
 
 const faqDataEn: FAQItem[] = [
   {
-    question: "What services does Tengcle株式会社 provide?",
-    answer: "Tengcle株式会社 operates five business divisions: real estate management, restaurant operations, rental gym, capsule hotel, and recruitment services. We provide services in the Japanese market, primarily in Tokyo."
+    question: "What services does 株式会社Tengcle provide?",
+    answer: "株式会社Tengcle's active core business is property management, including rent collection, repair coordination, and tenant communication. Activities related to F&B, wellness, accommodation, and recruitment are being prepared or reviewed according to their operational status."
   },
   {
     question: "What does your property management service include?",
@@ -66,19 +66,19 @@ const faqDataEn: FAQItem[] = [
   },
   {
     question: "Where is your rental gym located?",
-    answer: "We operate private rental gyms in Tokyo. Our facilities are reservation-only, providing a space where you can train without worrying about other customers. Please contact us for details."
+    answer: "The Tengcle Fitness & Lounge with Golf facilities are retained, but operations are currently suspended. Any future reopening will be considered in line with operational conditions."
   },
   {
     question: "How can I book the capsule hotel?",
-    answer: "Our capsule hotels can be booked through our official website or various booking platforms (Booking.com, Rakuten Travel, etc.). We serve both business and leisure travelers."
+    answer: "Accommodation activity is being prepared and reviewed for future development. We do not currently accept bookings for a capsule hotel operated by the company."
   },
   {
     question: "What industries does your recruitment service cover?",
-    answer: "We focus on matching companies and job seekers in the food service, hospitality, and real estate industries. We leverage our industry knowledge and network to introduce the best candidates."
+    answer: "Recruitment activity is being prepared and reviewed for future development. We do not currently present placement services as an active operational record."
   },
   {
     question: "What is the relationship with Tengcle Group?",
-    answer: "Tengcle株式会社 is the Japan subsidiary of Tengcle Group, headquartered in Hong Kong. The group operates across three locations: Hong Kong, Japan, and the United States."
+    answer: "株式会社Tengcle, Tengcle Limited, and Tengcle Development LLC are affiliated companies, each 100% owned by Kosen Onodera. They are not in a parent-subsidiary relationship."
   },
   {
     question: "Where is your office located?",
@@ -92,8 +92,8 @@ const faqDataEn: FAQItem[] = [
 
 const faqDataZh: FAQItem[] = [
   {
-    question: "Tengcle株式会社提供哪些服务？",
-    answer: "Tengcle株式会社经营五大业务：房地产管理、餐饮运营、租赁健身房、胶囊酒店和人才招聘服务。我们主要在东京为日本市场提供服务。"
+    question: "株式会社Tengcle提供哪些服务？",
+    answer: "株式会社Tengcle当前的核心运营业务是房地产管理，包括租金回收、维修协调和租户沟通。餐饮、健康、住宿和人才介绍相关活动将根据实际运营状态进行准备或评估。"
   },
   {
     question: "物业管理服务包括哪些内容？",
@@ -101,19 +101,19 @@ const faqDataZh: FAQItem[] = [
   },
   {
     question: "租赁健身房在哪里？",
-    answer: "我们在东京运营私人租赁健身房。我们的设施仅限预约，提供一个无需担心其他客户的训练空间。详情请联系我们。"
+    answer: "Tengcle Fitness & Lounge with Golf的设施仍被保有，但目前暂停运营。未来是否重开将根据实际运营条件评估。"
   },
   {
     question: "如何预订胶囊酒店？",
-    answer: "我们的胶囊酒店可以通过官方网站或各种预订平台（Booking.com、乐天旅游等）预订。我们为商务和休闲旅客提供服务。"
+    answer: "住宿业务正为未来发展进行准备和评估。目前，我们不接受由本公司运营的胶囊酒店预订。"
   },
   {
     question: "招聘服务涵盖哪些行业？",
-    answer: "我们专注于餐饮、酒店和房地产行业的企业与求职者匹配。我们利用行业知识和网络介绍最佳候选人。"
+    answer: "人才介绍活动正为未来发展进行准备和评估。目前，我们不将人才介绍服务作为正在运营的实绩进行展示。"
   },
   {
     question: "与Tengcle Group是什么关系？",
-    answer: "Tengcle株式会社是总部位于香港的Tengcle Group的日本子公司。集团在香港、日本和美国三个地点开展业务。"
+    answer: "株式会社Tengcle、Tengcle Limited和Tengcle Development LLC均为小野寺紘宣100%持有的关联公司，不属于母子公司关系。"
   },
   {
     question: "办公室在哪里？",
@@ -191,9 +191,9 @@ export default function JpFAQ() {
       contactTitle: "お問い合わせ",
       contactText: "ご不明な点がございましたら、お気軽にお問い合わせください。",
       contactButton: "お問い合わせ",
-      metaTitle: "よくある質問 | Tengcle株式会社 東京",
-      metaDescription: "Tengcle株式会社の事業に関するFAQ。不動産・飲食・レンタルジム・カプセルホテル・人材紹介。",
-      metaKeywords: "Tengcle株式会社, FAQ, 不動産, レンタルジム, カプセルホテル, 東京"
+      metaTitle: "よくある質問 | 株式会社Tengcle 東京",
+      metaDescription: "株式会社Tengcleの不動産管理と、実態に応じて準備・検討中の各事業に関するFAQ。",
+      metaKeywords: "株式会社Tengcle, FAQ, 不動産管理, 家賃回収, 修繕手配, 東京"
     },
     en: {
       title: "Frequently Asked Questions",
@@ -202,9 +202,9 @@ export default function JpFAQ() {
       contactTitle: "Contact Us",
       contactText: "If you have any questions, please feel free to contact us.",
       contactButton: "Contact Us",
-      metaTitle: "FAQ | Tengcle株式会社 Tokyo Japan",
-      metaDescription: "FAQ about Tengcle株式会社 services: real estate, restaurant, rental gym, capsule hotel & recruitment in Tokyo.",
-      metaKeywords: "Tengcle株式会社, FAQ, real estate, rental gym, capsule hotel, Tokyo"
+      metaTitle: "FAQ | 株式会社Tengcle Tokyo Japan",
+      metaDescription: "FAQ about 株式会社Tengcle's active property-management operations and activities being prepared or reviewed according to operational status.",
+      metaKeywords: "株式会社Tengcle, FAQ, property management, rent collection, repair coordination, Tokyo"
     },
     zh: {
       title: "常见问题",
@@ -213,9 +213,9 @@ export default function JpFAQ() {
       contactTitle: "联系我们",
       contactText: "如有任何问题，请随时与我们联系。",
       contactButton: "联系我们",
-      metaTitle: "常见问题 | Tengcle株式会社 东京",
-      metaDescription: "Tengcle株式会社事业相关FAQ。房地产・餐饮・租赁健身房・胶囊酒店・人才介绍。",
-      metaKeywords: "Tengcle株式会社, FAQ, 房地产, 租赁健身房, 胶囊酒店, 东京"
+      metaTitle: "常见问题 | 株式会社Tengcle 东京",
+      metaDescription: "关于株式会社Tengcle的房地产管理及按实际运营状态准备或评估的其他活动的常见问题。",
+      metaKeywords: "株式会社Tengcle, FAQ, 房地产管理, 租金回收, 维修协调, 东京"
     }
   };
 
@@ -234,12 +234,12 @@ export default function JpFAQ() {
         locale={pathLang === "ja" ? "ja_JP" : pathLang === "zh" ? "zh_CN" : "en_US"}
         keywords={t.metaKeywords}
         structuredData={faqSchema}
-        ogImage="/images/og-image-jp.jpg"
+        ogImage="/images/og-image.webp"
       />
 
       <JpHeader />
 
-      <main className="pt-20">
+      <main id="main-content" tabIndex={-1} className="pt-20">
         {/* Hero Section */}
         <section className="relative py-20 bg-purple overflow-hidden">
           <div className="absolute inset-0 opacity-10">
@@ -286,12 +286,12 @@ export default function JpFAQ() {
             <p className={`text-slate mb-8 ${fontClass}`}>
               {t.contactText}
             </p>
-            <Link href={`${basePath}/contact`}>
-              <Button className="bg-purple hover:bg-purple-light text-white">
+            <Button asChild className="bg-purple hover:bg-purple-light text-white">
+              <Link href={`${basePath}/contact`}>
                 <Mail className="h-4 w-4 mr-2" />
                 <span className={fontClass}>{t.contactButton}</span>
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </section>
       </main>

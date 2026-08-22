@@ -78,6 +78,12 @@ export default function Header() {
         : "bg-white/80 backdrop-blur-sm"
         }`}
     >
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-white focus:px-4 focus:py-2 focus:text-navy focus:shadow-lg"
+      >
+        {language === "ja" ? "本文へ移動" : language === "zh" ? "跳至主要内容" : "Skip to main content"}
+      </a>
       <div className="container">
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -166,6 +172,8 @@ export default function Header() {
             className="lg:hidden p-2 text-charcoal"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="hk-mobile-navigation"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
           </button>
@@ -176,6 +184,9 @@ export default function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="hk-mobile-navigation"
+            role="navigation"
+            aria-label={language === "ja" ? "モバイルナビゲーション" : language === "zh" ? "移动导航" : "Mobile navigation"}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

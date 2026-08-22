@@ -54,9 +54,9 @@ export default function Services() {
       icon: Building2,
       title: t.services.realEstate.title,
       description: t.services.realEstate.description,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/mhDhNEddQTnrGsgr.jpg",
+      image: "/images/service-real-estate.webp",
       features: language === "ja"
-        ? ["賃貸物件の管理・運営", "入居者対応・クレーム処理", "収益最大化のご提案", "定期メンテナンス"]
+        ? ["家賃回収・入金確認", "修繕の手配・進行確認", "テナント対応", "賃貸物件の管理・運営"]
         : language === "zh"
           ? ["租赁物业管理运营", "租户对应・投诉处理", "收益最大化建议", "定期维护"]
           : ["Rental property management", "Tenant support & complaint handling", "Revenue maximization proposals", "Regular maintenance"],
@@ -65,9 +65,9 @@ export default function Services() {
       icon: Utensils,
       title: t.services.restaurant.title,
       description: t.services.restaurant.description,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/GbBOTbJEBhPJnnuc.jpg",
+      image: "/images/service-restaurant.webp",
       features: language === "ja"
-        ? ["レストラン・カフェの企画・運営", "店舗開発・内装設計", "メニュー開発", "スタッフ教育・研修"]
+        ? ["過去の運営施設を保有", "現在は営業停止中", "再開可能性を検討中", "実態に応じた段階的な準備"]
         : language === "zh"
           ? ["餐厅咖啡馆策划运营", "店铺开发・室内设计", "菜单开发", "员工教育培训"]
           : ["Restaurant & cafe planning", "Store development & interior design", "Menu development", "Staff training & education"],
@@ -76,9 +76,9 @@ export default function Services() {
       icon: Dumbbell,
       title: t.services.gym.title,
       description: t.services.gym.description,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/McrNnWGEkGoUppRL.jpg",
+      image: "/images/service-gym.webp",
       features: language === "ja"
-        ? ["プライベートジムスペース", "最新トレーニング機器", "清潔な環境", "柔軟な予約システム"]
+        ? ["Tengcle Fitness & Lounge with Golfの施設", "現在は営業停止中", "施設を保有", "将来の再開に向けて準備中"]
         : language === "zh"
           ? ["私人健身空间", "最新训练设备", "清洁环境", "灵活预约系统"]
           : ["Private gym space", "Latest training equipment", "Clean environment", "Flexible booking system"],
@@ -87,9 +87,9 @@ export default function Services() {
       icon: BedDouble,
       title: t.services.capsuleHotel.title,
       description: t.services.capsuleHotel.description,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/rMWgdVSpZfSErTGL.jpg",
+      image: "/images/service-capsule-hotel.webp",
       features: language === "ja"
-        ? ["次世代カプセル設計", "快適な睡眠環境", "充実のアメニティ", "リーズナブルな料金"]
+        ? ["事業展開を検討中", "現在の稼働実績は未掲載", "実態に応じた計画", "将来の展開に向けた準備"]
         : language === "zh"
           ? ["新一代胶囊设计", "舒适睡眠环境", "充实的设施", "实惠的价格"]
           : ["Next-gen capsule design", "Comfortable sleep environment", "Full amenities", "Affordable pricing"],
@@ -98,9 +98,9 @@ export default function Services() {
       icon: Users,
       title: t.services.recruitment.title,
       description: t.services.recruitment.description,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/ZDUfIqfyEtVHsGVL.jpg",
+      image: "/images/service-recruitment.webp",
       features: language === "ja"
-        ? ["企業と求職者のマッチング", "業界専門知識", "キャリアカウンセリング", "入社後フォロー"]
+        ? ["事業展開を検討中", "現在の稼働実績は未掲載", "実態に応じた計画", "将来の展開に向けた準備"]
         : language === "zh"
           ? ["企业与求职者匹配", "行业专业知识", "职业咨询", "入职后跟进"]
           : ["Company-candidate matching", "Industry expertise", "Career counseling", "Post-hire follow-up"],
@@ -110,14 +110,15 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-white" data-region="jp">
       <SEOHead
-        title={language === "ja" ? "事業紹介 | Tengcle株式会社 東京 - 不動産・飲食・ジム" : language === "zh" ? "业务介绍 | Tengcle株式会社 东京 - 不动产·餐饮·健身房" : "Services | Tengcle株式会社 Tokyo - Property, F&B & Gym"}
-        description={language === "ja" ? "不動産管理、飲食店運営、レンタルジム、ホテルITソリューション、貿易事業。" : language === "zh" ? "不动产管理、餐饮运营、租赁健身房、酒店IT解决方案、贸易业务。" : "Property management, F&B operations, rental gym, hotel IT solutions & trading business."}
-        keywords={language === "ja" ? "Tengcle株式会社, 事業紹介, 不動産管理, 飲食店, レンタルジム" : language === "zh" ? "Tengcle株式会社, 业务介绍, 不动产管理, 餐饮, 健身房" : "Tengcle株式会社, services, property management, F&B, rental gym"}
+        title={language === "ja" ? "事業紹介 | 株式会社Tengcle 東京の不動産管理" : language === "zh" ? "业务介绍 | 株式会社Tengcle 东京的房地产管理" : "Services | 株式会社Tengcle Tokyo Property Management"}
+        description={language === "ja" ? "株式会社Tengcleの不動産管理と、実態に応じて準備・検討している各事業をご紹介します。" : language === "zh" ? "介绍株式会社Tengcle的房地产管理业务及按实际运营状态准备或评估的其他活动。" : "Learn about 株式会社Tengcle's active property-management operations and other activities being prepared or evaluated according to operational status."}
+        keywords={language === "ja" ? "株式会社Tengcle, 事業紹介, 不動産管理, 家賃回収, 修繕手配" : language === "zh" ? "株式会社Tengcle, 业务介绍, 房地产管理, 租金回收, 维修协调" : "株式会社Tengcle, services, property management, rent collection, repair coordination"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
-        ogImage="/images/og-image-jp.jpg"
+        ogImage="/images/og-image.webp"
         canonical={`https://www.tengcle.com/jp/${language}/services`}
       />
       <Header />
+      <main id="main-content" tabIndex={-1}>
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-light-gray">
@@ -186,12 +187,12 @@ export default function Services() {
                       </li>
                     ))}
                   </ul>
-                  <Link href={`${basePath}/contact`}>
-                    <Button className={`bg-navy hover:bg-navy-light text-white px-6 py-5 text-sm tracking-wider ${getFontClass()}`}>
+                  <Button asChild className={`bg-navy hover:bg-navy-light text-white px-6 py-5 text-sm tracking-wider ${getFontClass()}`}>
+                    <Link href={`${basePath}/contact`}>
                       {t.common.getInTouch}
                       <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </motion.div>
               </AnimatedSection>
             </div>
@@ -210,17 +211,18 @@ export default function Services() {
               <p className={`text-gray-300 max-w-2xl mx-auto mb-10 ${getFontClass()}`}>
                 {t.contact.description}
               </p>
-              <Link href={`${basePath}/contact`}>
-                <Button className={`bg-gold hover:bg-gold-dark text-navy px-8 py-6 text-sm tracking-wider font-medium ${getFontClass()}`}>
+              <Button asChild className={`bg-gold hover:bg-gold-dark text-navy px-8 py-6 text-sm tracking-wider font-medium ${getFontClass()}`}>
+                <Link href={`${basePath}/contact`}>
                   {t.common.getInTouch}
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </motion.div>
           </AnimatedSection>
         </div>
       </section>
 
+      </main>
       <Footer />
     </div>
   );

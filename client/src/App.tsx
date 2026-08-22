@@ -69,9 +69,10 @@ const pageTransitions = {
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as Easing },
   },
   us: {
-    initial: { opacity: 0, x: 30 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -20 },
+    // Use vertical motion so route entry never creates horizontal overflow on mobile.
+    initial: { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -8 },
     transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] as Easing },
   },
   gateway: {
@@ -337,6 +338,11 @@ function App() {
 
   // Only show splash on gateway page
   const isGateway = location === "/";
+  const [, region, requestedLanguage] = location.split("/");
+  const consentLanguage = requestedLanguage === "ja" || requestedLanguage === "zh" ? requestedLanguage : "en";
+  const privacyPolicyPath = region === "hk" || region === "jp" || region === "us"
+    ? `/${region}/${consentLanguage}/privacy`
+    : "/privacy";
 
   useEffect(() => {
     // Check if user has already seen splash screen in this session
@@ -366,7 +372,10 @@ function App() {
           <Suspense fallback={<PageLoader />}>
             <MainRouter />
           </Suspense>
-          {/* CookieConsent is now handled per-page for proper language support */}
+          <CookieConsent
+            lang={consentLanguage}
+            privacyPolicyPath={privacyPolicyPath}
+          />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

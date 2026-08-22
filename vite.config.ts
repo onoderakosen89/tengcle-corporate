@@ -6,10 +6,19 @@ import path from "path";
 import { defineConfig } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime()];
-
-export default defineConfig({
-  plugins,
+export default defineConfig(({ command, mode }) => ({
+  // Development-only inspector plugins must never be bundled into production HTML.
+  plugins: [
+    react(),
+    tailwindcss(),
+    ...(command === "serve" || mode === "development" ? [jsxLocPlugin(), vitePluginManusRuntime()] : []),
+  ],
+  esbuild: {
+    jsxDev: command === "serve",
+  },
+  define: {
+    "process.env.NODE_ENV": JSON.stringify(command === "serve" ? "development" : "production"),
+  },
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -41,4 +50,4 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
-});
+}));

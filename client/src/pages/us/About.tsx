@@ -28,21 +28,21 @@ export default function UsAbout() {
     {
       flag: "🇭🇰",
       name: "Tengcle Limited",
-      role: "Global Headquarters",
+      role: "Affiliated Company",
       location: "Hong Kong",
       href: "/hk/en",
     },
     {
       flag: "🇯🇵",
-      name: "Tengcle株式会社",
-      role: "Japan Office",
+      name: "株式会社Tengcle",
+      role: "Affiliated Company",
       location: "Tokyo, Japan",
       href: "/jp/ja",
     },
     {
       flag: "🇺🇸",
       name: "Tengcle Development LLC",
-      role: "US Office",
+      role: "Affiliated Company",
       location: "Weehawken, NJ",
       href: basePath,
       current: true,
@@ -52,12 +52,12 @@ export default function UsAbout() {
   return (
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
-        title={language === "ja" ? "会社概要 | Tengcle Development LLC NJ - 不動産開発" : language === "zh" ? "关于我们 | Tengcle Development LLC NJ - 房地产开发" : "About Us | Tengcle Development LLC NJ - Real Estate Development"}
-        description={language === "ja" ? "Tengcle Development LLCの会社情報。NJ・ニューヨーク拠点で不動産開発・管理・民泊運用を展開。" : language === "zh" ? "Tengcle Development LLC公司信息。新泽西·纽约总部，提供房地产开发、管理、短租运营服务。" : "About Tengcle Development LLC. NJ & NY-based real estate development, property management & vacation rentals."}
+        title={language === "ja" ? "会社概要 | Tengcle Development LLC ニュージャージー州" : language === "zh" ? "关于我们 | Tengcle Development LLC 新泽西州" : "About Us | Tengcle Development LLC, New Jersey"}
+        description={language === "ja" ? "2026年1月に設立されたTengcle Development LLCの会社情報。不動産開発・管理事業の本格始動に向けて準備中です。" : language === "zh" ? "Tengcle Development LLC于2026年1月成立，正为房地产开发和物业管理业务的正式启动做准备。" : "About Tengcle Development LLC, established in January 2026 and preparing for staged real estate development and property-management activities."}
         keywords={language === "ja" ? "Tengcle Development LLC, 会社概要, ニュージャージー, 不動産開発" : language === "zh" ? "Tengcle Development LLC, 关于我们, 新泽西, 房地产开发" : "Tengcle Development LLC, about us, New Jersey, real estate development"}
         canonical={`https://www.tengcle.com/us/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
-        ogImage="/images/og-image-us.jpg"
+        ogImage="/images/og-image.webp"
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [
@@ -86,6 +86,7 @@ export default function UsAbout() {
         }}
       />
       <UsHeader />
+      <main id="main-content" tabIndex={-1}>
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-purple-deep overflow-hidden">
@@ -202,7 +203,7 @@ export default function UsAbout() {
               Tengcle Group
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-slate max-w-2xl mx-auto">
-              A global network of offices providing integrated business solutions
+              Affiliated companies owned by Kosen Onodera, each operating independently in its jurisdiction
             </motion.p>
           </motion.div>
 
@@ -271,6 +272,7 @@ export default function UsAbout() {
         </div>
       </section>
 
+      </main>
       <UsFooter />
     </div>
   );

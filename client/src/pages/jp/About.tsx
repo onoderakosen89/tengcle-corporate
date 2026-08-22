@@ -53,17 +53,17 @@ export default function About() {
   return (
     <div className="min-h-screen bg-white" data-region="jp">
       <SEOHead
-        title={language === "ja" ? "会社概要 | Tengcle株式会社 東京 - 不動産管理・飲食・レンタルジム" : language === "zh" ? "关于我们 | Tengcle株式会社 东京 - 不动产管理·餐饮·租赁健身房" : "About Us | Tengcle株式会社 Tokyo - Property, F&B & Rental Gym"}
-        description={language === "ja" ? "Tengcle株式会社の会社情報。東京拠点で不動産管理、飲食店運営、レンタルジム事業を展開。" : language === "zh" ? "Tengcle株式会社公司信息。东京总部，提供不动产管理、餐饮运营、租赁健身房服务。" : "About Tengcle株式会社 Tokyo-based property management, F&B operations & rental gym business."}
-        keywords={language === "ja" ? "Tengcle株式会社, 会社概要, 東京, 不動産管理, 飲食店" : language === "zh" ? "Tengcle株式会社, 关于我们, 东京, 不动产管理, 餐饮" : "Tengcle株式会社, about us, Tokyo, property management, F&B"}
+        title={language === "ja" ? "会社概要 | 株式会社Tengcle 東京の不動産管理" : language === "zh" ? "关于我们 | 株式会社Tengcle 东京的房地产管理" : "About Us | 株式会社Tengcle Tokyo Property Management"}
+        description={language === "ja" ? "株式会社Tengcleの会社情報。東京を拠点に家賃回収、修繕手配、テナント対応などの不動産管理を行っています。" : language === "zh" ? "株式会社Tengcle的公司信息。以东京为基地，提供租金回收、维修协调和租户沟通等房地产管理服务。" : "About 株式会社Tengcle, a Tokyo-based company providing property management including rent collection, repair coordination, and tenant communication."}
+        keywords={language === "ja" ? "株式会社Tengcle, 会社概要, 東京, 不動産管理, 家賃回収, 修繕手配" : language === "zh" ? "株式会社Tengcle, 关于我们, 东京, 房地产管理, 租金回收, 维修协调" : "株式会社Tengcle, about us, Tokyo, property management, rent collection, repair coordination"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
-        ogImage="/images/og-image-jp.jpg"
+        ogImage="/images/og-image.webp"
         canonical={`https://www.tengcle.com/jp/${language}/about`}
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
-              name: "Tengcle株式会社",
+              name: "株式会社Tengcle",
               description: t.about.description,
               url: "https://www.tengcle.com/jp",
               email: "info@tengcle.com",
@@ -87,6 +87,7 @@ export default function About() {
         }}
       />
       <Header />
+      <main id="main-content" tabIndex={-1}>
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-light-gray">
@@ -125,9 +126,11 @@ export default function About() {
                 className="relative overflow-hidden rounded-lg shadow-lg"
               >
                 <img
-                  src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/doKdEdQloYfwfKNo.jpg"
-                  alt="Tengcle株式会社 Japan"
+                  src="/images/hero-japan-corporate.webp"
+                  alt="株式会社Tengcle Japan"
                   className="w-full h-80 lg:h-[500px] object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent" />
               </motion.div>
@@ -145,12 +148,12 @@ export default function About() {
                 <p className={`text-slate leading-relaxed mb-8 ${getFontClass()}`}>
                   {t.about.story.p2}
                 </p>
-                <Link href="/hk/en">
-                  <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-6 py-5 text-sm tracking-wider ${getFontClass()}`}>
+                <Button asChild variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-6 py-5 text-sm tracking-wider ${getFontClass()}`}>
+                  <Link href="/hk/en">
                     {t.footer.hongkong}
                     <ExternalLink className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </motion.div>
             </AnimatedSection>
           </div>
@@ -181,7 +184,7 @@ export default function About() {
                       {t.about.info.legalName}
                     </th>
                     <td className={`py-5 px-6 text-charcoal ${getFontClass()}`}>
-                      Tengcle株式会社
+                      株式会社Tengcle
                     </td>
                   </tr>
                   <tr className="border-b border-gray-100">
@@ -196,7 +199,7 @@ export default function About() {
                         </>
                       ) : language === "zh" ? (
                         <>
-                          〒108-0074 东京都港区高�的2-19-20<br />
+                          〒108-0074 东京都港区高轮2-19-20<br />
                           〒104-0045 东京都中央区筑地2-12-14
                         </>
                       ) : (
@@ -209,7 +212,7 @@ export default function About() {
                   </tr>
                   <tr>
                     <th className={`text-left py-5 px-6 bg-gray-50 text-navy font-medium ${getFontClass()}`}>
-                      {language === "ja" ? "グループ本社" : language === "zh" ? "集团总部" : "Group HQ"}
+                      {language === "ja" ? "香港関連会社" : language === "zh" ? "香港关联公司" : "Hong Kong Affiliated Company"}
                     </th>
                     <td className={`py-5 px-6 text-charcoal ${getFontClass()}`}>
                       <Link
@@ -285,17 +288,18 @@ export default function About() {
               <p className={`text-gray-300 max-w-2xl mx-auto mb-10 ${getFontClass()}`}>
                 {t.contact.description}
               </p>
-              <Link href={`${basePath}/contact`}>
-                <Button className={`bg-gold hover:bg-gold-dark text-navy px-8 py-6 text-sm tracking-wider font-medium ${getFontClass()}`}>
+              <Button asChild className={`bg-gold hover:bg-gold-dark text-navy px-8 py-6 text-sm tracking-wider font-medium ${getFontClass()}`}>
+                <Link href={`${basePath}/contact`}>
                   {t.common.getInTouch}
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </motion.div>
           </AnimatedSection>
         </div>
       </section>
 
+      </main>
       <Footer />
     </div>
   );

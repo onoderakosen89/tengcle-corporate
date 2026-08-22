@@ -27,7 +27,7 @@ export default function SEOHead({
   title,
   description,
   canonical,
-  ogImage = "/images/og-image.jpg",
+  ogImage = "/images/og-image.webp",
   ogType = "website",
   locale = "en_US",
   noindex = false,
@@ -94,16 +94,21 @@ export default function SEOHead({
       updateMeta("googlebot", "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
     }
 
-    // Update canonical link
+    // Update canonical link. A noindex page must not publish a self-referencing canonical.
     if (canonical) {
       let link = document.querySelector('link[rel="canonical"]');
-      if (!link) {
+      if (noindex) {
+        link?.remove();
+      } else if (!link) {
         link = document.createElement("link");
         link.setAttribute("rel", "canonical");
         document.head.appendChild(link);
+        link.setAttribute("href", canonical);
+        updateMeta("og:url", canonical, true);
+      } else {
+        link.setAttribute("href", canonical);
+        updateMeta("og:url", canonical, true);
       }
-      link.setAttribute("href", canonical);
-      updateMeta("og:url", canonical, true);
     }
 
     // Add structured data

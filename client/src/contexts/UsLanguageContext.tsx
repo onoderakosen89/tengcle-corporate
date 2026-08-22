@@ -43,18 +43,18 @@ const translations: Translations = {
   // Hero Section
   'hero.tagline': {
     en: 'Building Our US Real Estate Portfolio',
-    ja: '米国不動産ポートフォリオを汋策中',
+    ja: '米国不動産ポートフォリオを構築中',
     zh: '正在构建我们的美国房地产组合',
   },
   'hero.title': {
     en: 'Strategic Growth in Real Estate',
     ja: '不動産での戦略的成長',
-    zh: '房地产战略性增長',
+    zh: '房地产的战略性增长',
   },
   'hero.subtitle': {
     en: 'Established in January 2026, we are building our presence in New Jersey and the New York metropolitan area. We are preparing to launch property management and vacation rental services.',
-    ja: '2026年1月設立。ニュージャージー・ニューヨーク都会地域で不動産管理とバケーションレンタルサービスの汋策を進めています。',
-    zh: '成立于2026年1月。我们正在新泽西和纽约都会区汋策物业管理和度假租赁服务。',
+    ja: '2026年1月に設立。ニュージャージー州およびニューヨーク都市圏で、不動産開発・管理サービスの本格始動に向けた準備を進めています。',
+    zh: '成立于2026年1月。我们正在新泽西州和纽约都会区为房地产开发和物业管理服务的正式启动做准备。',
   },
   'hero.cta.services': {
     en: 'Our Services',
@@ -87,7 +87,7 @@ const translations: Translations = {
   },
   'service.development.desc': {
     en: 'We are developing our real estate portfolio in the New Jersey and New York metropolitan area. Our strategy focuses on identifying opportunities, conducting thorough market analysis, and building a diversified portfolio of income-generating properties.',
-    ja: 'ニュージャージー、ニューヨーク都会地域で不動産ポートフォリオを汋策中です。機会を探索し、市場分析を実施し、多様化した収益物件ポートフォリオを構築していきます。',
+    ja: 'ニュージャージー州およびニューヨーク都市圏で不動産ポートフォリオの構築を準備しています。案件探索、市場分析、長期保有方針の検討を段階的に進めています。',
     zh: '我们正在新泽西和纽约都会地区开发我们的房地产组合。我们的战略专注于识别机会、进行彻底的市场分析，并构建多样化的收益物业组合。',
   },
   'service.development.feature1': {
@@ -119,7 +119,7 @@ const translations: Translations = {
   },
   'service.property.desc': {
     en: 'We are building our property management capabilities. Our services will include tenant placement, rent collection, maintenance coordination, and comprehensive financial reporting for residential and commercial assets.',
-    ja: '不動産管理能力を汋策中です。入居者募集、家賃回収、メンテナンス协调、包括的な詳支管理を提供予定です。',
+    ja: '不動産管理サービスの本格始動に向けて準備中です。入居者募集、家賃回収、修繕調整、収支報告を含むサービスの提供を予定しています。',
     zh: '我们正在建设我们的物业管理能力。我们的服务将包括租户安置、租金收取、维护协调和全面的财务报告。'
   },
   'service.property.feature1': {
@@ -151,8 +151,8 @@ const translations: Translations = {
   },
   'service.vacation.desc': {
     en: 'We are preparing to launch vacation rental management services. Our approach will focus on optimizing short-term rentals through dynamic pricing, professional guest communication, and revenue optimization.',
-    ja: 'バケーションレンタル管理サービスを汋策中です。ダイナミックプライシング、プロフェッショナルなゲスト対応、収益最適化を提供予定です。',
-    zh: '我们正在汋策度假租赁管理服务。我们的方法将专注于通过动态定价、专业客人沟通和收益优化来优化短期租赁。',
+    ja: 'バケーションレンタル管理サービスの開始に向けて準備中です。ダイナミックプライシング、ゲスト対応、収益最適化を含む運用方針を検討しています。',
+    zh: '我们正在为度假租赁管理服务的启动做准备，并研究动态定价、专业客户沟通和收益优化等运营方针。',
   },
   'service.vacation.feature1': {
     en: 'Market Analysis & Strategy',
@@ -187,9 +187,9 @@ const translations: Translations = {
     zh: 'Tengcle集团美国办事处',
   },
   'about.description': {
-    en: 'Tengcle Development LLC represents the US operations of the global Tengcle Group. Based in New Jersey, we bring Japanese service standards to the competitive NY/NJ real estate market.',
-    ja: 'Tengcle Development LLCは、Tengcle Groupの米国拠点です。ニュージャージーを拠点に、日本クオリティのきめ細やかなサービスを、NY/NJの不動産市場で提供しています。',
-    zh: 'Tengcle Development LLC 代表 Tengcle Group 的美国业务。我们立足新泽西，将日式服务标准带入竞争激烈的纽约/新泽西房地产市场。',
+    en: 'Tengcle Development LLC is an affiliated company of the Tengcle Group, established in New Jersey in January 2026. It is preparing for the staged launch of real estate development and management activities.',
+    ja: 'Tengcle Development LLCは、2026年1月にニュージャージー州で設立されたTengcle Groupの関連会社です。不動産開発・管理事業の段階的な開始に向けて準備を進めています。',
+    zh: 'Tengcle Development LLC是Tengcle Group的关联公司，于2026年1月在新泽西州成立，正为房地产开发和物业管理业务的分阶段启动做准备。',
   },
 
   // Company Info
@@ -248,9 +248,9 @@ const translations: Translations = {
     zh: 'Tengcle Limited（香港总部）',
   },
   'footer.jp': {
-    en: 'Tengcle株式会社 (Japan)',
-    ja: 'Tengcle株式会社（日本）',
-    zh: 'Tengcle株式会社（日本）',
+    en: '株式会社Tengcle (Japan)',
+    ja: '株式会社Tengcle（日本）',
+    zh: '株式会社Tengcle（日本）',
   },
 
   // CTA
@@ -277,9 +277,9 @@ const translations: Translations = {
     zh: 'Tengcle Development LLC | 新泽西/纽约房地产开发与管理',
   },
   'meta.description': {
-    en: 'NJ/NY real estate development & property management. Value-add investments, vacation rentals & long-term leasing.',
-    ja: 'NJ/NYの不動産開発・管理。バリューアップ投資、民泊・長期賃貸運用。',
-    zh: '新泽西/纽约房地产开发与管理。增值投资、民宿及长期租赁运营。',
+    en: 'A New Jersey company established in January 2026, preparing for staged real estate development, property management, and vacation-rental activities in the NJ/NY area.',
+    ja: '2026年1月に設立されたニュージャージー州法人。NJ/NY地域での不動産開発・管理・バケーションレンタル事業の本格始動に向けて準備中です。',
+    zh: '2026年1月成立的新泽西州公司，正为NJ/NY地区房地产开发、物业管理和度假租赁业务的分阶段启动做准备。',
   },
   'meta.keywords': {
     en: 'Tengcle Development LLC, NJ real estate, property development, vacation rentals, property management, New Jersey',

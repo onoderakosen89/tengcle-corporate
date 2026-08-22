@@ -40,6 +40,12 @@ export default function UsHeader() {
           : "bg-transparent py-6"
         }`}
     >
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-white focus:px-4 focus:py-2 focus:text-purple focus:shadow-lg"
+      >
+        {language === "ja" ? "本文へ移動" : language === "zh" ? "跳至主要内容" : "Skip to main content"}
+      </a>
       <div className="container">
         <nav className="flex items-center justify-between">
           {/* Logo */}
@@ -114,8 +120,10 @@ export default function UsHeader() {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`lg:hidden p-2 transition-colors ${isScrolled ? "text-charcoal" : "text-white"
-              }`}
+            }`}
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="us-mobile-navigation"
           >
             {isMobileMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
@@ -125,6 +133,9 @@ export default function UsHeader() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
+              id="us-mobile-navigation"
+              role="navigation"
+              aria-label={language === "ja" ? "モバイルナビゲーション" : language === "zh" ? "移动导航" : "Mobile navigation"}
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}

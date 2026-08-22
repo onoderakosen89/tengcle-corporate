@@ -19,7 +19,6 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import SEOHead, { generateOrganizationSchema, generateWebPageSchema, generateLocalBusinessSchema } from "@/components/SEOHead";
-import CookieConsent from "@/components/CookieConsent";
 
 // Animation variants with proper typing
 const easeOut: Easing = [0.16, 1, 0.3, 1];
@@ -88,18 +87,15 @@ function HeroSection({
         className="absolute inset-0"
         style={{ y: backgroundY }}
       >
-        <picture>
-          <source srcSet="/images/hero-global-network.webp" type="image/webp" />
-          <img
-            src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/WpIwdKNRwnDMtQUR.jpg"
-            alt="Hong Kong Victoria Harbour"
-            className="w-full h-[120%] object-cover"
-            width="1920"
-            height="1080"
-            // @ts-ignore - fetchPriority is standard but React types might lag
-            fetchPriority="high"
-          />
-        </picture>
+        <img
+          src="/images/hero-global-network.webp"
+          alt="Hong Kong Victoria Harbour"
+          className="w-full h-[120%] object-cover"
+          width="1920"
+          height="1080"
+          fetchPriority="high"
+          decoding="async"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
       </motion.div>
@@ -154,17 +150,17 @@ function HeroSection({
             transition={{ delay: 0.9, duration: 0.8 }}
             className="flex flex-wrap gap-4"
           >
-            <Link href={`${basePath}/services`}>
-              <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
+            <Button asChild className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
+              <Link href={`${basePath}/services`}>
                 {t.hero.cta1}
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href={`${basePath}/contact`}>
-              <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
+              <Link href={`${basePath}/contact`}>
                 {t.hero.cta2}
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </motion.div>
 
           {/* Trust Indicators */}
@@ -234,14 +230,14 @@ export default function Home() {
         description={t.meta.description}
         canonical={`https://www.tengcle.com/hk/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
-        ogImage="/images/og-image-hk.jpg"
+        ogImage="/images/og-image.webp"
         keywords={t.meta.keywords}
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
               name: "Tengcle Limited",
-              description: "Strategic Hub in Hong Kong offering hospitality procurement, IT solutions, and international trade services.",
+              description: "A Hong Kong affiliated company developing hospitality procurement, project coordination, IT, and trade activities.",
               url: "https://www.tengcle.com/hk/en",
               logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
               email: "info@tengcle.com",
@@ -251,9 +247,8 @@ export default function Home() {
                 region: "Hong Kong",
                 country: "HK",
               },
-              foundingDate: "2023",
+              foundingDate: "2025-04-29",
               sameAs: [
-                "https://www.linkedin.com/company/tengcle-limited",
                 "https://www.tengcle.com/jp/ja",
                 "https://www.tengcle.com/us/en"
               ]
@@ -268,6 +263,7 @@ export default function Home() {
       />
       <Header />
 
+      <main id="main-content" tabIndex={-1}>
       {/* Hero Section with Parallax */}
       <HeroSection
         getFontClass={getFontClass}
@@ -345,12 +341,12 @@ export default function Home() {
 
           <AnimatedSection className="text-center mt-12">
             <motion.div variants={fadeInUp}>
-              <Link href={`${basePath}/services`}>
-                <Button variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
+              <Button asChild variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
+                <Link href={`${basePath}/services`}>
                   {t.services.viewAll}
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </motion.div>
           </AnimatedSection>
         </div>
@@ -381,17 +377,15 @@ export default function Home() {
                 className="group relative bg-white border border-gray-200 overflow-hidden hover:border-gold/50 hover:shadow-lg transition-all duration-500"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <picture>
-                    <source srcSet="/images/hotel-lobby-realistic.webp" type="image/webp" />
-                    <img
-                      src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/kDSQyJQNxKSMhfOs.jpg"
-                      alt={t.portfolio.project1.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      width="800"
-                      height="600"
-                    />
-                  </picture>
+                  <img
+                    src="/images/hotel-lobby-realistic.webp"
+                    alt={t.portfolio.project1.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    width="800"
+                    height="600"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <span className="text-gold text-xs tracking-wider uppercase">{t.portfolio.project1.location}</span>
@@ -413,17 +407,15 @@ export default function Home() {
                 className="group relative bg-white border border-gray-200 overflow-hidden hover:border-gold/50 hover:shadow-lg transition-all duration-500"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <picture>
-                    <source srcSet="/images/portfolio-it-realistic.webp" type="image/webp" />
-                    <img
-                      src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/KgGsTahuYpprkouF.jpg"
-                      alt={t.portfolio.project2.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      width="800"
-                      height="600"
-                    />
-                  </picture>
+                  <img
+                    src="/images/portfolio-it-realistic.webp"
+                    alt={t.portfolio.project2.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    width="800"
+                    height="600"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <span className="text-gold text-xs tracking-wider uppercase">{t.portfolio.project2.location}</span>
@@ -441,12 +433,12 @@ export default function Home() {
 
           <AnimatedSection className="text-center mt-12">
             <motion.div variants={fadeInUp}>
-              <Link href={`${basePath}/portfolio`}>
-                <Button className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
+              <Button asChild className={`bg-navy hover:bg-navy-light text-white px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
+                <Link href={`${basePath}/portfolio`}>
                   {t.portfolio.viewCase}
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </motion.div>
           </AnimatedSection>
         </div>
@@ -464,12 +456,12 @@ export default function Home() {
                 {t.trust?.title || "Built on Integrity"}
               </h2>
               <p className={`text-gray-300 max-w-2xl mx-auto ${getFontClass()}`}>
-                {t.trust?.description || "As a fully licensed Hong Kong entity, we maintain the highest standards of corporate governance and regulatory compliance."}
+                {t.trust?.description || "We prioritize transparent coordination, clear scope definition, and responsible project delivery as our operations develop."}
               </p>
             </motion.div>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {[
               {
                 icon: Shield,
@@ -489,20 +481,6 @@ export default function Home() {
                 value: "Kosen Onodera",
                 description: t.trust?.directorDesc || "Director & CEO",
               },
-              {
-                icon: Award,
-                title: t.trust?.qualityCertified || "Quality Certified",
-                value: "ISO Standards",
-                description: t.trust?.qualityDesc || "International quality management",
-              },
-              {
-                icon: Globe,
-                title: t.trust?.globalNetwork || "Global Network",
-                value: 15,
-                suffix: t.trust?.countries || "+ Countries",
-                description: t.trust?.globalNetworkDesc || "Supplier relationships worldwide",
-                isAnimated: true,
-              },
             ].map((item, index) => (
               <AnimatedSection key={index}>
                 <motion.div
@@ -511,13 +489,7 @@ export default function Home() {
                 >
                   <item.icon className="h-8 w-8 text-gold mx-auto mb-4" />
                   <p className={`text-white/60 text-xs tracking-wider uppercase mb-2 ${getFontClass()}`}>{item.title}</p>
-                  <p className="text-gold text-xl font-semibold mb-2">
-                    {item.isAnimated ? (
-                      <AnimatedCounterPlus value={item.value as number} suffix={item.suffix} duration={2.5} />
-                    ) : (
-                      item.value
-                    )}
-                  </p>
+                  <p className="text-gold text-xl font-semibold mb-2">{item.value}</p>
                   <p className={`text-white/60 text-sm ${getFontClass()}`}>{item.description}</p>
                 </motion.div>
               </AnimatedSection>
@@ -537,24 +509,19 @@ export default function Home() {
               <p className={`text-slate max-w-xl mx-auto mb-10 ${getFontClass()}`}>
                 {t.contact.description}
               </p>
-              <Link href={`${basePath}/contact`}>
-                <Button className={`bg-gold hover:bg-gold-dark text-navy px-10 py-6 text-sm tracking-wider ${getFontClass()}`}>
+              <Button asChild className={`bg-gold hover:bg-gold-dark text-navy px-10 py-6 text-sm tracking-wider ${getFontClass()}`}>
+                <Link href={`${basePath}/contact`}>
                   {t.common.getInTouch}
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </motion.div>
           </AnimatedSection>
         </div>
       </section>
 
+      </main>
       <Footer />
-      
-      {/* Cookie Consent Banner - Language aware */}
-      <CookieConsent 
-        lang={language as "en" | "ja" | "zh"} 
-        privacyPolicyPath={`${basePath}/privacy`}
-      />
     </div>
   );
 }

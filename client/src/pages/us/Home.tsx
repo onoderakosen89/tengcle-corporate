@@ -15,7 +15,6 @@ import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import SEOHead, { generateOrganizationSchema, generateWebPageSchema } from "@/components/SEOHead";
-import CookieConsent from "@/components/CookieConsent";
 
 // Animation variants - USA: Bold & Dynamic
 const easeAmerican: Easing = [0.4, 0, 0.2, 1];
@@ -60,8 +59,8 @@ function UsHeroSection({ basePath, t }: { basePath: string; t: (key: string) => 
           className="w-full h-[120%] object-cover opacity-60"
           width="1920"
           height="1080"
-          // @ts-ignore
           fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-purple-deep/70 via-purple-deep/50 to-transparent" />
       </motion.div>
@@ -186,23 +185,23 @@ export default function UsHome() {
         description={t('meta.description')}
         canonical={`https://www.tengcle.com/us/${language}`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
-        ogImage="/images/og-image-us.jpg"
+        ogImage="/images/og-image.webp"
         keywords={t('meta.keywords')}
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
               name: "Tengcle Development LLC",
-              description: "Expert property management and vacation rental solutions in the USA.",
+              description: "A New Jersey company established in January 2026 and preparing its real estate development and management activities.",
               url: "https://www.tengcle.com/us/en",
               logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
               email: "info@tengcle.com",
               address: {
-                street: "123 Business Ave",
-                city: "New York",
-                region: "NY",
+                street: "17 Hamilton Ave",
+                city: "Weehawken",
+                region: "NJ",
                 country: "US",
-                postalCode: "10001"
+                postalCode: "07086"
               },
               sameAs: [
                 "https://www.tengcle.com/hk/en",
@@ -219,6 +218,7 @@ export default function UsHome() {
       />
       <UsHeader />
 
+      <main id="main-content" tabIndex={-1}>
       {/* Hero Section with Parallax */}
       <UsHeroSection basePath={basePath} t={t} />
 
@@ -263,6 +263,7 @@ export default function UsHome() {
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
+                    decoding="async"
                   />
                   {service.isMain && (
                     <span className="absolute top-4 right-4 px-3 py-1 bg-gold text-purple-deep text-xs font-bold rounded-full shadow-lg">
@@ -382,13 +383,8 @@ export default function UsHome() {
         </div>
       </section>
 
+      </main>
       <UsFooter />
-      
-      {/* Cookie Consent Banner - Language aware */}
-      <CookieConsent 
-        lang={language as "en" | "ja" | "zh"} 
-        privacyPolicyPath={`${basePath}/privacy`}
-      />
     </div>
   );
 }

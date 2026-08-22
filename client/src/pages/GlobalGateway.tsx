@@ -20,12 +20,12 @@ const regions = [
     nameJa: "香港",
     nameZh: "香港",
     company: "Tengcle Limited",
-    role: "Global Headquarters",
-    roleJa: "グローバル本社",
-    roleZh: "全球总部",
-    description: "Asset Management & Hotel Procurement",
-    descriptionJa: "資産管理・ホテル調達",
-    descriptionZh: "资产管理与酒店采购",
+    role: "Hong Kong Company",
+    roleJa: "香港法人",
+    roleZh: "香港公司",
+    description: "Hospitality Procurement & Project Coordination",
+    descriptionJa: "ホスピタリティ調達・プロジェクト調整",
+    descriptionZh: "酒店采购与项目协调",
     flag: "🇭🇰",
     flagImage: "/images/flag-hk.svg",
     path: "/hk/en",
@@ -42,12 +42,12 @@ const regions = [
     nameJa: "日本",
     nameZh: "日本",
      company: "株式会社 Tengcle",
-    role: "Founding Office",
-    roleJa: "創業地",
-    roleZh: "创业地",
-    description: "Real Estate, F&B, Fitness, Hospitality, HR",
-    descriptionJa: "不動産・飲食・フィットネス・宿泊・人材",
-    descriptionZh: "房地产、餐饮、健身、住宿、人才",
+    role: "Founding Company",
+    roleJa: "創業法人",
+    roleZh: "创始法人",
+    description: "Property Management & Developing Activities",
+    descriptionJa: "不動産管理・段階的な事業展開",
+    descriptionZh: "房地产管理与阶段性业务发展",
     flag: "🇯🇵",
     flagImage: "/images/flag-jp.svg",
     path: "/jp/ja",
@@ -64,12 +64,12 @@ const regions = [
     nameJa: "アメリカ",
     nameZh: "美国",
     company: "Tengcle Development LLC",
-    role: "US Office",
-    roleJa: "米国拠点",
-    roleZh: "美国办事处",
-    description: "Real Estate Management & Vacation Rentals",
-    descriptionJa: "不動産管理・民泊",
-    descriptionZh: "房地产管理与民宿",
+    role: "US Company · Preparatory Stage",
+    roleJa: "米国法人・準備段階",
+    roleZh: "美国公司・筹备阶段",
+    description: "Real Estate Development & Management Preparation",
+    descriptionJa: "不動産開発・管理の準備",
+    descriptionZh: "房地产开发与管理筹备",
     flag: "🇺🇸",
     flagImage: "/images/flag-us.svg",
     path: "/us/en",
@@ -116,7 +116,7 @@ const seigaihaPattern = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org
 
 export default function GlobalGateway() {
   useEffect(() => {
-    document.title = "Tengcle Group | Hotel FF&E, Real Estate & Hospitality Services in Asia & USA";
+    document.title = "Tengcle Group | Affiliated Companies in Hong Kong, Japan & USA";
     
     // OGP meta tags
     const updateMeta = (name: string, content: string, isProperty = false) => {
@@ -130,10 +130,10 @@ export default function GlobalGateway() {
       meta.setAttribute("content", content);
     };
     
-    updateMeta("og:image", "https://www.tengcle.com/images/og-image.jpg", true);
+    updateMeta("og:image", "https://www.tengcle.com/images/og-image.webp", true);
     updateMeta("og:image:width", "1200", true);
     updateMeta("og:image:height", "630", true);
-    updateMeta("twitter:image", "https://www.tengcle.com/images/og-image.jpg");
+    updateMeta("twitter:image", "https://www.tengcle.com/images/og-image.webp");
   }, []);
 
   return (

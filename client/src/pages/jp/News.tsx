@@ -32,67 +32,19 @@ interface NewsArticle {
 
 const newsArticles: NewsArticle[] = [
   {
-    id: "hotel-staffing-2024",
-    date: "2024-12",
-    category: "新事業",
-    icon: <Hotel className="w-5 h-5" />,
-    title: {
-      ja: "ホテル運営事業・人材紹介事業を開始",
-      en: "Launch of Hotel Operations & Staffing Services",
-      zh: "酒店运营及人才介绍业务启动"
-    },
-    excerpt: {
-      ja: "Tengcle株式会社は2024年より、ホテル運営事業および人材紹介事業を新たに開始しました。これにより、不動産管理、飲食、フィットネス、宿泊、人材の5事業体制となりました。",
-      en: "Tengcle株式会社 has launched hotel operations and staffing services in 2024, expanding to five business segments: real estate, F&B, fitness, hospitality, and staffing.",
-      zh: "Tengcle株式会社于2024年启动酒店运营及人才介绍业务，形成不动产管理、餐饮、健身、住宿、人才五大业务体系。"
-    }
-  },
-  {
-    id: "cafe-restaurant-2023",
-    date: "2023-10",
-    category: "新事業",
-    icon: <Coffee className="w-5 h-5" />,
-    title: {
-      ja: "カフェ・レストラン事業を開始",
-      en: "Launch of Cafe & Restaurant Business",
-      zh: "咖啡厅・餐厅业务启动"
-    },
-    excerpt: {
-      ja: "創業から2年、Tengcle株式会社は飲食事業に参入しました。店舗の企画・運営からメニュー開発、スタッフ教育まで一貫したサービスを提供しています。",
-      en: "Two years after founding, Tengcle株式会社 entered the F&B industry, offering comprehensive services from concept development to staff training.",
-      zh: "创业两年后，Tengcle株式会社进军餐饮行业，提供从企划运营到员工培训的一站式服务。"
-    }
-  },
-  {
-    id: "founding-2021",
-    date: "2021-10",
+    id: "company-incorporation-2021",
+    date: "2021-10-25",
     category: "会社設立",
     icon: <Building2 className="w-5 h-5" />,
     title: {
-      ja: "Tengcle株式会社 設立 - レンタルジム・不動産管理事業を開始",
-      en: "Tengcle株式会社 Founded - Rental Gym & Property Management Launch",
-      zh: "Tengcle株式会社成立 - 租赁健身房・不动产管理业务启动"
+      ja: "株式会社Tengcle 設立",
+      en: "Incorporation of Tengcle Co., Ltd.",
+      zh: "株式会社Tengcle成立"
     },
     excerpt: {
-      ja: "2021年10月、東京にてTengcle株式会社を設立しました。創業と同時にレンタルジム事業と不動産管理事業を開始し、日本市場でのサービス提供を開始しました。",
-      en: "Tengcle株式会社 was founded in Tokyo in October 2021, launching rental gym and property management services simultaneously.",
-      zh: "2021年10月，Tengcle株式会社在东京成立，同时启动租赁健身房和不动产管理业务。"
-    }
-  },
-  {
-    id: "group-expansion-2024",
-    date: "2024-01",
-    category: "グループ展開",
-    icon: <Building2 className="w-5 h-5" />,
-    title: {
-      ja: "Tengcle Group グローバル展開開始",
-      en: "Tengcle Group Global Expansion Begins",
-      zh: "Tengcle Group全球扩展启动"
-    },
-    excerpt: {
-      ja: "2024年、香港法人Tengcle Limitedを設立し、Tengcle Groupとしてグローバル展開を開始しました。アジアを中心としたビジネスネットワークの構築を進めています。",
-      en: "In 2024, Tengcle Limited was established in Hong Kong, marking the beginning of Tengcle Group's global expansion across Asia.",
-      zh: "2024年，香港法人Tengcle Limited成立，标志着Tengcle Group开始全球扩展。"
+      ja: "2021年10月25日、株式会社Tengcleを東京都で設立しました。",
+      en: "株式会社Tengcle was incorporated in Tokyo on 25 October 2021.",
+      zh: "株式会社Tengcle于2021年10月25日在东京成立。"
     }
   }
 ];
@@ -111,10 +63,10 @@ export default function News() {
 
   const pageTitle = language === "ja" ? "ニュース" : language === "zh" ? "新闻动态" : "News";
   const pageSubtitle = language === "ja"
-    ? "Tengcle株式会社の最新情報とマイルストーン"
+    ? "株式会社Tengcleの会社情報"
     : language === "zh"
-      ? "Tengcle株式会社的最新动态与里程碑"
-      : "Latest updates and milestones from Tengcle株式会社";
+      ? "株式会社Tengcle的公司信息"
+      : "Company information from 株式会社Tengcle";
   const readMore = language === "ja" ? "詳細を見る" : language === "zh" ? "查看详情" : "Read More";
 
   // Sort by date descending
@@ -125,12 +77,12 @@ export default function News() {
   return (
     <>
       <SEOHead
-        title={`${pageTitle} | Tengcle株式会社`}
+        title={`${pageTitle} | 株式会社Tengcle`}
         description={pageSubtitle}
-        keywords="Tengcle株式会社, ニュース, 会社情報, 東京, 不動産管理, レンタルジム"
+        keywords="株式会社Tengcle, ニュース, 会社情報, 東京, 不動産管理"
         canonical={`https://www.tengcle.com${basePath}/news`}
         ogType="website"
-        ogImage="/images/og-image-jp.jpg"
+        ogImage="/images/og-image.webp"
       />
       <div className="min-h-screen bg-cream">
         <Header />

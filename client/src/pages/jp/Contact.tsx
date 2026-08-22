@@ -69,7 +69,7 @@ export default function Contact() {
       name: t.contact.info.hkOffice,
       address: "No. 5, 17/F, Strand 50\n50 Bonham Strand\nSheung Wan, Hong Kong",
       mapUrl: "https://maps.google.com/?q=50+Bonham+Strand+Sheung+Wan+Hong+Kong",
-      isHQ: true,
+      isAffiliatedCompany: true,
     },
     {
       name: language === "ja" ? "アメリカオフィス" : language === "zh" ? "美国办公室" : "US Office",
@@ -81,14 +81,14 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-white" data-region="jp">
       <SEOHead
-        title={language === "ja" ? "お問い合わせ | Tengcle株式会社 東京" : language === "zh" ? "联系我们 | Tengcle株式会社 东京" : "Contact Us | Tengcle株式会社 Tokyo"}
-        description={language === "ja" ? "Tengcle株式会社へのお問い合わせ。東京・高輪オフィス。不動産管理、飲食、レンタルジムのご相談。" : language === "zh" ? "联系Tengcle株式会社。东京高轮办公室。不动产管理、餐饮、租赁健身房咨询。" : "Contact Tengcle株式会社 Tokyo Takanawa office. Property management, F&B & rental gym inquiries."}
-        keywords={language === "ja" ? "Tengcle株式会社, お問い合わせ, 東京, 高輪, 不動産管理" : language === "zh" ? "Tengcle株式会社, 联系我们, 东京, 高轮, 不动产管理" : "Tengcle株式会社, contact, Tokyo, Takanawa, property management"}
+        title={language === "ja" ? "お問い合わせ | 株式会社Tengcle 東京" : language === "zh" ? "联系我们 | 株式会社Tengcle 东京" : "Contact Us | 株式会社Tengcle Tokyo"}
+        description={language === "ja" ? "株式会社Tengcleへのお問い合わせ。東京・高輪オフィス。不動産管理に関するご相談を承ります。" : language === "zh" ? "联系株式会社Tengcle。东京高轮办公室。欢迎咨询房地产管理相关事宜。" : "Contact 株式会社Tengcle's Tokyo Takanawa office regarding property management."}
+        keywords={language === "ja" ? "株式会社Tengcle, お問い合わせ, 東京, 高輪, 不動産管理" : language === "zh" ? "株式会社Tengcle, 联系我们, 东京, 高轮, 房地产管理" : "株式会社Tengcle, contact, Tokyo, Takanawa, property management"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
-        ogImage="/images/og-image-jp.jpg"
+        ogImage="/images/og-image.webp"
         canonical={`https://www.tengcle.com/jp/${language}/contact`}
         structuredData={generateLocalBusinessSchema({
-          name: "Tengcle株式会社",
+          name: "株式会社Tengcle",
           url: "https://www.tengcle.com/jp",
           email: "info@tengcle.com",
           address: {
@@ -106,6 +106,7 @@ export default function Contact() {
         })}
       />
       <Header />
+      <main id="main-content" tabIndex={-1}>
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-light-gray">
@@ -173,8 +174,10 @@ export default function Contact() {
                   <MapPin className="h-8 w-8 text-gold mb-6" />
                   <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-4 flex items-center gap-2`}>
                     {office.name}
-                    {office.isHQ && (
-                      <span className="text-xs bg-gold/20 text-gold-dark px-2 py-1 rounded">HQ</span>
+                    {office.isAffiliatedCompany && (
+                      <span className="text-xs bg-gold/20 text-gold-dark px-2 py-1 rounded">
+                        {language === "ja" ? "関連会社" : language === "zh" ? "关联公司" : "Affiliated Company"}
+                      </span>
                     )}
                   </h3>
                   <p className={`text-slate whitespace-pre-line mb-6 ${getFontClass()}`}>
@@ -212,6 +215,7 @@ export default function Contact() {
         </div>
       </section>
 
+      </main>
       <Footer />
     </div>
   );
