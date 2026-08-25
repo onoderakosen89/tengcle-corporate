@@ -4,17 +4,17 @@ test("known routes and article routes return route-specific initial HTML", async
   request,
 }) => {
   const cases = [
-    ["/hk/en", "en", "https://www.tengcle.com/hk/en"],
-    ["/jp/ja", "ja", "https://www.tengcle.com/jp/ja"],
+    ["/hk/en", "en", "https://www.tengcle.com/hk/en/"],
+    ["/jp/ja", "ja", "https://www.tengcle.com/jp/ja/"],
     [
       "/us/zh/services/property-development",
       "zh-Hans",
-      "https://www.tengcle.com/us/zh/services/property-development",
+      "https://www.tengcle.com/us/zh/services/property-development/",
     ],
     [
       "/us/en/news/us-founding-2026",
       "en",
-      "https://www.tengcle.com/us/en/news/us-founding-2026",
+      "https://www.tengcle.com/us/en/news/us-founding-2026/",
     ],
   ] as const;
 
@@ -26,6 +26,27 @@ test("known routes and article routes return route-specific initial HTML", async
     expect(body).toContain(`<link rel="canonical" href="${canonical}" />`);
     expect(body).toContain("https://www.tengcle.com/images/og-image.webp");
   }
+});
+
+test("article initial HTML exposes article-specific social and search metadata", async ({
+  request,
+}) => {
+  const response = await request.get("/us/en/news/us-founding-2026");
+  expect(response.status()).toBe(200);
+  const body = await response.text();
+  expect(body).toContain(
+    "<title>Tengcle Development LLC Established in New Jersey | Tengcle Development LLC</title>"
+  );
+  expect(body).toContain(
+    'content="Tengcle Development LLC was officially registered in Weehawken, New Jersey in January 2026 as the US office of Tengcle Group."'
+  );
+  expect(body).toContain('<meta property="og:type" content="article" />');
+  expect(body).toContain(
+    '<meta property="article:published_time" content="2026-01-01" />'
+  );
+  expect(body).toContain('"@type":"NewsArticle"');
+  expect(body.match(/rel="canonical"/g)).toHaveLength(1);
+  expect(body.match(/rel="alternate"/g)).toHaveLength(4);
 });
 
 test("unknown documents return a real noindex 404 without canonical", async ({

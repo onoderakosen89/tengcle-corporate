@@ -206,6 +206,9 @@ export default function NewsArticle() {
         canonical={`https://www.tengcle.com${basePath}/news/${articleId}`}
         ogType="article"
         ogImage="/images/og-image.webp"
+        publishedTime={
+          article.date.length === 7 ? `${article.date}-01` : article.date
+        }
       />
       <div className="min-h-screen bg-white">
         <Header />

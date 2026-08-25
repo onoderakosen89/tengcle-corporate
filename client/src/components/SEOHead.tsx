@@ -7,6 +7,7 @@
  */
 
 import { useEffect } from "react";
+import { normalizeTengcleCanonical } from "@shared/seoRouteManifest";
 
 interface SEOHeadProps {
   title: string;
@@ -37,6 +38,10 @@ export default function SEOHead({
   publishedTime,
   modifiedTime,
 }: SEOHeadProps) {
+  const normalizedCanonical = canonical
+    ? normalizeTengcleCanonical(canonical)
+    : undefined;
+
   useEffect(() => {
     // Update document title
     document.title = title;
@@ -51,6 +56,10 @@ export default function SEOHead({
         document.head.appendChild(meta);
       }
       meta.setAttribute("content", content);
+    };
+    const removeMeta = (name: string, isProperty = false) => {
+      const attr = isProperty ? "property" : "name";
+      document.querySelector(`meta[${attr}="${name}"]`)?.remove();
     };
 
     // Update basic meta tags
@@ -89,9 +98,13 @@ export default function SEOHead({
     // Article specific meta tags
     if (publishedTime) {
       updateMeta("article:published_time", publishedTime, true);
+    } else {
+      removeMeta("article:published_time", true);
     }
     if (modifiedTime) {
       updateMeta("article:modified_time", modifiedTime, true);
+    } else {
+      removeMeta("article:modified_time", true);
     }
 
     // Update robots meta with enhanced directives
@@ -116,15 +129,15 @@ export default function SEOHead({
     if (noindex) {
       canonicalLink?.remove();
       ogUrl?.remove();
-    } else if (canonical) {
+    } else if (normalizedCanonical) {
       let link = canonicalLink;
       if (!link) {
         link = document.createElement("link");
         link.setAttribute("rel", "canonical");
         document.head.appendChild(link);
       }
-      link.setAttribute("href", canonical);
-      updateMeta("og:url", canonical, true);
+      link.setAttribute("href", normalizedCanonical);
+      updateMeta("og:url", normalizedCanonical, true);
     }
 
     // Add structured data
@@ -152,7 +165,7 @@ export default function SEOHead({
   }, [
     title,
     description,
-    canonical,
+    normalizedCanonical,
     ogImage,
     ogType,
     locale,
