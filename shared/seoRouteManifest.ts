@@ -1,3 +1,5 @@
+import { buyerIntentPages } from "./buyerIntentPages";
+
 export const SITE_ORIGIN = "https://www.tengcle.com";
 
 export const supportedLanguages = ["en", "ja", "zh"] as const;
@@ -8,6 +10,7 @@ export const regionPageDefinitions = {
   hk: [
     { key: "home", suffix: "" },
     { key: "services", suffix: "/services" },
+    { key: "hotelFfe", suffix: "/services/hotel-ffe-procurement" },
     { key: "portfolio", suffix: "/portfolio" },
     { key: "about", suffix: "/about" },
     { key: "contact", suffix: "/contact" },
@@ -18,6 +21,7 @@ export const regionPageDefinitions = {
   jp: [
     { key: "home", suffix: "" },
     { key: "services", suffix: "/services" },
+    { key: "propertyManagement", suffix: "/services/property-management" },
     { key: "about", suffix: "/about" },
     { key: "careers", suffix: "/careers" },
     { key: "contact", suffix: "/contact" },
@@ -100,6 +104,7 @@ const regionProfiles = {
 const sectionLabels = {
   en: {
     services: "Services",
+    hotelFfe: "Hotel FF&E Procurement",
     portfolio: "Portfolio",
     about: "About",
     careers: "Careers",
@@ -113,6 +118,7 @@ const sectionLabels = {
   },
   ja: {
     services: "サービス",
+    hotelFfe: "ホテルFF&E調達",
     portfolio: "実績",
     about: "会社情報",
     careers: "採用情報",
@@ -126,6 +132,7 @@ const sectionLabels = {
   },
   zh: {
     services: "服务",
+    hotelFfe: "酒店FF&E采购",
     portfolio: "项目实绩",
     about: "公司信息",
     careers: "招聘信息",
@@ -299,6 +306,31 @@ export function normalizeTengcleCanonical(value: string) {
   return url.toString();
 }
 
+const regionalLanguageTags = {
+  hk: { en: "en-HK", ja: "ja-HK", zh: "zh-HK" },
+  jp: { en: "en-JP", ja: "ja-JP", zh: "zh-JP" },
+  us: { en: "en-US", ja: "ja-US", zh: "zh-US" },
+} as const;
+
+export function hreflangAlternates(
+  region: Region,
+  language: SupportedLanguage,
+  route: string
+): Array<{ hreflang: string; href: string }> {
+  const prefix = `/${region}/${language}`;
+  const suffix = route.startsWith(prefix) ? route.slice(prefix.length) : "";
+  const alternates: Array<{ hreflang: string; href: string }> =
+    supportedLanguages.map(alternateLanguage => ({
+      hreflang: regionalLanguageTags[region][alternateLanguage],
+      href: canonicalUrl(`/${region}/${alternateLanguage}${suffix}`),
+    }));
+  alternates.push({
+    hreflang: "x-default",
+    href: canonicalUrl(`/${region}/en${suffix}`),
+  });
+  return alternates;
+}
+
 function sectionDescription(
   language: SupportedLanguage,
   label: string,
@@ -324,6 +356,14 @@ export interface SeoRoute {
   company: string;
   ogType: "website" | "article";
   datePublished?: string;
+  service?: {
+    name: string;
+    description: string;
+    provider: string;
+    providerUrl: string;
+    areaServed: readonly string[];
+  };
+  faqs?: readonly { question: string; answer: string }[];
 }
 
 const staticRoutes: SeoRoute[] = [
@@ -358,6 +398,10 @@ for (const region of Object.keys(regionPageDefinitions) as Region[]) {
     for (const page of regionPageDefinitions[region]) {
       const route = `/${region}/${language}${page.suffix}`;
       const isHome = page.key === "home";
+      const buyerIntentPage = Object.values(buyerIntentPages).find(
+        candidate => candidate.region === region && candidate.key === page.key
+      );
+      const buyerIntentCopy = buyerIntentPage?.copy[language];
       const label = isHome
         ? ""
         : sectionLabels[language][
@@ -370,19 +414,33 @@ for (const region of Object.keys(regionPageDefinitions) as Region[]) {
         language,
         lang: profile.htmlLanguage[language],
         locale: profile.locale[language],
-        title: isHome
-          ? profile.titles[language]
-          : `${label} | ${profile.company}`,
-        description: isHome
-          ? profile.descriptions[language]
-          : sectionDescription(
-              language,
-              label,
-              profile.company,
-              profile.descriptions[language]
-            ),
+        title:
+          buyerIntentCopy?.title ??
+          (isHome ? profile.titles[language] : `${label} | ${profile.company}`),
+        description:
+          buyerIntentCopy?.description ??
+          (isHome
+            ? profile.descriptions[language]
+            : sectionDescription(
+                language,
+                label,
+                profile.company,
+                profile.descriptions[language]
+              )),
         company: profile.company,
         ogType: "website",
+        ...(buyerIntentPage && buyerIntentCopy
+          ? {
+              service: {
+                name: buyerIntentCopy.h1,
+                description: buyerIntentCopy.lead,
+                provider: buyerIntentPage.provider,
+                providerUrl: buyerIntentPage.entityUrl,
+                areaServed: buyerIntentPage.areaServed,
+              },
+              faqs: buyerIntentCopy.faqs,
+            }
+          : {}),
       });
     }
     for (const article of newsArticles[region]) {

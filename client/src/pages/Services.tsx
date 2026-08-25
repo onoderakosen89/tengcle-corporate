@@ -59,6 +59,12 @@ export default function Services() {
       title: t.services.hospitality.title,
       description: t.services.hospitality.description,
       image: "/images/service-hospitality.webp",
+      href: `${basePath}/services/hotel-ffe-procurement`,
+      ctaLabel: language === "ja"
+        ? "ホテルFF&E調達の詳細"
+        : language === "zh"
+          ? "查看酒店FF&E采购详情"
+          : "Explore Hotel FF&E Procurement",
       features: language === "ja" ? [
         "FF&E（家具・什器・設備）調達",
         "OS&E（運営備品）調達",
@@ -247,6 +253,14 @@ export default function Services() {
                         </li>
                       ))}
                     </ul>
+                    {service.href && (
+                      <Link href={service.href}>
+                        <Button className={`mt-8 bg-navy px-6 py-5 text-white hover:bg-navy-light ${getFontClass()}`}>
+                          {service.ctaLabel}
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
+                    )}
                   </div>
 
                   {/* Image */}

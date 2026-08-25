@@ -32,6 +32,9 @@ const Contact = lazy(() => import("./pages/Contact"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const News = lazy(() => import("./pages/News"));
 const NewsArticle = lazy(() => import("./pages/NewsArticle"));
+const HotelFfeProcurement = lazy(
+  () => import("./pages/services/HotelFfeProcurement")
+);
 
 // Japan Pages
 const JpHome = lazy(() => import("./pages/jp/Home"));
@@ -42,6 +45,9 @@ const JpContact = lazy(() => import("./pages/jp/Contact"));
 const JpFAQ = lazy(() => import("./pages/jp/FAQ"));
 const JpNews = lazy(() => import("./pages/jp/News"));
 const JpNewsArticle = lazy(() => import("./pages/jp/NewsArticle"));
+const JpPropertyManagement = lazy(
+  () => import("./pages/jp/services/PropertyManagement")
+);
 
 // US Pages
 const UsHome = lazy(() => import("./pages/us/Home"));
@@ -67,6 +73,7 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const hkPageComponents = {
   home: Home,
   services: Services,
+  hotelFfe: HotelFfeProcurement,
   portfolio: Portfolio,
   about: About,
   contact: Contact,
@@ -78,6 +85,7 @@ const hkPageComponents = {
 const jpPageComponents = {
   home: JpHome,
   services: JpServices,
+  propertyManagement: JpPropertyManagement,
   about: JpAbout,
   careers: JpCareers,
   contact: JpContact,

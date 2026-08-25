@@ -337,8 +337,8 @@ export default function Home() {
           <AnimatedSection className="text-center mt-12">
             <motion.div variants={fadeInUp}>
               <Button asChild variant="outline" className={`border-navy text-navy hover:bg-navy/5 px-8 py-6 text-sm tracking-wider hk-btn-hover ${getFontClass()}`}>
-                <Link href={`${basePath}/services`}>
-                  {t.services.viewAll}
+                <Link href={`${basePath}/services/hotel-ffe-procurement`}>
+                  {language === "ja" ? "ホテルFF&E調達の詳細" : language === "zh" ? "查看酒店FF&E采购详情" : "Explore Hotel FF&E Procurement"}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

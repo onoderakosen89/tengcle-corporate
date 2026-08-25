@@ -8,6 +8,7 @@
 
 import { useEffect } from "react";
 import {
+  hreflangAlternates,
   normalizeTengcleCanonical,
   seoRouteManifest,
 } from "@shared/seoRouteManifest";
@@ -173,6 +174,24 @@ export default function SEOHead({
       }
       link.setAttribute("href", normalizedCanonical);
       updateMeta("og:url", normalizedCanonical, true);
+    }
+
+    document
+      .querySelectorAll('link[rel="alternate"][hreflang]')
+      .forEach(link => link.remove());
+    if (!noindex && routeSeo?.region && routeSeo.language) {
+      for (const alternate of hreflangAlternates(
+        routeSeo.region,
+        routeSeo.language,
+        routeSeo.route
+      )) {
+        const link = document.createElement("link");
+        link.rel = "alternate";
+        link.hreflang = alternate.hreflang;
+        link.href = alternate.href;
+        link.setAttribute("data-seo-runtime-alternate", "true");
+        document.head.appendChild(link);
+      }
     }
 
     // Keep the prerendered route graph as the canonical graph for a direct
