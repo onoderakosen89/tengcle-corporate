@@ -6,6 +6,19 @@ interface Props {
 }
 
 const { page } = Astro.props;
+const activityStatus = page.evidence
+  ? page.evidence.publication_state === "internal"
+    ? "Evidence review before publication"
+    : page.evidence.publication_state === "reviewed"
+      ? "Evidence reviewed — publication pending"
+      : {
+          current: "Currently active",
+          preparing: "In preparation",
+          future: "Future direction",
+          paused: "Not currently offered",
+          complete: "Complete",
+        }[page.evidence.status]
+  : undefined;
 ---
 
 <main id="main-content" class="detail-page">
@@ -14,7 +27,7 @@ const { page } = Astro.props;
     <h1>{page.heading}</h1>
     {page.legalName && <p class="legal-name">{page.legalName}</p>}
     <p class="lead">{page.intro}</p>
-    {page.status && <p class="status-chip">{page.status}</p>}
+    {activityStatus && <p class="status-chip">{activityStatus}</p>}
   </header>
 
   {page.facts.length > 0 && (

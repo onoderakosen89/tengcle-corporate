@@ -17,9 +17,9 @@ export const representativeRouteManifest = [
     canonical: canonicalUrl("/activities/property-management"),
     lang: "en",
     locale: "en_US",
-    title: "Property Management Activity | Tengcle",
+    title: "Property Management Activity Structure | Tengcle",
     description:
-      "A restrained overview of property-management activity led by 株式会社Tengcle in Tokyo, with status and responsibility stated clearly.",
+      "A representative structure for future property-management activity information, without claiming unverified operations or outcomes.",
     company: "株式会社Tengcle",
     ogType: "website",
   },

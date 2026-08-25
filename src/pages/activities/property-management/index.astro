@@ -6,6 +6,7 @@ import {
   representativeStructuredData,
 } from "../../../../shared/seoOutput";
 import { representativeRouteManifest } from "../../../../shared/site2RouteManifest";
+import { representativePublicationSchema } from "../../../../shared/representativePageSchema";
 
 const entry = await getEntry(
   "representativePages",
@@ -16,7 +17,7 @@ if (!entry) {
     "Missing representative content entry: activity-property-management"
   );
 }
-const page = entry.data;
+const page = representativePublicationSchema.parse(entry.data);
 const seoPage = representativeRouteManifest.find(
   route => route.route === "/activities/property-management"
 )!;
