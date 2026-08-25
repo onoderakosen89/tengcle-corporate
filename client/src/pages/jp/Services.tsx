@@ -55,6 +55,12 @@ export default function Services() {
       title: t.services.realEstate.title,
       description: t.services.realEstate.description,
       image: "/images/service-real-estate.webp",
+      href: `${basePath}/services/property-management`,
+      ctaLabel: language === "ja"
+        ? "不動産管理の詳細"
+        : language === "zh"
+          ? "查看物业管理详情"
+          : "Explore Property Management",
       features: language === "ja"
         ? ["家賃回収・入金確認", "修繕の手配・進行確認", "テナント対応", "賃貸物件の管理・運営"]
         : language === "zh"
@@ -188,8 +194,8 @@ export default function Services() {
                     ))}
                   </ul>
                   <Button asChild className={`bg-navy hover:bg-navy-light text-white px-6 py-5 text-sm tracking-wider ${getFontClass()}`}>
-                    <Link href={`${basePath}/contact`}>
-                      {t.common.getInTouch}
+                    <Link href={service.href ?? `${basePath}/contact`}>
+                      {service.ctaLabel ?? t.common.getInTouch}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>

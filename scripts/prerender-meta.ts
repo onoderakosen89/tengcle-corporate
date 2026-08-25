@@ -4,9 +4,8 @@ import {
   SITE_ORIGIN,
   canonicalPath,
   canonicalUrl,
+  hreflangAlternates,
   seoRouteManifest,
-  supportedLanguages,
-  type Region,
   type SeoRoute,
 } from "../shared/seoRouteManifest.ts";
 import { companyProfiles } from "../client/src/data/companyProfiles.ts";
@@ -52,14 +51,6 @@ function setMeta(
 
 function removeHeadElements(html: string, matcher: RegExp) {
   return html.replace(matcher, "");
-}
-
-function languageTags(region: Region) {
-  if (region === "hk")
-    return { en: "en-HK", ja: "ja-HK", zh: "zh-HK" } as const;
-  if (region === "jp")
-    return { en: "en-JP", ja: "ja-JP", zh: "zh-JP" } as const;
-  return { en: "en-US", ja: "ja-US", zh: "zh-US" } as const;
 }
 
 function routeSuffix(page: SeoRoute) {
@@ -160,6 +151,39 @@ function structuredData(page: SeoRoute) {
     ...(breadcrumb && { breadcrumb: { "@id": breadcrumb["@id"] } }),
   });
 
+  if (page.service) {
+    graph.push({
+      "@type": "Service",
+      "@id": `${page.canonical}#service`,
+      name: page.service.name,
+      description: page.service.description,
+      provider: {
+        "@type": "Organization",
+        "@id": `${page.service.providerUrl}#organization`,
+        name: page.service.provider,
+        url: page.service.providerUrl,
+      },
+      areaServed: page.service.areaServed.map(name => ({
+        "@type": "Place",
+        name,
+      })),
+    });
+  }
+  if (page.faqs?.length) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${page.canonical}#faq`,
+      mainEntity: page.faqs.map(faq => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    });
+  }
+
   const isEntityPage =
     routeSuffix(page) === "" || routeSuffix(page) === "/about";
   if (organization && (isEntityPage || page.ogType === "article")) {
@@ -171,17 +195,13 @@ function structuredData(page: SeoRoute) {
 }
 
 function buildHreflang(page: SeoRoute, element: "link" | "xhtml:link") {
-  if (!page.region) return "";
-  const suffix = routeSuffix(page);
-  const tags = languageTags(page.region);
-  const alternates = supportedLanguages.map(
-    language =>
-      `<${element} rel="alternate" hreflang="${tags[language]}" href="${canonicalUrl(`/${page.region}/${language}${suffix}`)}" />`
-  );
-  alternates.push(
-    `<${element} rel="alternate" hreflang="x-default" href="${canonicalUrl(`/${page.region}/en${suffix}`)}" />`
-  );
-  return alternates.join("\n    ");
+  if (!page.region || !page.language) return "";
+  return hreflangAlternates(page.region, page.language, page.route)
+    .map(
+      alternate =>
+        `<${element} rel="alternate" hreflang="${alternate.hreflang}" href="${alternate.href}" />`
+    )
+    .join("\n    ");
 }
 
 function renderSitemap(pages: readonly SeoRoute[]) {

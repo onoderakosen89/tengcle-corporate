@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { buyerIntentPages } from "../shared/buyerIntentPages";
 
 test("known routes and article routes return route-specific initial HTML", async ({
   request,
@@ -6,6 +7,16 @@ test("known routes and article routes return route-specific initial HTML", async
   const cases = [
     ["/hk/en", "en", "https://www.tengcle.com/hk/en/"],
     ["/jp/ja", "ja", "https://www.tengcle.com/jp/ja/"],
+    [
+      "/jp/ja/services/property-management",
+      "ja",
+      "https://www.tengcle.com/jp/ja/services/property-management/",
+    ],
+    [
+      "/hk/en/services/hotel-ffe-procurement",
+      "en",
+      "https://www.tengcle.com/hk/en/services/hotel-ffe-procurement/",
+    ],
     [
       "/us/zh/services/property-development",
       "zh-Hans",
@@ -109,7 +120,7 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
     sitemap.matchAll(/<loc>(https:\/\/www\.tengcle\.com[^<]+)<\/loc>/g),
     match => match[1]
   );
-  expect(urls).toHaveLength(107);
+  expect(urls).toHaveLength(113);
 
   for (const canonical of urls) {
     const route = new URL(canonical).pathname;
@@ -159,6 +170,8 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
       "Organization",
       "BreadcrumbList",
       "NewsArticle",
+      "Service",
+      "FAQPage",
     ]) {
       const initialCount = initialNodes.filter(
         node => node?.["@type"] === type
@@ -168,6 +181,132 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
       ).length;
       expect(hydratedCount, `${route} ${type}`).toBe(initialCount);
     }
+  }
+});
+
+test("buyer-intent service pages identify the customer and preserve visible FAQ schema", async ({
+  page,
+}) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary")
+  );
+  const languages = ["en", "ja", "zh"] as const;
+  const cases = [
+    ...languages.map(language => ({
+      route: `/jp/${language}/services/property-management`,
+      ...buyerIntentPages.jpPropertyManagement.copy[language],
+    })),
+    ...languages.map(language => ({
+      route: `/hk/${language}/services/hotel-ffe-procurement`,
+      ...buyerIntentPages.hkHotelFfe.copy[language],
+    })),
+  ];
+
+  for (const item of cases) {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto(item.route);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(item.h1);
+    await expect(page.getByText(item.lead, { exact: true })).toBeVisible();
+    await expect(
+      page.getByText(item.faqs[0].question, { exact: true })
+    ).toBeVisible();
+    const structuredNodes = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluateAll(scripts =>
+        scripts.flatMap(script => {
+          const data = JSON.parse(script.textContent || "{}");
+          const graph = Array.isArray(data["@graph"]) ? data["@graph"] : [data];
+          return graph;
+        })
+      );
+    const service = structuredNodes.find(node => node?.["@type"] === "Service");
+    expect(service?.description, item.route).toBe(item.lead);
+    expect(structuredNodes.some(node => node?.["@type"] === "FAQPage")).toBe(
+      true
+    );
+    const overflow = await page.evaluate(
+      () =>
+        document.documentElement.scrollWidth -
+        document.documentElement.clientWidth
+    );
+    expect(overflow, item.route).toBeLessThanOrEqual(0);
+  }
+});
+
+test("buyer-intent internal links update canonical and hreflang during SPA navigation", async ({
+  page,
+}) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary")
+  );
+  const cases = [
+    {
+      start: "/jp/ja",
+      link: "不動産管理の詳細",
+      target: "/jp/ja/services/property-management",
+      alternates: [
+        [
+          "en-JP",
+          "https://www.tengcle.com/jp/en/services/property-management/",
+        ],
+        [
+          "ja-JP",
+          "https://www.tengcle.com/jp/ja/services/property-management/",
+        ],
+        [
+          "zh-JP",
+          "https://www.tengcle.com/jp/zh/services/property-management/",
+        ],
+        [
+          "x-default",
+          "https://www.tengcle.com/jp/en/services/property-management/",
+        ],
+      ],
+    },
+    {
+      start: "/hk/en",
+      link: "Explore Hotel FF&E Procurement",
+      target: "/hk/en/services/hotel-ffe-procurement",
+      alternates: [
+        [
+          "en-HK",
+          "https://www.tengcle.com/hk/en/services/hotel-ffe-procurement/",
+        ],
+        [
+          "ja-HK",
+          "https://www.tengcle.com/hk/ja/services/hotel-ffe-procurement/",
+        ],
+        [
+          "zh-HK",
+          "https://www.tengcle.com/hk/zh/services/hotel-ffe-procurement/",
+        ],
+        [
+          "x-default",
+          "https://www.tengcle.com/hk/en/services/hotel-ffe-procurement/",
+        ],
+      ],
+    },
+  ] as const;
+
+  for (const item of cases) {
+    await page.goto(item.start);
+    await page.getByRole("link", { name: item.link, exact: true }).click();
+    await expect(page).toHaveURL(
+      new RegExp(`${item.target.replaceAll("/", "\\/")}$`)
+    );
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      `https://www.tengcle.com${item.target}/`
+    );
+    const alternates = await page
+      .locator('link[rel="alternate"][hreflang]')
+      .evaluateAll(links =>
+        links.map(link => [
+          link.getAttribute("hreflang"),
+          link.getAttribute("href"),
+        ])
+      );
+    expect(alternates, item.target).toEqual(item.alternates);
   }
 });
 

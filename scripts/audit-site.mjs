@@ -101,6 +101,8 @@ if (/<meta\s+property=["']og:url["']/i.test(notFoundHtml)) {
 const expectedStaticRoutes = [
   "hk/en/index.html",
   "jp/ja/index.html",
+  "jp/ja/services/property-management/index.html",
+  "hk/en/services/hotel-ffe-procurement/index.html",
   "us/en/index.html",
   "hk/en/news/hk-founding/index.html",
   "jp/ja/news/company-incorporation-2021/index.html",
@@ -121,8 +123,8 @@ const sitemap = await readFile(
 const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
   match => match[1]
 );
-if (sitemapLocations.length !== 107) {
-  fail(`sitemap route count is ${sitemapLocations.length}; expected 107`);
+if (sitemapLocations.length !== 113) {
+  fail(`sitemap route count is ${sitemapLocations.length}; expected 113`);
 }
 if (/<link\s/i.test(sitemap)) {
   fail("sitemap contains bare HTML link elements instead of xhtml:link");
@@ -234,6 +236,18 @@ for (const location of sitemapLocations) {
       if (expectedOgType === "article" && typeCount("NewsArticle") !== 1) {
         fail(
           `${path.relative(root, routeHtmlPath)} must contain exactly one NewsArticle node`
+        );
+      }
+      const isBuyerIntentService =
+        /\/(?:jp\/(?:en|ja|zh)\/services\/property-management|hk\/(?:en|ja|zh)\/services\/hotel-ffe-procurement)\/$/.test(
+          url.pathname
+        );
+      if (
+        isBuyerIntentService &&
+        (typeCount("Service") !== 1 || typeCount("FAQPage") !== 1)
+      ) {
+        fail(
+          `${path.relative(root, routeHtmlPath)} must contain one Service and one FAQPage node`
         );
       }
       if (/"(?:sameAs|alternateName)"\s*:/.test(structuredMatch[1])) {
