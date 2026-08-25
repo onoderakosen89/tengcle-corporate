@@ -70,6 +70,20 @@ const notFoundHtml = await readFile(
   path.join(outputDirectory, "404.html"),
   "utf8"
 );
+const rootHtml = await readFile(path.join(outputDirectory, "index.html"), "utf8");
+const iconUrls = [
+  ...rootHtml.matchAll(
+    /<link\s+rel=["']icon["'][^>]+href=["'](\/[^"']+)["'][^>]*>/gi
+  ),
+].map(match => match[1]);
+if (iconUrls.length < 2) fail("root HTML is missing expected favicon references");
+for (const iconUrl of iconUrls) {
+  try {
+    await access(path.join(outputDirectory, iconUrl.slice(1)));
+  } catch {
+    fail(`root HTML references missing favicon: ${iconUrl}`);
+  }
+}
 if (!/<meta name="robots" content="noindex, nofollow"/i.test(notFoundHtml)) {
   fail("404.html is missing noindex, nofollow");
 }

@@ -91,6 +91,15 @@ test("Cloudflare preview applies declared security and cache headers", async ({
   expect(imageResponse.headers()["cache-control"]).toBe(
     "public, max-age=31536000, immutable"
   );
+
+  for (const [asset, contentType] of [
+    ["/favicon.ico", "image/vnd.microsoft.icon"],
+    ["/favicon.png", "image/png"],
+  ] as const) {
+    const response = await request.get(asset);
+    expect(response.status(), asset).toBe(200);
+    expect(response.headers()["content-type"], asset).toContain(contentType);
+  }
 });
 
 test("analytics remains unloaded until explicit all-cookie consent", async ({
