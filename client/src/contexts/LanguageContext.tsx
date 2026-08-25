@@ -7,27 +7,6 @@ import { createContext, useContext, useState, type ReactNode } from "react";
 
 type Language = "en" | "ja" | "zh";
 
-/** Single source of truth for legal information used by public regional pages. */
-export const companyProfiles = {
-  hk: {
-    legalName: "Tengcle Limited",
-    established: "2025-04-29",
-    registrationNumber: "78077104",
-    representative: "Kosen Onodera",
-  },
-  jp: {
-    legalName: "株式会社Tengcle",
-    established: "2021-10-25",
-    capital: "¥5,142,000",
-    representative: "小野寺 紘宣",
-  },
-  us: {
-    legalName: "Tengcle Development LLC",
-    established: "2026-01-05",
-    representative: "Kosen Onodera",
-  },
-} as const;
-
 interface Translations {
   nav: {
     home: string;

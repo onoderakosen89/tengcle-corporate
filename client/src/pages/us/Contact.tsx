@@ -6,6 +6,10 @@ import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import SEOHead, { generateLocalBusinessSchema } from "@/components/SEOHead";
+import { companyProfiles } from "@/data/companyProfiles";
+
+const usCompany = companyProfiles.us;
+const usAddress = usCompany.addresses[0];
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -52,18 +56,18 @@ export default function UsContact() {
         description={language === "ja" ? "Tengcle Development LLCへのお問い合わせ。NJ・Weehawkenオフィス。不動産開発・管理のご相談。" : language === "zh" ? "联系Tengcle Development LLC。新泽西Weehawken办公室。房地产开发、管理咨询。" : "Contact Tengcle Development LLC. Weehawken NJ office. Real estate development & management inquiries."}
         keywords={language === "ja" ? "Tengcle Development LLC, お問い合わせ, ニュージャージー, 不動産" : language === "zh" ? "Tengcle Development LLC, 联系我们, 新泽西, 房地产" : "Tengcle Development LLC, contact, New Jersey, Weehawken, real estate"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
-        ogImage="/images/og-image-us.jpg"
+        ogImage="/images/og-image.webp"
         canonical={`https://www.tengcle.com/us/${language}/contact`}
         structuredData={generateLocalBusinessSchema({
-          name: "Tengcle Development LLC",
+          name: usCompany.legalName,
           url: "https://www.tengcle.com/us",
-          email: "us@tengcle.com",
+          email: usCompany.email,
           address: {
-            street: "17 Hamilton Ave",
-            city: "Weehawken",
-            region: "NJ",
-            postalCode: "07086",
-            country: "US"
+            street: usAddress.street,
+            city: usAddress.city,
+            region: usAddress.region,
+            postalCode: usAddress.postalCode,
+            country: usAddress.country,
           },
           geo: {
             latitude: "40.7686",
@@ -191,8 +195,8 @@ export default function UsContact() {
 
             {/* Map or Image */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >

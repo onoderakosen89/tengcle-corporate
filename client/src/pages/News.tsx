@@ -301,7 +301,7 @@ export default function News() {
         description={text.metaDescription}
         canonical={`https://www.tengcle.com${basePath}/news`}
         keywords="Tengcle news, hotel FF&E, hospitality projects, company updates, Hong Kong business"
-        ogImage="/images/og-image-hk.jpg"
+        ogImage="/images/og-image.webp"
       />
       <div className="min-h-screen bg-cream">
         <Header />

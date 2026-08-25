@@ -1,6 +1,6 @@
 /**
  * SEO Head Component
- * 
+ *
  * Manages dynamic meta tags and structured data for each page.
  * Uses document.head manipulation for client-side rendering.
  * Optimized for maximum SEO score and Google Sitelinks.
@@ -64,7 +64,13 @@ export default function SEOHead({
     updateMeta("og:title", title, true);
     updateMeta("og:description", description, true);
     updateMeta("og:type", ogType, true);
-    updateMeta("og:image", ogImage.startsWith("http") ? ogImage : `https://www.tengcle.com${ogImage}`, true);
+    updateMeta(
+      "og:image",
+      ogImage.startsWith("http")
+        ? ogImage
+        : `https://www.tengcle.com${ogImage}`,
+      true
+    );
     updateMeta("og:image:width", "1200", true);
     updateMeta("og:image:height", "630", true);
     updateMeta("og:locale", locale, true);
@@ -74,7 +80,10 @@ export default function SEOHead({
     updateMeta("twitter:card", "summary_large_image");
     updateMeta("twitter:title", title);
     updateMeta("twitter:description", description);
-    updateMeta("twitter:image", ogImage.startsWith("http") ? ogImage : `https://www.tengcle.com${ogImage}`);
+    updateMeta(
+      "twitter:image",
+      ogImage.startsWith("http") ? ogImage : `https://www.tengcle.com${ogImage}`
+    );
     updateMeta("twitter:image:alt", title);
 
     // Article specific meta tags
@@ -90,30 +99,39 @@ export default function SEOHead({
       updateMeta("robots", "noindex, nofollow");
       updateMeta("googlebot", "noindex, nofollow");
     } else {
-      updateMeta("robots", "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
-      updateMeta("googlebot", "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
+      updateMeta(
+        "robots",
+        "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+      );
+      updateMeta(
+        "googlebot",
+        "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+      );
     }
 
-    // Update canonical link. A noindex page must not publish a self-referencing canonical.
-    if (canonical) {
-      let link = document.querySelector('link[rel="canonical"]');
-      if (noindex) {
-        link?.remove();
-      } else if (!link) {
+    // A noindex page must not retain the canonical/OG URL inherited from the
+    // initial HTML document.
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (noindex) {
+      canonicalLink?.remove();
+      ogUrl?.remove();
+    } else if (canonical) {
+      let link = canonicalLink;
+      if (!link) {
         link = document.createElement("link");
         link.setAttribute("rel", "canonical");
         document.head.appendChild(link);
-        link.setAttribute("href", canonical);
-        updateMeta("og:url", canonical, true);
-      } else {
-        link.setAttribute("href", canonical);
-        updateMeta("og:url", canonical, true);
       }
+      link.setAttribute("href", canonical);
+      updateMeta("og:url", canonical, true);
     }
 
     // Add structured data
     if (structuredData) {
-      const existingScript = document.querySelector('script[data-seo-structured]');
+      const existingScript = document.querySelector(
+        "script[data-seo-structured]"
+      );
       if (existingScript) {
         existingScript.remove();
       }
@@ -126,12 +144,25 @@ export default function SEOHead({
 
     // Cleanup function
     return () => {
-      const seoScript = document.querySelector('script[data-seo-structured]');
+      const seoScript = document.querySelector("script[data-seo-structured]");
       if (seoScript) {
         seoScript.remove();
       }
     };
-  }, [title, description, canonical, ogImage, ogType, locale, noindex, structuredData, keywords, author, publishedTime, modifiedTime]);
+  }, [
+    title,
+    description,
+    canonical,
+    ogImage,
+    ogType,
+    locale,
+    noindex,
+    structuredData,
+    keywords,
+    author,
+    publishedTime,
+    modifiedTime,
+  ]);
 
   return null;
 }
@@ -139,15 +170,17 @@ export default function SEOHead({
 /**
  * Generate BreadcrumbList structured data
  */
-export function generateBreadcrumbSchema(items: { name: string; url: string }[]) {
+export function generateBreadcrumbSchema(
+  items: { name: string; url: string }[]
+) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": items.map((item, index) => ({
+    itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
-      "position": index + 1,
-      "name": item.name,
-      "item": item.url,
+      position: index + 1,
+      name: item.name,
+      item: item.url,
     })),
   };
 }
@@ -155,16 +188,18 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
 /**
  * Generate FAQPage structured data
  */
-export function generateFAQSchema(faqs: { question: string; answer: string }[]) {
+export function generateFAQSchema(
+  faqs: { question: string; answer: string }[]
+) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqs.map((faq) => ({
+    mainEntity: faqs.map(faq => ({
       "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
+      name: faq.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": faq.answer,
+        text: faq.answer,
       },
     })),
   };
@@ -183,19 +218,19 @@ export function generateServiceSchema(service: {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": service.name,
-    "description": service.description,
-    "provider": {
+    name: service.name,
+    description: service.description,
+    provider: {
       "@type": "Organization",
-      "name": service.provider,
+      name: service.provider,
     },
     ...(service.areaServed && {
-      "areaServed": service.areaServed.map((area) => ({
+      areaServed: service.areaServed.map(area => ({
         "@type": "Place",
-        "name": area,
+        name: area,
       })),
     }),
-    ...(service.image && { "image": service.image }),
+    ...(service.image && { image: service.image }),
   };
 }
 
@@ -215,18 +250,18 @@ export function generateWebPageSchema(page: {
       {
         "@type": "WebPage",
         "@id": `${page.url}#webpage`,
-        "url": page.url,
-        "name": page.name,
-        "description": page.description,
-        "isPartOf": {
-          "@id": "https://www.tengcle.com/#website"
+        url: page.url,
+        name: page.name,
+        description: page.description,
+        isPartOf: {
+          "@id": "https://www.tengcle.com/#website",
         },
-        "about": {
-          "@id": "https://www.tengcle.com/#organization"
+        about: {
+          "@id": "https://www.tengcle.com/#organization",
         },
-        "inLanguage": "en"
-      }
-    ]
+        inLanguage: "en",
+      },
+    ],
   };
 
   // Add breadcrumbs if provided
@@ -234,12 +269,12 @@ export function generateWebPageSchema(page: {
     schema["@graph"].push({
       "@type": "BreadcrumbList",
       "@id": `${page.url}#breadcrumb`,
-      "itemListElement": page.breadcrumbs.map((item, index) => ({
+      itemListElement: page.breadcrumbs.map((item, index) => ({
         "@type": "ListItem",
-        "position": index + 1,
-        "name": item.name,
-        "item": item.url
-      }))
+        position: index + 1,
+        name: item.name,
+        item: item.url,
+      })),
     });
   }
 
@@ -248,13 +283,13 @@ export function generateWebPageSchema(page: {
     schema["@graph"].push({
       "@type": "SiteNavigationElement",
       "@id": `${page.url}#navigation`,
-      "name": "Page Navigation",
-      "hasPart": page.navigation.map(nav => ({
+      name: "Page Navigation",
+      hasPart: page.navigation.map(nav => ({
         "@type": "SiteNavigationElement",
-        "name": nav.name,
-        "url": nav.url,
-        ...(nav.description && { "description": nav.description })
-      }))
+        name: nav.name,
+        url: nav.url,
+        ...(nav.description && { description: nav.description }),
+      })),
     });
   }
 
@@ -284,34 +319,34 @@ export function generateOrganizationSchema(org: {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": org.name,
-    "description": org.description,
-    "url": org.url,
+    name: org.name,
+    description: org.description,
+    url: org.url,
     ...(org.logo && {
-      "logo": {
+      logo: {
         "@type": "ImageObject",
-        "url": org.logo
-      }
+        url: org.logo,
+      },
     }),
-    ...(org.email && { "email": org.email }),
+    ...(org.email && { email: org.email }),
     ...(org.address && {
-      "address": {
+      address: {
         "@type": "PostalAddress",
-        "streetAddress": org.address.street,
-        "addressLocality": org.address.city,
-        "addressRegion": org.address.region,
-        "addressCountry": org.address.country,
-        ...(org.address.postalCode && { "postalCode": org.address.postalCode })
-      }
+        streetAddress: org.address.street,
+        addressLocality: org.address.city,
+        addressRegion: org.address.region,
+        addressCountry: org.address.country,
+        ...(org.address.postalCode && { postalCode: org.address.postalCode }),
+      },
     }),
-    ...(org.sameAs && { "sameAs": org.sameAs }),
-    ...(org.foundingDate && { "foundingDate": org.foundingDate }),
+    ...(org.sameAs && { sameAs: org.sameAs }),
+    ...(org.foundingDate && { foundingDate: org.foundingDate }),
     ...(org.founders && {
-      "founders": org.founders.map(f => ({
+      founders: org.founders.map(f => ({
         "@type": "Person",
-        "name": f.name
-      }))
-    })
+        name: f.name,
+      })),
+    }),
   };
 }
 
@@ -341,27 +376,27 @@ export function generateLocalBusinessSchema(business: {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": business.name,
-    ...(business.image && { "image": business.image }),
-    "url": business.url,
-    ...(business.telephone && { "telephone": business.telephone }),
-    ...(business.email && { "email": business.email }),
-    "address": {
+    name: business.name,
+    ...(business.image && { image: business.image }),
+    url: business.url,
+    ...(business.telephone && { telephone: business.telephone }),
+    ...(business.email && { email: business.email }),
+    address: {
       "@type": "PostalAddress",
-      "streetAddress": business.address.street,
-      "addressLocality": business.address.city,
-      "addressRegion": business.address.region,
-      "postalCode": business.address.postalCode,
-      "addressCountry": business.address.country
+      streetAddress: business.address.street,
+      addressLocality: business.address.city,
+      addressRegion: business.address.region,
+      postalCode: business.address.postalCode,
+      addressCountry: business.address.country,
     },
     ...(business.geo && {
-      "geo": {
+      geo: {
         "@type": "GeoCoordinates",
-        "latitude": business.geo.latitude,
-        "longitude": business.geo.longitude
-      }
+        latitude: business.geo.latitude,
+        longitude: business.geo.longitude,
+      },
     }),
-    ...(business.openingHours && { "openingHours": business.openingHours }),
-    ...(business.priceRange && { "priceRange": business.priceRange })
+    ...(business.openingHours && { openingHours: business.openingHours }),
+    ...(business.priceRange && { priceRange: business.priceRange }),
   };
 }

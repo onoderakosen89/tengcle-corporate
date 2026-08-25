@@ -127,7 +127,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/jp/ja" aria-label="Tengcle株式会社 - Japan Office">
+                <Link href="/jp/ja" aria-label="株式会社Tengcle - Japan Office">
                   <span className={`text-gray-300 hover:text-white transition-colors text-sm flex items-center gap-2 ${getFontClass()}`}>
                     🇯🇵 日本
                   </span>
@@ -148,7 +148,7 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Tengcle株式会社 All rights reserved.
+              © {new Date().getFullYear()} 株式会社Tengcle All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link href={`/hk/${pathLang === "zh" ? "zh" : pathLang === "en" ? "en" : "en"}`}>

@@ -195,7 +195,7 @@ export default function Services() {
         description={language === "ja" ? "ホテルFF&E調達、ホテルITソリューション、IPキャラクターグッズ、貿易サービス。" : language === "zh" ? "酒店FF&E采购、酒店IT解决方案、IP角色商品、贸易服务。" : "Hotel FF&E procurement, hotel IT solutions, IP character goods & trading services."}
         keywords={language === "ja" ? "Tengcle Limited, サービス, ホテルFF&E, ITソリューション" : language === "zh" ? "Tengcle Limited, 服务, 酒店FF&E, IT解决方案" : "Tengcle Limited, services, hotel FF&E, IT solutions"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
-        ogImage="/images/og-image-hk.jpg"
+        ogImage="/images/og-image.webp"
         canonical={`https://www.tengcle.com/hk/${language}/services`}
       />
       <Header />

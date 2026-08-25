@@ -21,47 +21,68 @@ export default function UsHeader() {
   }, []);
 
   const navItems = [
-    { href: basePath, label: t('nav.home') },
-    { href: `${basePath}/services`, label: t('nav.services') },
-    { href: `${basePath}/about`, label: t('nav.about') },
-    { href: `${basePath}/contact`, label: t('nav.contact') },
+    { href: basePath, label: t("nav.home") },
+    { href: `${basePath}/services`, label: t("nav.services") },
+    { href: `${basePath}/about`, label: t("nav.about") },
+    { href: `${basePath}/contact`, label: t("nav.contact") },
   ];
 
   const languages = [
-    { code: 'en', label: 'EN', path: `/us/en${location.replace(/^\/us\/[a-z]{2}/, '')}` },
-    { code: 'ja', label: 'JA', path: `/us/ja${location.replace(/^\/us\/[a-z]{2}/, '')}` },
-    { code: 'zh', label: 'ZH', path: `/us/zh${location.replace(/^\/us\/[a-z]{2}/, '')}` },
+    {
+      code: "en",
+      label: "EN",
+      path: `/us/en${location.replace(/^\/us\/[a-z]{2}/, "")}`,
+    },
+    {
+      code: "ja",
+      label: "JA",
+      path: `/us/ja${location.replace(/^\/us\/[a-z]{2}/, "")}`,
+    },
+    {
+      code: "zh",
+      label: "ZH",
+      path: `/us/zh${location.replace(/^\/us\/[a-z]{2}/, "")}`,
+    },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
           ? "bg-white/95 backdrop-blur-md shadow-sm py-3"
           : "bg-transparent py-6"
-        }`}
+      }`}
     >
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-white focus:px-4 focus:py-2 focus:text-purple focus:shadow-lg"
       >
-        {language === "ja" ? "本文へ移動" : language === "zh" ? "跳至主要内容" : "Skip to main content"}
+        {language === "ja"
+          ? "本文へ移動"
+          : language === "zh"
+            ? "跳至主要内容"
+            : "Skip to main content"}
       </a>
       <div className="container">
         <nav className="flex items-center justify-between">
           {/* Logo */}
           <Link href={basePath}>
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
               className="flex items-center"
             >
               <img
-                src={isScrolled ? "/images/tengcle-logo.png" : "/images/tengcle-logo-white.png"}
+                src={
+                  isScrolled
+                    ? "/images/tengcle-logo.png"
+                    : "/images/tengcle-logo-white.png"
+                }
                 alt="Tengcle"
                 className="w-auto object-contain transition-all duration-300"
                 width="180"
                 height="46"
-                style={{ height: '46px', maxHeight: '46px' }}
+                style={{ height: "46px", maxHeight: "46px" }}
               />
             </motion.div>
           </Link>
@@ -77,8 +98,9 @@ export default function UsHeader() {
               >
                 <Link
                   href={item.href}
-                  className={`text-sm tracking-wide transition-colors duration-300 hover:text-gold ${isScrolled ? "text-charcoal" : "text-white"
-                    }`}
+                  className={`text-sm tracking-wide transition-colors duration-300 hover:text-gold ${
+                    isScrolled ? "text-charcoal" : "text-white"
+                  }`}
                 >
                   {item.label}
                 </Link>
@@ -87,17 +109,20 @@ export default function UsHeader() {
 
             {/* Language Switcher */}
             <div className="flex items-center gap-2 ml-4 border-l border-current/20 pl-4">
-              <Globe className={`w-4 h-4 ${isScrolled ? "text-charcoal" : "text-white"}`} />
-              {languages.map((lang) => (
+              <Globe
+                className={`w-4 h-4 ${isScrolled ? "text-charcoal" : "text-white"}`}
+              />
+              {languages.map(lang => (
                 <Link
                   key={lang.code}
                   href={lang.path}
-                  className={`text-xs px-2 py-1 transition-colors duration-300 ${language === lang.code
+                  className={`text-xs px-2 py-1 transition-colors duration-300 ${
+                    language === lang.code
                       ? "text-gold font-medium"
                       : isScrolled
                         ? "text-charcoal/60 hover:text-charcoal"
                         : "text-white/60 hover:text-white"
-                    }`}
+                  }`}
                 >
                   {lang.label}
                 </Link>
@@ -107,10 +132,11 @@ export default function UsHeader() {
             {/* Global Site Link */}
             <Link
               href="/"
-              className={`text-xs px-3 py-1.5 border transition-colors duration-300 ${isScrolled
+              className={`text-xs px-3 py-1.5 border transition-colors duration-300 ${
+                isScrolled
                   ? "border-purple/30 text-purple hover:bg-purple hover:text-white"
                   : "border-white/30 text-white hover:bg-white hover:text-purple-dark"
-                }`}
+              }`}
             >
               Global
             </Link>
@@ -119,13 +145,18 @@ export default function UsHeader() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden p-2 transition-colors ${isScrolled ? "text-charcoal" : "text-white"
+            className={`lg:hidden p-2 transition-colors ${
+              isScrolled ? "text-charcoal" : "text-white"
             }`}
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
             aria-controls="us-mobile-navigation"
           >
-            {isMobileMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
+            {isMobileMenuOpen ? (
+              <X size={24} aria-hidden="true" />
+            ) : (
+              <Menu size={24} aria-hidden="true" />
+            )}
           </button>
         </nav>
 
@@ -135,14 +166,20 @@ export default function UsHeader() {
             <motion.div
               id="us-mobile-navigation"
               role="navigation"
-              aria-label={language === "ja" ? "モバイルナビゲーション" : language === "zh" ? "移动导航" : "Mobile navigation"}
+              aria-label={
+                language === "ja"
+                  ? "モバイルナビゲーション"
+                  : language === "zh"
+                    ? "移动导航"
+                    : "Mobile navigation"
+              }
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden overflow-hidden bg-white mt-4 shadow-lg"
             >
               <div className="py-4 space-y-1">
-                {navItems.map((item) => (
+                {navItems.map(item => (
                   <Link
                     key={item.href}
                     href={item.href}
@@ -155,15 +192,16 @@ export default function UsHeader() {
                 <div className="border-t border-gray-100 mt-2 pt-2 px-4">
                   <p className="text-xs text-gray-400 mb-2">Language</p>
                   <div className="flex gap-2">
-                    {languages.map((lang) => (
+                    {languages.map(lang => (
                       <Link
                         key={lang.code}
                         href={lang.path}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`text-sm px-3 py-1.5 border ${language === lang.code
+                        className={`text-sm px-3 py-1.5 border ${
+                          language === lang.code
                             ? "border-gold text-gold"
                             : "border-gray-200 text-gray-600"
-                          }`}
+                        }`}
                       >
                         {lang.label}
                       </Link>

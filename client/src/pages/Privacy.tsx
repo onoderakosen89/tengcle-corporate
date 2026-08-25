@@ -11,6 +11,7 @@ import { motion, type Easing } from "framer-motion";
 import { ArrowLeft, Shield, Cookie, Database, Lock, Mail, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/SEOHead";
+import { useCookieConsent } from "@/components/CookieConsent";
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
@@ -42,6 +43,7 @@ const translations = {
     title: "Privacy Policy",
     lastUpdated: "Last Updated: December 2024",
     backToHome: "Back to Home",
+    manageCookies: "Manage cookie preferences",
     intro: "At Tengcle Group, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.",
     sections: [
       {
@@ -115,6 +117,7 @@ const translations = {
     title: "プライバシーポリシー",
     lastUpdated: "最終更新日: 2024年12月",
     backToHome: "ホームに戻る",
+    manageCookies: "Cookie設定を変更",
     intro: "Tengcle Groupは、お客様のプライバシーを保護し、個人情報のセキュリティを確保することに取り組んでいます。このプライバシーポリシーは、当社のウェブサイトをご利用いただく際に、お客様の情報をどのように収集、使用、開示、保護するかについて説明しています。",
     sections: [
       {
@@ -188,6 +191,7 @@ const translations = {
     title: "隐私政策",
     lastUpdated: "最后更新：2024年12月",
     backToHome: "返回首页",
+    manageCookies: "更改Cookie设置",
     intro: "Tengcle Group致力于保护您的隐私并确保您个人信息的安全。本隐私政策说明了当您访问我们的网站时，我们如何收集、使用、披露和保护您的信息。",
     sections: [
       {
@@ -261,6 +265,7 @@ const translations = {
 
 export default function Privacy() {
   const [location] = useLocation();
+  const { revokeConsent } = useCookieConsent();
 
   // Determine language from URL
   const getLang = (): "en" | "ja" | "zh" => {
@@ -292,7 +297,7 @@ export default function Privacy() {
         canonical={`https://www.tengcle.com${location === "/" ? "" : location}`}
         locale={lang === "ja" ? "ja_JP" : lang === "zh" ? "zh_CN" : "en_US"}
         keywords={lang === "ja" ? "Tengcle, プライバシー, 個人情報, データ保護" : lang === "zh" ? "Tengcle, 隐私, 个人信息, 数据保护" : "Tengcle, privacy policy, personal information, data protection"}
-        ogImage="/images/og-image.jpg"
+        ogImage="/images/og-image.webp"
       />
       {/* Header */}
       <header className="bg-navy text-white py-6">
@@ -382,6 +387,13 @@ export default function Privacy() {
                 {t.contact.address}
               </p>
             </div>
+          </motion.div>
+
+          <motion.div variants={fadeInUp} className="mt-6 text-center">
+            <Button type="button" variant="outline" onClick={revokeConsent}>
+              <Cookie className="w-4 h-4" />
+              {t.manageCookies}
+            </Button>
           </motion.div>
         </motion.div>
       </main>

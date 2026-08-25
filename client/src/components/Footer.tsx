@@ -128,7 +128,7 @@ export default function Footer() {
                   <span>🇭🇰 Hong Kong</span>
                 </span>
               </Link>
-              <Link href="/jp/ja" aria-label="Tengcle株式会社 - Japan Office">
+              <Link href="/jp/ja" aria-label="株式会社Tengcle - Japan Office">
                 <span className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}>
                   <span>🇯🇵 {t.footer.japan}</span>
                 </span>

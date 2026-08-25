@@ -53,34 +53,100 @@ const regionalProfiles = {
 };
 
 const routeSuffixes = {
-  hk: ["", "/services", "/portfolio", "/about", "/contact", "/faq", "/news", "/privacy"],
-  jp: ["", "/services", "/about", "/careers", "/contact", "/faq", "/news", "/privacy"],
-  us: ["", "/services", "/services/property-development", "/services/property-management", "/services/vacation-rentals", "/about", "/contact", "/faq", "/news", "/privacy"],
+  hk: [
+    "",
+    "/services",
+    "/portfolio",
+    "/about",
+    "/contact",
+    "/faq",
+    "/news",
+    "/privacy",
+    ...[
+      "first-ffe-project-2026",
+      "odoo-erp-launch",
+      "expansion-preparation",
+      "hotel-operations-launch",
+      "hk-founding",
+    ].map(id => `/news/${id}`),
+  ],
+  jp: [
+    "",
+    "/services",
+    "/about",
+    "/careers",
+    "/contact",
+    "/faq",
+    "/news",
+    "/privacy",
+    "/news/company-incorporation-2021",
+  ],
+  us: [
+    "",
+    "/services",
+    "/services/property-development",
+    "/services/property-management",
+    "/services/vacation-rentals",
+    "/about",
+    "/contact",
+    "/faq",
+    "/news",
+    "/privacy",
+    ...[
+      "property-management-launch-2025",
+      "us-founding-2026",
+      "group-global-network-2024",
+    ].map(id => `/news/${id}`),
+  ],
 };
 
 const staticPages = [
-  { route: "/", lang: "en", title: "Tengcle Group | Affiliated Companies in Hong Kong, Japan & the United States", description: "Tengcle Group presents the activities of affiliated companies in Hong Kong, Japan, and the United States." },
-  { route: "/privacy", lang: "en", title: "Privacy Policy | Tengcle Group", description: "Privacy information for Tengcle Group websites." },
+  {
+    route: "/",
+    lang: "en",
+    title:
+      "Tengcle Group | Affiliated Companies in Hong Kong, Japan & the United States",
+    description:
+      "Tengcle Group presents the activities of affiliated companies in Hong Kong, Japan, and the United States.",
+  },
+  {
+    route: "/privacy",
+    lang: "en",
+    title: "Privacy Policy | Tengcle Group",
+    description: "Privacy information for Tengcle Group websites.",
+  },
 ];
 
 function escapeHtml(value) {
-  return value.replace(/[&<>'"]/g, (character) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    "'": "&#39;",
-    '"': "&quot;",
-  })[character]);
+  return value.replace(
+    /[&<>'"]/g,
+    character =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "'": "&#39;",
+        '"': "&quot;",
+      })[character]
+  );
 }
 
 function replaceTitle(html, title) {
-  return html.replace(/<title>.*?<\/title>/s, `<title>${escapeHtml(title)}</title>`);
+  return html.replace(
+    /<title>.*?<\/title>/s,
+    `<title>${escapeHtml(title)}</title>`
+  );
 }
 
 function setMeta(html, attribute, value, content) {
-  const matcher = new RegExp(`<meta\\s+${attribute}=["']${value}["'][^>]*>`, "i");
+  const matcher = new RegExp(
+    `<meta\\s+${attribute}=["']${value}["'][^>]*>`,
+    "i"
+  );
   const tag = `<meta ${attribute}="${value}" content="${escapeHtml(content)}" />`;
-  return matcher.test(html) ? html.replace(matcher, tag) : html.replace("</head>", `  ${tag}\n</head>`);
+  return matcher.test(html)
+    ? html.replace(matcher, tag)
+    : html.replace("</head>", `  ${tag}\n</head>`);
 }
 
 function setCanonical(html, canonical) {
@@ -90,9 +156,15 @@ function setCanonical(html, canonical) {
     : html.replace("</head>", `  ${tag}\n</head>`);
 }
 
+function removeHeadElement(html, matcher) {
+  return html.replace(matcher, "");
+}
+
 function getMetadata(region, language, suffix) {
   const profile = regionalProfiles[region];
-  const section = suffix ? suffix.replace(/^\//, "").replaceAll("/", " · ") : "";
+  const section = suffix
+    ? suffix.replace(/^\//, "").replaceAll("/", " · ")
+    : "";
   const baseTitle = profile.titles[language];
   return {
     route: `/${region}/${language}${suffix}`,
@@ -106,19 +178,59 @@ function getMetadata(region, language, suffix) {
 
 function buildHreflang(region, suffix) {
   if (!region) return "";
-  const languageTags = region === "hk"
-    ? { en: "en-HK", ja: "ja-HK", zh: "zh-HK" }
-    : region === "jp"
-      ? { en: "en-JP", ja: "ja-JP", zh: "zh-JP" }
-      : { en: "en-US", ja: "ja-US", zh: "zh-US" };
+  const languageTags =
+    region === "hk"
+      ? { en: "en-HK", ja: "ja-HK", zh: "zh-HK" }
+      : region === "jp"
+        ? { en: "en-JP", ja: "ja-JP", zh: "zh-JP" }
+        : { en: "en-US", ja: "ja-US", zh: "zh-US" };
   return Object.entries(languageTags)
-    .map(([language, tag]) => `<link rel="alternate" hreflang="${tag}" href="${baseUrl}/${region}/${language}${suffix}" />`)
+    .map(
+      ([language, tag]) =>
+        `<link rel="alternate" hreflang="${tag}" href="${baseUrl}/${region}/${language}${suffix}" />`
+    )
     .join("\n    ");
+}
+
+function renderSitemap(pages) {
+  const entries = pages.map(page => {
+    const segments = page.route.split("/").filter(Boolean);
+    const region = regionalProfiles[segments[0]] ? segments[0] : null;
+    const suffix = region
+      ? `/${segments.slice(2).join("/")}`.replace(/\/$/, "")
+      : "";
+    const alternates = region
+      ? `${buildHreflang(region, suffix).replaceAll("<link ", "<xhtml:link ")}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/${region}/en${suffix}" />`
+      : "";
+    const priority =
+      page.route === "/" ? "1.0" : suffix === "" && region ? "0.95" : "0.8";
+    return `  <url>
+    <loc>${baseUrl}${page.route}</loc>
+    ${alternates}
+    <changefreq>monthly</changefreq>
+    <priority>${priority}</priority>
+    <image:image>
+      <image:loc>${baseUrl}/images/og-image.webp</image:loc>
+      <image:title>${escapeHtml(page.title)}</image:title>
+    </image:image>
+  </url>`;
+  });
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${entries.join("\n")}
+</urlset>
+`;
 }
 
 function renderPage(baseHtml, page) {
   const canonical = `${baseUrl}${page.route}`;
-  let html = baseHtml.replace(/<html lang="[^"]+">/i, `<html lang="${page.lang}">`);
+  let html = baseHtml.replace(
+    /<html lang="[^"]+">/i,
+    `<html lang="${page.lang}">`
+  );
   html = replaceTitle(html, page.title);
   html = setMeta(html, "name", "description", page.description);
   html = setMeta(html, "property", "og:title", page.title);
@@ -130,7 +242,10 @@ function renderPage(baseHtml, page) {
   html = setCanonical(html, canonical);
   const region = page.route.split("/")[1];
   const suffix = page.route.split("/").slice(3).join("/");
-  const hreflang = buildHreflang(regionalProfiles[region] ? region : null, suffix ? `/${suffix}` : "");
+  const hreflang = buildHreflang(
+    regionalProfiles[region] ? region : null,
+    suffix ? `/${suffix}` : ""
+  );
   if (hreflang) html = html.replace("</head>", `    ${hreflang}\n  </head>`);
   const schema = {
     "@context": "https://schema.org",
@@ -142,23 +257,58 @@ function renderPage(baseHtml, page) {
     inLanguage: page.lang,
     about: { "@type": "Organization", name: page.company || "Tengcle Group" },
   };
-  return html.replace("</head>", `    <script type="application/ld+json">${JSON.stringify(schema)}</script>\n  </head>`);
+  return html.replace(
+    "</head>",
+    `    <script type="application/ld+json">${JSON.stringify(schema)}</script>\n  </head>`
+  );
 }
 
-const baseHtml = await readFile(path.join(outputDirectory, "index.html"), "utf8");
+function renderNotFoundPage(baseHtml) {
+  let html = baseHtml.replace(/<html lang="[^"]+">/i, '<html lang="en">');
+  html = replaceTitle(html, "Page Not Found | Tengcle Group");
+  html = setMeta(
+    html,
+    "name",
+    "description",
+    "The requested Tengcle Group page does not exist."
+  );
+  html = setMeta(html, "name", "robots", "noindex, nofollow");
+  html = setMeta(html, "name", "googlebot", "noindex, nofollow");
+  html = removeHeadElement(html, /\s*<link\s+rel=["']canonical["'][^>]*>/i);
+  html = removeHeadElement(html, /\s*<meta\s+property=["']og:url["'][^>]*>/i);
+  return html;
+}
+
+const baseHtml = await readFile(
+  path.join(outputDirectory, "index.html"),
+  "utf8"
+);
 const pages = [...staticPages];
 for (const [region, suffixes] of Object.entries(routeSuffixes)) {
   for (const language of ["en", "ja", "zh"]) {
-    for (const suffix of suffixes) pages.push(getMetadata(region, language, suffix));
+    for (const suffix of suffixes)
+      pages.push(getMetadata(region, language, suffix));
   }
 }
 
 for (const page of pages) {
-  const outputPath = page.route === "/"
-    ? path.join(outputDirectory, "index.html")
-    : path.join(outputDirectory, page.route.slice(1), "index.html");
+  const outputPath =
+    page.route === "/"
+      ? path.join(outputDirectory, "index.html")
+      : path.join(outputDirectory, page.route.slice(1), "index.html");
   await mkdir(path.dirname(outputPath), { recursive: true });
   await writeFile(outputPath, renderPage(baseHtml, page));
 }
 
-console.log(`Generated route-specific initial HTML for ${pages.length} public routes.`);
+await writeFile(
+  path.join(outputDirectory, "404.html"),
+  renderNotFoundPage(baseHtml)
+);
+await writeFile(
+  path.join(outputDirectory, "sitemap.xml"),
+  renderSitemap(pages)
+);
+
+console.log(
+  `Generated route-specific initial HTML and sitemap for ${pages.length} public routes, plus 404.html.`
+);
