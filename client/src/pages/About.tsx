@@ -16,6 +16,10 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedSection from "@/components/AnimatedSection";
 import SEOHead, { generateBreadcrumbSchema, generateOrganizationSchema } from "@/components/SEOHead";
+import { companyProfiles } from "@/data/companyProfiles";
+
+const hkCompany = companyProfiles.hk;
+const hkAddress = hkCompany.addresses[0];
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
@@ -56,20 +60,21 @@ export default function About() {
         keywords={language === "ja" ? "Tengcle Limited, 会社概要, 香港, ホテルFF&E" : language === "zh" ? "Tengcle Limited, 关于我们, 香港, 酒店FF&E" : "Tengcle Limited, about us, Hong Kong, hotel FF&E"}
         canonical={`https://www.tengcle.com/hk/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
-        ogImage="/images/og-image-hk.jpg"
+        ogImage="/images/og-image.webp"
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
-              name: "Tengcle Limited",
+              name: hkCompany.legalName,
               description: t.about.description,
               url: "https://www.tengcle.com",
-              email: "info@tengcle.com",
+              email: hkCompany.email,
               address: {
-                street: "No. 5, 17/F, Strand 50, 50 Bonham Strand",
-                city: "Sheung Wan",
-                region: "Hong Kong",
-                country: "HK"
+                street: hkAddress.street,
+                city: hkAddress.city,
+                region: hkAddress.region,
+                country: hkAddress.country,
+                postalCode: hkAddress.postalCode,
               },
               sameAs: [
                 "https://www.tengcle.com/jp",
@@ -274,7 +279,7 @@ export default function About() {
                 className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300 relative"
               >
                 <div className="absolute top-4 right-4 bg-gold/10 text-gold text-xs px-2 py-1 rounded">
-                  {language === "ja" ? "設立準備中" : language === "zh" ? "筹备中" : "Establishing"}
+                  {language === "ja" ? "2026年1月設立" : language === "zh" ? "2026年1月成立" : "Established January 2026"}
                 </div>
                 <MapPin className="h-8 w-8 text-gold mb-4" />
                 <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-2`}>

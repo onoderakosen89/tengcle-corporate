@@ -16,6 +16,10 @@ import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedSection from "@/components/AnimatedSection";
 import SEOHead, { generateLocalBusinessSchema } from "@/components/SEOHead";
+import { companyProfiles } from "@/data/companyProfiles";
+
+const hkCompany = companyProfiles.hk;
+const hkAddress = hkCompany.addresses[0];
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
@@ -52,21 +56,21 @@ export default function Contact() {
     <div className="min-h-screen bg-white" data-region="hk">
       <SEOHead
         title={language === "ja" ? "お問い合わせ | Tengcle Limited 香港" : language === "zh" ? "联系我们 | Tengcle Limited 香港" : "Contact Us | Tengcle Limited Hong Kong"}
-        description={language === "ja" ? "Tengcle Limitedへのお問い合わせ。香港・上環オフィス。ホテルFF&E、ITソリューションのご相談。" : language === "zh" ? "联系Tengcle Limited。香港上璐办公室。酒店FF&E、IT解决方案咨询。" : "Contact Tengcle Limited. Hong Kong Sheung Wan office. Hotel FF&E & IT solutions inquiries."}
-        keywords={language === "ja" ? "Tengcle Limited, お問い合わせ, 香港, 上環, ホテルFF&E" : language === "zh" ? "Tengcle Limited, 联系我们, 香港, 上璯, 酒店FF&E" : "Tengcle Limited, contact, Hong Kong, Sheung Wan, hotel FF&E"}
+        description={language === "ja" ? "Tengcle Limitedへのお問い合わせ。香港・上環オフィス。ホテルFF&E、ITソリューションのご相談。" : language === "zh" ? "联系Tengcle Limited。香港上环办公室。酒店FF&E、IT解决方案咨询。" : "Contact Tengcle Limited. Hong Kong Sheung Wan office. Hotel FF&E & IT solutions inquiries."}
+        keywords={language === "ja" ? "Tengcle Limited, お問い合わせ, 香港, 上環, ホテルFF&E" : language === "zh" ? "Tengcle Limited, 联系我们, 香港, 上环, 酒店FF&E" : "Tengcle Limited, contact, Hong Kong, Sheung Wan, hotel FF&E"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
-        ogImage="/images/og-image-hk.jpg"
+        ogImage="/images/og-image.webp"
         canonical={`https://www.tengcle.com/hk/${language}/contact`}
         structuredData={generateLocalBusinessSchema({
-          name: "Tengcle Limited",
+          name: hkCompany.legalName,
           url: "https://www.tengcle.com",
-          email: "info@tengcle.com",
+          email: hkCompany.email,
           address: {
-            street: "No. 5, 17/F, Strand 50, 50 Bonham Strand",
-            city: "Sheung Wan",
-            region: "Hong Kong",
-            postalCode: "",
-            country: "HK"
+            street: hkAddress.street,
+            city: hkAddress.city,
+            region: hkAddress.region,
+            postalCode: hkAddress.postalCode,
+            country: hkAddress.country,
           },
           geo: {
             latitude: "22.2863",
@@ -194,7 +198,7 @@ export default function Contact() {
                   className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300 h-full relative"
                 >
                   <div className="absolute top-4 right-4 bg-gold/10 text-gold text-xs px-2 py-1 rounded">
-                    {language === "ja" ? "設立準備中" : language === "zh" ? "筹备中" : "Establishing"}
+                    {language === "ja" ? "2026年1月設立" : language === "zh" ? "2026年1月成立" : "Established January 2026"}
                   </div>
                   <MapPin className="h-8 w-8 text-gold mb-4" />
                   <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-4`}>

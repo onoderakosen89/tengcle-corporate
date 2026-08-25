@@ -260,7 +260,7 @@ export default function PropertyDevelopment() {
         keywords={t('meta.keywords')}
         canonical={`https://www.tengcle.com${basePath}/services/property-development`}
         locale={language === 'ja' ? 'ja_JP' : language === 'zh' ? 'zh_CN' : 'en_US'}
-        ogImage="/images/og-image-us.jpg"
+        ogImage="/images/og-image.webp"
       />
       <UsHeader />
       

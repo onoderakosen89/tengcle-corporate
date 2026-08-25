@@ -18,6 +18,10 @@ import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
 import AnimatedSection from "@/components/AnimatedSection";
 import SEOHead, { generateBreadcrumbSchema, generateOrganizationSchema } from "@/components/SEOHead";
+import { companyProfiles } from "@/data/companyProfiles";
+
+const jpCompany = companyProfiles.jp;
+const jpAddress = jpCompany.addresses[0];
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
@@ -63,16 +67,16 @@ export default function About() {
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
-              name: "株式会社Tengcle",
+              name: jpCompany.legalName,
               description: t.about.description,
               url: "https://www.tengcle.com/jp",
-              email: "info@tengcle.com",
+              email: jpCompany.email,
               address: {
-                street: "2-19-20 Takanawa",
-                city: "Minato-ku",
-                region: "Tokyo",
-                country: "JP",
-                postalCode: "108-0074"
+                street: jpAddress.street,
+                city: jpAddress.city,
+                region: jpAddress.region,
+                country: jpAddress.country,
+                postalCode: jpAddress.postalCode,
               },
               sameAs: [
                 "https://www.tengcle.com",

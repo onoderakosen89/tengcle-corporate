@@ -22,7 +22,7 @@ export default function UsFooter() {
 
   const groupSites = [
     { href: "/hk/en", label: "🇭🇰 Tengcle Limited (Hong Kong)", ariaLabel: "Tengcle Limited - Hong Kong Headquarters" },
-    { href: "/jp/ja", label: "🇯🇵 Tengcle株式会社 (Japan)", ariaLabel: "Tengcle株式会社 - Japan Office" },
+    { href: "/jp/ja", label: "🇯🇵 株式会社Tengcle (Japan)", ariaLabel: "株式会社Tengcle - Japan Office" },
     { href: "/us/en", label: "🇺🇸 Tengcle Development LLC (US)", ariaLabel: "Tengcle Development LLC - US Office" },
   ];
 

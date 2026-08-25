@@ -34,7 +34,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Which regions does Tengcle Group operate in?",
-      answer: "Tengcle Group operates globally with offices in three key regions: Hong Kong (Global Headquarters - Tengcle Limited), Japan (Tengcle株式会社 - Tokyo), and the United States (Tengcle Development LLC - New Jersey). We serve clients throughout Asia-Pacific, including China, Southeast Asia, and beyond."
+      answer: "Tengcle Group operates globally with offices in three key regions: Hong Kong (Global Headquarters - Tengcle Limited), Japan (株式会社Tengcle - Tokyo), and the United States (Tengcle Development LLC - New Jersey). We serve clients throughout Asia-Pacific, including China, Southeast Asia, and beyond."
     },
     {
       question: "How can I request a quote for hotel FF&E procurement?",
@@ -68,7 +68,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcle Groupはどの地域で事業を展開していますか？",
-      answer: "Tengcle Groupは、3つの主要地域にオフィスを構えてグローバルに事業を展開しています：香港（グローバル本社 - Tengcle Limited）、日本（Tengcle株式会社 - 東京）、アメリカ（Tengcle Development LLC - ニュージャージー）。中国、東南アジアを含むアジア太平洋地域全体のお客様にサービスを提供しています。"
+      answer: "Tengcle Groupは、3つの主要地域にオフィスを構えてグローバルに事業を展開しています：香港（グローバル本社 - Tengcle Limited）、日本（株式会社Tengcle - 東京）、アメリカ（Tengcle Development LLC - ニュージャージー）。中国、東南アジアを含むアジア太平洋地域全体のお客様にサービスを提供しています。"
     },
     {
       question: "ホテルFF&E調達の見積もりを依頼するにはどうすればよいですか？",
@@ -102,7 +102,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcle Group在哪些地区运营？",
-      answer: "Tengcle Group在三个主要地区设有办事处，进行全球运营：香港（全球总部 - Tengcle Limited）、日本（Tengcle株式会社 - 东京）和美国（Tengcle Development LLC - 新泽西）。我们为包括中国、东南亚在内的整个亚太地区的客户提供服务。"
+      answer: "Tengcle Group在三个主要地区设有办事处，进行全球运营：香港（全球总部 - Tengcle Limited）、日本（株式会社Tengcle - 东京）和美国（Tengcle Development LLC - 新泽西）。我们为包括中国、东南亚在内的整个亚太地区的客户提供服务。"
     },
     {
       question: "如何申请酒店FF&E采购报价？",
@@ -246,7 +246,7 @@ export default function FAQ() {
         description={currentSeo.description}
         canonical={`https://www.tengcle.com/hk/${language}/faq`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
-        ogImage="/images/og-image-hk.jpg"
+        ogImage="/images/og-image.webp"
         keywords={currentSeo.keywords}
         structuredData={faqStructuredData}
       />

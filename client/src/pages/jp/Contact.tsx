@@ -17,6 +17,10 @@ import Footer from "@/components/jp/Footer";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
 import AnimatedSection from "@/components/AnimatedSection";
 import SEOHead, { generateLocalBusinessSchema } from "@/components/SEOHead";
+import { companyProfiles } from "@/data/companyProfiles";
+
+const jpCompany = companyProfiles.jp;
+const jpAddress = jpCompany.addresses[0];
 
 const easeOut: Easing = [0.16, 1, 0.3, 1];
 
@@ -88,15 +92,15 @@ export default function Contact() {
         ogImage="/images/og-image.webp"
         canonical={`https://www.tengcle.com/jp/${language}/contact`}
         structuredData={generateLocalBusinessSchema({
-          name: "株式会社Tengcle",
+          name: jpCompany.legalName,
           url: "https://www.tengcle.com/jp",
-          email: "info@tengcle.com",
+          email: jpCompany.email,
           address: {
-            street: "2-19-20 Takanawa",
-            city: "Minato-ku",
-            region: "Tokyo",
-            postalCode: "108-0074",
-            country: "JP"
+            street: jpAddress.street,
+            city: jpAddress.city,
+            region: jpAddress.region,
+            postalCode: jpAddress.postalCode,
+            country: jpAddress.country,
           },
           geo: {
             latitude: "35.6324",

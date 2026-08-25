@@ -320,7 +320,7 @@ export default function NewsArticle() {
           title="Article Not Found | Tengcle Limited"
           description="The requested article could not be found."
           canonical={`https://www.tengcle.com${basePath}/news`}
-          ogImage="/images/og-image-hk.jpg"
+          ogImage="/images/og-image.webp"
         />
         <div className="min-h-screen bg-cream">
           <Header />
@@ -364,7 +364,7 @@ export default function NewsArticle() {
         description={excerpt}
         canonical={`https://www.tengcle.com${basePath}/news/${article.slug}`}
         keywords="Tengcle news, hotel FF&E, hospitality projects, company updates"
-        ogImage="/images/og-image-hk.jpg"
+        ogImage="/images/og-image.webp"
       />
       <div className="min-h-screen bg-cream">
         <Header />

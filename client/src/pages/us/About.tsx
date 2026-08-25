@@ -5,6 +5,10 @@ import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import SEOHead, { generateBreadcrumbSchema, generateOrganizationSchema } from "@/components/SEOHead";
+import { companyProfiles } from "@/data/companyProfiles";
+
+const usCompany = companyProfiles.us;
+const usAddress = usCompany.addresses[0];
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -62,16 +66,16 @@ export default function UsAbout() {
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
-              name: "Tengcle Development LLC",
+              name: usCompany.legalName,
               description: t('about.description'),
               url: "https://www.tengcle.com/us",
-              email: "us@tengcle.com",
+              email: usCompany.email,
               address: {
-                street: "17 Hamilton Ave",
-                city: "Weehawken",
-                region: "NJ",
-                country: "US",
-                postalCode: "07086"
+                street: usAddress.street,
+                city: usAddress.city,
+                region: usAddress.region,
+                country: usAddress.country,
+                postalCode: usAddress.postalCode,
               },
               sameAs: [
                 "https://www.tengcle.com",
@@ -121,8 +125,8 @@ export default function UsAbout() {
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
@@ -167,8 +171,8 @@ export default function UsAbout() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
