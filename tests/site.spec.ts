@@ -49,6 +49,128 @@ test("article initial HTML exposes article-specific social and search metadata",
   expect(body.match(/rel="alternate"/g)).toHaveLength(4);
 });
 
+test("route manifest metadata remains stable after hydration", async ({
+  page,
+  request,
+}) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary")
+  );
+  for (const route of [
+    "/hk/en",
+    "/jp/ja",
+    "/us/en",
+    "/hk/zh/faq",
+    "/us/en/news/us-founding-2026",
+  ]) {
+    const response = await request.get(route);
+    const initialHtml = await response.text();
+    const initialTitle = initialHtml.match(/<title>(.*?)<\/title>/s)?.[1];
+    const initialDescription = initialHtml.match(
+      /<meta\s+name="description"\s+content="([^"]+)"/i
+    )?.[1];
+    expect(initialTitle, route).toBeTruthy();
+    expect(initialDescription, route).toBeTruthy();
+
+    await page.goto(route);
+    await expect(page).toHaveTitle(initialTitle!);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      "content",
+      initialDescription!
+    );
+    const webPageNodes = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluateAll(scripts =>
+        scripts.reduce((count, script) => {
+          const data = JSON.parse(script.textContent || "{}");
+          const graph = Array.isArray(data["@graph"]) ? data["@graph"] : [data];
+          return (
+            count + graph.filter(item => item?.["@type"] === "WebPage").length
+          );
+        }, 0)
+      );
+    expect(webPageNodes, route).toBe(1);
+  }
+});
+
+test("all sitemap routes retain canonical metadata and unique primary schemas after hydration", async ({
+  page,
+  request,
+}) => {
+  test.setTimeout(180_000);
+  await page.addInitScript(() =>
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary")
+  );
+
+  const sitemapResponse = await request.get("/sitemap.xml");
+  expect(sitemapResponse.status()).toBe(200);
+  const sitemap = await sitemapResponse.text();
+  const urls = Array.from(
+    sitemap.matchAll(/<loc>(https:\/\/www\.tengcle\.com[^<]+)<\/loc>/g),
+    match => match[1]
+  );
+  expect(urls).toHaveLength(107);
+
+  for (const canonical of urls) {
+    const route = new URL(canonical).pathname;
+    const response = await request.get(route);
+    const initialHtml = await response.text();
+    const initialScripts = Array.from(
+      initialHtml.matchAll(
+        /<script\s+type=["']application\/ld\+json["'][^>]*>(.*?)<\/script>/gs
+      ),
+      match => JSON.parse(match[1])
+    );
+    const initialNodes = initialScripts.flatMap(data =>
+      Array.isArray(data["@graph"]) ? data["@graph"] : [data]
+    );
+
+    await page.goto(route, { waitUntil: "domcontentloaded" });
+    await expect
+      .poll(() =>
+        page.locator("#root").evaluate(root => root.childElementCount)
+      )
+      .toBeGreaterThan(0);
+    await expect(page).not.toHaveTitle(/Page Not Found/i);
+    await expect(page.locator('meta[name="robots"]')).not.toHaveAttribute(
+      "content",
+      /noindex/i
+    );
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      canonical
+    );
+
+    const hydratedNodes = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluateAll(scripts =>
+        scripts.flatMap(script => {
+          const data = JSON.parse(script.textContent || "{}");
+          return Array.isArray(data["@graph"]) ? data["@graph"] : [data];
+        })
+      );
+    const ids = hydratedNodes
+      .map(node => node?.["@id"])
+      .filter((id): id is string => typeof id === "string");
+    expect(new Set(ids).size, `${route} duplicate schema @id`).toBe(ids.length);
+
+    for (const type of [
+      "WebPage",
+      "Organization",
+      "BreadcrumbList",
+      "NewsArticle",
+    ]) {
+      const initialCount = initialNodes.filter(
+        node => node?.["@type"] === type
+      ).length;
+      const hydratedCount = hydratedNodes.filter(
+        node => node?.["@type"] === type
+      ).length;
+      expect(hydratedCount, `${route} ${type}`).toBe(initialCount);
+    }
+  }
+});
+
 test("unknown documents return a real noindex 404 without canonical", async ({
   request,
   page,

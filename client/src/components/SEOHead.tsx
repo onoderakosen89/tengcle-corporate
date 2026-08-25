@@ -7,7 +7,34 @@
  */
 
 import { useEffect } from "react";
-import { normalizeTengcleCanonical } from "@shared/seoRouteManifest";
+import {
+  normalizeTengcleCanonical,
+  seoRouteManifest,
+} from "@shared/seoRouteManifest";
+
+type StructuredNode = Record<string, unknown>;
+
+function structuredNodes(value: unknown): StructuredNode[] {
+  if (!value || typeof value !== "object") return [];
+  const record = value as StructuredNode;
+  const graph = record["@graph"];
+  if (Array.isArray(graph)) {
+    return graph.filter(
+      (node): node is StructuredNode =>
+        Boolean(node) && typeof node === "object"
+    );
+  }
+  return [record];
+}
+
+function structuredTypes(node: StructuredNode): string[] {
+  const value = node["@type"];
+  return Array.isArray(value)
+    ? value.filter((type): type is string => typeof type === "string")
+    : typeof value === "string"
+      ? [value]
+      : [];
+}
 
 interface SEOHeadProps {
   title: string;
@@ -41,10 +68,18 @@ export default function SEOHead({
   const normalizedCanonical = canonical
     ? normalizeTengcleCanonical(canonical)
     : undefined;
+  const routeSeo = normalizedCanonical
+    ? seoRouteManifest.find(route => route.canonical === normalizedCanonical)
+    : undefined;
+  const resolvedTitle = routeSeo?.title ?? title;
+  const resolvedDescription = routeSeo?.description ?? description;
+  const resolvedOgType = routeSeo?.ogType ?? ogType;
+  const resolvedLocale = routeSeo?.locale ?? locale;
+  const resolvedPublishedTime = routeSeo?.datePublished ?? publishedTime;
 
   useEffect(() => {
     // Update document title
-    document.title = title;
+    document.title = resolvedTitle;
 
     // Helper to update or create meta tag
     const updateMeta = (name: string, content: string, isProperty = false) => {
@@ -63,16 +98,16 @@ export default function SEOHead({
     };
 
     // Update basic meta tags
-    updateMeta("description", description);
+    updateMeta("description", resolvedDescription);
     updateMeta("author", author);
     if (keywords) {
       updateMeta("keywords", keywords);
     }
 
     // Update Open Graph meta tags
-    updateMeta("og:title", title, true);
-    updateMeta("og:description", description, true);
-    updateMeta("og:type", ogType, true);
+    updateMeta("og:title", resolvedTitle, true);
+    updateMeta("og:description", resolvedDescription, true);
+    updateMeta("og:type", resolvedOgType, true);
     updateMeta(
       "og:image",
       ogImage.startsWith("http")
@@ -82,22 +117,22 @@ export default function SEOHead({
     );
     updateMeta("og:image:width", "1200", true);
     updateMeta("og:image:height", "630", true);
-    updateMeta("og:locale", locale, true);
+    updateMeta("og:locale", resolvedLocale, true);
     updateMeta("og:site_name", "Tengcle Group", true);
 
     // Update Twitter Card meta tags
     updateMeta("twitter:card", "summary_large_image");
-    updateMeta("twitter:title", title);
-    updateMeta("twitter:description", description);
+    updateMeta("twitter:title", resolvedTitle);
+    updateMeta("twitter:description", resolvedDescription);
     updateMeta(
       "twitter:image",
       ogImage.startsWith("http") ? ogImage : `https://www.tengcle.com${ogImage}`
     );
-    updateMeta("twitter:image:alt", title);
+    updateMeta("twitter:image:alt", resolvedTitle);
 
     // Article specific meta tags
-    if (publishedTime) {
-      updateMeta("article:published_time", publishedTime, true);
+    if (resolvedPublishedTime) {
+      updateMeta("article:published_time", resolvedPublishedTime, true);
     } else {
       removeMeta("article:published_time", true);
     }
@@ -140,18 +175,78 @@ export default function SEOHead({
       updateMeta("og:url", normalizedCanonical, true);
     }
 
-    // Add structured data
-    if (structuredData) {
-      const existingScript = document.querySelector(
-        "script[data-seo-structured]"
-      );
-      if (existingScript) {
-        existingScript.remove();
+    // Keep the prerendered route graph as the canonical graph for a direct
+    // document load. Runtime schemas may add new node types, but must not
+    // duplicate Organization/Breadcrumb/Article nodes already in that graph.
+    const runtimeScript = document.querySelector("script[data-seo-structured]");
+    runtimeScript?.remove();
+
+    const prerenderScript = document.querySelector<HTMLScriptElement>(
+      'script[data-seo-route-structured="true"]'
+    );
+    let prerenderNodes: StructuredNode[] = [];
+    if (prerenderScript) {
+      try {
+        const nodes = structuredNodes(
+          JSON.parse(prerenderScript.textContent || "{}")
+        );
+        const routeWebPage = nodes.find(node =>
+          structuredTypes(node).includes("WebPage")
+        );
+        const matchesCurrentRoute =
+          !noindex &&
+          Boolean(normalizedCanonical) &&
+          routeWebPage?.url === normalizedCanonical;
+        if (matchesCurrentRoute) {
+          prerenderNodes = nodes;
+        } else {
+          // A client-side navigation must not retain the previous route's graph.
+          prerenderScript.remove();
+        }
+      } catch {
+        prerenderScript.remove();
       }
+    }
+
+    const runtimeCandidates: StructuredNode[] = [];
+    if (prerenderNodes.length === 0 && routeSeo && !noindex) {
+      runtimeCandidates.push({
+        "@type": "WebPage",
+        "@id": `${routeSeo.canonical}#webpage`,
+        url: routeSeo.canonical,
+        name: routeSeo.title,
+        description: routeSeo.description,
+        inLanguage: routeSeo.lang,
+      });
+    }
+    if (structuredData) {
+      runtimeCandidates.push(...structuredNodes(structuredData));
+    }
+
+    const existingIds = new Set(
+      prerenderNodes
+        .map(node => node["@id"])
+        .filter((id): id is string => typeof id === "string")
+    );
+    const existingTypes = new Set(prerenderNodes.flatMap(structuredTypes));
+    const uniqueRuntimeNodes = runtimeCandidates.filter(node => {
+      const id = node["@id"];
+      const types = structuredTypes(node);
+      if (typeof id === "string" && existingIds.has(id)) return false;
+      if (types.some(type => existingTypes.has(type))) return false;
+      if (typeof id === "string") existingIds.add(id);
+      types.forEach(type => existingTypes.add(type));
+      return true;
+    });
+
+    if (uniqueRuntimeNodes.length > 0) {
       const script = document.createElement("script");
       script.type = "application/ld+json";
       script.setAttribute("data-seo-structured", "true");
-      script.textContent = JSON.stringify(structuredData);
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": uniqueRuntimeNodes,
+      });
       document.head.appendChild(script);
     }
 
@@ -163,17 +258,17 @@ export default function SEOHead({
       }
     };
   }, [
-    title,
-    description,
+    resolvedTitle,
+    resolvedDescription,
     normalizedCanonical,
     ogImage,
-    ogType,
-    locale,
+    resolvedOgType,
+    resolvedLocale,
     noindex,
     structuredData,
     keywords,
     author,
-    publishedTime,
+    resolvedPublishedTime,
     modifiedTime,
   ]);
 
@@ -193,7 +288,7 @@ export function generateBreadcrumbSchema(
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: item.url,
+      item: normalizeTengcleCanonical(item.url),
     })),
   };
 }
@@ -254,6 +349,7 @@ export function generateWebPageSchema(page: {
   name: string;
   description: string;
   url: string;
+  inLanguage?: string;
   breadcrumbs?: { name: string; url: string }[];
   navigation?: { name: string; url: string; description?: string }[];
 }) {
@@ -272,7 +368,7 @@ export function generateWebPageSchema(page: {
         about: {
           "@id": "https://www.tengcle.com/#organization",
         },
-        inLanguage: "en",
+        inLanguage: page.inLanguage ?? "en",
       },
     ],
   };
@@ -329,12 +425,14 @@ export function generateOrganizationSchema(org: {
   foundingDate?: string;
   founders?: { name: string }[];
 }) {
+  const normalizedUrl = normalizeTengcleCanonical(org.url);
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${normalizedUrl}#organization`,
     name: org.name,
     description: org.description,
-    url: org.url,
+    url: normalizedUrl,
     ...(org.logo && {
       logo: {
         "@type": "ImageObject",

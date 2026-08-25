@@ -16,7 +16,8 @@ import Header from "@/components/jp/Header";
 import Footer from "@/components/jp/Footer";
 import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
-import SEOHead, { generateOrganizationSchema, generateWebPageSchema } from "@/components/SEOHead";
+import SEOHead, { generateOrganizationSchema } from "@/components/SEOHead";
+import { companyProfiles } from "@/data/companyProfiles";
 
 // Animation variants with proper typing - Japan: Refined & Delicate
 // 日本的な繊細さと優雅さを表現するアニメーション
@@ -201,6 +202,8 @@ export default function Home() {
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "ja";
   const basePath = `/jp/${pathLang}`;
+  const company = companyProfiles.jp;
+  const address = company.addresses[0];
 
   // Get body font class based on language
   const getFontClass = () => {
@@ -262,29 +265,20 @@ export default function Home() {
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
-              name: "株式会社Tengcle",
+              name: company.legalName,
               description: "株式会社Tengcle - 不動産管理を中心に、段階的に事業を展開する日本法人。",
               url: "https://www.tengcle.com/jp/ja",
               logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
-              email: "info@tengcle.com",
+              email: company.email,
               address: {
-                street: "2-19-20 Takanawa",
-                city: "Minato-ku",
-                region: "Tokyo",
-                country: "JP",
-                postalCode: "108-0074"
+                street: address.street,
+                city: address.city,
+                region: address.region,
+                country: address.country,
+                postalCode: address.postalCode,
               },
-              foundingDate: "2021-10-25",
-              sameAs: [
-                "https://www.tengcle.com/hk/en",
-                "https://www.tengcle.com/us/en"
-              ]
-            }),
-            generateWebPageSchema({
-              name: t.meta.title,
-              description: t.meta.description,
-              url: `https://www.tengcle.com/jp/${language}`,
-            })["@graph"][0]
+              foundingDate: company.established,
+            })
           ]
         }}
       />
