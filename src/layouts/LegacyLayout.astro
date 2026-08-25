@@ -1,0 +1,74 @@
+---
+import type { SeoRoute } from "../../shared/seoRouteManifest";
+import { hreflangForRoute, structuredData } from "../../shared/seoOutput";
+import "../styles/global.css";
+
+interface Props {
+  page: SeoRoute;
+}
+
+const { page } = Astro.props;
+const alternates = hreflangForRoute(page);
+const regionalHome = page.region && page.language
+  ? `/${page.region}/${page.language}/`
+  : "/";
+const fallbackLinks = page.region && page.language
+  ? [
+      { label: "Region home", href: regionalHome },
+      { label: "Services", href: `${regionalHome}services/` },
+      { label: "About", href: `${regionalHome}about/` },
+      { label: "Tengcle home", href: "/" },
+    ]
+  : [{ label: "Tengcle home", href: "/" }];
+---
+
+<!doctype html>
+<html lang={page.lang} data-static-seo-authority="true">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={page.description} />
+    <title>{page.title}</title>
+    <link rel="canonical" href={page.canonical} />
+    {alternates.map(alternate => (
+      <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
+    ))}
+    <meta property="og:type" content={page.ogType} />
+    <meta property="og:title" content={page.title} />
+    <meta property="og:description" content={page.description} />
+    <meta property="og:url" content={page.canonical} />
+    <meta property="og:locale" content={page.locale} />
+    <meta property="og:image" content="https://www.tengcle.com/images/og-image.webp" />
+    {page.datePublished && (
+      <meta property="article:published_time" content={page.datePublished} />
+    )}
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <script
+      type="application/ld+json"
+      data-seo-route-structured="true"
+      is:inline
+      set:html={JSON.stringify(structuredData(page))}
+    />
+  </head>
+  <body class="legacy-adapter-page">
+    <div class="legacy-static">
+      <header class="legacy-static__header">
+        <a href="/" aria-label="Tengcle home">Tengcle</a>
+        <span>{page.company}</span>
+      </header>
+      <main id="main-content" class="legacy-static__main">
+        <p class="eyebrow">Existing route · static baseline</p>
+        <h1>{page.title.split(" | ")[0]}</h1>
+        <p>{page.description}</p>
+        <nav aria-label="Related pages">
+          {fallbackLinks.map(link => <a href={link.href}>{link.label}</a>)}
+        </nav>
+      </main>
+    </div>
+    <div class="legacy-runtime" aria-live="off">
+      <div id="legacy-runtime-root"></div>
+    </div>
+    <script src="../scripts/legacy-entry.tsx"></script>
+  </body>
+</html>

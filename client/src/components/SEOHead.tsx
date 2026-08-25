@@ -203,6 +203,8 @@ export default function SEOHead({
     const prerenderScript = document.querySelector<HTMLScriptElement>(
       'script[data-seo-route-structured="true"]'
     );
+    const staticSeoAuthority =
+      document.documentElement.dataset.staticSeoAuthority === "true";
     let prerenderNodes: StructuredNode[] = [];
     if (prerenderScript) {
       try {
@@ -212,10 +214,13 @@ export default function SEOHead({
         const routeWebPage = nodes.find(node =>
           structuredTypes(node).includes("WebPage")
         );
+        const expectedCanonical = staticSeoAuthority
+          ? normalizeTengcleCanonical(window.location.pathname)
+          : normalizedCanonical;
         const matchesCurrentRoute =
           !noindex &&
-          Boolean(normalizedCanonical) &&
-          routeWebPage?.url === normalizedCanonical;
+          Boolean(expectedCanonical) &&
+          routeWebPage?.url === expectedCanonical;
         if (matchesCurrentRoute) {
           prerenderNodes = nodes;
         } else {
@@ -238,7 +243,10 @@ export default function SEOHead({
         inLanguage: routeSeo.lang,
       });
     }
-    if (structuredData) {
+    // Astro's legacy adapter marks its complete static graph as authoritative.
+    // Keep runtime additions for the existing SPA, but do not let them make
+    // direct-load JSON-LD differ before and after the adapter hydrates.
+    if (structuredData && !(staticSeoAuthority && prerenderNodes.length > 0)) {
       runtimeCandidates.push(...structuredNodes(structuredData));
     }
 

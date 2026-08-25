@@ -1,23 +1,16 @@
 import express from "express";
 import { createServer } from "http";
 import path from "path";
-import { fileURLToPath } from "url";
-import { publicRoutePaths } from "../shared/seoRouteManifest";
+import { allStaticRoutes } from "../shared/seoOutput";
 
-const knownRoutes = new Set(publicRoutePaths);
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const knownRoutes = new Set(allStaticRoutes.map(page => page.route));
 
 async function startServer() {
   const app = express();
   const server = createServer(app);
 
   // Serve static files from dist/public in production
-  const staticPath =
-    process.env.NODE_ENV === "production"
-      ? path.resolve(__dirname, "public")
-      : path.resolve(__dirname, "..", "dist", "public");
+  const staticPath = path.resolve(process.cwd(), "dist", "public");
 
   app.use(express.static(staticPath, { redirect: false }));
 
@@ -26,6 +19,12 @@ async function startServer() {
   app.get("/{*path}", (req, res) => {
     const normalizedPath = req.path.replace(/\/$/, "") || "/";
     if (knownRoutes.has(normalizedPath)) {
+      if (normalizedPath !== "/" && !req.path.endsWith("/")) {
+        return res.redirect(
+          308,
+          `${req.path}/${req.url.slice(req.path.length)}`
+        );
+      }
       const routeIndex =
         normalizedPath === "/"
           ? path.join(staticPath, "index.html")

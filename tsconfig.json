@@ -1,6 +1,14 @@
 {
-  "include": ["client/src/**/*", "shared/**/*", "server/**/*"],
-  "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
+  "include": [
+    ".astro/types.d.ts",
+    "astro.config.ts",
+    "client/src/**/*",
+    "shared/**/*",
+    "server/**/*",
+    "src/**/*",
+    "tests/**/*"
+  ],
+  "exclude": ["node_modules", "build", "dist"],
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo",

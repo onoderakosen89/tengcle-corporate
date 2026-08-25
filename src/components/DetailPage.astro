@@ -1,0 +1,58 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  page: CollectionEntry<"representativePages">["data"];
+}
+
+const { page } = Astro.props;
+---
+
+<main id="main-content" class="detail-page">
+  <header class="detail-hero">
+    <p class="eyebrow">{page.eyebrow}</p>
+    <h1>{page.heading}</h1>
+    {page.legalName && <p class="legal-name">{page.legalName}</p>}
+    <p class="lead">{page.intro}</p>
+    {page.status && <p class="status-chip">{page.status}</p>}
+  </header>
+
+  {page.facts.length > 0 && (
+    <dl class="fact-grid" aria-label="Verified facts">
+      {page.facts.map(fact => (
+        <div>
+          <dt>{fact.label}</dt>
+          <dd>{fact.value}</dd>
+        </div>
+      ))}
+    </dl>
+  )}
+
+  <div class="detail-sections">
+    {page.sections.map(section => (
+      <section>
+        <h2>{section.heading}</h2>
+        <p>{section.body}</p>
+        {section.items.length > 0 && (
+          <ul>
+            {section.items.map(item => <li>{item}</li>)}
+          </ul>
+        )}
+      </section>
+    ))}
+  </div>
+
+  <aside class="purpose-path" aria-labelledby="purpose-path-heading">
+    <p class="eyebrow">Shared direction</p>
+    <h2 id="purpose-path-heading">Different perspectives, one purpose.</h2>
+    <p>
+      The shared destination is explicit: develop value that is not yet fully
+      realized into forms that remain useful to people and society.
+    </p>
+    <a href="/#purpose">Read Tengcle’s purpose</a>
+  </aside>
+
+  <nav class="related-links" aria-label="Related pages">
+    {page.links.map(link => <a href={link.href}>{link.label}</a>)}
+  </nav>
+</main>

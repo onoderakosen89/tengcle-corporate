@@ -1,0 +1,14 @@
+---
+interface Props {
+  tagline?: boolean;
+  legalName?: string;
+}
+
+const { tagline = false, legalName } = Astro.props;
+---
+
+<div class:list={["brand-lockup", { "brand-lockup--tagline": tagline }]}>
+  <a class="brand-lockup__wordmark" href="/" aria-label="Tengcle home">Tengcle</a>
+  {tagline && <span class="brand-lockup__tagline">think into the future</span>}
+  {legalName && <span class="brand-lockup__legal">{legalName}</span>}
+</div>

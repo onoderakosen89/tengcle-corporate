@@ -3,6 +3,7 @@ import path from "node:path";
 import { gzipSync } from "node:zlib";
 
 const root = process.cwd();
+const SITE_ORIGIN = "https://www.tengcle.com";
 const failures = [];
 
 async function walk(directory) {
@@ -20,9 +21,13 @@ function fail(message) {
   failures.push(message);
 }
 
-const sourceFiles = (await walk(path.join(root, "client"))).filter(file =>
-  /\.(?:html|tsx?|xml)$/.test(file)
-);
+const sourceFiles = (
+  await Promise.all(
+    ["client", "src"].map(directory => walk(path.join(root, directory)))
+  )
+)
+  .flat()
+  .filter(file => /\.(?:astro|html|tsx?|xml|json)$/.test(file));
 const forbiddenSourcePatterns = [
   ["retired TCSP claim", /\bTCSP\b/i],
   ["retired LCC claim", /\bLCC\b/],
@@ -56,6 +61,16 @@ for (const file of builtHtml) {
   }
   if (/%VITE_[A-Z0-9_]+%/.test(contents)) {
     fail(`unresolved Vite placeholder in ${path.relative(root, file)}`);
+  }
+  const executableInlineScripts = [
+    ...contents.matchAll(
+      /<script(?![^>]*type=["']application\/ld\+json["'])([^>]*)>([\s\S]*?)<\/script>/gi
+    ),
+  ].filter(match => !/\ssrc=["'][^"']+["']/.test(match[1]) && match[2].trim());
+  if (executableInlineScripts.length) {
+    fail(
+      `inline executable script violates the deployed CSP in ${path.relative(root, file)}`
+    );
   }
   const rawBytes = Buffer.byteLength(contents);
   const gzipBytes = gzipSync(contents).byteLength;
@@ -107,6 +122,8 @@ const expectedStaticRoutes = [
   "hk/en/news/hk-founding/index.html",
   "jp/ja/news/company-incorporation-2021/index.html",
   "us/en/news/us-founding-2026/index.html",
+  "companies/japan/index.html",
+  "activities/property-management/index.html",
 ];
 for (const route of expectedStaticRoutes) {
   try {
@@ -123,8 +140,13 @@ const sitemap = await readFile(
 const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
   match => match[1]
 );
-if (sitemapLocations.length !== 113) {
-  fail(`sitemap route count is ${sitemapLocations.length}; expected 113`);
+const baselineRouteCount = 113;
+const representativeRouteCount = 2;
+const expectedSitemapCount = baselineRouteCount + representativeRouteCount;
+if (sitemapLocations.length !== expectedSitemapCount) {
+  fail(
+    `sitemap route count is ${sitemapLocations.length}; expected ${expectedSitemapCount} (${baselineRouteCount} baseline + ${representativeRouteCount} representative)`
+  );
 }
 if (/<link\s/i.test(sitemap)) {
   fail("sitemap contains bare HTML link elements instead of xhtml:link");
@@ -167,6 +189,34 @@ for (const location of sitemapLocations) {
     if (!/<title>[^<]+<\/title>/i.test(routeHtml)) {
       fail(
         `${path.relative(root, routeHtmlPath)} is missing its initial title`
+      );
+    }
+    const mainCount = [...routeHtml.matchAll(/<main(?:\s|>)/gi)].length;
+    if (mainCount !== 1) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} has ${mainCount} main elements; expected 1`
+      );
+    }
+    const h1Count = [...routeHtml.matchAll(/<h1(?:\s|>)/gi)].length;
+    if (h1Count !== 1) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} has ${h1Count} H1 elements; expected 1`
+      );
+    }
+    const visibleText = routeHtml
+      .replace(/<script[\s\S]*?<\/script>/gi, " ")
+      .replace(/<style[\s\S]*?<\/style>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (visibleText.length < 80) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} has insufficient initial body text`
+      );
+    }
+    if (!/<a\s+[^>]*href=["']\/(?!\/)/i.test(routeHtml)) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} has no initial internal link`
       );
     }
     if (
@@ -283,6 +333,15 @@ if (sitemapAlternates !== regionalSitemapRoutes * 4) {
     `sitemap has ${sitemapAlternates} alternates; expected ${regionalSitemapRoutes * 4}`
   );
 }
+
+for (const expectedRoute of [
+  "/companies/japan/",
+  "/activities/property-management/",
+]) {
+  if (!sitemapLocations.includes(`${SITE_ORIGIN}${expectedRoute}`)) {
+    fail(`sitemap is missing representative route: ${expectedRoute}`);
+  }
+}
 for (const expectedRoute of [
   "/hk/ja/privacy/",
   "/jp/en/privacy/",
@@ -343,11 +402,107 @@ if (usHomeBytes > 1_000_000) {
   fail(`US Home responsive assets exceed 1 MB: ${usHomeBytes} bytes`);
 }
 
+const rootCssLinks = [
+  ...rootHtml.matchAll(
+    /<link\s+rel=["']stylesheet["']\s+href=["']([^"']+)["']/gi
+  ),
+].map(match => match[1]);
+const rootCss = (
+  await Promise.all(
+    rootCssLinks.map(url =>
+      readFile(path.join(outputDirectory, url.slice(1)), "utf8")
+    )
+  )
+).join("\n");
+if (!rootCss.includes("/patterns/seigaiha.svg")) {
+  fail(
+    "Global representative page is missing the canonical Seigaiha background asset"
+  );
+}
+if (!rootCss.includes("prefers-reduced-motion:reduce")) {
+  fail("Global CSS is missing reduced-motion handling");
+}
+if (!rootCss.includes("@media print")) {
+  fail("Global CSS is missing print handling");
+}
+if (/<img\s/i.test(rootHtml)) {
+  fail(
+    "Global representative page must not add a decorative or placeholder LCP image"
+  );
+}
+for (const requiredBrandText of [
+  "think into the future",
+  "考える力を、ひとつの目的へ。",
+  "まだ活かされていない価値を、人と社会に長く役立つ形へ育てる。",
+]) {
+  if (!rootHtml.includes(requiredBrandText)) {
+    fail(
+      `Global representative page is missing brand text: ${requiredBrandText}`
+    );
+  }
+}
+if (/tengcle-logo(?:-white)?\.(?:png|webp|svg)/i.test(rootHtml)) {
+  fail(
+    "Global representative page must use the text lockup until the master vector arrives"
+  );
+}
+
+const patternPath = path.join(outputDirectory, "patterns", "seigaiha.svg");
+const patternBytes = (await stat(patternPath)).size;
+if (patternBytes > 3_000) {
+  fail(`Seigaiha pattern exceeds 3 KB: ${patternBytes} bytes`);
+}
+
+const rootEntryScripts = [
+  ...rootHtml.matchAll(
+    /<script\s+type=["']module["']\s+src=["']([^"']+)["']/gi
+  ),
+].map(match => match[1]);
+const visitedScripts = new Set();
+async function collectModule(url) {
+  if (visitedScripts.has(url)) return;
+  visitedScripts.add(url);
+  const contents = await readFile(
+    path.join(outputDirectory, url.slice(1)),
+    "utf8"
+  );
+  const imports = [
+    ...contents.matchAll(/(?:from\s*|import\s*)["']([^"']+\.js)["']/g),
+  ].map(match => new URL(match[1], `${SITE_ORIGIN}${url}`).pathname);
+  await Promise.all(imports.map(collectModule));
+}
+await Promise.all(rootEntryScripts.map(collectModule));
+let representativeJsGzipBytes = 0;
+for (const url of visitedScripts) {
+  const contents = await readFile(path.join(outputDirectory, url.slice(1)));
+  representativeJsGzipBytes += gzipSync(contents).byteLength;
+}
+if (representativeJsGzipBytes > 75_000) {
+  fail(
+    `representative route JavaScript exceeds 75 KB gzip: ${representativeJsGzipBytes} bytes`
+  );
+}
+
+const headers = await readFile(path.join(outputDirectory, "_headers"), "utf8");
+for (const header of [
+  "Content-Security-Policy:",
+  "X-Content-Type-Options: nosniff",
+  "X-Frame-Options: SAMEORIGIN",
+  "Strict-Transport-Security:",
+  "Referrer-Policy: strict-origin-when-cross-origin",
+  "Permissions-Policy:",
+]) {
+  if (!headers.includes(header)) fail(`_headers is missing ${header}`);
+}
+if (/script-src[^;]*'unsafe-inline'/i.test(headers)) {
+  fail("_headers must not allow inline executable scripts");
+}
+
 if (failures.length) {
   console.error(failures.map(failure => `- ${failure}`).join("\n"));
   process.exitCode = 1;
 } else {
   console.log(
-    `Site audit passed (${builtHtml.length} HTML files; US Home assets ${usHomeBytes} bytes).`
+    `Site audit passed (${builtHtml.length} HTML files; ${sitemapLocations.length} sitemap routes; representative JS ${representativeJsGzipBytes} gzip bytes; Seigaiha ${patternBytes} bytes; US Home assets ${usHomeBytes} bytes).`
   );
 }

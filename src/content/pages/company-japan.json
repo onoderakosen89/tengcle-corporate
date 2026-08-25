@@ -1,0 +1,41 @@
+{
+  "kind": "company",
+  "path": "/companies/japan/",
+  "lang": "en",
+  "title": "Japan Company | Tengcle",
+  "description": "Verified institutional information for 株式会社Tengcle, a Tengcle related company incorporated in Tokyo in 2021.",
+  "eyebrow": "Related company · Japan",
+  "heading": "Japan company",
+  "intro": "株式会社Tengcle is a Tengcle related company incorporated in Tokyo. This page separates verified institutional facts from activity information that is still being reviewed for publication.",
+  "masterTagline": "think into the future",
+  "legalName": "株式会社Tengcle",
+  "facts": [
+    { "label": "Legal name", "value": "株式会社Tengcle" },
+    { "label": "Jurisdiction", "value": "Japan" },
+    { "label": "Formation date", "value": "25 October 2021" },
+    {
+      "label": "Registered office",
+      "value": "Takanawa 2-19-20, Minato-ku, Tokyo"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Current focus",
+      "body": "The company’s current public focus includes property-management activity in Tokyo. Exact portfolio scale and other operational figures are not published here until current evidence is confirmed.",
+      "items": []
+    },
+    {
+      "heading": "Relationship language",
+      "body": "The public site uses the neutral term Tengcle related companies. Each company page identifies the legal entity responsible for its own activity without implying an unverified headquarters or parent-subsidiary hierarchy.",
+      "items": []
+    }
+  ],
+  "links": [
+    {
+      "label": "Property management activity",
+      "href": "/activities/property-management/"
+    },
+    { "label": "Japan regional site", "href": "/jp/ja/" },
+    { "label": "Back to Tengcle", "href": "/" }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "kind": "home",
+  "path": "/",
+  "lang": "en",
+  "title": "Tengcle | Thoughtful effort, brought together with purpose",
+  "description": "Tengcle related companies connect experience, practical knowledge, and technology to develop value that remains useful over time.",
+  "eyebrow": "Tengcle related companies",
+  "heading": "Thoughtful effort, brought together with purpose.",
+  "intro": "Tengcle connects experience, practical knowledge, and technology to reconsider value that has not yet been fully realized. Grounded in gratitude and careful thought, we develop it step by step into forms that can remain useful to people and society.",
+  "masterTagline": "think into the future",
+  "supportingLine": "考える力を、ひとつの目的へ。",
+  "purpose": "まだ活かされていない価値を、人と社会に長く役立つ形へ育てる。",
+  "purposeExplanation": "まだ活かされていない価値とは、場所、事業、知見、技術、関係性など、可能性がありながら、まだ十分に役立つ状態になっていないものです。",
+  "actionModel": ["発見", "理解", "設計", "実行", "継続", "検証"],
+  "sections": [
+    {
+      "heading": "What the name carries",
+      "body": "Teng joins think, thought, and thanks. Cle represents one. The name expresses a continuing practice: listen to small questions, consider them from more than one point of view, and bring different experience and knowledge toward one meaningful purpose.",
+      "items": []
+    },
+    {
+      "heading": "How we work",
+      "body": "Think into the future is our master brand idea. It does not mean predicting the future from a distance. It means treating today’s value and problems seriously, thinking with a long view, and growing useful work without overstating what has already been achieved.",
+      "items": [
+        "Begin with gratitude",
+        "Think beyond the visible symptom",
+        "Connect practical knowledge and technology",
+        "Prefer durable usefulness over the appearance of scale"
+      ]
+    }
+  ],
+  "links": [
+    { "label": "Japan company", "href": "/companies/japan/" },
+    {
+      "label": "Property management activity",
+      "href": "/activities/property-management/"
+    },
+    { "label": "Hong Kong site", "href": "/hk/en/" },
+    { "label": "Japan site", "href": "/jp/ja/" },
+    { "label": "United States site", "href": "/us/en/" }
+  ]
+}

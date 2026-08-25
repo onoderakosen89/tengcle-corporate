@@ -1,0 +1,42 @@
+{
+  "kind": "activity",
+  "path": "/activities/property-management/",
+  "lang": "en",
+  "title": "Property Management Activity | Tengcle",
+  "description": "A restrained overview of property-management activity led by 株式会社Tengcle in Tokyo, with status and responsibility stated clearly.",
+  "eyebrow": "Activity · Currently active",
+  "heading": "Property management",
+  "intro": "株式会社Tengcle supports the day-to-day continuity of rental property through practical coordination. The activity connects communication, repair arrangements, and rent administration while keeping the responsible legal entity visible.",
+  "status": "Currently active",
+  "updated": "26 August 2026",
+  "facts": [
+    { "label": "Responsible entity", "value": "株式会社Tengcle" },
+    { "label": "Location", "value": "Tokyo, Japan" },
+    { "label": "Status", "value": "Currently active" },
+    { "label": "Updated", "value": "26 August 2026" }
+  ],
+  "sections": [
+    {
+      "heading": "What the activity covers",
+      "body": "The work brings routine property matters into one accountable flow. Public descriptions remain deliberately limited to activities supported by current evidence.",
+      "items": [
+        "Rent administration",
+        "Repair and maintenance coordination",
+        "Tenant and owner communication"
+      ]
+    },
+    {
+      "heading": "Why it matters",
+      "body": "Property management is long-horizon work. Small issues need to be noticed, considered from the positions of the people involved, and resolved in a form that remains useful after the immediate task is complete.",
+      "items": []
+    }
+  ],
+  "links": [
+    { "label": "About the Japan company", "href": "/companies/japan/" },
+    {
+      "label": "Japan property-management page",
+      "href": "/jp/ja/services/property-management/"
+    },
+    { "label": "Back to Tengcle", "href": "/" }
+  ]
+}

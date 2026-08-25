@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
 import { buyerIntentPages } from "../shared/buyerIntentPages";
 
 test("known routes and article routes return route-specific initial HTML", async ({
@@ -33,8 +34,8 @@ test("known routes and article routes return route-specific initial HTML", async
     const response = await request.get(url);
     expect(response.status(), url).toBe(200);
     const body = await response.text();
-    expect(body).toContain(`<html lang="${lang}">`);
-    expect(body).toContain(`<link rel="canonical" href="${canonical}" />`);
+    expect(body).toMatch(new RegExp(`<html\\s+lang="${lang}"(?:\\s|>)`));
+    expect(body).toContain(`<link rel="canonical" href="${canonical}">`);
     expect(body).toContain("https://www.tengcle.com/images/og-image.webp");
   }
 });
@@ -51,9 +52,9 @@ test("article initial HTML exposes article-specific social and search metadata",
   expect(body).toContain(
     'content="Tengcle Development LLC was officially registered in Weehawken, New Jersey in January 2026 as the US office of Tengcle Group."'
   );
-  expect(body).toContain('<meta property="og:type" content="article" />');
+  expect(body).toContain('<meta property="og:type" content="article">');
   expect(body).toContain(
-    '<meta property="article:published_time" content="2026-01-01" />'
+    '<meta property="article:published_time" content="2026-01-01">'
   );
   expect(body).toContain('"@type":"NewsArticle"');
   expect(body.match(/rel="canonical"/g)).toHaveLength(1);
@@ -120,7 +121,7 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
     sitemap.matchAll(/<loc>(https:\/\/www\.tengcle\.com[^<]+)<\/loc>/g),
     match => match[1]
   );
-  expect(urls).toHaveLength(113);
+  expect(urls).toHaveLength(115);
 
   for (const canonical of urls) {
     const route = new URL(canonical).pathname;
@@ -139,9 +140,12 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
     await page.goto(route, { waitUntil: "domcontentloaded" });
     await expect
       .poll(() =>
-        page.locator("#root").evaluate(root => root.childElementCount)
+        page
+          .locator("main")
+          .first()
+          .evaluate(main => main.textContent?.length ?? 0)
       )
-      .toBeGreaterThan(0);
+      .toBeGreaterThan(40);
     await expect(page).not.toHaveTitle(/Page Not Found/i);
     await expect(page.locator('meta[name="robots"]')).not.toHaveAttribute(
       "content",
@@ -345,6 +349,7 @@ test("Cloudflare preview applies declared security and cache headers", async ({
   expect(headers["x-content-type-options"]).toBe("nosniff");
   expect(headers["referrer-policy"]).toBe("strict-origin-when-cross-origin");
   expect(headers["permissions-policy"]).toContain("camera=()");
+  expect(headers["x-robots-tag"]).toBe("noindex");
 
   const imageResponse = await request.get("/images/og-image.webp");
   expect(imageResponse.status()).toBe(200);
@@ -361,6 +366,86 @@ test("Cloudflare preview applies declared security and cache headers", async ({
     expect(response.status(), asset).toBe(200);
     expect(response.headers()["content-type"], asset).toContain(contentType);
   }
+});
+
+test("representative pages expose semantic content with JavaScript disabled", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  for (const route of [
+    "/",
+    "/companies/japan/",
+    "/activities/property-management/",
+  ]) {
+    await page.goto(route);
+    await expect(page.locator("main")).toHaveCount(1);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+    await expect(page.locator("main")).toContainText(
+      /Tengcle|Thoughtful|property/i
+    );
+    expect(await page.locator('main a[href^="/"]').count()).toBeGreaterThan(0);
+  }
+  await context.close();
+});
+
+test("representative pages have no serious or critical axe violations", async ({
+  page,
+}) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary")
+  );
+  for (const route of [
+    "/",
+    "/companies/japan/",
+    "/activities/property-management/",
+  ]) {
+    await page.goto(route);
+    const results = await new AxeBuilder({ page }).analyze();
+    expect(
+      results.violations.filter(violation =>
+        ["serious", "critical"].includes(violation.impact ?? "")
+      ),
+      route
+    ).toEqual([]);
+  }
+});
+
+test("Global Seigaiha remains readable on mobile, reduced motion, and print", async ({
+  page,
+}) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary")
+  );
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(
+    page.getByText("think into the future", { exact: true }).first()
+  ).toBeVisible();
+  const screenStyles = await page.locator(".global-hero").evaluate(hero => ({
+    overflow:
+      document.documentElement.scrollWidth -
+      document.documentElement.clientWidth,
+    pattern: getComputedStyle(hero, "::before").backgroundImage,
+    animation: getComputedStyle(hero).animationName,
+  }));
+  expect(screenStyles.overflow).toBeLessThanOrEqual(0);
+  expect(screenStyles.pattern).toContain("seigaiha.svg");
+  expect(screenStyles.animation).toBe("none");
+
+  await page.getByText("Menu", { exact: true }).click();
+  await expect(
+    page.getByRole("navigation", { name: "Mobile navigation" })
+  ).toBeVisible();
+
+  await page.emulateMedia({ media: "print", reducedMotion: "reduce" });
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  const printPatternDisplay = await page
+    .locator(".global-hero")
+    .evaluate(hero => getComputedStyle(hero, "::before").display);
+  expect(printPatternDisplay).toBe("none");
 });
 
 test("analytics remains unloaded until explicit all-cookie consent", async ({
