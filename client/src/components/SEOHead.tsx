@@ -7,7 +7,10 @@
  */
 
 import { useEffect } from "react";
-import { normalizeTengcleCanonical } from "@shared/seoRouteManifest";
+import {
+  normalizeTengcleCanonical,
+  seoRouteManifest,
+} from "@shared/seoRouteManifest";
 
 interface SEOHeadProps {
   title: string;
@@ -41,10 +44,18 @@ export default function SEOHead({
   const normalizedCanonical = canonical
     ? normalizeTengcleCanonical(canonical)
     : undefined;
+  const routeSeo = normalizedCanonical
+    ? seoRouteManifest.find(route => route.canonical === normalizedCanonical)
+    : undefined;
+  const resolvedTitle = routeSeo?.title ?? title;
+  const resolvedDescription = routeSeo?.description ?? description;
+  const resolvedOgType = routeSeo?.ogType ?? ogType;
+  const resolvedLocale = routeSeo?.locale ?? locale;
+  const resolvedPublishedTime = routeSeo?.datePublished ?? publishedTime;
 
   useEffect(() => {
     // Update document title
-    document.title = title;
+    document.title = resolvedTitle;
 
     // Helper to update or create meta tag
     const updateMeta = (name: string, content: string, isProperty = false) => {
@@ -63,16 +74,16 @@ export default function SEOHead({
     };
 
     // Update basic meta tags
-    updateMeta("description", description);
+    updateMeta("description", resolvedDescription);
     updateMeta("author", author);
     if (keywords) {
       updateMeta("keywords", keywords);
     }
 
     // Update Open Graph meta tags
-    updateMeta("og:title", title, true);
-    updateMeta("og:description", description, true);
-    updateMeta("og:type", ogType, true);
+    updateMeta("og:title", resolvedTitle, true);
+    updateMeta("og:description", resolvedDescription, true);
+    updateMeta("og:type", resolvedOgType, true);
     updateMeta(
       "og:image",
       ogImage.startsWith("http")
@@ -82,22 +93,22 @@ export default function SEOHead({
     );
     updateMeta("og:image:width", "1200", true);
     updateMeta("og:image:height", "630", true);
-    updateMeta("og:locale", locale, true);
+    updateMeta("og:locale", resolvedLocale, true);
     updateMeta("og:site_name", "Tengcle Group", true);
 
     // Update Twitter Card meta tags
     updateMeta("twitter:card", "summary_large_image");
-    updateMeta("twitter:title", title);
-    updateMeta("twitter:description", description);
+    updateMeta("twitter:title", resolvedTitle);
+    updateMeta("twitter:description", resolvedDescription);
     updateMeta(
       "twitter:image",
       ogImage.startsWith("http") ? ogImage : `https://www.tengcle.com${ogImage}`
     );
-    updateMeta("twitter:image:alt", title);
+    updateMeta("twitter:image:alt", resolvedTitle);
 
     // Article specific meta tags
-    if (publishedTime) {
-      updateMeta("article:published_time", publishedTime, true);
+    if (resolvedPublishedTime) {
+      updateMeta("article:published_time", resolvedPublishedTime, true);
     } else {
       removeMeta("article:published_time", true);
     }
@@ -163,17 +174,17 @@ export default function SEOHead({
       }
     };
   }, [
-    title,
-    description,
+    resolvedTitle,
+    resolvedDescription,
     normalizedCanonical,
     ogImage,
-    ogType,
-    locale,
+    resolvedOgType,
+    resolvedLocale,
     noindex,
     structuredData,
     keywords,
     author,
-    publishedTime,
+    resolvedPublishedTime,
     modifiedTime,
   ]);
 
@@ -193,7 +204,7 @@ export function generateBreadcrumbSchema(
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: item.url,
+      item: normalizeTengcleCanonical(item.url),
     })),
   };
 }
@@ -254,6 +265,7 @@ export function generateWebPageSchema(page: {
   name: string;
   description: string;
   url: string;
+  inLanguage?: string;
   breadcrumbs?: { name: string; url: string }[];
   navigation?: { name: string; url: string; description?: string }[];
 }) {
@@ -272,7 +284,7 @@ export function generateWebPageSchema(page: {
         about: {
           "@id": "https://www.tengcle.com/#organization",
         },
-        inLanguage: "en",
+        inLanguage: page.inLanguage ?? "en",
       },
     ],
   };
@@ -329,12 +341,14 @@ export function generateOrganizationSchema(org: {
   foundingDate?: string;
   founders?: { name: string }[];
 }) {
+  const normalizedUrl = normalizeTengcleCanonical(org.url);
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${normalizedUrl}#organization`,
     name: org.name,
     description: org.description,
-    url: org.url,
+    url: normalizedUrl,
     ...(org.logo && {
       logo: {
         "@type": "ImageObject",

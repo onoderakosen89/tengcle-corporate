@@ -24,7 +24,6 @@ import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import SEOHead, {
   generateOrganizationSchema,
-  generateWebPageSchema,
 } from "@/components/SEOHead";
 import { companyProfiles } from "@/data/companyProfiles";
 
@@ -241,16 +240,8 @@ export default function UsHome() {
                 country: address.country,
                 postalCode: address.postalCode,
               },
-              sameAs: [
-                "https://www.tengcle.com/hk/en",
-                "https://www.tengcle.com/jp/ja",
-              ],
+              foundingDate: company.established,
             }),
-            generateWebPageSchema({
-              name: t("meta.title"),
-              description: t("meta.description"),
-              url: `https://www.tengcle.com/us/${language}`,
-            })["@graph"][0],
           ],
         }}
       />

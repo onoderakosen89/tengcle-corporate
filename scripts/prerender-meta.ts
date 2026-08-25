@@ -9,6 +9,7 @@ import {
   type Region,
   type SeoRoute,
 } from "../shared/seoRouteManifest.ts";
+import { companyProfiles } from "../client/src/data/companyProfiles.ts";
 
 const outputDirectory = path.resolve("dist/public");
 
@@ -64,6 +65,109 @@ function languageTags(region: Region) {
 function routeSuffix(page: SeoRoute) {
   if (!page.region || !page.language) return "";
   return page.route.replace(`/${page.region}/${page.language}`, "");
+}
+
+const entityHomeLanguages = { hk: "en", jp: "ja", us: "en" } as const;
+
+function organizationSchema(page: SeoRoute) {
+  if (!page.region) return undefined;
+  const profile = companyProfiles[page.region];
+  const entityUrl = canonicalUrl(
+    `/${page.region}/${entityHomeLanguages[page.region]}`
+  );
+  const addresses = profile.addresses.map(address => ({
+    "@type": "PostalAddress",
+    streetAddress: address.street,
+    addressLocality: address.city,
+    addressRegion: address.region,
+    ...(address.postalCode && { postalCode: address.postalCode }),
+    addressCountry: address.country,
+  }));
+  return {
+    "@type": "Organization",
+    "@id": `${entityUrl}#organization`,
+    name: profile.legalName,
+    url: entityUrl,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_ORIGIN}/images/tengcle-logo.png`,
+    },
+    email: profile.email,
+    foundingDate: profile.established,
+    address: addresses.length === 1 ? addresses[0] : addresses,
+  };
+}
+
+function breadcrumbSchema(page: SeoRoute) {
+  if (!page.region || !page.language || routeSuffix(page) === "") {
+    return undefined;
+  }
+  const regionHome = canonicalUrl(`/${page.region}/${page.language}`);
+  return {
+    "@type": "BreadcrumbList",
+    "@id": `${page.canonical}#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Tengcle Group",
+        item: canonicalUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: page.company,
+        item: regionHome,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: page.title.split(" | ")[0],
+        item: page.canonical,
+      },
+    ],
+  };
+}
+
+function structuredData(page: SeoRoute) {
+  const organization = organizationSchema(page);
+  const breadcrumb = breadcrumbSchema(page);
+  const graph: object[] = [];
+
+  if (page.ogType === "article") {
+    graph.push({
+      "@type": "NewsArticle",
+      "@id": `${page.canonical}#article`,
+      mainEntityOfPage: { "@id": `${page.canonical}#webpage` },
+      url: page.canonical,
+      headline: page.title,
+      description: page.description,
+      image: `${SITE_ORIGIN}/images/og-image.webp`,
+      datePublished: page.datePublished,
+      inLanguage: page.lang,
+      ...(organization && { publisher: { "@id": organization["@id"] } }),
+    });
+  }
+
+  graph.push({
+    "@type": "WebPage",
+    "@id": `${page.canonical}#webpage`,
+    url: page.canonical,
+    name: page.title,
+    description: page.description,
+    inLanguage: page.lang,
+    ...(organization && { about: { "@id": organization["@id"] } }),
+    ...(breadcrumb && { breadcrumb: { "@id": breadcrumb["@id"] } }),
+  });
+
+  const isEntityPage =
+    routeSuffix(page) === "" || routeSuffix(page) === "/about";
+  if (organization && (isEntityPage || page.ogType === "article")) {
+    graph.push(organization);
+  }
+  if (breadcrumb) graph.push(breadcrumb);
+
+  return { "@context": "https://schema.org", "@graph": graph };
 }
 
 function buildHreflang(page: SeoRoute, element: "link" | "xhtml:link") {
@@ -147,33 +251,9 @@ function renderPage(baseHtml: string, page: SeoRoute) {
     `  ${canonical}${hreflang ? `\n    ${hreflang}` : ""}\n</head>`
   );
 
-  const schema =
-    page.ogType === "article"
-      ? {
-          "@context": "https://schema.org",
-          "@type": "NewsArticle",
-          "@id": `${page.canonical}#article`,
-          mainEntityOfPage: page.canonical,
-          url: page.canonical,
-          headline: page.title,
-          description: page.description,
-          datePublished: page.datePublished,
-          inLanguage: page.lang,
-          publisher: { "@type": "Organization", name: page.company },
-        }
-      : {
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "@id": `${page.canonical}#webpage`,
-          url: page.canonical,
-          name: page.title,
-          description: page.description,
-          inLanguage: page.lang,
-          about: { "@type": "Organization", name: page.company },
-        };
   return html.replace(
     "</head>",
-    `    <script type="application/ld+json">${JSON.stringify(schema)}</script>\n  </head>`
+    `    <script type="application/ld+json" data-seo-route-structured="true">${JSON.stringify(structuredData(page))}</script>\n  </head>`
   );
 }
 

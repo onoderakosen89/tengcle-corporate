@@ -70,13 +70,17 @@ const notFoundHtml = await readFile(
   path.join(outputDirectory, "404.html"),
   "utf8"
 );
-const rootHtml = await readFile(path.join(outputDirectory, "index.html"), "utf8");
+const rootHtml = await readFile(
+  path.join(outputDirectory, "index.html"),
+  "utf8"
+);
 const iconUrls = [
   ...rootHtml.matchAll(
     /<link\s+rel=["']icon["'][^>]+href=["'](\/[^"']+)["'][^>]*>/gi
   ),
 ].map(match => match[1]);
-if (iconUrls.length < 2) fail("root HTML is missing expected favicon references");
+if (iconUrls.length < 2)
+  fail("root HTML is missing expected favicon references");
 for (const iconUrl of iconUrls) {
   try {
     await access(path.join(outputDirectory, iconUrl.slice(1)));
@@ -192,6 +196,51 @@ for (const location of sitemapLocations) {
       fail(
         `${path.relative(root, routeHtmlPath)} is missing og:type=${expectedOgType}`
       );
+    }
+    const structuredMatch = routeHtml.match(
+      /<script\s+type=["']application\/ld\+json["']\s+data-seo-route-structured=["']true["']>(.*?)<\/script>/s
+    );
+    if (!structuredMatch) {
+      fail(`${path.relative(root, routeHtmlPath)} is missing route JSON-LD`);
+    } else {
+      const structured = JSON.parse(structuredMatch[1]);
+      const graph = Array.isArray(structured["@graph"])
+        ? structured["@graph"]
+        : [structured];
+      const typeCount = type =>
+        graph.filter(item => item?.["@type"] === type).length;
+      if (typeCount("WebPage") !== 1) {
+        fail(
+          `${path.relative(root, routeHtmlPath)} must contain exactly one WebPage node`
+        );
+      }
+      const segments = url.pathname.split("/").filter(Boolean);
+      const isRegionalHome = isRegional && segments.length === 2;
+      const isAbout = /\/about\/$/.test(url.pathname);
+      if (isRegional && !isRegionalHome && typeCount("BreadcrumbList") !== 1) {
+        fail(
+          `${path.relative(root, routeHtmlPath)} must contain one BreadcrumbList node`
+        );
+      }
+      if (
+        isRegional &&
+        (isRegionalHome || isAbout || expectedOgType === "article") &&
+        typeCount("Organization") !== 1
+      ) {
+        fail(
+          `${path.relative(root, routeHtmlPath)} must contain one regional Organization node`
+        );
+      }
+      if (expectedOgType === "article" && typeCount("NewsArticle") !== 1) {
+        fail(
+          `${path.relative(root, routeHtmlPath)} must contain exactly one NewsArticle node`
+        );
+      }
+      if (/"(?:sameAs|alternateName)"\s*:/.test(structuredMatch[1])) {
+        fail(
+          `${path.relative(root, routeHtmlPath)} uses an unverified sameAs or alternateName entity link`
+        );
+      }
     }
     if (expectedOgType === "article") {
       if (!/<meta\s+property=["']article:published_time["']/i.test(routeHtml)) {

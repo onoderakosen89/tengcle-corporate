@@ -18,7 +18,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import SEOHead, { generateOrganizationSchema, generateWebPageSchema, generateLocalBusinessSchema } from "@/components/SEOHead";
+import SEOHead, { generateOrganizationSchema } from "@/components/SEOHead";
+import { companyProfiles } from "@/data/companyProfiles";
 
 // Animation variants with proper typing
 const easeOut: Easing = [0.16, 1, 0.3, 1];
@@ -208,6 +209,8 @@ export default function Home() {
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "en";
   const basePath = `/hk/${pathLang}`;
+  const company = companyProfiles.hk;
+  const address = company.addresses[0];
 
   // Get body font class based on language
   const getFontClass = () => {
@@ -236,28 +239,20 @@ export default function Home() {
           "@context": "https://schema.org",
           "@graph": [
             generateOrganizationSchema({
-              name: "Tengcle Limited",
+              name: company.legalName,
               description: "A Hong Kong affiliated company developing hospitality procurement, project coordination, IT, and trade activities.",
               url: "https://www.tengcle.com/hk/en",
               logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
-              email: "info@tengcle.com",
+              email: company.email,
               address: {
-                street: "Suite C, Level 7, World Trust Tower, 50 Stanley Street",
-                city: "Central",
-                region: "Hong Kong",
-                country: "HK",
+                street: address.street,
+                city: address.city,
+                region: address.region,
+                country: address.country,
+                postalCode: address.postalCode,
               },
-              foundingDate: "2025-04-29",
-              sameAs: [
-                "https://www.tengcle.com/jp/ja",
-                "https://www.tengcle.com/us/en"
-              ]
-            }),
-            generateWebPageSchema({
-              name: t.meta.title,
-              description: t.meta.description,
-              url: `https://www.tengcle.com/hk/${language}`,
-            })["@graph"][0] // Extract the WebPage object
+              foundingDate: company.established,
+            })
           ]
         }}
       />

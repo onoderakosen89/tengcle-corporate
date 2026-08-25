@@ -49,6 +49,50 @@ test("article initial HTML exposes article-specific social and search metadata",
   expect(body.match(/rel="alternate"/g)).toHaveLength(4);
 });
 
+test("route manifest metadata remains stable after hydration", async ({
+  page,
+  request,
+}) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary")
+  );
+  for (const route of [
+    "/hk/en",
+    "/jp/ja",
+    "/us/en",
+    "/hk/zh/faq",
+    "/us/en/news/us-founding-2026",
+  ]) {
+    const response = await request.get(route);
+    const initialHtml = await response.text();
+    const initialTitle = initialHtml.match(/<title>(.*?)<\/title>/s)?.[1];
+    const initialDescription = initialHtml.match(
+      /<meta\s+name="description"\s+content="([^"]+)"/i
+    )?.[1];
+    expect(initialTitle, route).toBeTruthy();
+    expect(initialDescription, route).toBeTruthy();
+
+    await page.goto(route);
+    await expect(page).toHaveTitle(initialTitle!);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      "content",
+      initialDescription!
+    );
+    const webPageNodes = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluateAll(scripts =>
+        scripts.reduce((count, script) => {
+          const data = JSON.parse(script.textContent || "{}");
+          const graph = Array.isArray(data["@graph"]) ? data["@graph"] : [data];
+          return (
+            count + graph.filter(item => item?.["@type"] === "WebPage").length
+          );
+        }, 0)
+      );
+    expect(webPageNodes, route).toBe(1);
+  }
+});
+
 test("unknown documents return a real noindex 404 without canonical", async ({
   request,
   page,

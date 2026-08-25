@@ -67,7 +67,7 @@ export default function About() {
             generateOrganizationSchema({
               name: hkCompany.legalName,
               description: t.about.description,
-              url: "https://www.tengcle.com",
+              url: "https://www.tengcle.com/hk/en",
               email: hkCompany.email,
               address: {
                 street: hkAddress.street,
@@ -76,13 +76,10 @@ export default function About() {
                 country: hkAddress.country,
                 postalCode: hkAddress.postalCode,
               },
-              sameAs: [
-                "https://www.tengcle.com/jp",
-                "https://www.tengcle.com/us"
-              ]
             }),
             generateBreadcrumbSchema([
               { name: "Home", url: "https://www.tengcle.com" },
+              { name: hkCompany.legalName, url: `https://www.tengcle.com/hk/${language}` },
               { name: t.about.title, url: `https://www.tengcle.com/hk/${language}/about` }
             ])
           ]
