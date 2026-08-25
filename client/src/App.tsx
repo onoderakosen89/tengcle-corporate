@@ -263,7 +263,7 @@ function MainRouter() {
   const isJp = location.startsWith("/jp");
   const isUs = location.startsWith("/us");
   const isGateway = location === "/";
-  const isPrivacy = location === "/privacy";
+  const isPrivacy = location === "/privacy" || location === "/privacy/";
 
   if (isGateway) {
     return (

@@ -12,6 +12,30 @@ import {
   seoRouteManifest,
 } from "@shared/seoRouteManifest";
 
+type StructuredNode = Record<string, unknown>;
+
+function structuredNodes(value: unknown): StructuredNode[] {
+  if (!value || typeof value !== "object") return [];
+  const record = value as StructuredNode;
+  const graph = record["@graph"];
+  if (Array.isArray(graph)) {
+    return graph.filter(
+      (node): node is StructuredNode =>
+        Boolean(node) && typeof node === "object"
+    );
+  }
+  return [record];
+}
+
+function structuredTypes(node: StructuredNode): string[] {
+  const value = node["@type"];
+  return Array.isArray(value)
+    ? value.filter((type): type is string => typeof type === "string")
+    : typeof value === "string"
+      ? [value]
+      : [];
+}
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -151,18 +175,78 @@ export default function SEOHead({
       updateMeta("og:url", normalizedCanonical, true);
     }
 
-    // Add structured data
-    if (structuredData) {
-      const existingScript = document.querySelector(
-        "script[data-seo-structured]"
-      );
-      if (existingScript) {
-        existingScript.remove();
+    // Keep the prerendered route graph as the canonical graph for a direct
+    // document load. Runtime schemas may add new node types, but must not
+    // duplicate Organization/Breadcrumb/Article nodes already in that graph.
+    const runtimeScript = document.querySelector("script[data-seo-structured]");
+    runtimeScript?.remove();
+
+    const prerenderScript = document.querySelector<HTMLScriptElement>(
+      'script[data-seo-route-structured="true"]'
+    );
+    let prerenderNodes: StructuredNode[] = [];
+    if (prerenderScript) {
+      try {
+        const nodes = structuredNodes(
+          JSON.parse(prerenderScript.textContent || "{}")
+        );
+        const routeWebPage = nodes.find(node =>
+          structuredTypes(node).includes("WebPage")
+        );
+        const matchesCurrentRoute =
+          !noindex &&
+          Boolean(normalizedCanonical) &&
+          routeWebPage?.url === normalizedCanonical;
+        if (matchesCurrentRoute) {
+          prerenderNodes = nodes;
+        } else {
+          // A client-side navigation must not retain the previous route's graph.
+          prerenderScript.remove();
+        }
+      } catch {
+        prerenderScript.remove();
       }
+    }
+
+    const runtimeCandidates: StructuredNode[] = [];
+    if (prerenderNodes.length === 0 && routeSeo && !noindex) {
+      runtimeCandidates.push({
+        "@type": "WebPage",
+        "@id": `${routeSeo.canonical}#webpage`,
+        url: routeSeo.canonical,
+        name: routeSeo.title,
+        description: routeSeo.description,
+        inLanguage: routeSeo.lang,
+      });
+    }
+    if (structuredData) {
+      runtimeCandidates.push(...structuredNodes(structuredData));
+    }
+
+    const existingIds = new Set(
+      prerenderNodes
+        .map(node => node["@id"])
+        .filter((id): id is string => typeof id === "string")
+    );
+    const existingTypes = new Set(prerenderNodes.flatMap(structuredTypes));
+    const uniqueRuntimeNodes = runtimeCandidates.filter(node => {
+      const id = node["@id"];
+      const types = structuredTypes(node);
+      if (typeof id === "string" && existingIds.has(id)) return false;
+      if (types.some(type => existingTypes.has(type))) return false;
+      if (typeof id === "string") existingIds.add(id);
+      types.forEach(type => existingTypes.add(type));
+      return true;
+    });
+
+    if (uniqueRuntimeNodes.length > 0) {
       const script = document.createElement("script");
       script.type = "application/ld+json";
       script.setAttribute("data-seo-structured", "true");
-      script.textContent = JSON.stringify(structuredData);
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": uniqueRuntimeNodes,
+      });
       document.head.appendChild(script);
     }
 

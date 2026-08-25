@@ -93,6 +93,84 @@ test("route manifest metadata remains stable after hydration", async ({
   }
 });
 
+test("all sitemap routes retain canonical metadata and unique primary schemas after hydration", async ({
+  page,
+  request,
+}) => {
+  test.setTimeout(180_000);
+  await page.addInitScript(() =>
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary")
+  );
+
+  const sitemapResponse = await request.get("/sitemap.xml");
+  expect(sitemapResponse.status()).toBe(200);
+  const sitemap = await sitemapResponse.text();
+  const urls = Array.from(
+    sitemap.matchAll(/<loc>(https:\/\/www\.tengcle\.com[^<]+)<\/loc>/g),
+    match => match[1]
+  );
+  expect(urls).toHaveLength(107);
+
+  for (const canonical of urls) {
+    const route = new URL(canonical).pathname;
+    const response = await request.get(route);
+    const initialHtml = await response.text();
+    const initialScripts = Array.from(
+      initialHtml.matchAll(
+        /<script\s+type=["']application\/ld\+json["'][^>]*>(.*?)<\/script>/gs
+      ),
+      match => JSON.parse(match[1])
+    );
+    const initialNodes = initialScripts.flatMap(data =>
+      Array.isArray(data["@graph"]) ? data["@graph"] : [data]
+    );
+
+    await page.goto(route, { waitUntil: "domcontentloaded" });
+    await expect
+      .poll(() =>
+        page.locator("#root").evaluate(root => root.childElementCount)
+      )
+      .toBeGreaterThan(0);
+    await expect(page).not.toHaveTitle(/Page Not Found/i);
+    await expect(page.locator('meta[name="robots"]')).not.toHaveAttribute(
+      "content",
+      /noindex/i
+    );
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      canonical
+    );
+
+    const hydratedNodes = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluateAll(scripts =>
+        scripts.flatMap(script => {
+          const data = JSON.parse(script.textContent || "{}");
+          return Array.isArray(data["@graph"]) ? data["@graph"] : [data];
+        })
+      );
+    const ids = hydratedNodes
+      .map(node => node?.["@id"])
+      .filter((id): id is string => typeof id === "string");
+    expect(new Set(ids).size, `${route} duplicate schema @id`).toBe(ids.length);
+
+    for (const type of [
+      "WebPage",
+      "Organization",
+      "BreadcrumbList",
+      "NewsArticle",
+    ]) {
+      const initialCount = initialNodes.filter(
+        node => node?.["@type"] === type
+      ).length;
+      const hydratedCount = hydratedNodes.filter(
+        node => node?.["@type"] === type
+      ).length;
+      expect(hydratedCount, `${route} ${type}`).toBe(initialCount);
+    }
+  }
+});
+
 test("unknown documents return a real noindex 404 without canonical", async ({
   request,
   page,
