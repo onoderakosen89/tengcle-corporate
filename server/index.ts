@@ -2,55 +2,9 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
+import { publicRoutePaths } from "../shared/seoRouteManifest";
 
-const knownRoutes = new Set([
-  "/",
-  "/privacy",
-  ...["hk", "jp", "us"].flatMap(region =>
-    ["en", "ja", "zh"].flatMap(language => [
-      `/${region}/${language}`,
-      `/${region}/${language}/services`,
-      `/${region}/${language}/about`,
-      `/${region}/${language}/contact`,
-      `/${region}/${language}/faq`,
-      `/${region}/${language}/news`,
-      `/${region}/${language}/privacy`,
-      ...(region === "hk" ? [`/${region}/${language}/portfolio`] : []),
-      ...(region === "jp" ? [`/${region}/${language}/careers`] : []),
-      ...(region === "us"
-        ? [
-            `/${region}/${language}/services/property-development`,
-            `/${region}/${language}/services/property-management`,
-            `/${region}/${language}/services/vacation-rentals`,
-          ]
-        : []),
-    ])
-  ),
-]);
-
-const newsArticleIds = {
-  hk: [
-    "first-ffe-project-2026",
-    "odoo-erp-launch",
-    "expansion-preparation",
-    "hotel-operations-launch",
-    "hk-founding",
-  ],
-  jp: ["company-incorporation-2021"],
-  us: [
-    "property-management-launch-2025",
-    "us-founding-2026",
-    "group-global-network-2024",
-  ],
-} as const;
-
-for (const [region, articleIds] of Object.entries(newsArticleIds)) {
-  for (const language of ["en", "ja", "zh"]) {
-    for (const articleId of articleIds) {
-      knownRoutes.add(`/${region}/${language}/news/${articleId}`);
-    }
-  }
-}
+const knownRoutes = new Set(publicRoutePaths);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

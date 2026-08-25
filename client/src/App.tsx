@@ -14,6 +14,10 @@ import ScrollRestoration from "./components/ScrollRestoration";
 import ScrollToTop from "@/components/ScrollToTop";
 import PageLoader from "./components/PageLoader";
 import GeoRedirect from "./components/GeoRedirect";
+import {
+  regionPageDefinitions,
+  supportedLanguages,
+} from "@shared/seoRouteManifest";
 // Lazy load pages for better performance
 // Global Gateway
 const GlobalGateway = lazy(() => import("./pages/GlobalGateway"));
@@ -47,12 +51,53 @@ const UsContact = lazy(() => import("./pages/us/Contact"));
 const UsFAQ = lazy(() => import("./pages/us/FAQ"));
 const UsNews = lazy(() => import("./pages/us/News"));
 const UsNewsArticle = lazy(() => import("./pages/us/NewsArticle"));
-const UsPropertyDevelopment = lazy(() => import("./pages/us/services/PropertyDevelopment"));
-const UsPropertyManagement = lazy(() => import("./pages/us/services/PropertyManagement"));
-const UsVacationRentals = lazy(() => import("./pages/us/services/VacationRentals"));
+const UsPropertyDevelopment = lazy(
+  () => import("./pages/us/services/PropertyDevelopment")
+);
+const UsPropertyManagement = lazy(
+  () => import("./pages/us/services/PropertyManagement")
+);
+const UsVacationRentals = lazy(
+  () => import("./pages/us/services/VacationRentals")
+);
 
 // Shared Pages
 const Privacy = lazy(() => import("./pages/Privacy"));
+
+const hkPageComponents = {
+  home: Home,
+  services: Services,
+  portfolio: Portfolio,
+  about: About,
+  contact: Contact,
+  faq: FAQ,
+  news: News,
+  privacy: Privacy,
+};
+
+const jpPageComponents = {
+  home: JpHome,
+  services: JpServices,
+  about: JpAbout,
+  careers: JpCareers,
+  contact: JpContact,
+  faq: JpFAQ,
+  news: JpNews,
+  privacy: Privacy,
+};
+
+const usPageComponents = {
+  home: UsHome,
+  services: UsServices,
+  propertyDevelopment: UsPropertyDevelopment,
+  propertyManagement: UsPropertyManagement,
+  vacationRentals: UsVacationRentals,
+  about: UsAbout,
+  contact: UsContact,
+  faq: UsFAQ,
+  news: UsNews,
+  privacy: Privacy,
+};
 
 // Page transition variants for each region
 const pageTransitions = {
@@ -100,44 +145,22 @@ function HkRouter() {
           transition={transition.transition}
         >
           <Switch>
-            {/* Hong Kong Routes - English */}
-            <Route path="/hk/en" component={Home} />
-            <Route path="/hk/en/services" component={Services} />
-            <Route path="/hk/en/portfolio" component={Portfolio} />
-            <Route path="/hk/en/about" component={About} />
-            <Route path="/hk/en/contact" component={Contact} />
-
-            {/* Hong Kong Routes - Japanese */}
-            <Route path="/hk/ja" component={Home} />
-            <Route path="/hk/ja/services" component={Services} />
-            <Route path="/hk/ja/portfolio" component={Portfolio} />
-            <Route path="/hk/ja/about" component={About} />
-            <Route path="/hk/ja/contact" component={Contact} />
-
-            {/* Hong Kong Routes - Chinese */}
-            <Route path="/hk/zh" component={Home} />
-            <Route path="/hk/zh/services" component={Services} />
-            <Route path="/hk/zh/portfolio" component={Portfolio} />
-            <Route path="/hk/zh/about" component={About} />
-            <Route path="/hk/zh/contact" component={Contact} />
-
-            {/* FAQ */}
-            <Route path="/hk/en/faq" component={FAQ} />
-            <Route path="/hk/ja/faq" component={FAQ} />
-            <Route path="/hk/zh/faq" component={FAQ} />
-
-            {/* News */}
-            <Route path="/hk/en/news" component={News} />
-            <Route path="/hk/ja/news" component={News} />
-            <Route path="/hk/zh/news" component={News} />
-            <Route path="/hk/en/news/:slug" component={NewsArticle} />
-            <Route path="/hk/ja/news/:slug" component={NewsArticle} />
-            <Route path="/hk/zh/news/:slug" component={NewsArticle} />
-
-            {/* Privacy Policy */}
-            <Route path="/hk/en/privacy" component={Privacy} />
-            <Route path="/hk/ja/privacy" component={Privacy} />
-            <Route path="/hk/zh/privacy" component={Privacy} />
+            {supportedLanguages.flatMap(language =>
+              regionPageDefinitions.hk.map(page => (
+                <Route
+                  key={`hk-${language}-${page.key}`}
+                  path={`/hk/${language}${page.suffix}`}
+                  component={hkPageComponents[page.key]}
+                />
+              ))
+            )}
+            {supportedLanguages.map(language => (
+              <Route
+                key={`hk-${language}-article`}
+                path={`/hk/${language}/news/:slug`}
+                component={NewsArticle}
+              />
+            ))}
 
             <Route component={NotFound} />
           </Switch>
@@ -164,40 +187,22 @@ function JpRouter() {
           transition={transition.transition}
         >
           <Switch>
-            {/* Japan Routes - Japanese */}
-            <Route path="/jp/ja" component={JpHome} />
-            <Route path="/jp/ja/services" component={JpServices} />
-            <Route path="/jp/ja/about" component={JpAbout} />
-            <Route path="/jp/ja/careers" component={JpCareers} />
-            <Route path="/jp/ja/contact" component={JpContact} />
-            <Route path="/jp/ja/faq" component={JpFAQ} />
-            <Route path="/jp/ja/news" component={JpNews} />
-            <Route path="/jp/ja/news/:id" component={JpNewsArticle} />
-
-            {/* Japan Routes - English */}
-            <Route path="/jp/en" component={JpHome} />
-            <Route path="/jp/en/services" component={JpServices} />
-            <Route path="/jp/en/about" component={JpAbout} />
-            <Route path="/jp/en/careers" component={JpCareers} />
-            <Route path="/jp/en/contact" component={JpContact} />
-            <Route path="/jp/en/faq" component={JpFAQ} />
-            <Route path="/jp/en/news" component={JpNews} />
-            <Route path="/jp/en/news/:id" component={JpNewsArticle} />
-
-            {/* Japan Routes - Chinese */}
-            <Route path="/jp/zh" component={JpHome} />
-            <Route path="/jp/zh/services" component={JpServices} />
-            <Route path="/jp/zh/about" component={JpAbout} />
-            <Route path="/jp/zh/careers" component={JpCareers} />
-            <Route path="/jp/zh/contact" component={JpContact} />
-            <Route path="/jp/zh/faq" component={JpFAQ} />
-            <Route path="/jp/zh/news" component={JpNews} />
-            <Route path="/jp/zh/news/:id" component={JpNewsArticle} />
-
-            {/* Privacy Policy */}
-            <Route path="/jp/ja/privacy" component={Privacy} />
-            <Route path="/jp/en/privacy" component={Privacy} />
-            <Route path="/jp/zh/privacy" component={Privacy} />
+            {supportedLanguages.flatMap(language =>
+              regionPageDefinitions.jp.map(page => (
+                <Route
+                  key={`jp-${language}-${page.key}`}
+                  path={`/jp/${language}${page.suffix}`}
+                  component={jpPageComponents[page.key]}
+                />
+              ))
+            )}
+            {supportedLanguages.map(language => (
+              <Route
+                key={`jp-${language}-article`}
+                path={`/jp/${language}/news/:id`}
+                component={JpNewsArticle}
+              />
+            ))}
 
             <Route component={NotFound} />
           </Switch>
@@ -224,46 +229,22 @@ function UsRouter() {
           transition={transition.transition}
         >
           <Switch>
-            {/* US Routes - English */}
-            <Route path="/us/en" component={UsHome} />
-            <Route path="/us/en/services" component={UsServices} />
-            <Route path="/us/en/services/property-development" component={UsPropertyDevelopment} />
-            <Route path="/us/en/services/property-management" component={UsPropertyManagement} />
-            <Route path="/us/en/services/vacation-rentals" component={UsVacationRentals} />
-            <Route path="/us/en/about" component={UsAbout} />
-            <Route path="/us/en/contact" component={UsContact} />
-            <Route path="/us/en/faq" component={UsFAQ} />
-            <Route path="/us/en/news" component={UsNews} />
-            <Route path="/us/en/news/:id" component={UsNewsArticle} />
-
-            {/* US Routes - Japanese */}
-            <Route path="/us/ja" component={UsHome} />
-            <Route path="/us/ja/services" component={UsServices} />
-            <Route path="/us/ja/services/property-development" component={UsPropertyDevelopment} />
-            <Route path="/us/ja/services/property-management" component={UsPropertyManagement} />
-            <Route path="/us/ja/services/vacation-rentals" component={UsVacationRentals} />
-            <Route path="/us/ja/about" component={UsAbout} />
-            <Route path="/us/ja/contact" component={UsContact} />
-            <Route path="/us/ja/faq" component={UsFAQ} />
-            <Route path="/us/ja/news" component={UsNews} />
-            <Route path="/us/ja/news/:id" component={UsNewsArticle} />
-
-            {/* US Routes - Chinese */}
-            <Route path="/us/zh" component={UsHome} />
-            <Route path="/us/zh/services" component={UsServices} />
-            <Route path="/us/zh/services/property-development" component={UsPropertyDevelopment} />
-            <Route path="/us/zh/services/property-management" component={UsPropertyManagement} />
-            <Route path="/us/zh/services/vacation-rentals" component={UsVacationRentals} />
-            <Route path="/us/zh/about" component={UsAbout} />
-            <Route path="/us/zh/contact" component={UsContact} />
-            <Route path="/us/zh/faq" component={UsFAQ} />
-            <Route path="/us/zh/news" component={UsNews} />
-            <Route path="/us/zh/news/:id" component={UsNewsArticle} />
-
-            {/* Privacy Policy */}
-            <Route path="/us/en/privacy" component={Privacy} />
-            <Route path="/us/ja/privacy" component={Privacy} />
-            <Route path="/us/zh/privacy" component={Privacy} />
+            {supportedLanguages.flatMap(language =>
+              regionPageDefinitions.us.map(page => (
+                <Route
+                  key={`us-${language}-${page.key}`}
+                  path={`/us/${language}${page.suffix}`}
+                  component={usPageComponents[page.key]}
+                />
+              ))
+            )}
+            {supportedLanguages.map(language => (
+              <Route
+                key={`us-${language}-article`}
+                path={`/us/${language}/news/:id`}
+                component={UsNewsArticle}
+              />
+            ))}
 
             <Route component={NotFound} />
           </Switch>
@@ -339,10 +320,14 @@ function App() {
   // Only show splash on gateway page
   const isGateway = location === "/";
   const [, region, requestedLanguage] = location.split("/");
-  const consentLanguage = requestedLanguage === "ja" || requestedLanguage === "zh" ? requestedLanguage : "en";
-  const privacyPolicyPath = region === "hk" || region === "jp" || region === "us"
-    ? `/${region}/${consentLanguage}/privacy`
-    : "/privacy";
+  const consentLanguage =
+    requestedLanguage === "ja" || requestedLanguage === "zh"
+      ? requestedLanguage
+      : "en";
+  const privacyPolicyPath =
+    region === "hk" || region === "jp" || region === "us"
+      ? `/${region}/${consentLanguage}/privacy`
+      : "/privacy";
 
   useEffect(() => {
     // Check if user has already seen splash screen in this session

@@ -70,6 +70,20 @@ const notFoundHtml = await readFile(
   path.join(outputDirectory, "404.html"),
   "utf8"
 );
+const rootHtml = await readFile(path.join(outputDirectory, "index.html"), "utf8");
+const iconUrls = [
+  ...rootHtml.matchAll(
+    /<link\s+rel=["']icon["'][^>]+href=["'](\/[^"']+)["'][^>]*>/gi
+  ),
+].map(match => match[1]);
+if (iconUrls.length < 2) fail("root HTML is missing expected favicon references");
+for (const iconUrl of iconUrls) {
+  try {
+    await access(path.join(outputDirectory, iconUrl.slice(1)));
+  } catch {
+    fail(`root HTML references missing favicon: ${iconUrl}`);
+  }
+}
 if (!/<meta name="robots" content="noindex, nofollow"/i.test(notFoundHtml)) {
   fail("404.html is missing noindex, nofollow");
 }
@@ -109,6 +123,94 @@ if (sitemapLocations.length !== 107) {
 if (/<link\s/i.test(sitemap)) {
   fail("sitemap contains bare HTML link elements instead of xhtml:link");
 }
+for (const location of sitemapLocations) {
+  const url = new URL(location);
+  if (!url.pathname.endsWith("/")) {
+    fail(`sitemap URL is missing its canonical trailing slash: ${location}`);
+  }
+  const routeDirectory =
+    url.pathname === "/"
+      ? outputDirectory
+      : path.join(outputDirectory, url.pathname.slice(1, -1));
+  const routeHtmlPath = path.join(routeDirectory, "index.html");
+  try {
+    const routeHtml = await readFile(routeHtmlPath, "utf8");
+    const canonicals = [
+      ...routeHtml.matchAll(
+        /<link\s+rel=["']canonical["']\s+href=["']([^"']+)["'][^>]*>/gi
+      ),
+    ].map(match => match[1]);
+    if (canonicals.length !== 1 || canonicals[0] !== location) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} canonical is ${canonicals.join(", ") || "missing"}; expected ${location}`
+      );
+    }
+    const isRegional = /^\/(?:hk|jp|us)\//.test(url.pathname);
+    const language = url.pathname.split("/")[2];
+    const expectedHtmlLanguage = language === "zh" ? "zh-Hans" : language;
+    if (
+      isRegional &&
+      !new RegExp(`<html\\s+lang=["']${expectedHtmlLanguage}["']`, "i").test(
+        routeHtml
+      )
+    ) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} has the wrong or missing HTML language`
+      );
+    }
+    if (!/<title>[^<]+<\/title>/i.test(routeHtml)) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} is missing its initial title`
+      );
+    }
+    if (
+      !/<meta\s+name=["']description["']\s+content=["'][^"']+["']/i.test(
+        routeHtml
+      )
+    ) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} is missing its initial description`
+      );
+    }
+    const alternateCount = [
+      ...routeHtml.matchAll(/<link\s+rel=["']alternate["']\s+hreflang=/gi),
+    ].length;
+    if (alternateCount !== (isRegional ? 4 : 0)) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} has ${alternateCount} hreflang links; expected ${isRegional ? 4 : 0}`
+      );
+    }
+    const expectedOgType = /\/news\/[^/]+\/$/.test(url.pathname)
+      ? "article"
+      : "website";
+    if (
+      !new RegExp(
+        `<meta\\s+property=["']og:type["']\\s+content=["']${expectedOgType}["']`,
+        "i"
+      ).test(routeHtml)
+    ) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} is missing og:type=${expectedOgType}`
+      );
+    }
+    if (expectedOgType === "article") {
+      if (!/<meta\s+property=["']article:published_time["']/i.test(routeHtml)) {
+        fail(
+          `${path.relative(root, routeHtmlPath)} is missing article:published_time`
+        );
+      }
+      if (!/["']@type["']\s*:\s*["']NewsArticle["']/i.test(routeHtml)) {
+        fail(
+          `${path.relative(root, routeHtmlPath)} is missing NewsArticle JSON-LD`
+        );
+      }
+    }
+  } catch (error) {
+    if (error?.code === "ENOENT")
+      fail(`sitemap route has no generated HTML: ${location}`);
+    else throw error;
+  }
+}
 const regionalSitemapRoutes = sitemapLocations.filter(location =>
   /https:\/\/www\.tengcle\.com\/(?:hk|jp|us)\//.test(location)
 ).length;
@@ -119,16 +221,43 @@ if (sitemapAlternates !== regionalSitemapRoutes * 4) {
   );
 }
 for (const expectedRoute of [
-  "/hk/ja/privacy",
-  "/jp/en/privacy",
-  "/us/zh/privacy",
-  "/hk/zh/news/hk-founding",
-  "/jp/en/news/company-incorporation-2021",
-  "/us/ja/news/us-founding-2026",
+  "/hk/ja/privacy/",
+  "/jp/en/privacy/",
+  "/us/zh/privacy/",
+  "/hk/zh/news/hk-founding/",
+  "/jp/en/news/company-incorporation-2021/",
+  "/us/ja/news/us-founding-2026/",
 ]) {
   if (!sitemapLocations.includes(`https://www.tengcle.com${expectedRoute}`)) {
     fail(`sitemap is missing route: ${expectedRoute}`);
   }
+}
+const usFoundingHtml = await readFile(
+  path.join(
+    outputDirectory,
+    "us",
+    "en",
+    "news",
+    "us-founding-2026",
+    "index.html"
+  ),
+  "utf8"
+);
+if (
+  !usFoundingHtml.includes(
+    "<title>Tengcle Development LLC Established in New Jersey | Tengcle Development LLC</title>"
+  )
+) {
+  fail("US founding article is missing its article-specific initial title");
+}
+if (
+  !usFoundingHtml.includes(
+    "Tengcle Development LLC was officially registered in Weehawken"
+  )
+) {
+  fail(
+    "US founding article is missing its article-specific initial description"
+  );
 }
 const localAssetUrls = [
   ...sitemap.matchAll(
