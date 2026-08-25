@@ -47,6 +47,31 @@ test("unknown documents return a real noindex 404 without canonical", async ({
   await expect(page.locator('meta[property="og:url"]')).toHaveCount(0);
 });
 
+test("Cloudflare preview applies declared security and cache headers", async ({
+  request,
+}) => {
+  test.skip(
+    process.env.PLAYWRIGHT_EXPECT_SECURITY_HEADERS !== "true",
+    "Only asserted against an actual Cloudflare preview"
+  );
+
+  const documentResponse = await request.get("/hk/en");
+  expect(documentResponse.status()).toBe(200);
+  const headers = documentResponse.headers();
+  expect(headers["content-security-policy"]).toContain("default-src 'self'");
+  expect(headers["x-frame-options"]).toBe("SAMEORIGIN");
+  expect(headers["x-content-type-options"]).toBe("nosniff");
+  expect(headers["referrer-policy"]).toBe("strict-origin-when-cross-origin");
+  expect(headers["permissions-policy"]).toContain("camera=()");
+
+  const imageResponse = await request.get("/images/og-image.webp");
+  expect(imageResponse.status()).toBe(200);
+  expect(imageResponse.headers()["content-type"]).toContain("image/webp");
+  expect(imageResponse.headers()["cache-control"]).toBe(
+    "public, max-age=31536000, immutable"
+  );
+});
+
 test("analytics remains unloaded until explicit all-cookie consent", async ({
   page,
 }) => {
