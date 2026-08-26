@@ -43,7 +43,7 @@ const faqDataJa: FAQItem[] = [
   },
   {
     question: "他のTengcle法人との関係を教えてください。",
-    answer: "株式会社Tengcle、Tengcle Limited、Tengcle Development LLCは、いずれも小野寺紘宣が100%を保有する関連会社です。親会社・子会社の関係ではありません。"
+    answer: "株式会社Tengcle、Tengcle Limited、Tengcle Development LLCは関連会社です。各社は、それぞれの法域における独立した法人です。"
   },
   {
     question: "会社の所在地はどこですか？",
@@ -78,7 +78,7 @@ const faqDataEn: FAQItem[] = [
   },
   {
     question: "What is the relationship with the other Tengcle companies?",
-    answer: "株式会社Tengcle, Tengcle Limited, and Tengcle Development LLC are affiliated companies, each 100% owned by Kosen Onodera. They are not in a parent-subsidiary relationship."
+    answer: "株式会社Tengcle, Tengcle Limited, and Tengcle Development LLC are related companies. Each is a separate legal entity in its jurisdiction."
   },
   {
     question: "Where is your office located?",
@@ -113,7 +113,7 @@ const faqDataZh: FAQItem[] = [
   },
   {
     question: "与其他Tengcle公司是什么关系？",
-    answer: "株式会社Tengcle、Tengcle Limited和Tengcle Development LLC均为小野寺紘宣100%持有的关联公司，不属于母子公司关系。"
+    answer: "株式会社Tengcle、Tengcle Limited和Tengcle Development LLC是关联公司。各公司是在其司法管辖区内独立的法律实体。"
   },
   {
     question: "办公室在哪里？",

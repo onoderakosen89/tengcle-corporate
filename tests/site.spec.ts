@@ -3,6 +3,12 @@ import AxeBuilder from "@axe-core/playwright";
 import { readFile } from "node:fs/promises";
 import { buyerIntentPages } from "../shared/buyerIntentPages";
 
+const forbiddenHierarchyPattern =
+  /100\s*[%％].{0,40}(?:owned|held|保有|所有|持有)|wholly owned|owned by Kosen|parent[- ]subsidiar|親会社|子会社|親子会社|母子公司|global headquarters|Hong Kong headquarters|Hong Kong HQ|グローバル本社|香港本社|全球总部|香港总部|founding company|founding entity|founding office|創業法人|創業会社|创始法人|创始公司|\bUS office\b|\bU\.S\. office\b|米国オフィス|米国拠点|美国办事处|美国办公室/i;
+const unverifiedLegalBrandPattern = /Tengcle Group/i;
+const unverifiedHkScaleTrustPattern =
+  /ISO Standards|international quality management|15\+ Countries|supplier relationships worldwide|国際品質管理|15カ国以上|世界中のサプライヤー関係|国际质量管理|15\+国家|全球供应商关系|Built on Integrity|誠実な運営|诚信经营/i;
+
 test("known routes and article routes return route-specific initial HTML", async ({
   request,
 }) => {
@@ -139,6 +145,18 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
     const initialNodes = initialScripts.flatMap(data =>
       Array.isArray(data["@graph"]) ? data["@graph"] : [data]
     );
+    expect(initialHtml, `${route} initial hierarchy copy`).not.toMatch(
+      forbiddenHierarchyPattern
+    );
+    expect(
+      JSON.stringify(initialNodes),
+      `${route} initial JSON-LD hierarchy copy`
+    ).not.toMatch(forbiddenHierarchyPattern);
+    if (!route.endsWith("/privacy/")) {
+      expect(initialHtml, `${route} initial legal brand copy`).not.toMatch(
+        unverifiedLegalBrandPattern
+      );
+    }
 
     await page.goto(route, { waitUntil: "domcontentloaded" });
     await expect
@@ -166,6 +184,28 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
           return Array.isArray(data["@graph"]) ? data["@graph"] : [data];
         })
       );
+    const visibleCopy = await page.locator("body").innerText();
+    expect(visibleCopy, `${route} hydrated hierarchy copy`).not.toMatch(
+      forbiddenHierarchyPattern
+    );
+    expect(
+      JSON.stringify(hydratedNodes),
+      `${route} hydrated JSON-LD hierarchy copy`
+    ).not.toMatch(forbiddenHierarchyPattern);
+    if (!route.endsWith("/privacy/")) {
+      expect(visibleCopy, `${route} hydrated legal brand copy`).not.toMatch(
+        unverifiedLegalBrandPattern
+      );
+      expect(
+        JSON.stringify(hydratedNodes),
+        `${route} hydrated JSON-LD legal brand copy`
+      ).not.toMatch(unverifiedLegalBrandPattern);
+    }
+    if (/^\/hk\/(?:en|ja|zh)(?:\/about)?\/$/.test(route)) {
+      expect(visibleCopy, `${route} hydrated verified HK copy`).not.toMatch(
+        unverifiedHkScaleTrustPattern
+      );
+    }
     const ids = hydratedNodes
       .map(node => node?.["@id"])
       .filter((id): id is string => typeof id === "string");

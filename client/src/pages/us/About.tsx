@@ -206,7 +206,7 @@ export default function UsAbout() {
               Tengcle Related Companies
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-slate max-w-2xl mx-auto">
-              Affiliated companies owned by Kosen Onodera, each operating independently in its jurisdiction
+              Related companies, each a separate legal entity in its jurisdiction
             </motion.p>
           </motion.div>
 

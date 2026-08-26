@@ -244,8 +244,8 @@ const translations: Translations = {
   },
   'footer.hk': {
     en: 'Tengcle Limited (Hong Kong)',
-    ja: 'Tengcle Limited（香港本社）',
-    zh: 'Tengcle Limited（香港总部）',
+    ja: 'Tengcle Limited（香港法人）',
+    zh: 'Tengcle Limited（香港公司）',
   },
   'footer.jp': {
     en: '株式会社Tengcle (Japan)',

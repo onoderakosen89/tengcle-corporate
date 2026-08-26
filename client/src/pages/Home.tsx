@@ -445,13 +445,13 @@ export default function Home() {
           <AnimatedSection>
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <p className="text-gold text-sm tracking-[0.3em] uppercase mb-4">
-                {t.trust?.subtitle || "Trust & Compliance"}
+                {t.trust?.subtitle || "Company Information"}
               </p>
               <h2 className={`${getHeadingFontClass()} text-4xl md:text-5xl text-white mb-6`}>
-                {t.trust?.title || "Built on Integrity"}
+                {t.trust?.title || "Tengcle Limited"}
               </h2>
               <p className={`text-gray-300 max-w-2xl mx-auto ${getFontClass()}`}>
-                {t.trust?.description || "We prioritize transparent coordination, clear scope definition, and responsible project delivery as our operations develop."}
+                {t.trust?.description || "Incorporated in Hong Kong on 29 April 2025. Business Registration Number: 78077104."}
               </p>
             </motion.div>
           </AnimatedSection>
@@ -461,7 +461,7 @@ export default function Home() {
               {
                 icon: Shield,
                 title: t.trust?.established || "Established",
-                value: "2025",
+                value: "2025-04-29",
                 description: t.trust?.establishedDesc || "Hong Kong Incorporated",
               },
               {
@@ -472,9 +472,9 @@ export default function Home() {
               },
               {
                 icon: Award,
-                title: t.trust?.director || "Director",
-                value: "Kosen Onodera",
-                description: t.trust?.directorDesc || "Director & CEO",
+                title: t.trust?.director || "Legal Name",
+                value: "Tengcle Limited",
+                description: t.trust?.directorDesc || "Hong Kong Company",
               },
             ].map((item, index) => (
               <AnimatedSection key={index}>

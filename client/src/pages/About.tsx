@@ -56,7 +56,7 @@ export default function About() {
     <div className="min-h-screen bg-white" data-region="hk">
       <SEOHead
         title={language === "ja" ? "会社概要 | Tengcle Limited 香港 - ホテルFF&E" : language === "zh" ? "关于我们 | Tengcle Limited 香港 - 酒店FF&E" : "About Us | Tengcle Limited Hong Kong - Hotel FF&E"}
-        description={language === "ja" ? "Tengcle Limitedの会社情報。香港拠点でホテルFF&E調達、ITソリューションを提供。" : language === "zh" ? "Tengcle Limited公司信息。香港总部，提供酒店FF&E采购、IT解决方案。" : "About Tengcle Limited. Hong Kong-based hotel FF&E procurement & IT solutions provider."}
+        description={language === "ja" ? "2025年4月29日に設立されたTengcle Limitedの会社情報。商業登記番号は78077104です。" : language === "zh" ? "Tengcle Limited于2025年4月29日在香港成立，商业登记号码为78077104。" : "Tengcle Limited was incorporated in Hong Kong on 29 April 2025. Business Registration Number: 78077104."}
         keywords={language === "ja" ? "Tengcle Limited, 会社概要, 香港, ホテルFF&E" : language === "zh" ? "Tengcle Limited, 关于我们, 香港, 酒店FF&E" : "Tengcle Limited, about us, Hong Kong, hotel FF&E"}
         canonical={`https://www.tengcle.com/hk/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
@@ -156,9 +156,9 @@ export default function About() {
             {[
               {
                 icon: Shield,
-                title: language === "ja" ? "設立" : language === "zh" ? "成立" : "Established",
-                value: "2025-04-29",
-                description: language === "ja" ? "香港法人設立" : language === "zh" ? "香港法人成立" : "Hong Kong Incorporated",
+                title: language === "ja" ? "香港法人" : language === "zh" ? "香港公司" : "Hong Kong Company",
+                value: "Tengcle Limited",
+                description: language === "ja" ? "2025年4月29日設立" : language === "zh" ? "2025年4月29日成立" : "Incorporated 29 April 2025",
               },
               {
                 icon: Building2,
@@ -168,21 +168,21 @@ export default function About() {
               },
               {
                 icon: Award,
-                title: language === "ja" ? "代表取締役" : language === "zh" ? "董事" : "Director",
-                value: "Kosen Onodera",
-                description: language === "ja" ? "小野寺 紘宣" : language === "zh" ? "小野寺 紘宣" : "Director & CEO",
+                title: language === "ja" ? "日本の関連会社" : language === "zh" ? "日本关联公司" : "Japan Related Company",
+                value: "株式会社Tengcle",
+                description: language === "ja" ? "2021年10月25日設立" : language === "zh" ? "2021年10月25日成立" : "Incorporated 25 October 2021",
               },
               {
                 icon: Award,
-                title: language === "ja" ? "品質認証" : language === "zh" ? "质量认证" : "Quality Certified",
-                value: "ISO Standards",
-                description: language === "ja" ? "国際品質管理" : language === "zh" ? "国际质量管理" : "International quality management",
+                title: language === "ja" ? "米国の関連会社" : language === "zh" ? "美国关联公司" : "US Related Company",
+                value: "Tengcle Development LLC",
+                description: language === "ja" ? "2026年1月5日設立" : language === "zh" ? "2026年1月5日成立" : "Formed 5 January 2026",
               },
               {
                 icon: Globe,
-                title: language === "ja" ? "グローバルネットワーク" : language === "zh" ? "全球网络" : "Global Network",
-                value: language === "ja" ? "15カ国以上" : language === "zh" ? "15+国家" : "15+ Countries",
-                description: language === "ja" ? "世界中のサプライヤー関係" : language === "zh" ? "全球供应商关系" : "Supplier relationships worldwide",
+                title: language === "ja" ? "ニュージャージー法人ID" : language === "zh" ? "新泽西实体ID" : "New Jersey Entity ID",
+                value: "0451392806",
+                description: "Tengcle Development LLC",
               },
             ].map((item) => (
               <AnimatedSection key={item.title}>

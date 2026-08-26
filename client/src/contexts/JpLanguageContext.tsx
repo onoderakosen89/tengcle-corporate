@@ -270,7 +270,7 @@ const translations: Record<Language, Translations> = {
       description: "株式会社Tengcleは、2021年10月25日に設立された日本法人です。不動産管理を中核に、関連会社と連携しながら事業を段階的に展開しています。",
       story: {
         title: "沿革・背景",
-        p1: "株式会社Tengcleは2021年10月に日本で設立されました。Tengcle LimitedおよびTengcle Development LLCとは、いずれも小野寺紘宣が100%を保有する関連会社です。親会社・子会社の関係ではありません。",
+        p1: "株式会社Tengcleは2021年10月25日に日本で設立されました。Tengcle LimitedおよびTengcle Development LLCとは関連会社であり、各社はそれぞれの法域における独立した法人です。",
         p2: "現在は、不動産物件の家賃回収、修繕手配、テナント対応などの管理業務を行っています。その他の事業は、実態に合わせて慎重に準備・再開を検討します。",
       },
       info: {
@@ -444,13 +444,13 @@ const translations: Record<Language, Translations> = {
       description: "株式会社Tengcleは、不動産管理を中核に、他の事業を実態に合わせて段階的に展開する日本法人です。",
       navigation: "ナビゲーション",
       contact: "お問い合わせ",
-      hongkong: "Tengcle Limited（香港本社）",
-      group: "グループ企業",
+      hongkong: "Tengcle Limited（香港法人）",
+      group: "関連会社",
     },
     common: {
       learnMore: "詳細を見る",
       getInTouch: "お問い合わせ",
-      japanCorporate: "株式会社 Tengcle",
+      japanCorporate: "株式会社Tengcle",
       fullTime: "正社員",
       partTime: "パート",
       contract: "契約社員",
@@ -512,7 +512,7 @@ const translations: Record<Language, Translations> = {
       description: "Tengcle Co., Ltd. (株式会社Tengcle) is a Japanese company established on 25 October 2021, with property management as its active core business.",
       story: {
         title: "Our Story",
-        p1: "Tengcle Co., Ltd. was founded in Japan in October 2021. It is affiliated with Tengcle Limited and Tengcle Development LLC; all three companies are 100% owned by Kosen Onodera and are not in a parent-subsidiary relationship.",
+        p1: "株式会社Tengcle was incorporated in Japan on 25 October 2021. Tengcle Limited and Tengcle Development LLC are related companies; each is a separate legal entity in its jurisdiction.",
         p2: "We actively manage properties, including rent collection, repair coordination, and tenant communication. Other activities are prepared or reviewed according to their operational status.",
       },
       info: {
@@ -686,8 +686,8 @@ const translations: Record<Language, Translations> = {
       description: "株式会社Tengcle is a Japanese company with active property-management operations and other activities being developed according to operational status.",
       navigation: "Navigation",
       contact: "Contact",
-      hongkong: "Tengcle Limited (Hong Kong HQ)",
-      group: "Group Companies",
+      hongkong: "Tengcle Limited (Hong Kong company)",
+      group: "Related Companies",
     },
     common: {
       learnMore: "Learn More",
@@ -719,7 +719,7 @@ const translations: Record<Language, Translations> = {
       cta1: "查看业务内容",
       cta2: "联系我们",
       trust1: "日本法人",
-      trust2: "集团企业",
+      trust2: "关联公司",
       trust3: "多元化业务",
     },
     services: {
@@ -754,7 +754,7 @@ const translations: Record<Language, Translations> = {
       description: "株式会社Tengcle是一家于2021年10月25日在日本成立的公司，以房地产管理为当前核心业务。",
       story: {
         title: "关于我们",
-        p1: "株式会社Tengcle于2021年10月在日本成立。它与Tengcle Limited和Tengcle Development LLC均为小野寺紘宣100%持有的关联公司，不属于母子公司关系。",
+        p1: "株式会社Tengcle于2021年10月25日在日本成立。Tengcle Limited和Tengcle Development LLC是关联公司；各公司是在其司法管辖区内独立的法律实体。",
         p2: "目前我们开展房地产管理，包括租金回收、维修协调和租户沟通；其他活动将根据实际运营状态逐步推进。",
       },
       info: {
@@ -779,7 +779,7 @@ const translations: Record<Language, Translations> = {
       info: {
         tokyoOffice1: "东京办公室（高轮）",
         tokyoOffice2: "东京办公室（筑地）",
-        hkOffice: "香港总部",
+        hkOffice: "Tengcle Limited（香港公司）",
       },
     },
     careers: {
@@ -928,8 +928,8 @@ const translations: Record<Language, Translations> = {
       description: "Tengcle Co., Ltd. is a Japanese corporation operating five businesses: real estate management, restaurant operations, rental gyms, capsule hotel operations, and recruitment services.",
       navigation: "导航",
       contact: "联系方式",
-      hongkong: "Tengcle Limited（香港总部）",
-      group: "集团企业",
+      hongkong: "Tengcle Limited（香港公司）",
+      group: "关联公司",
     },
     common: {
       learnMore: "了解更多",
