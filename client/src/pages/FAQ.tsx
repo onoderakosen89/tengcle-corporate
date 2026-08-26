@@ -30,7 +30,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "What regulatory compliance does Tengcle maintain?",
-      answer: "Tengcle Limited is a fully registered Hong Kong company (BR: 78077104) that maintains the highest standards of corporate governance and regulatory compliance. We adhere to Hong Kong's anti-money laundering regulations and conduct thorough due diligence in all our business operations."
+      answer: "Tengcle Limited is a Hong Kong company incorporated on 29 April 2025 that maintains the highest standards of corporate governance and regulatory compliance. We adhere to Hong Kong's anti-money laundering regulations and conduct thorough due diligence in all our business operations."
     },
     {
       question: "Which Tengcle related companies are introduced here?",
@@ -50,7 +50,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "What quality certifications does Tengcle hold?",
-      answer: "Tengcle maintains international quality standards and works with ISO-certified suppliers. Our Hong Kong office is registered with the Hong Kong Companies Registry (BR: 78077104). We conduct rigorous quality inspections at every stage of the procurement process."
+      answer: "Tengcle maintains international quality standards and works with ISO-certified suppliers. Tengcle Limited was incorporated in Hong Kong on 29 April 2025. We conduct rigorous quality inspections at every stage of the procurement process."
     },
     {
       question: "Can Tengcle handle international shipping and logistics?",
@@ -64,7 +64,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcleはどのような法令遵守を行っていますか？",
-      answer: "Tengcle Limitedは香港会社登記所に正式に登録された会社（BR: 78077104）であり、最高水準のコーポレートガバナンスと法令遵守を維持しています。香港のマネーロンダリング防止規制を遵守し、すべての事業運営において徹底したデューデリジェンスを実施しています。"
+      answer: "Tengcle Limitedは2025年4月29日に香港で設立された会社であり、最高水準のコーポレートガバナンスと法令遵守を維持しています。香港のマネーロンダリング防止規制を遵守し、すべての事業運営において徹底したデューデリジェンスを実施しています。"
     },
     {
       question: "このサイトではどのTengcle関連会社を紹介していますか？",
@@ -84,7 +84,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcleはどのような品質認証を取得していますか？",
-      answer: "Tengcleは国際品質基準を維持し、ISO認証を取得したサプライヤーと協力しています。香港オフィスは香港会社登記所に登録されています（BR: 78077104）。調達プロセスのすべての段階で厳格な品質検査を実施しています。"
+      answer: "Tengcleは国際品質基準を維持し、ISO認証を取得したサプライヤーと協力しています。Tengcle Limitedは2025年4月29日に香港で設立されました。調達プロセスのすべての段階で厳格な品質検査を実施しています。"
     },
     {
       question: "Tengcleは国際配送と物流を扱えますか？",
@@ -98,7 +98,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcle遵守哪些法规？",
-      answer: "Tengcle Limited是在香港公司注册处正式注册的公司（BR: 78077104），保持最高标准的公司治理和法规遵循。我们遵守香港的反洗钱法规，并在所有业务运营中进行彻底的尽职调查。"
+      answer: "Tengcle Limited是于2025年4月29日在香港成立的公司，保持最高标准的公司治理和法规遵循。我们遵守香港的反洗钱法规，并在所有业务运营中进行彻底的尽职调查。"
     },
     {
       question: "本网站介绍哪些Tengcle关联公司？",
@@ -118,7 +118,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcle持有哪些质量认证？",
-      answer: "Tengcle保持国际质量标准，并与ISO认证的供应商合作。我们的香港办事处在香港公司注册处注册（BR: 78077104）。我们在采购过程的每个阶段进行严格的质量检查。"
+      answer: "Tengcle保持国际质量标准，并与ISO认证的供应商合作。Tengcle Limited于2025年4月29日在香港成立。我们在采购过程的每个阶段进行严格的质量检查。"
     },
     {
       question: "Tengcle能处理国际运输和物流吗？",

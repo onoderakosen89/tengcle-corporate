@@ -57,7 +57,7 @@ export default function UsAbout() {
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
         title={language === "ja" ? "会社概要 | Tengcle Development LLC ニュージャージー州" : language === "zh" ? "关于我们 | Tengcle Development LLC 新泽西州" : "About Us | Tengcle Development LLC, New Jersey"}
-        description={language === "ja" ? "2026年1月5日にニュージャージー州で設立されたTengcle Development LLCの会社情報。法人IDは0451392806です。" : language === "zh" ? "Tengcle Development LLC于2026年1月5日在新泽西州成立，实体ID为0451392806。" : "Tengcle Development LLC was formed in New Jersey on 5 January 2026. Entity ID: 0451392806."}
+        description={language === "ja" ? "2026年1月5日にニュージャージー州で設立されたTengcle Development LLCの会社情報。" : language === "zh" ? "Tengcle Development LLC于2026年1月5日在新泽西州成立。" : "Tengcle Development LLC was formed in New Jersey on 5 January 2026."}
         keywords={language === "ja" ? "Tengcle Development LLC, 会社概要, ニュージャージー, 不動産開発" : language === "zh" ? "Tengcle Development LLC, 关于我们, 新泽西, 房地产开发" : "Tengcle Development LLC, about us, New Jersey, real estate development"}
         canonical={`https://www.tengcle.com/us/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
@@ -142,7 +142,7 @@ export default function UsAbout() {
                       <p className="font-medium text-charcoal">Tengcle Development LLC</p>
                       <p className="text-sm text-slate">{t('company.role')}</p>
                       <p className="text-sm text-slate">Formed 5 January 2026</p>
-                      <p className="text-sm text-slate">New Jersey Entity ID 0451392806</p>
+                      <p className="text-sm text-slate">New Jersey company</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">

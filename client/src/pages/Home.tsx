@@ -451,7 +451,7 @@ export default function Home() {
                 {t.trust?.title || "Tengcle Limited"}
               </h2>
               <p className={`text-gray-300 max-w-2xl mx-auto ${getFontClass()}`}>
-                {t.trust?.description || "Incorporated in Hong Kong on 29 April 2025. Business Registration Number: 78077104."}
+                {t.trust?.description || "Incorporated in Hong Kong on 29 April 2025."}
               </p>
             </motion.div>
           </AnimatedSection>
@@ -466,9 +466,9 @@ export default function Home() {
               },
               {
                 icon: Building2,
-                title: t.trust?.businessReg || "Business Registration",
-                value: "78077104",
-                description: t.trust?.businessRegDesc || "Hong Kong Companies Registry",
+                title: t.trust?.businessReg || "Jurisdiction",
+                value: "Hong Kong",
+                description: t.trust?.businessRegDesc || "Hong Kong Company",
               },
               {
                 icon: Award,

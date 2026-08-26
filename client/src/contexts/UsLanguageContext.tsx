@@ -187,9 +187,9 @@ const translations: Translations = {
     zh: '新泽西州公司',
   },
   'about.description': {
-    en: 'Tengcle Development LLC is a New Jersey company and one of the Tengcle related companies. It was formed on 5 January 2026 (Entity ID 0451392806).',
-    ja: 'Tengcle Development LLCは、2026年1月5日に設立されたニュージャージー州法人で、Tengcleの関連会社の一社です（法人ID 0451392806）。',
-    zh: 'Tengcle Development LLC是于2026年1月5日成立的新泽西州公司，也是Tengcle关联公司之一（实体ID 0451392806）。',
+    en: 'Tengcle Development LLC is a New Jersey company and one of the Tengcle related companies. It was formed on 5 January 2026.',
+    ja: 'Tengcle Development LLCは、2026年1月5日に設立されたニュージャージー州法人で、Tengcleの関連会社の一社です。',
+    zh: 'Tengcle Development LLC是于2026年1月5日成立的新泽西州公司，也是Tengcle关联公司之一。',
   },
 
   // Company Info

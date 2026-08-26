@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
+import { join } from "node:path";
 import { buyerIntentPages } from "../shared/buyerIntentPages";
 
 const forbiddenHierarchyPattern =
@@ -8,6 +9,28 @@ const forbiddenHierarchyPattern =
 const unverifiedLegalBrandPattern = /Tengcle Group/i;
 const unverifiedHkScaleTrustPattern =
   /ISO Standards|international quality management|15\+ Countries|supplier relationships worldwide|国際品質管理|15カ国以上|世界中のサプライヤー関係|国际质量管理|15\+国家|全球供应商关系|Built on Integrity|誠実な運営|诚信经营/i;
+const publicRegistrationIdentifierPattern = /78077104|0451392806/;
+
+async function publicTextArtifacts(directory: string): Promise<string[]> {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const paths = await Promise.all(
+    entries.map(entry => {
+      const path = join(directory, entry.name);
+      return entry.isDirectory() ? publicTextArtifacts(path) : [path];
+    })
+  );
+  return paths.flat().filter(path => /\.(?:html|js|json|xml)$/i.test(path));
+}
+
+test("generated public HTML, JavaScript, and structured data omit registration identifiers", async () => {
+  const artifacts = await publicTextArtifacts("dist/public");
+  expect(artifacts.length).toBeGreaterThan(100);
+  for (const artifact of artifacts) {
+    expect(await readFile(artifact, "utf8"), artifact).not.toMatch(
+      publicRegistrationIdentifierPattern
+    );
+  }
+});
 
 test("known routes and article routes return route-specific initial HTML", async ({
   request,
@@ -57,7 +80,7 @@ test("article initial HTML exposes article-specific social and search metadata",
     "<title>Tengcle Development LLC Established in New Jersey | Tengcle Development LLC</title>"
   );
   expect(body).toContain(
-    'content="Tengcle Development LLC was formed in New Jersey on 5 January 2026. New Jersey Entity ID: 0451392806."'
+    'content="Tengcle Development LLC was formed in New Jersey on 5 January 2026."'
   );
   expect(body).toContain('<meta property="og:type" content="article">');
   expect(body).toContain(
@@ -148,6 +171,9 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
     expect(initialHtml, `${route} initial hierarchy copy`).not.toMatch(
       forbiddenHierarchyPattern
     );
+    expect(initialHtml, `${route} initial registration identifier`).not.toMatch(
+      publicRegistrationIdentifierPattern
+    );
     expect(
       JSON.stringify(initialNodes),
       `${route} initial JSON-LD hierarchy copy`
@@ -188,6 +214,13 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
     expect(visibleCopy, `${route} hydrated hierarchy copy`).not.toMatch(
       forbiddenHierarchyPattern
     );
+    expect(visibleCopy, `${route} hydrated registration identifier`).not.toMatch(
+      publicRegistrationIdentifierPattern
+    );
+    expect(
+      JSON.stringify(hydratedNodes),
+      `${route} hydrated JSON-LD registration identifier`
+    ).not.toMatch(publicRegistrationIdentifierPattern);
     expect(
       JSON.stringify(hydratedNodes),
       `${route} hydrated JSON-LD hierarchy copy`

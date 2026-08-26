@@ -56,7 +56,7 @@ export default function Footer() {
 
             {/* Licenses */}
             <div className="flex flex-wrap gap-4 text-xs text-white/50">
-              <span>BR No: 78077104</span>
+              <span>Incorporated 29 April 2025</span>
               <span>Est. 2025</span>
             </div>
           </div>

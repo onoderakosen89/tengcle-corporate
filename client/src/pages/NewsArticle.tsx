@@ -264,24 +264,21 @@ const newsArticles: NewsArticle[] = [
       zh: "Tengcle Limited在香港成立",
     },
     excerpt: {
-      en: "Tengcle Limited was incorporated in Hong Kong on 29 April 2025. Business Registration Number: 78077104.",
-      ja: "Tengcle Limitedは2025年4月29日に香港で設立されました。商業登記番号：78077104。",
-      zh: "Tengcle Limited于2025年4月29日在香港成立。商业登记号码：78077104。",
+      en: "Tengcle Limited was incorporated in Hong Kong on 29 April 2025.",
+      ja: "Tengcle Limitedは2025年4月29日に香港で設立されました。",
+      zh: "Tengcle Limited于2025年4月29日在香港成立。",
     },
     content: {
       en: [
         "Tengcle Limited was incorporated in Hong Kong on 29 April 2025.",
-        "Its Business Registration Number is 78077104.",
         "Tengcle Limited is one of the Tengcle related companies. Each company is a separate legal entity in its jurisdiction.",
       ],
       ja: [
         "Tengcle Limitedは2025年4月29日に香港で設立されました。",
-        "商業登記番号は78077104です。",
         "Tengcle LimitedはTengcleの関連会社の一社です。各社は、それぞれの法域における独立した法人です。",
       ],
       zh: [
         "Tengcle Limited于2025年4月29日在香港成立。",
-        "商业登记号码为78077104。",
         "Tengcle Limited是Tengcle关联公司之一。各公司是在其司法管辖区内独立的法律实体。",
       ],
     },

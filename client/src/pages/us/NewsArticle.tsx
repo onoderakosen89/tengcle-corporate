@@ -47,24 +47,21 @@ const newsArticles: NewsArticle[] = [
       zh: "Tengcle Development LLC在新泽西州成立",
     },
     excerpt: {
-      en: "Tengcle Development LLC was formed in New Jersey on 5 January 2026. New Jersey Entity ID: 0451392806.",
-      ja: "Tengcle Development LLCは2026年1月5日にニュージャージー州で設立されました。ニュージャージー州法人ID：0451392806。",
-      zh: "Tengcle Development LLC于2026年1月5日在新泽西州成立。新泽西州实体ID：0451392806。",
+      en: "Tengcle Development LLC was formed in New Jersey on 5 January 2026.",
+      ja: "Tengcle Development LLCは2026年1月5日にニュージャージー州で設立されました。",
+      zh: "Tengcle Development LLC于2026年1月5日在新泽西州成立。",
     },
     content: {
       en: [
         "Tengcle Development LLC was formed in New Jersey on 5 January 2026.",
-        "The New Jersey Entity ID is 0451392806.",
         "Tengcle Development LLC is one of the Tengcle related companies. Each company is a separate legal entity in its jurisdiction.",
       ],
       ja: [
         "Tengcle Development LLCは2026年1月5日にニュージャージー州で設立されました。",
-        "ニュージャージー州法人IDは0451392806です。",
         "Tengcle Development LLCはTengcleの関連会社の一社です。各社は、それぞれの法域における独立した法人です。",
       ],
       zh: [
         "Tengcle Development LLC于2026年1月5日在新泽西州成立。",
-        "新泽西州实体ID为0451392806。",
         "Tengcle Development LLC是Tengcle关联公司之一。各公司是在其司法管辖区内独立的法律实体。",
       ],
     },

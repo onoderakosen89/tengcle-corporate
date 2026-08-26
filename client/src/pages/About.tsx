@@ -56,7 +56,7 @@ export default function About() {
     <div className="min-h-screen bg-white" data-region="hk">
       <SEOHead
         title={language === "ja" ? "会社概要 | Tengcle Limited 香港 - ホテルFF&E" : language === "zh" ? "关于我们 | Tengcle Limited 香港 - 酒店FF&E" : "About Us | Tengcle Limited Hong Kong - Hotel FF&E"}
-        description={language === "ja" ? "2025年4月29日に設立されたTengcle Limitedの会社情報。商業登記番号は78077104です。" : language === "zh" ? "Tengcle Limited于2025年4月29日在香港成立，商业登记号码为78077104。" : "Tengcle Limited was incorporated in Hong Kong on 29 April 2025. Business Registration Number: 78077104."}
+        description={language === "ja" ? "2025年4月29日に香港で設立されたTengcle Limitedの会社情報。" : language === "zh" ? "Tengcle Limited于2025年4月29日在香港成立。" : "Tengcle Limited was incorporated in Hong Kong on 29 April 2025."}
         keywords={language === "ja" ? "Tengcle Limited, 会社概要, 香港, ホテルFF&E" : language === "zh" ? "Tengcle Limited, 关于我们, 香港, 酒店FF&E" : "Tengcle Limited, about us, Hong Kong, hotel FF&E"}
         canonical={`https://www.tengcle.com/hk/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
@@ -162,9 +162,9 @@ export default function About() {
               },
               {
                 icon: Building2,
-                title: language === "ja" ? "商業登記" : language === "zh" ? "商业登记" : "Business Registration",
-                value: "78077104",
-                description: language === "ja" ? "香港会社登記所" : language === "zh" ? "香港公司注册处" : "Hong Kong Companies Registry",
+                title: language === "ja" ? "法域" : language === "zh" ? "司法管辖区" : "Jurisdiction",
+                value: language === "ja" ? "香港" : language === "zh" ? "香港" : "Hong Kong",
+                description: "Tengcle Limited",
               },
               {
                 icon: Award,
@@ -180,8 +180,8 @@ export default function About() {
               },
               {
                 icon: Globe,
-                title: language === "ja" ? "ニュージャージー法人ID" : language === "zh" ? "新泽西实体ID" : "New Jersey Entity ID",
-                value: "0451392806",
+                title: language === "ja" ? "米国の法域" : language === "zh" ? "美国司法管辖区" : "US Jurisdiction",
+                value: language === "ja" ? "ニュージャージー州" : language === "zh" ? "新泽西州" : "New Jersey",
                 description: "Tengcle Development LLC",
               },
             ].map((item) => (
