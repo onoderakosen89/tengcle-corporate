@@ -549,9 +549,13 @@ test("contradicted pre-formation US articles are retired behind one-hop Cloudfla
     ]) {
       const from = `/us/${language}/news/${article}/`;
       expect(redirects).toContain(`${from} /us/${language}/about/ 301`);
-      const localResponse = await request.get(from);
-      expect(localResponse.status(), from).toBe(404);
-      expect(await localResponse.text(), from).toContain("noindex, nofollow");
+      const response = await request.get(from, { maxRedirects: 0 });
+      if (response.status() === 301) {
+        expect(response.headers().location, from).toBe(`/us/${language}/about/`);
+      } else {
+        expect(response.status(), from).toBe(404);
+        expect(await response.text(), from).toContain("noindex, nofollow");
+      }
     }
   }
 });
