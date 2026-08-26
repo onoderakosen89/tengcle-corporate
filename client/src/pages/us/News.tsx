@@ -7,7 +7,7 @@
 
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { Calendar, ArrowRight, Building2, Home, MapPin } from "lucide-react";
+import { Calendar, ArrowRight, Building2 } from "lucide-react";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import Header from "@/components/us/Header";
 import Footer from "@/components/us/Footer";
@@ -32,24 +32,8 @@ interface NewsArticle {
 
 const newsArticles: NewsArticle[] = [
   {
-    id: "property-management-launch-2025",
-    date: "2025-03",
-    category: "Business Launch",
-    icon: <Home className="w-5 h-5" />,
-    title: {
-      en: "Full-Scale Property Management Operations Begin",
-      ja: "不動産管理事業を本格始動",
-      zh: "不动产管理业务正式启动",
-    },
-    excerpt: {
-      en: "Tengcle Development LLC begins full-scale property management operations in New Jersey and the New York metro area, offering comprehensive services for property owners and investors.",
-      ja: "Tengcle Development LLCは、ニュージャージー州およびニューヨーク都市圏で不動産管理事業を本格的に開始しました。物件オーナーや投資家向けに包括的なサービスを提供します。",
-      zh: "Tengcle Development LLC在新泽西州和纽约都市圈正式启动不动产管理业务，为业主和投资者提供综合服务。",
-    },
-  },
-  {
     id: "us-founding-2026",
-    date: "2026-01",
+    date: "2026-01-05",
     category: "Company Founding",
     icon: <Building2 className="w-5 h-5" />,
     title: {
@@ -58,25 +42,9 @@ const newsArticles: NewsArticle[] = [
       zh: "Tengcle Development LLC在新泽西州成立",
     },
     excerpt: {
-      en: "Tengcle Development LLC was officially registered in Weehawken, New Jersey in January 2026 as the US office of Tengcle Group, marking the group's expansion into the North American market.",
-      ja: "Tengcle Development LLCは、2026年1月にTengcle Groupの米国拠点としてニュージャージー州ウィーホーケンに正式登記されました。グループの北米市場への進出を示すものです。",
-      zh: "Tengcle Development LLC于2026年1月作为Tengcle Group的美国办事处在新泽西州威霍肯正式注册，标志着集团进军北美市场。",
-    },
-  },
-  {
-    id: "group-global-network-2024",
-    date: "2024-12",
-    category: "Group News",
-    icon: <MapPin className="w-5 h-5" />,
-    title: {
-      en: "Tengcle Group Establishes Global Three-Location Network",
-      ja: "Tengcle Group グローバル3拠点体制を確立",
-      zh: "Tengcle Group建立全球三地网络",
-    },
-    excerpt: {
-      en: "With the establishment of Tengcle Development LLC, Tengcle Group now operates from three locations: Tokyo, Hong Kong, and New Jersey, enabling comprehensive global service delivery.",
-      ja: "Tengcle Development LLCの設立により、Tengcle Groupは東京、香港、ニュージャージーの3拠点体制となり、グローバルなサービス提供が可能になりました。",
-      zh: "随着Tengcle Development LLC的成立，Tengcle Group现已在东京、香港和新泽西三地运营，实现全球化服务。",
+      en: "Tengcle Development LLC was formed in New Jersey on 5 January 2026. New Jersey Entity ID: 0451392806.",
+      ja: "Tengcle Development LLCは2026年1月5日にニュージャージー州で設立されました。ニュージャージー州法人ID：0451392806。",
+      zh: "Tengcle Development LLC于2026年1月5日在新泽西州成立。新泽西州实体ID：0451392806。",
     },
   },
 ];

@@ -21,9 +21,9 @@ export default function UsFooter() {
   ];
 
   const groupSites = [
-    { href: "/hk/en", label: "🇭🇰 Tengcle Limited (Hong Kong)", ariaLabel: "Tengcle Limited - Hong Kong Headquarters" },
+    { href: "/hk/en", label: "🇭🇰 Tengcle Limited (Hong Kong)", ariaLabel: "Tengcle Limited - Hong Kong company" },
     { href: "/jp/ja", label: "🇯🇵 株式会社Tengcle (Japan)", ariaLabel: "株式会社Tengcle - Japan Office" },
-    { href: "/us/en", label: "🇺🇸 Tengcle Development LLC (US)", ariaLabel: "Tengcle Development LLC - US Office" },
+    { href: "/us/en", label: "🇺🇸 Tengcle Development LLC (US)", ariaLabel: "Tengcle Development LLC - United States company" },
   ];
 
   return (
@@ -79,14 +79,14 @@ export default function UsFooter() {
           </div>
 
           {/* Group Sites - Important for SEO Sitelinks */}
-          <nav aria-label="Tengcle Group Regional Sites">
-            <h4 className="font-heading text-lg mb-6 text-gold">Tengcle Group</h4>
+          <nav aria-label="Tengcle related company sites">
+            <h4 className="font-heading text-lg mb-6 text-gold">Tengcle Related Companies</h4>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/"
                   className="text-gray-300 text-sm hover:text-gold transition-colors flex items-center gap-2"
-                  aria-label="Tengcle Group - Global Gateway"
+                  aria-label="Tengcle - Global Gateway"
                 >
                   <Globe className="w-4 h-4 text-gold flex-shrink-0" />
                   Global Site
@@ -116,7 +116,7 @@ export default function UsFooter() {
               © {currentYear} Tengcle Development LLC. {t('footer.rights')}
             </p>
             <p className="text-gray-500 text-xs">
-              Part of Tengcle Group
+              A Tengcle related company
             </p>
           </div>
         </div>

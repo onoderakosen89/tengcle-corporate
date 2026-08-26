@@ -46,8 +46,8 @@ const faqDataEn: FAQItem[] = [
     answer: "We conduct thorough tenant screening including credit checks, employment verification, rental history verification, and background checks. Our goal is to find reliable tenants who will take care of your property and pay rent on time."
   },
   {
-    question: "What is the relationship with Tengcle Group?",
-    answer: "Tengcle Development LLC is the US office of Tengcle Group, headquartered in Hong Kong. The group operates across three locations: Hong Kong (headquarters), Japan (founding office), and the United States, providing various business services in each region."
+    question: "What is the relationship with the other Tengcle companies?",
+    answer: "Tengcle Development LLC, Tengcle Limited, and 株式会社Tengcle are related companies. Each is a separate legal entity in its jurisdiction."
   },
   {
     question: "How can I contact you?",
@@ -81,8 +81,8 @@ const faqDataJa: FAQItem[] = [
     answer: "信用調査、雇用確認、賃貸履歴確認、身元調査を含む徹底的なテナント審査を行います。物件を大切にし、家賃を期日通りに支払う信頼できるテナントを見つけることを目指しています。"
   },
   {
-    question: "Tengcle Groupとの関係は？",
-    answer: "Tengcle Development LLCは、香港に本社を置くTengcle Groupの米国オフィスです。グループは香港（本社）、日本（創業地）、米国の3拠点で事業を展開し、各地域で様々なビジネスサービスを提供しています。"
+    question: "他のTengcle法人との関係は？",
+    answer: "Tengcle Development LLC、Tengcle Limited、株式会社Tengcleは関連会社です。各社は、それぞれの法域における独立した法人です。"
   },
   {
     question: "連絡方法を教えてください。",
@@ -116,8 +116,8 @@ const faqDataZh: FAQItem[] = [
     answer: "我们进行全面的租户筛选，包括信用检查、就业验证、租赁历史验证和背景调查。我们的目标是找到会爱护您的物业并按时支付租金的可靠租户。"
   },
   {
-    question: "与Tengcle Group是什么关系？",
-    answer: "Tengcle Development LLC是总部位于香港的Tengcle Group的美国办事处。集团在香港（总部）、日本（创业地）和美国三个地点运营，在每个地区提供各种商业服务。"
+    question: "与其他Tengcle公司是什么关系？",
+    answer: "Tengcle Development LLC、Tengcle Limited和株式会社Tengcle是关联公司。各公司是在其司法管辖区内独立的法律实体。"
   },
   {
     question: "如何联系你们？",

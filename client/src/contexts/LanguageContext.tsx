@@ -210,7 +210,7 @@ const translations: Record<Language, Translations> = {
     about: {
       subtitle: "Corporate Profile",
       title: "Tengcle Limited in Hong Kong",
-      description: "Tengcle Limited is an affiliated company of the Tengcle Group, incorporated in Hong Kong and developing hospitality procurement, project coordination, IT, and trade activities.",
+      description: "Tengcle Limited is a Hong Kong company and one of the Tengcle related companies. It was incorporated on 29 April 2025.",
       story: {
         title: "Our Journey",
         p1: "Incorporated on 29 April 2025, Tengcle Limited is building its service capabilities through carefully selected engagements and supplier coordination.",
@@ -235,10 +235,10 @@ const translations: Record<Language, Translations> = {
       description: "Whether you're planning a new project or seeking a reliable business partner, we're here to help.",
       email: "Email",
       info: {
-        hkOffice: "Hong Kong Office",
+        hkOffice: "Tengcle Limited (Hong Kong)",
         jpOffice1: "Tokyo Office (Takanawa)",
         jpOffice2: "Tokyo Office (Tsukiji)",
-        usOffice: "United States Office (Established January 2026)",
+        usOffice: "Tengcle Development LLC (United States)",
       },
     },
     footer: {
@@ -343,7 +343,7 @@ const translations: Record<Language, Translations> = {
     about: {
       subtitle: "会社概要",
       title: "香港のTengcle Limitedについて",
-      description: "Tengcle Limitedは、香港で設立されたTengcle Groupの関連会社です。ホスピタリティ調達、プロジェクト調整、IT、国際貿易の事業を段階的に展開しています。",
+      description: "Tengcle Limitedは、2025年4月29日に設立された香港法人で、Tengcleの関連会社の一社です。",
       story: {
         title: "沿革",
         p1: "Tengcle Limitedは2025年4月29日に香港で設立されました。現在は、選定した案件とサプライヤー調整を通じて、サービス体制を構築しています。",
@@ -368,10 +368,10 @@ const translations: Record<Language, Translations> = {
       description: "新しいプロジェクトをご計画中の方も、信頼できるビジネスパートナーをお探しの方も、お気軽にお問い合わせください。",
       email: "メール",
       info: {
-        hkOffice: "香港オフィス",
+        hkOffice: "Tengcle Limited（香港法人）",
         jpOffice1: "東京オフィス（高輪）",
         jpOffice2: "東京オフィス（築地）",
-        usOffice: "米国オフィス（2026年1月設立）",
+        usOffice: "Tengcle Development LLC（米国法人）",
       },
     },
     footer: {
@@ -476,7 +476,7 @@ const translations: Record<Language, Translations> = {
     about: {
       subtitle: "关于我们",
       title: "关于香港Tengcle Limited",
-      description: "Tengcle Limited是Tengcle Group在香港注册的关联公司，正逐步开展酒店采购、项目协调、IT和贸易相关业务。",
+      description: "Tengcle Limited是于2025年4月29日成立的香港公司，也是Tengcle关联公司之一。",
       story: {
         title: "我们的故事",
         p1: "Tengcle Limited于2025年4月29日在香港注册成立，现正通过精选项目和供应商协调建立服务能力。",
@@ -501,10 +501,10 @@ const translations: Record<Language, Translations> = {
       description: "无论您是在规划新项目还是寻找可靠的商业伙伴，我们都在这里为您提供帮助。",
       email: "电子邮件",
       info: {
-        hkOffice: "香港办公室",
+        hkOffice: "Tengcle Limited（香港公司）",
         jpOffice1: "东京办公室（高轮）",
         jpOffice2: "东京办公室（筑地）",
-        usOffice: "美国办公室（2026年1月成立）",
+        usOffice: "Tengcle Development LLC（美国公司）",
       },
     },
     footer: {

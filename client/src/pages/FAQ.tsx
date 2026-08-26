@@ -33,8 +33,8 @@ const faqData: Record<string, FAQItem[]> = {
       answer: "Tengcle Limited is a fully registered Hong Kong company (BR: 78077104) that maintains the highest standards of corporate governance and regulatory compliance. We adhere to Hong Kong's anti-money laundering regulations and conduct thorough due diligence in all our business operations."
     },
     {
-      question: "Which regions does Tengcle Group operate in?",
-      answer: "Tengcle Group operates globally with offices in three key regions: Hong Kong (Global Headquarters - Tengcle Limited), Japan (株式会社Tengcle - Tokyo), and the United States (Tengcle Development LLC - New Jersey). We serve clients throughout Asia-Pacific, including China, Southeast Asia, and beyond."
+      question: "Which Tengcle related companies are introduced here?",
+      answer: "This website introduces three separate legal entities: Tengcle Limited in Hong Kong, 株式会社Tengcle in Japan, and Tengcle Development LLC in New Jersey."
     },
     {
       question: "How can I request a quote for hotel FF&E procurement?",
@@ -67,8 +67,8 @@ const faqData: Record<string, FAQItem[]> = {
       answer: "Tengcle Limitedは香港会社登記所に正式に登録された会社（BR: 78077104）であり、最高水準のコーポレートガバナンスと法令遵守を維持しています。香港のマネーロンダリング防止規制を遵守し、すべての事業運営において徹底したデューデリジェンスを実施しています。"
     },
     {
-      question: "Tengcle Groupはどの地域で事業を展開していますか？",
-      answer: "Tengcle Groupは、3つの主要地域にオフィスを構えてグローバルに事業を展開しています：香港（グローバル本社 - Tengcle Limited）、日本（株式会社Tengcle - 東京）、アメリカ（Tengcle Development LLC - ニュージャージー）。中国、東南アジアを含むアジア太平洋地域全体のお客様にサービスを提供しています。"
+      question: "このサイトではどのTengcle関連会社を紹介していますか？",
+      answer: "香港のTengcle Limited、日本の株式会社Tengcle、ニュージャージー州のTengcle Development LLCという3つの独立した法人を紹介しています。"
     },
     {
       question: "ホテルFF&E調達の見積もりを依頼するにはどうすればよいですか？",
@@ -101,8 +101,8 @@ const faqData: Record<string, FAQItem[]> = {
       answer: "Tengcle Limited是在香港公司注册处正式注册的公司（BR: 78077104），保持最高标准的公司治理和法规遵循。我们遵守香港的反洗钱法规，并在所有业务运营中进行彻底的尽职调查。"
     },
     {
-      question: "Tengcle Group在哪些地区运营？",
-      answer: "Tengcle Group在三个主要地区设有办事处，进行全球运营：香港（全球总部 - Tengcle Limited）、日本（株式会社Tengcle - 东京）和美国（Tengcle Development LLC - 新泽西）。我们为包括中国、东南亚在内的整个亚太地区的客户提供服务。"
+      question: "本网站介绍哪些Tengcle关联公司？",
+      answer: "本网站介绍三个独立的法律实体：香港的Tengcle Limited、日本的株式会社Tengcle以及新泽西州的Tengcle Development LLC。"
     },
     {
       question: "如何申请酒店FF&E采购报价？",

@@ -59,6 +59,7 @@ export const companyProfiles = {
   us: {
     legalName: "Tengcle Development LLC",
     established: "2026-01-05",
+    registrationNumber: "0451392806",
     representative: "Kosen Onodera",
     email: "us@tengcle.com",
     addresses: [

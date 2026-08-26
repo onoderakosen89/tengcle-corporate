@@ -182,14 +182,14 @@ const translations: Translations = {
     zh: '关于Tengcle Development LLC',
   },
   'about.subtitle': {
-    en: 'US Office of Tengcle Group',
-    ja: 'Tengcleグループ米国拠点',
-    zh: 'Tengcle集团美国办事处',
+    en: 'New Jersey Company',
+    ja: 'ニュージャージー州法人',
+    zh: '新泽西州公司',
   },
   'about.description': {
-    en: 'Tengcle Development LLC is an affiliated company of the Tengcle Group, established in New Jersey in January 2026. It is preparing for the staged launch of real estate development and management activities.',
-    ja: 'Tengcle Development LLCは、2026年1月にニュージャージー州で設立されたTengcle Groupの関連会社です。不動産開発・管理事業の段階的な開始に向けて準備を進めています。',
-    zh: 'Tengcle Development LLC是Tengcle Group的关联公司，于2026年1月在新泽西州成立，正为房地产开发和物业管理业务的分阶段启动做准备。',
+    en: 'Tengcle Development LLC is a New Jersey company and one of the Tengcle related companies. It was formed on 5 January 2026 (Entity ID 0451392806).',
+    ja: 'Tengcle Development LLCは、2026年1月5日に設立されたニュージャージー州法人で、Tengcleの関連会社の一社です（法人ID 0451392806）。',
+    zh: 'Tengcle Development LLC是于2026年1月5日成立的新泽西州公司，也是Tengcle关联公司之一（实体ID 0451392806）。',
   },
 
   // Company Info
@@ -204,9 +204,9 @@ const translations: Translations = {
     zh: '17 Hamilton Ave, Weehawken, NJ 07086, USA',
   },
   'company.role': {
-    en: 'US Office',
-    ja: '米国拠点',
-    zh: '美国办事处',
+    en: 'United States Company',
+    ja: '米国法人',
+    zh: '美国公司',
   },
 
   // Contact Section

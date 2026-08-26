@@ -76,7 +76,7 @@ export default function Contact() {
       isAffiliatedCompany: true,
     },
     {
-      name: language === "ja" ? "アメリカオフィス" : language === "zh" ? "美国办公室" : "US Office",
+      name: language === "ja" ? "Tengcle Development LLC（米国法人）" : language === "zh" ? "Tengcle Development LLC（美国公司）" : "Tengcle Development LLC (United States)",
       address: "17 Hamilton Ave\nWeehawken, NJ 07086\nUnited States",
       mapUrl: "https://maps.google.com/?q=17+Hamilton+Ave+Weehawken+NJ+07086",
     },

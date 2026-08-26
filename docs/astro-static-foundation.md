@@ -57,7 +57,7 @@ scripts, security headers, and the Global runtime budget. Playwright covers
 no-JS SEO, Axe, mobile overflow, reduced motion, cookies, the established Global
 gateway, and regional UI parity.
 
-The preserved US footer's `Part of Tengcle Group` helper line remains at a 4.01:1
+The preserved US footer's related-company helper line remains at a 4.01:1
 contrast ratio instead of the WCAG AA 4.5:1 target for small text. The focused
 UI-restoration test records that one existing exception explicitly and rejects
 any additional serious or critical Axe finding. Changing that color belongs in

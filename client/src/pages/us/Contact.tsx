@@ -172,7 +172,7 @@ export default function UsContact() {
               {/* Group Offices */}
               <motion.div variants={fadeInUp} className="mt-12 pt-8 border-t border-gray-200">
                 <h3 className="font-heading text-lg text-charcoal mb-4">
-                  Tengcle Group Offices
+                  Tengcle Related Companies
                 </h3>
                 <div className="space-y-4">
                   <Link
@@ -180,7 +180,7 @@ export default function UsContact() {
                     className="flex items-center gap-3 text-slate hover:text-gold transition-colors"
                   >
                     <span>🇭🇰</span>
-                    <span>Hong Kong (Global Headquarters)</span>
+                    <span>Tengcle Limited (Hong Kong)</span>
                   </Link>
                   <Link
                     href="/jp/ja/contact"

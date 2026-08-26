@@ -42,7 +42,7 @@ const faqDataJa: FAQItem[] = [
     answer: "人材紹介事業は、今後の展開に向けて準備・検討中です。現在、紹介サービスの提供実績としては掲載していません。"
   },
   {
-    question: "Tengcle Groupとの関係を教えてください。",
+    question: "他のTengcle法人との関係を教えてください。",
     answer: "株式会社Tengcle、Tengcle Limited、Tengcle Development LLCは、いずれも小野寺紘宣が100%を保有する関連会社です。親会社・子会社の関係ではありません。"
   },
   {
@@ -77,7 +77,7 @@ const faqDataEn: FAQItem[] = [
     answer: "Recruitment activity is being prepared and reviewed for future development. We do not currently present placement services as an active operational record."
   },
   {
-    question: "What is the relationship with Tengcle Group?",
+    question: "What is the relationship with the other Tengcle companies?",
     answer: "株式会社Tengcle, Tengcle Limited, and Tengcle Development LLC are affiliated companies, each 100% owned by Kosen Onodera. They are not in a parent-subsidiary relationship."
   },
   {
@@ -112,7 +112,7 @@ const faqDataZh: FAQItem[] = [
     answer: "人才介绍活动正为未来发展进行准备和评估。目前，我们不将人才介绍服务作为正在运营的实绩进行展示。"
   },
   {
-    question: "与Tengcle Group是什么关系？",
+    question: "与其他Tengcle公司是什么关系？",
     answer: "株式会社Tengcle、Tengcle Limited和Tengcle Development LLC均为小野寺紘宣100%持有的关联公司，不属于母子公司关系。"
   },
   {

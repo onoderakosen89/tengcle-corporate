@@ -157,7 +157,7 @@ export default function About() {
               {
                 icon: Shield,
                 title: language === "ja" ? "設立" : language === "zh" ? "成立" : "Established",
-                value: "2025",
+                value: "2025-04-29",
                 description: language === "ja" ? "香港法人設立" : language === "zh" ? "香港法人成立" : "Hong Kong Incorporated",
               },
               {

@@ -122,8 +122,8 @@ export default function Footer() {
             </p>
 
             {/* Group Companies - Important for SEO Sitelinks */}
-            <nav aria-label="Tengcle Group Regional Sites" className="flex items-center gap-6">
-              <Link href="/hk/en" aria-label="Tengcle Limited - Hong Kong Headquarters">
+            <nav aria-label="Tengcle related company sites" className="flex items-center gap-6">
+              <Link href="/hk/en" aria-label="Tengcle Limited - Hong Kong company">
                 <span className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}>
                   <span>🇭🇰 Hong Kong</span>
                 </span>
@@ -133,9 +133,9 @@ export default function Footer() {
                   <span>🇯🇵 {t.footer.japan}</span>
                 </span>
               </Link>
-              <Link href="/us/en" aria-label="Tengcle Development LLC - US Office">
+              <Link href="/us/en" aria-label="Tengcle Development LLC - United States company">
                 <span className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}>
-                  <span>🇺🇸 US Office</span>
+                  <span>🇺🇸 United States</span>
                 </span>
               </Link>
             </nav>

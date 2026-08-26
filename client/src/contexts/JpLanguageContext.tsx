@@ -537,7 +537,7 @@ const translations: Record<Language, Translations> = {
       info: {
         tokyoOffice1: "Tokyo Office (Takanawa)",
         tokyoOffice2: "Tokyo Office (Tsukiji)",
-        hkOffice: "Hong Kong Headquarters",
+        hkOffice: "Tengcle Limited (Hong Kong)",
       },
     },
     careers: {

@@ -71,8 +71,8 @@ const newsArticlesEn: NewsArticle[] = [
   {
     id: "5",
     title: "Tengcle Limited Established in Hong Kong",
-    excerpt: "Tengcle Limited is officially established in Hong Kong as the global headquarters for Tengcle Group, which was founded in Japan in 2021.",
-    date: "2025-04-15",
+    excerpt: "Tengcle Limited was incorporated in Hong Kong on 29 April 2025. Business Registration Number: 78077104.",
+    date: "2025-04-29",
     category: "Company Founding",
     readTime: "4 min",
     image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=800&h=400&fit=crop",
@@ -124,8 +124,8 @@ const newsArticlesJa: NewsArticle[] = [
   {
     id: "5",
     title: "Tengcle Limited 香港で設立",
-    excerpt: "2021年に日本で創業したTengcle Groupのグローバル本社として、Tengcle Limitedが香港で正式に設立されました。",
-    date: "2025-04-15",
+    excerpt: "Tengcle Limitedは2025年4月29日に香港で設立されました。商業登記番号：78077104。",
+    date: "2025-04-29",
     category: "会社設立",
     readTime: "4分",
     image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=800&h=400&fit=crop",
@@ -177,8 +177,8 @@ const newsArticlesZh: NewsArticle[] = [
   {
     id: "5",
     title: "Tengcle Limited在香港成立",
-    excerpt: "Tengcle Limited作为2021年在日本创立的Tengcle Group的全球总部，在香港正式成立。",
-    date: "2025-04-15",
+    excerpt: "Tengcle Limited于2025年4月29日在香港成立。商业登记号码：78077104。",
+    date: "2025-04-29",
     category: "公司成立",
     readTime: "4分钟",
     image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=800&h=400&fit=crop",

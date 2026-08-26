@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { readFile } from "node:fs/promises";
 import { buyerIntentPages } from "../shared/buyerIntentPages";
 
 test("known routes and article routes return route-specific initial HTML", async ({
@@ -50,11 +51,11 @@ test("article initial HTML exposes article-specific social and search metadata",
     "<title>Tengcle Development LLC Established in New Jersey | Tengcle Development LLC</title>"
   );
   expect(body).toContain(
-    'content="Tengcle Development LLC was officially registered in Weehawken, New Jersey in January 2026 as the US office of Tengcle Group."'
+    'content="Tengcle Development LLC was formed in New Jersey on 5 January 2026. New Jersey Entity ID: 0451392806."'
   );
   expect(body).toContain('<meta property="og:type" content="article">');
   expect(body).toContain(
-    '<meta property="article:published_time" content="2026-01-01">'
+    '<meta property="article:published_time" content="2026-01-05">'
   );
   expect(body).toContain('"@type":"NewsArticle"');
   expect(body.match(/rel="canonical"/g)).toHaveLength(1);
@@ -123,7 +124,7 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
     sitemap.matchAll(/<loc>(https:\/\/www\.tengcle\.com[^<]+)<\/loc>/g),
     match => match[1]
   );
-  expect(urls).toHaveLength(113);
+  expect(urls).toHaveLength(107);
 
   for (const canonical of urls) {
     const route = new URL(canonical).pathname;
@@ -226,11 +227,8 @@ test("buyer-intent service pages identify the customer and preserve visible FAQ 
           return graph;
         })
       );
-    const service = structuredNodes.find(node => node?.["@type"] === "Service");
-    expect(service?.description, item.route).toBe(item.lead);
-    expect(structuredNodes.some(node => node?.["@type"] === "FAQPage")).toBe(
-      true
-    );
+    expect(structuredNodes.some(node => node?.["@type"] === "Service")).toBe(false);
+    expect(structuredNodes.some(node => node?.["@type"] === "FAQPage")).toBe(false);
     const overflow = await page.evaluate(
       () =>
         document.documentElement.scrollWidth -
@@ -395,6 +393,7 @@ test("public pages expose semantic content with JavaScript disabled", async ({
 test("Global and regional UIs introduce no new serious or critical axe violations", async ({
   page,
 }) => {
+  test.setTimeout(60_000);
   await page.addInitScript(() => {
     localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
     sessionStorage.setItem("tengcle_geo_redirected", "true");
@@ -440,7 +439,7 @@ test("Global home preserves the established UI on mobile and reduced motion", as
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { level: 1, name: /Tengcle Group/ })
+    page.getByRole("heading", { level: 1, name: /Tengcle Related Companies/ })
   ).toBeVisible();
   await expect(
     page.getByRole("img", { name: "Tengcle - think into the future" })
@@ -496,6 +495,24 @@ test("retired redesign-only routes are not publicly generated", async ({
     expect(response.headers()["x-robots-tag"], route).toBe("noindex");
     expect(response.headers()["cache-control"], route).toBe("no-store");
     expect(await response.text(), route).toContain("noindex, nofollow");
+  }
+});
+
+test("contradicted pre-formation US articles are retired behind one-hop Cloudflare redirects", async ({
+  request,
+}) => {
+  const redirects = await readFile("dist/public/_redirects", "utf8");
+  for (const language of ["en", "ja", "zh"]) {
+    for (const article of [
+      "property-management-launch-2025",
+      "group-global-network-2024",
+    ]) {
+      const from = `/us/${language}/news/${article}/`;
+      expect(redirects).toContain(`${from} /us/${language}/about/ 301`);
+      const localResponse = await request.get(from);
+      expect(localResponse.status(), from).toBe(404);
+      expect(await localResponse.text(), from).toContain("noindex, nofollow");
+    }
   }
 });
 

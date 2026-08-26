@@ -138,7 +138,7 @@ const sitemap = await readFile(
 const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
   match => match[1]
 );
-const baselineRouteCount = 113;
+const baselineRouteCount = 107;
 const expectedSitemapCount = baselineRouteCount;
 if (sitemapLocations.length !== expectedSitemapCount) {
   fail(
@@ -233,7 +233,9 @@ for (const location of sitemapLocations) {
         `${path.relative(root, routeHtmlPath)} has ${alternateCount} hreflang links; expected ${isRegional ? 4 : 0}`
       );
     }
-    const expectedOgType = /\/news\/[^/]+\/$/.test(url.pathname)
+    const expectedOgType = /\/(?:hk-founding|company-incorporation-2021|us-founding-2026)\/$/.test(
+      url.pathname
+    )
       ? "article"
       : "website";
     if (
@@ -285,16 +287,13 @@ for (const location of sitemapLocations) {
           `${path.relative(root, routeHtmlPath)} must contain exactly one NewsArticle node`
         );
       }
-      const isBuyerIntentService =
-        /\/(?:jp\/(?:en|ja|zh)\/services\/property-management|hk\/(?:en|ja|zh)\/services\/hotel-ffe-procurement)\/$/.test(
-          url.pathname
-        );
       if (
-        isBuyerIntentService &&
-        (typeCount("Service") !== 1 || typeCount("FAQPage") !== 1)
+        typeCount("Service") !== 0 ||
+        typeCount("FAQPage") !== 0 ||
+        typeCount("LocalBusiness") !== 0
       ) {
         fail(
-          `${path.relative(root, routeHtmlPath)} must contain one Service and one FAQPage node`
+          `${path.relative(root, routeHtmlPath)} contains an unverified Service, FAQPage, or LocalBusiness node`
         );
       }
       if (/"(?:sameAs|alternateName)"\s*:/.test(structuredMatch[1])) {
@@ -373,12 +372,48 @@ if (
 }
 if (
   !usFoundingHtml.includes(
-    "Tengcle Development LLC was officially registered in Weehawken"
+    "Tengcle Development LLC was formed in New Jersey on 5 January 2026"
   )
 ) {
   fail(
     "US founding article is missing its article-specific initial description"
   );
+}
+
+const redirects = await readFile(
+  path.join(outputDirectory, "_redirects"),
+  "utf8"
+);
+const redirectLines = redirects
+  .split(/\r?\n/)
+  .map(line => line.trim())
+  .filter(Boolean);
+const languages = ["en", "ja", "zh"];
+const retiredUsArticles = [
+  "property-management-launch-2025",
+  "group-global-network-2024",
+];
+const expectedRedirects = languages.flatMap(language =>
+  retiredUsArticles.map(
+    article =>
+      `/us/${language}/news/${article}/ /us/${language}/about/ 301`
+  )
+);
+if (
+  redirectLines.length !== expectedRedirects.length ||
+  expectedRedirects.some(line => !redirectLines.includes(line))
+) {
+  fail("_redirects must contain exactly six one-hop retired US article redirects");
+}
+for (const line of expectedRedirects) {
+  const source = line.split(" ")[0];
+  const outputPath = path.join(outputDirectory, source.slice(1), "index.html");
+  try {
+    await access(outputPath);
+    fail(`retired contradicted article is still generated: ${source}`);
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
 }
 const localAssetUrls = [
   ...sitemap.matchAll(

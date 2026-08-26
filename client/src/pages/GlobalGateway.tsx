@@ -42,9 +42,9 @@ const regions = [
     nameJa: "日本",
     nameZh: "日本",
      company: "株式会社 Tengcle",
-    role: "Founding Company",
-    roleJa: "創業法人",
-    roleZh: "创始法人",
+    role: "Japan Company",
+    roleJa: "日本法人",
+    roleZh: "日本公司",
     description: "Property Management & Developing Activities",
     descriptionJa: "不動産管理・段階的な事業展開",
     descriptionZh: "房地产管理与阶段性业务发展",
@@ -116,7 +116,7 @@ const seigaihaPattern = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org
 
 export default function GlobalGateway() {
   useEffect(() => {
-    document.title = "Tengcle Group | Affiliated Companies in Hong Kong, Japan & USA";
+    document.title = "Tengcle | Related Companies in Hong Kong, Japan & USA";
     
     // OGP meta tags
     const updateMeta = (name: string, content: string, isProperty = false) => {
@@ -212,18 +212,18 @@ export default function GlobalGateway() {
                 className="font-heading text-3xl md:text-4xl lg:text-5xl mb-5"
               >
                 <span className="text-gold">Tengcle</span>{" "}
-                <span className="text-white/90">Group</span>
+                <span className="text-white/90">Related Companies</span>
               </motion.h1>
 
               <motion.div variants={fadeInUp} className="space-y-1.5">
                 <p className="text-lg md:text-xl text-white/90 font-light tracking-wide">
-                  Select your region and language
+                  think into the future
                 </p>
                 <p className="text-sm md:text-base text-white/80 font-jp">
-                  地域と言語を選択してください
+                  考える力を、ひとつの目的へ。
                 </p>
                 <p className="text-sm md:text-base text-white/80 font-zh">
-                  选择您的地区和语言
+                  まだ活かされていない価値を、人と社会に長く役立つ形へ育てる。
                 </p>
               </motion.div>
             </motion.div>
@@ -326,7 +326,7 @@ export default function GlobalGateway() {
         <footer className="py-6 md:py-8">
           <div className="container">
             <div className="text-center text-white/30 text-sm">
-              <p>© {new Date().getFullYear()} Tengcle Group. All rights reserved.</p>
+              <p>© {new Date().getFullYear()} Tengcle. All rights reserved.</p>
             </div>
           </div>
         </footer>

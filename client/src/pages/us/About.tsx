@@ -57,7 +57,7 @@ export default function UsAbout() {
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
         title={language === "ja" ? "会社概要 | Tengcle Development LLC ニュージャージー州" : language === "zh" ? "关于我们 | Tengcle Development LLC 新泽西州" : "About Us | Tengcle Development LLC, New Jersey"}
-        description={language === "ja" ? "2026年1月に設立されたTengcle Development LLCの会社情報。不動産開発・管理事業の本格始動に向けて準備中です。" : language === "zh" ? "Tengcle Development LLC于2026年1月成立，正为房地产开发和物业管理业务的正式启动做准备。" : "About Tengcle Development LLC, established in January 2026 and preparing for staged real estate development and property-management activities."}
+        description={language === "ja" ? "2026年1月5日にニュージャージー州で設立されたTengcle Development LLCの会社情報。法人IDは0451392806です。" : language === "zh" ? "Tengcle Development LLC于2026年1月5日在新泽西州成立，实体ID为0451392806。" : "Tengcle Development LLC was formed in New Jersey on 5 January 2026. Entity ID: 0451392806."}
         keywords={language === "ja" ? "Tengcle Development LLC, 会社概要, ニュージャージー, 不動産開発" : language === "zh" ? "Tengcle Development LLC, 关于我们, 新泽西, 房地产开发" : "Tengcle Development LLC, about us, New Jersey, real estate development"}
         canonical={`https://www.tengcle.com/us/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
@@ -79,7 +79,7 @@ export default function UsAbout() {
               },
             }),
             generateBreadcrumbSchema([
-              { name: "Tengcle Group", url: "https://www.tengcle.com/" },
+              { name: "Tengcle", url: "https://www.tengcle.com/" },
               { name: usCompany.legalName, url: `https://www.tengcle.com/us/${language}` },
               { name: t('about.title'), url: `https://www.tengcle.com/us/${language}/about` }
             ])
@@ -141,6 +141,8 @@ export default function UsAbout() {
                     <div>
                       <p className="font-medium text-charcoal">Tengcle Development LLC</p>
                       <p className="text-sm text-slate">{t('company.role')}</p>
+                      <p className="text-sm text-slate">Formed 5 January 2026</p>
+                      <p className="text-sm text-slate">New Jersey Entity ID 0451392806</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -184,7 +186,7 @@ export default function UsAbout() {
         </div>
       </section>
 
-      {/* Tengcle Group */}
+      {/* Tengcle related companies */}
       <section className="py-24 bg-light-gray">
         <div className="container">
           <motion.div
@@ -201,7 +203,7 @@ export default function UsAbout() {
               variants={fadeInUp}
               className="font-heading text-3xl md:text-4xl text-charcoal mb-4"
             >
-              Tengcle Group
+              Tengcle Related Companies
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-slate max-w-2xl mx-auto">
               Affiliated companies owned by Kosen Onodera, each operating independently in its jurisdiction
