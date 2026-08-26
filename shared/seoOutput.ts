@@ -6,12 +6,7 @@ import {
   seoRouteManifest,
   type SeoRoute,
 } from "./seoRouteManifest";
-import { representativeRouteManifest } from "./site2RouteManifest";
-
-export const allStaticRoutes = [
-  ...seoRouteManifest,
-  ...representativeRouteManifest,
-] as const;
+export const allStaticRoutes = seoRouteManifest;
 
 function routeSuffix(page: SeoRoute) {
   if (!page.region || !page.language) return "";
@@ -26,14 +21,11 @@ function organizationSchema(page: SeoRoute) {
   const entityUrl = canonicalUrl(
     `/${page.region}/${entityHomeLanguages[page.region]}`
   );
-  const addresses = profile.addresses.map(address => ({
-    "@type": "PostalAddress",
-    streetAddress: address.street,
-    addressLocality: address.city,
-    addressRegion: address.region,
-    ...(address.postalCode && { postalCode: address.postalCode }),
-    addressCountry: address.country,
-  }));
+  // Keep the static entity graph narrower than the visible legacy copy. The
+  // first Japan address is the reviewed registered office; other operational
+  // addresses and contact channels require their own evidence review before
+  // entering machine-readable Organization data.
+  const registeredOffice = page.region === "jp" ? profile.addresses[0] : null;
   return {
     "@type": "Organization",
     "@id": `${entityUrl}#organization`,
@@ -43,9 +35,17 @@ function organizationSchema(page: SeoRoute) {
       "@type": "ImageObject",
       url: `${SITE_ORIGIN}/images/tengcle-logo.png`,
     },
-    email: profile.email,
     foundingDate: profile.established,
-    address: addresses.length === 1 ? addresses[0] : addresses,
+    ...(registeredOffice && {
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: registeredOffice.street,
+        addressLocality: registeredOffice.city,
+        addressRegion: registeredOffice.region,
+        postalCode: registeredOffice.postalCode,
+        addressCountry: registeredOffice.country,
+      },
+    }),
   };
 }
 

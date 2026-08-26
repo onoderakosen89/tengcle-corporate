@@ -55,12 +55,14 @@ The following are comparison candidates, not approved headlines:
 ## Logo boundary
 
 The master brand is one unchanged symbol + `Tengcle` + `think into the future`
-system across Japan, Hong Kong, and the United States. Until the approved vector
-asset arrives, the website uses a text lockup placeholder:
+system across Japan, Hong Kong, and the United States. The established site PNG
+remains the public master asset until the approved vector arrives:
 
-- compact header lockup without the tagline;
-- legal company name adjacent on company and legal surfaces;
-- tagline-capable lockup in footer and brand context.
+- do not crop the tagline from the existing master asset;
+- preserve the current UI in the Astro foundation rather than introducing a
+  temporary text lockup;
+- treat improved readable sizing or approved compact derivatives as separate
+  reviewed brand work.
 
 Do not generate a substitute logo, recolor it by region, or derive a production
 asset from the reference PNG.

@@ -1,0 +1,92 @@
+:root {
+  color-scheme: light;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+body.legacy-adapter-page,
+body.not-found-page {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: #101827;
+  background: #f7f4ec;
+}
+
+.legacy-runtime {
+  display: none;
+}
+
+.legacy-js .legacy-static {
+  display: none;
+}
+
+.legacy-js .legacy-runtime {
+  display: block;
+}
+
+.legacy-static {
+  min-height: 100vh;
+}
+
+.legacy-static__header {
+  display: flex;
+  min-height: 4.5rem;
+  padding: 1rem max(1rem, calc((100% - 72rem) / 2));
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #d8d3c7;
+}
+
+.legacy-static__header a,
+.legacy-static__main a,
+.not-found-page a {
+  color: #14233b;
+}
+
+.legacy-static__header a {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+.legacy-static__main {
+  width: min(56rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 6rem 0;
+}
+
+.legacy-static__main .eyebrow {
+  color: #675f51;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.legacy-static__main h1 {
+  margin: 0.7rem 0 1.2rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  line-height: 1.05;
+}
+
+.legacy-static__main > p:not(.eyebrow) {
+  max-width: 48rem;
+  color: #564f44;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.legacy-static__main nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}

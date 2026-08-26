@@ -34,8 +34,9 @@ pnpm format
 
 `pnpm build` writes to `dist/public`, preserving the current Cloudflare Pages
 output-directory contract. The manifest-driven adapter keeps all 113 baseline
-routes while Global home, Company, and Activity form the first Astro-native
-vertical slice.
+routes and preserves the established React UI for Global, Japan, Hong Kong, and
+the United States. Astro supplies static initial HTML, route metadata, sitemap,
+and a real 404 without replacing the public design.
 
 See [docs/astro-static-foundation.md](docs/astro-static-foundation.md) for the
 migration boundary, verification gates, and rollback procedure. Brand hierarchy

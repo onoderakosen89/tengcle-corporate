@@ -122,8 +122,6 @@ const expectedStaticRoutes = [
   "hk/en/news/hk-founding/index.html",
   "jp/ja/news/company-incorporation-2021/index.html",
   "us/en/news/us-founding-2026/index.html",
-  "companies/japan/index.html",
-  "activities/property-management/index.html",
 ];
 for (const route of expectedStaticRoutes) {
   try {
@@ -141,11 +139,10 @@ const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
   match => match[1]
 );
 const baselineRouteCount = 113;
-const representativeRouteCount = 2;
-const expectedSitemapCount = baselineRouteCount + representativeRouteCount;
+const expectedSitemapCount = baselineRouteCount;
 if (sitemapLocations.length !== expectedSitemapCount) {
   fail(
-    `sitemap route count is ${sitemapLocations.length}; expected ${expectedSitemapCount} (${baselineRouteCount} baseline + ${representativeRouteCount} representative)`
+    `sitemap route count is ${sitemapLocations.length}; expected the ${expectedSitemapCount}-route public baseline`
   );
 }
 if (/<link\s/i.test(sitemap)) {
@@ -334,12 +331,14 @@ if (sitemapAlternates !== regionalSitemapRoutes * 4) {
   );
 }
 
-for (const expectedRoute of [
+for (const retiredExperimentalRoute of [
   "/companies/japan/",
   "/activities/property-management/",
 ]) {
-  if (!sitemapLocations.includes(`${SITE_ORIGIN}${expectedRoute}`)) {
-    fail(`sitemap is missing representative route: ${expectedRoute}`);
+  if (sitemapLocations.includes(`${SITE_ORIGIN}${retiredExperimentalRoute}`)) {
+    fail(
+      `sitemap exposes retired experimental route: ${retiredExperimentalRoute}`
+    );
   }
 }
 for (const expectedRoute of [
@@ -402,55 +401,42 @@ if (usHomeBytes > 1_000_000) {
   fail(`US Home responsive assets exceed 1 MB: ${usHomeBytes} bytes`);
 }
 
-const rootCssLinks = [
-  ...rootHtml.matchAll(
-    /<link\s+rel=["']stylesheet["']\s+href=["']([^"']+)["']/gi
-  ),
-].map(match => match[1]);
-const rootCss = (
-  await Promise.all(
-    rootCssLinks.map(url =>
-      readFile(path.join(outputDirectory, url.slice(1)), "utf8")
-    )
+if (!rootHtml.includes('id="legacy-runtime-root"')) {
+  fail("Global home is not using the legacy React UI adapter");
+}
+if (!rootHtml.includes("https://fonts.googleapis.com/css2?family=Playfair+Display")) {
+  fail("Global home is missing the established UI font stylesheet");
+}
+if (!rootHtml.includes('src="/scripts/legacy-boot.js"')) {
+  fail("Global home is missing the early legacy UI boot script");
+}
+try {
+  await access(path.join(outputDirectory, "scripts", "legacy-boot.js"));
+} catch {
+  fail("Global home references a missing early legacy UI boot script");
+}
+if (
+  !/<script\s+type=["']module["']\s+src=["'][^"']+["']><\/script>/i.test(
+    rootHtml
   )
-).join("\n");
-if (!rootCss.includes("/patterns/seigaiha.svg")) {
-  fail(
-    "Global representative page is missing the canonical Seigaiha background asset"
-  );
+) {
+  fail("Global home is missing the legacy React runtime entry");
 }
-if (!rootCss.includes("prefers-reduced-motion:reduce")) {
-  fail("Global CSS is missing reduced-motion handling");
-}
-if (!rootCss.includes("@media print")) {
-  fail("Global CSS is missing print handling");
-}
-if (/<img\s/i.test(rootHtml)) {
-  fail(
-    "Global representative page must not add a decorative or placeholder LCP image"
-  );
-}
-for (const requiredBrandText of [
-  "think into the future",
-  "考える力を、ひとつの目的へ。",
-  "まだ活かされていない価値を、人と社会に長く役立つ形へ育てる。",
+for (const retiredRoute of [
+  "/companies/japan/",
+  "/activities/property-management/",
 ]) {
-  if (!rootHtml.includes(requiredBrandText)) {
-    fail(
-      `Global representative page is missing brand text: ${requiredBrandText}`
-    );
-  }
-}
-if (/tengcle-logo(?:-white)?\.(?:png|webp|svg)/i.test(rootHtml)) {
-  fail(
-    "Global representative page must use the text lockup until the master vector arrives"
+  const outputPath = path.join(
+    outputDirectory,
+    retiredRoute.slice(1),
+    "index.html"
   );
-}
-
-const patternPath = path.join(outputDirectory, "patterns", "seigaiha.svg");
-const patternBytes = (await stat(patternPath)).size;
-if (patternBytes > 3_000) {
-  fail(`Seigaiha pattern exceeds 3 KB: ${patternBytes} bytes`);
+  try {
+    await access(outputPath);
+    fail(`retired experimental route is still generated: ${retiredRoute}`);
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
 }
 
 const rootEntryScripts = [
@@ -472,14 +458,14 @@ async function collectModule(url) {
   await Promise.all(imports.map(collectModule));
 }
 await Promise.all(rootEntryScripts.map(collectModule));
-let representativeJsGzipBytes = 0;
+let globalRuntimeJsGzipBytes = 0;
 for (const url of visitedScripts) {
   const contents = await readFile(path.join(outputDirectory, url.slice(1)));
-  representativeJsGzipBytes += gzipSync(contents).byteLength;
+  globalRuntimeJsGzipBytes += gzipSync(contents).byteLength;
 }
-if (representativeJsGzipBytes > 75_000) {
+if (globalRuntimeJsGzipBytes > 175_000) {
   fail(
-    `representative route JavaScript exceeds 75 KB gzip: ${representativeJsGzipBytes} bytes`
+    `Global legacy runtime JavaScript exceeds 175 KB gzip: ${globalRuntimeJsGzipBytes} bytes`
   );
 }
 
@@ -503,6 +489,6 @@ if (failures.length) {
   process.exitCode = 1;
 } else {
   console.log(
-    `Site audit passed (${builtHtml.length} HTML files; ${sitemapLocations.length} sitemap routes; representative JS ${representativeJsGzipBytes} gzip bytes; Seigaiha ${patternBytes} bytes; US Home assets ${usHomeBytes} bytes).`
+    `Site audit passed (${builtHtml.length} HTML files; ${sitemapLocations.length} sitemap routes; Global legacy runtime ${globalRuntimeJsGzipBytes} gzip bytes; US Home assets ${usHomeBytes} bytes).`
   );
 }
