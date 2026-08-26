@@ -31,7 +31,11 @@ async function startServer() {
           : path.join(staticPath, normalizedPath.slice(1), "index.html");
       return res.sendFile(routeIndex);
     }
-    return res.status(404).sendFile(path.join(staticPath, "404.html"));
+    return res
+      .status(404)
+      .set("X-Robots-Tag", "noindex")
+      .set("Cache-Control", "no-store")
+      .sendFile(path.join(staticPath, "404.html"));
   });
 
   const port = process.env.PORT || 3000;

@@ -323,6 +323,8 @@ test("unknown documents return a real noindex 404 without canonical", async ({
 }) => {
   const response = await request.get("/us/en/definitely-not-a-page");
   expect(response.status()).toBe(404);
+  expect(response.headers()["x-robots-tag"]).toBe("noindex");
+  expect(response.headers()["cache-control"]).toBe("no-store");
   const body = await response.text();
   expect(body).toContain('content="noindex, nofollow"');
   expect(body).not.toMatch(/<link\s+rel=["']canonical["']/i);
@@ -443,9 +445,7 @@ test("Global home preserves the established UI on mobile and reduced motion", as
   await expect(
     page.getByRole("img", { name: "Tengcle - think into the future" })
   ).toBeVisible();
-  await expect(
-    page.getByText(/think into the future/i).last()
-  ).toBeVisible();
+  await expect(page.getByText(/think into the future/i).last()).toBeVisible();
   const state = await page.evaluate(() => ({
     overflow:
       document.documentElement.scrollWidth -
@@ -493,6 +493,8 @@ test("retired redesign-only routes are not publicly generated", async ({
   ]) {
     const response = await request.get(route);
     expect(response.status(), route).toBe(404);
+    expect(response.headers()["x-robots-tag"], route).toBe("noindex");
+    expect(response.headers()["cache-control"], route).toBe("no-store");
     expect(await response.text(), route).toContain("noindex, nofollow");
   }
 });

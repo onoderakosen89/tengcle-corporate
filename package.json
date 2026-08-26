@@ -15,7 +15,7 @@
     "check": "astro check",
     "audit:site": "node scripts/audit-site.mjs",
     "test:e2e": "playwright test",
-    "test:unit": "vitest run tests/seo-output.test.ts tests/content-schema.test.ts",
+    "test:unit": "vitest run tests/seo-output.test.ts tests/content-schema.test.ts tests/cloudflare-middleware.test.ts",
     "test": "pnpm check && pnpm test:unit && pnpm build && pnpm audit:site && pnpm test:e2e",
     "format": "prettier --write ."
   },
