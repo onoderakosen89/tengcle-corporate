@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { motion, type Easing } from "framer-motion";
 import { Link } from "wouter";
 import { Globe, Building2, ArrowRight } from "lucide-react";
+import { brandAssets } from "@/lib/brandAssets";
 
 const regions = [
   {
@@ -171,9 +172,9 @@ export default function GlobalGateway() {
               className="flex justify-center"
             >
               <img
-                src="/images/tengcle-logo-white.png"
+                src={brandAssets.primary.white}
                 alt="Tengcle - think into the future"
-                className="h-14 md:h-16 w-auto"
+                className="h-16 md:h-20 w-auto"
               />
             </motion.div>
           </div>

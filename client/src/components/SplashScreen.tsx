@@ -1,13 +1,10 @@
 /**
- * SplashScreen Component
- * 
- * Displays a full-screen logo video on page load.
- * After the video ends, smoothly transitions to reveal the main content.
- * Responsive design with letterboxing/pillarboxing for various screen sizes.
+ * Global-only intro that presents the approved master lockup once per session.
  */
 
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { brandAssets } from "@/lib/brandAssets";
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -15,107 +12,108 @@ interface SplashScreenProps {
 
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const [phase, setPhase] = useState<"playing" | "fading" | "done">("playing");
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [mediaState, setMediaState] = useState<
+    "loading" | "playing" | "fallback"
+  >("loading");
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    if (!reduceMotion) return;
 
-    const handleEnded = () => {
-      // Start fade out animation
-      setPhase("fading");
-    };
+    const timer = window.setTimeout(() => setPhase("fading"), 250);
+    return () => window.clearTimeout(timer);
+  }, [reduceMotion]);
 
-    const handleCanPlay = () => {
-      video.play().catch(() => {
-        // If autoplay fails, skip splash screen
-        setPhase("done");
-        onComplete();
-      });
-    };
-
-    video.addEventListener("ended", handleEnded);
-    video.addEventListener("canplay", handleCanPlay);
-
-    // Fallback: if video doesn't load within 8 seconds, skip
-    const timeout = setTimeout(() => {
-      if (phase === "playing") {
-        setPhase("fading");
-      }
-    }, 8000);
-
-    return () => {
-      video.removeEventListener("ended", handleEnded);
-      video.removeEventListener("canplay", handleCanPlay);
-      clearTimeout(timeout);
-    };
-  }, [onComplete, phase]);
-
-  // Handle animation completion
   useEffect(() => {
-    if (phase === "fading") {
-      const timer = setTimeout(() => {
+    if (reduceMotion || mediaState !== "fallback") return;
+
+    const timer = window.setTimeout(() => setPhase("fading"), 500);
+    return () => window.clearTimeout(timer);
+  }, [mediaState, reduceMotion]);
+
+  useEffect(() => {
+    if (reduceMotion || mediaState !== "loading" || phase !== "playing") return;
+
+    // Cloudflare cold loads can take longer than a quarter-second even for the
+    // small MP4. Allow a complete start before falling back, while keeping the
+    // worst-case intro under roughly 5.3 seconds.
+    const loadTimer = window.setTimeout(() => setMediaState("fallback"), 1_500);
+    return () => window.clearTimeout(loadTimer);
+  }, [mediaState, phase, reduceMotion]);
+
+  useEffect(() => {
+    if (reduceMotion || mediaState !== "playing" || phase !== "playing") return;
+
+    // `ended` is authoritative. This watchdog only prevents a decoder stall
+    // from trapping navigation, while leaving the full 3.003s clip intact.
+    const playbackTimer = window.setTimeout(() => setPhase("fading"), 3_100);
+    return () => window.clearTimeout(playbackTimer);
+  }, [mediaState, phase, reduceMotion]);
+
+  useEffect(() => {
+    if (phase !== "fading") return;
+
+    const timer = window.setTimeout(
+      () => {
         setPhase("done");
         onComplete();
-      }, 1000); // Match the exit animation duration
-      return () => clearTimeout(timer);
-    }
-  }, [phase, onComplete]);
+      },
+      reduceMotion ? 150 : 650
+    );
+    return () => window.clearTimeout(timer);
+  }, [onComplete, phase, reduceMotion]);
 
   if (phase === "done") return null;
 
   return (
     <AnimatePresence mode="wait">
-      {(phase === "playing" || phase === "fading") && (
-        <motion.div
-          key="splash"
-          initial={{ opacity: 1 }}
-          animate={{ 
-            opacity: phase === "fading" ? 0 : 1,
-          }}
-          exit={{ opacity: 0 }}
-          transition={{ 
-            duration: 1,
-            ease: [0.4, 0, 0.2, 1],
-          }}
-          className="fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden"
-        >
-          {/* Video container - full screen with object-contain for letterboxing */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: phase === "fading" ? 0 : 1 
-            }}
-            transition={{ 
-              duration: phase === "fading" ? 1 : 0.3,
-              ease: [0.4, 0, 0.2, 1]
-            }}
-            className="absolute inset-0 flex items-center justify-center"
+      <motion.div
+        key="splash"
+        data-testid="global-intro"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: phase === "fading" ? 0 : 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          duration: reduceMotion ? 0.1 : 0.65,
+          ease: [0.4, 0, 0.2, 1],
+        }}
+        className="fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden"
+      >
+        {!reduceMotion && mediaState !== "fallback" ? (
+          <video
+            data-testid="global-intro-video"
+            aria-hidden="true"
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            poster={brandAssets.intro.poster}
+            onEnded={() => setPhase("fading")}
+            onError={() => setMediaState("fallback")}
+            onPlaying={() => setMediaState("playing")}
+            className="absolute inset-0 size-full object-contain"
           >
-            <video
-              ref={videoRef}
-              muted
-              playsInline
-              className="w-full h-full object-contain"
-              style={{
-                // Ensure video maintains aspect ratio with black letterboxing/pillarboxing
-                maxWidth: '100vw',
-                maxHeight: '100vh',
-              }}
-            >
-              <source src="/videos/tengcle_logo_1.mp4" type="video/mp4" />
-            </video>
-          </motion.div>
-          
-          {/* Smooth white overlay that fades in during transition */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: phase === "fading" ? 1 : 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="absolute inset-0 bg-white"
+            <source src={brandAssets.intro.mp4} type="video/mp4" />
+            <source src={brandAssets.intro.webm} type="video/webm" />
+          </video>
+        ) : (
+          <img
+            data-testid="global-intro-static"
+            src={brandAssets.primary.white}
+            alt="Tengcle - think into the future"
+            className="h-auto object-contain"
+            style={{ width: "min(78vw, 720px)" }}
           />
-        </motion.div>
-      )}
+        )}
+
+        <motion.div
+          aria-hidden="true"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: phase === "fading" ? 1 : 0 }}
+          transition={{ duration: reduceMotion ? 0.1 : 0.5, delay: 0.1 }}
+          className="absolute inset-0 bg-white"
+        />
+      </motion.div>
     </AnimatePresence>
   );
 }
