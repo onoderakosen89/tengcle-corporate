@@ -271,8 +271,8 @@ export default function PropertyDevelopment() {
             style={{ y: backgroundY }}
           >
             <img
-              src="/images/candidates/us-property-development-960.webp"
-              alt="Illustrative property revitalization planning in New Jersey"
+              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/WaMxaejDVBiYfcRk.jpg"
+              alt="Property Revitalization - Before and After"
               className="w-full h-[120%] object-cover opacity-40"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-purple-deep/80 via-purple-deep/60 to-transparent" />

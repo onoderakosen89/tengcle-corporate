@@ -176,9 +176,9 @@ export default function UsHome() {
         t("service.development.feature4"),
       ],
       isMain: true,
-      image: "/images/candidates/us-property-development-960.webp",
+      image: "/images/us/home/development-960.webp",
       imageSrcSet:
-        "/images/candidates/us-property-development-480.webp 480w, /images/candidates/us-property-development-960.webp 960w",
+        "/images/us/home/development-480.webp 480w, /images/us/home/development-960.webp 960w",
     },
     {
       icon: Building2,

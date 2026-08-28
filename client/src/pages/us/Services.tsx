@@ -83,7 +83,7 @@ export default function UsServices() {
         t('service.development.feature3'),
         t('service.development.feature4'),
       ],
-      image: "/images/candidates/us-property-development-960.webp",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
       link: `${basePath}/services/property-development`,
       isMain: true,
     },
