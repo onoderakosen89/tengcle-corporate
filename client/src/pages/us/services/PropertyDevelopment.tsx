@@ -3,8 +3,7 @@
  * 
  * Design Philosophy:
  * - Bold American style with strong CTAs
- * - Focus on future vision and value creation
- * - Newly registered company - emphasize what we WILL do
+ * - Focus on hands-on property improvement and value creation
  */
 
 import { useRef } from "react";
@@ -45,19 +44,19 @@ const staggerContainer = {
 // Translations for this page
 const pageTranslations = {
   'page.title': {
-    en: 'Property Development',
-    ja: '不動産開発',
-    zh: '房地产开发',
+    en: 'Property Revitalization',
+    ja: '物件再生・価値向上',
+    zh: '物业改造与价值提升',
   },
   'page.subtitle': {
-    en: 'Transforming Underperforming Assets into High-Value Properties',
-    ja: '問題物件を高価値不動産へ再生',
-    zh: '将低效资产转化为高价值物业',
+    en: 'Practical Improvements for Lasting Property Value',
+    ja: '実務的な改善で、物件の価値を長く育てる',
+    zh: '以务实改进培育长期物业价值',
   },
   'page.description': {
-    en: 'Our core business focuses on acquiring distressed or underperforming properties, revitalizing them through strategic renovation, and holding them as long-term income-generating assets.',
-    ja: '私たちの中核事業は、問題を抱えた物件や低パフォーマンス物件を取得し、戦略的な修繕・改修によって再生させ、長期的な収益資産として保有することです。',
-    zh: '我们的核心业务专注于收购困境或低效物业，通过战略性翻新使其焕发新生，并作为长期收益资产持有。',
+    en: 'We assess each property’s condition and operations, then coordinate repairs and practical improvements to strengthen usability, stability, and long-term value.',
+    ja: '物件の状態と運営上の課題を整理し、修繕や実務的な改善を通じて、使いやすさ、安定性、長期的な価値の向上を図ります。',
+    zh: '我们梳理物业现状与运营问题，通过维修和务实改进，提升使用体验、运营稳定性与长期价值。',
   },
   'vision.title': {
     en: 'Our Vision',
@@ -65,24 +64,24 @@ const pageTranslations = {
     zh: '我们的愿景',
   },
   'vision.description': {
-    en: 'As a newly established company in January 2026, Tengcle Development LLC is positioned to capitalize on opportunities in the NJ/NY real estate market. We combine Japanese attention to detail with American market expertise to create lasting value.',
-    ja: '2026年1月に設立されたTengcle Development LLCは、NJ/NYの不動産市場における機会を最大限に活用する体制を整えています。日本式のきめ細やかさとアメリカ市場の専門知識を融合し、持続的な価値を創造します。',
-    zh: '作为2026年1月新成立的公司，Tengcle Development LLC致力于把握新泽西/纽约房地产市场的机遇。我们将日式精细服务与美国市场专业知识相结合，创造持久价值。',
+    en: 'Our current work is grounded in New Jersey. We assess each property carefully and consider broader NJ/NY opportunities individually from a long-term operating perspective.',
+    ja: '現在の実務はニュージャージー州を基盤としています。物件ごとに丁寧に状況を確認し、NJ/NYのその他の案件は長期的な運営視点から個別に検討します。',
+    zh: '目前的实务以新泽西州为基础。我们逐项审慎评估物业，并从长期运营角度个别考虑新泽西／纽约的其他机会。',
   },
   'process.title': {
-    en: 'Our Development Process',
-    ja: '開発プロセス',
-    zh: '开发流程',
+    en: 'Our Revitalization Process',
+    ja: '物件再生のプロセス',
+    zh: '物业改造流程',
   },
   'process.step1.title': {
-    en: 'Acquisition',
-    ja: '物件取得',
-    zh: '物业收购',
+    en: 'Assessment',
+    ja: '現状整理',
+    zh: '现状评估',
   },
   'process.step1.desc': {
-    en: 'Identify and acquire distressed, undervalued, or problem properties with high potential for value appreciation.',
-    ja: '価値向上の可能性が高い、問題物件・低評価物件を特定し取得。',
-    zh: '识别并收购具有高增值潜力的困境、低估或问题物业。',
+    en: 'Review property condition, tenant matters, repair history, and operating priorities before defining the work required.',
+    ja: '物件の状態、テナント対応、修繕履歴、運営上の優先事項を確認し、必要な対応を整理します。',
+    zh: '确认物业状况、租户事项、维修记录与运营重点，明确所需工作。',
   },
   'process.step2.title': {
     en: 'Renovation & Revitalization',
@@ -90,9 +89,9 @@ const pageTranslations = {
     zh: '翻新与复兴',
   },
   'process.step2.desc': {
-    en: 'Execute comprehensive renovation plans to address structural issues, modernize facilities, and enhance property appeal.',
-    ja: '構造的問題の解決、設備の近代化、物件の魅力向上を含む包括的な修繕計画を実行。',
-    zh: '执行全面翻新计划，解决结构问题，现代化设施，提升物业吸引力。',
+    en: 'Define repair priorities, coordinate suitable contractors, and follow approved work through scheduling and completion.',
+    ja: '修繕の優先順位を定め、適切な業者を手配し、承認された工事の日程調整から完了確認までを行います。',
+    zh: '确定维修优先级，协调合适的承包商，并跟进已批准工作从排期到完工。',
   },
   'process.step3.title': {
     en: 'Value Enhancement',
@@ -100,24 +99,24 @@ const pageTranslations = {
     zh: '价值提升',
   },
   'process.step3.desc': {
-    en: 'Implement strategic improvements to maximize property value and rental income potential.',
-    ja: '物件価値と賃料収入ポテンシャルを最大化する戦略的改善を実施。',
-    zh: '实施战略性改进，最大化物业价值和租金收入潜力。',
+    en: 'Prioritize improvements that support property usability, operating stability, and sustainable rental performance.',
+    ja: '物件の使いやすさ、運営の安定性、持続的な賃貸運用につながる改善を優先します。',
+    zh: '优先实施有助于提升使用体验、运营稳定性与可持续租赁表现的改进。',
   },
   'process.step4.title': {
-    en: 'Long-term Holding',
-    ja: '長期保有',
-    zh: '长期持有',
+    en: 'Stable Operations',
+    ja: '安定運営',
+    zh: '稳定运营',
   },
   'process.step4.desc': {
-    en: 'Hold revitalized properties as income-generating assets, operating them as vacation rentals, hotels, dormitories, or commercial spaces.',
-    ja: '再生した物件を収益資産として長期保有し、民泊・ホテル・寮・事務所等として運用。',
-    zh: '将复兴后的物业作为收益资产长期持有，运营为民宿、酒店、宿舍或商业空间。',
+    en: 'Support ongoing management, maintenance planning, and tenant communication so improvements remain effective over time.',
+    ja: '改善後も管理、修繕計画、テナント対応を継続し、物件の状態と価値を安定させます。',
+    zh: '持续支持物业管理、维修规划与租户沟通，使改善效果长期保持。',
   },
   'benefits.title': {
-    en: 'Why Property Development?',
-    ja: 'なぜ不動産開発なのか',
-    zh: '为什么选择房地产开发？',
+    en: 'Why Property Revitalization?',
+    ja: 'なぜ物件再生なのか',
+    zh: '为什么进行物业改造？',
   },
   'benefit1.title': {
     en: 'Value Creation',
@@ -125,29 +124,29 @@ const pageTranslations = {
     zh: '价值创造',
   },
   'benefit1.desc': {
-    en: 'Transform underperforming assets into profitable, high-value properties through strategic renovation.',
-    ja: '戦略的な修繕により、低パフォーマンス資産を収益性の高い高価値物件に転換。',
-    zh: '通过战略性翻新，将低效资产转化为高价值盈利物业。',
+    en: 'Address deferred repairs and operational issues so a property can serve its intended use more reliably.',
+    ja: '先送りされていた修繕や運営課題に対応し、物件本来の用途をより安定して果たせる状態へ整えます。',
+    zh: '处理积压维修与运营问题，使物业能够更稳定地发挥其用途。',
   },
   'benefit2.title': {
-    en: 'Stable Income Stream',
-    ja: '安定収益',
-    zh: '稳定收入',
+    en: 'Operating Stability',
+    ja: '運営の安定性',
+    zh: '运营稳定性',
   },
   'benefit2.desc': {
-    en: 'Generate consistent rental income through diversified property operations.',
-    ja: '多様な物件運用を通じて安定した賃料収入を創出。',
-    zh: '通过多元化物业运营产生稳定的租金收入。',
+    en: 'Clear maintenance priorities and reliable follow-through support more stable property operations.',
+    ja: '修繕の優先順位と確実な対応を明確にすることで、より安定した物件運営を支えます。',
+    zh: '明确维修优先级并可靠跟进，有助于提升物业运营稳定性。',
   },
   'benefit3.title': {
-    en: 'Asset Appreciation',
-    ja: '資産価値上昇',
-    zh: '资产增值',
+    en: 'Value Preservation',
+    ja: '価値の維持・向上',
+    zh: '价值维护与提升',
   },
   'benefit3.desc': {
-    en: 'Benefit from long-term property value appreciation in the growing NJ/NY market.',
-    ja: '成長するNJ/NY市場における長期的な物件価値上昇の恩恵を享受。',
-    zh: '受益于新泽西/纽约市场增长带来的长期物业增值。',
+    en: 'Planned repairs and operational improvements help preserve usability and support long-term value.',
+    ja: '計画的な修繕と運営改善により、使いやすさを保ち、長期的な価値形成を支えます。',
+    zh: '通过有计划的维修与运营改善，保持使用价值并支持长期价值形成。',
   },
   'benefit4.title': {
     en: 'Risk Mitigation',
@@ -155,19 +154,19 @@ const pageTranslations = {
     zh: '风险分散',
   },
   'benefit4.desc': {
-    en: 'Diversified portfolio across multiple property types reduces market volatility exposure.',
-    ja: '複数の物件タイプにまたがる分散ポートフォリオにより市場変動リスクを軽減。',
-    zh: '跨多种物业类型的多元化投资组合降低市场波动风险。',
+    en: 'Clear priorities and staged improvements help control cost, disruption, and operational risk.',
+    ja: '優先順位を明確にし、段階的に改善することで、費用、業務への影響、運営リスクを抑えます。',
+    zh: '通过明确优先级与分阶段改善，控制成本、运营影响和相关风险。',
   },
   'target.title': {
-    en: 'Target Properties',
-    ja: '対象物件',
-    zh: '目标物业',
+    en: 'Properties We Support',
+    ja: '対応する物件',
+    zh: '可支持的物业',
   },
   'target.item1': {
-    en: 'Distressed residential properties requiring renovation',
+    en: 'Residential properties requiring repair or operational improvement',
     ja: '修繕が必要な住宅物件',
-    zh: '需要翻新的困境住宅物业',
+    zh: '需要维修或运营改善的住宅物业',
   },
   'target.item2': {
     en: 'Underperforming multi-family buildings',
@@ -190,9 +189,9 @@ const pageTranslations = {
     zh: '与我们合作',
   },
   'cta.description': {
-    en: 'Interested in property development opportunities or investment partnerships? Contact us to explore how we can create value together.',
-    ja: '不動産開発の機会や投資パートナーシップにご興味がありますか？共に価値を創造する方法をご相談ください。',
-    zh: '对房地产开发机会或投资合作感兴趣？联系我们，探讨如何共同创造价值。',
+    en: 'Contact us to discuss property operations, repair priorities, and practical ways to strengthen long-term value.',
+    ja: '物件運営、修繕の優先順位、長期的な価値向上についてご相談ください。',
+    zh: '欢迎就物业运营、维修优先级及长期价值提升与我们联系。',
   },
   'cta.button': {
     en: 'Contact Us',
@@ -200,19 +199,19 @@ const pageTranslations = {
     zh: '联系我们',
   },
   'meta.title': {
-    en: 'Property Development | Tengcle Development LLC NJ - Real Estate Value Creation',
-    ja: '不動産開発 | Tengcle Development LLC NJ - 物件再生・価値創造',
-    zh: '房地产开发 | Tengcle Development LLC NJ - 物业再生·价值创造',
+    en: 'Property Revitalization | Tengcle Development LLC NJ',
+    ja: '物件再生・価値向上 | Tengcle Development LLC NJ',
+    zh: '物业改造与价值提升 | Tengcle Development LLC NJ',
   },
   'meta.description': {
-    en: 'Transform distressed properties into high-value assets. Property acquisition, renovation & long-term holding in NJ/NY metro area.',
-    ja: '問題物件を高価値資産へ再生。NJ/NYエリアでの物件取得・修繕・長期保有。',
-    zh: '将困境物业转化为高价值资产。新泽西/纽约地区的物业收购、翻新与长期持有。',
+    en: 'New Jersey-based property assessment, repair coordination, operational improvement, and long-term value enhancement.',
+    ja: 'ニュージャージー州を拠点とする物件状況の整理、修繕調整、運営改善、長期的な価値向上。',
+    zh: '立足新泽西州的物业评估、维修协调、运营改善与长期价值提升。',
   },
   'meta.keywords': {
-    en: 'property development, real estate development, NJ real estate, distressed properties, renovation, Tengcle Development LLC',
-    ja: '不動産開発, 物件再生, NJ不動産, 問題物件, 修繕, Tengcle Development LLC',
-    zh: '房地产开发, 物业再生, NJ房地产, 困境物业, 翻新, Tengcle Development LLC',
+    en: 'property revitalization, property improvement, NJ real estate, repair coordination, Tengcle Development LLC',
+    ja: '物件再生, 価値向上, NJ不動産, 修繕調整, Tengcle Development LLC',
+    zh: '物业改造, 价值提升, 新泽西房地产, 维修协调, Tengcle Development LLC',
   },
 };
 
@@ -273,7 +272,7 @@ export default function PropertyDevelopment() {
           >
             <img
               src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/WaMxaejDVBiYfcRk.jpg"
-              alt="Property Development - Before and After"
+              alt="Property Revitalization - Before and After"
               className="w-full h-[120%] object-cover opacity-40"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-purple-deep/80 via-purple-deep/60 to-transparent" />

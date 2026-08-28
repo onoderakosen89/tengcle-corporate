@@ -7,7 +7,7 @@
 
 import { Link, useLocation, useParams } from "wouter";
 import { motion } from "framer-motion";
-import { Calendar, ArrowLeft, Building2 } from "lucide-react";
+import { Calendar, ArrowLeft } from "lucide-react";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import Header from "@/components/us/Header";
 import Footer from "@/components/us/Footer";
@@ -35,38 +35,7 @@ interface NewsArticle {
   };
 }
 
-const newsArticles: NewsArticle[] = [
-  {
-    id: "us-founding-2026",
-    date: "2026-01-05",
-    category: "Company Founding",
-    icon: <Building2 className="w-5 h-5" />,
-    title: {
-      en: "Tengcle Development LLC Established in New Jersey",
-      ja: "Tengcle Development LLC ニュージャージー州にて設立",
-      zh: "Tengcle Development LLC在新泽西州成立",
-    },
-    excerpt: {
-      en: "Tengcle Development LLC was formed in New Jersey on 5 January 2026.",
-      ja: "Tengcle Development LLCは2026年1月5日にニュージャージー州で設立されました。",
-      zh: "Tengcle Development LLC于2026年1月5日在新泽西州成立。",
-    },
-    content: {
-      en: [
-        "Tengcle Development LLC was formed in New Jersey on 5 January 2026.",
-        "Tengcle Development LLC is one of the Tengcle related companies. Each company is a separate legal entity in its jurisdiction.",
-      ],
-      ja: [
-        "Tengcle Development LLCは2026年1月5日にニュージャージー州で設立されました。",
-        "Tengcle Development LLCはTengcleの関連会社の一社です。各社は、それぞれの法域における独立した法人です。",
-      ],
-      zh: [
-        "Tengcle Development LLC于2026年1月5日在新泽西州成立。",
-        "Tengcle Development LLC是Tengcle关联公司之一。各公司是在其司法管辖区内独立的法律实体。",
-      ],
-    },
-  },
-];
+const newsArticles: NewsArticle[] = [];
 
 export default function NewsArticle() {
   const { language } = useUsLanguage();

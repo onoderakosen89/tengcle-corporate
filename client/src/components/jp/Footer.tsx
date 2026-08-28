@@ -113,8 +113,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Group Companies - Important for SEO Sitelinks */}
-          <nav aria-label="Tengcle related company sites">
+          {/* Regional sites */}
+          <nav aria-label="Tengcle regional sites">
             <h4 className={`text-gold text-sm tracking-wider uppercase mb-6 ${getFontClass()}`}>
               {t.footer.group}
             </h4>

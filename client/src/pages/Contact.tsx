@@ -198,7 +198,7 @@ export default function Contact() {
                   className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300 h-full relative"
                 >
                   <div className="absolute top-4 right-4 bg-gold/10 text-gold text-xs px-2 py-1 rounded">
-                    {language === "ja" ? "2026年1月設立" : language === "zh" ? "2026年1月成立" : "Established January 2026"}
+                    {language === "ja" ? "米国地域サイト" : language === "zh" ? "美国地区网站" : "United States Regional Site"}
                   </div>
                   <MapPin className="h-8 w-8 text-gold mb-4" />
                   <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-4`}>

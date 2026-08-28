@@ -78,9 +78,9 @@ export default function UsFooter() {
             </ul>
           </div>
 
-          {/* Group Sites - Important for SEO Sitelinks */}
-          <nav aria-label="Tengcle related company sites">
-            <h4 className="font-heading text-lg mb-6 text-gold">Tengcle Related Companies</h4>
+          {/* Regional sites */}
+          <nav aria-label="Tengcle regional sites">
+            <h4 className="font-heading text-lg mb-6 text-gold">Tengcle Regional Sites</h4>
             <ul className="space-y-3">
               <li>
                 <Link
@@ -115,9 +115,7 @@ export default function UsFooter() {
             <p className="text-gray-400 text-sm">
               © {currentYear} Tengcle Development LLC. {t('footer.rights')}
             </p>
-            <p className="text-gray-500 text-xs">
-              A Tengcle related company
-            </p>
+            <p className="text-gray-500 text-xs">New Jersey, United States</p>
           </div>
         </div>
       </div>

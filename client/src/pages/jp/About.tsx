@@ -190,14 +190,6 @@ export default function About() {
                   </tr>
                   <tr className="border-b border-gray-100">
                     <th className={`text-left py-5 px-6 bg-gray-50 text-navy font-medium ${getFontClass()}`}>
-                      {language === "ja" ? "設立日" : language === "zh" ? "成立日期" : "Incorporated"}
-                    </th>
-                    <td className={`py-5 px-6 text-charcoal ${getFontClass()}`}>
-                      2021-10-25
-                    </td>
-                  </tr>
-                  <tr className="border-b border-gray-100">
-                    <th className={`text-left py-5 px-6 bg-gray-50 text-navy font-medium ${getFontClass()}`}>
                       {language === "ja" ? "登記上の本店" : language === "zh" ? "注册办事处" : "Registered Office"}
                     </th>
                     <td className={`py-5 px-6 text-charcoal ${getFontClass()}`}>
@@ -218,7 +210,7 @@ export default function About() {
                   </tr>
                   <tr>
                     <th className={`text-left py-5 px-6 bg-gray-50 text-navy font-medium ${getFontClass()}`}>
-                      {language === "ja" ? "香港関連会社" : language === "zh" ? "香港关联公司" : "Hong Kong Affiliated Company"}
+                      {language === "ja" ? "香港地域サイト" : language === "zh" ? "香港地区网站" : "Hong Kong Regional Site"}
                     </th>
                     <td className={`py-5 px-6 text-charcoal ${getFontClass()}`}>
                       <Link

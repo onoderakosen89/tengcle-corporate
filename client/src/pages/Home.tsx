@@ -240,7 +240,7 @@ export default function Home() {
           "@graph": [
             generateOrganizationSchema({
               name: company.legalName,
-              description: "A Hong Kong affiliated company developing hospitality procurement, project coordination, IT, and trade activities.",
+              description: "A Hong Kong company working across hospitality procurement, project coordination, IT, and trade.",
               url: "https://www.tengcle.com/hk/en",
               logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
               email: company.email,
@@ -251,7 +251,6 @@ export default function Home() {
                 country: address.country,
                 postalCode: address.postalCode,
               },
-              foundingDate: company.established,
             })
           ]
         }}
@@ -383,8 +382,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
-                    <span className="text-gold text-xs tracking-wider uppercase">{t.portfolio.project1.location}</span>
-                    <h3 className={`${getHeadingFontClass()} text-xl text-white mt-1`}>{t.portfolio.project1.title}</h3>
+                    <h3 className={`${getHeadingFontClass()} text-xl text-white`}>{t.portfolio.project1.title}</h3>
                   </div>
                 </div>
                 <div className="p-6">
@@ -413,8 +411,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
-                    <span className="text-gold text-xs tracking-wider uppercase">{t.portfolio.project2.location}</span>
-                    <h3 className={`${getHeadingFontClass()} text-xl text-white mt-1`}>{t.portfolio.project2.title}</h3>
+                    <h3 className={`${getHeadingFontClass()} text-xl text-white`}>{t.portfolio.project2.title}</h3>
                   </div>
                 </div>
                 <div className="p-6">
@@ -451,7 +448,7 @@ export default function Home() {
                 {t.trust?.title || "Tengcle Limited"}
               </h2>
               <p className={`text-gray-300 max-w-2xl mx-auto ${getFontClass()}`}>
-                {t.trust?.description || "Incorporated in Hong Kong on 29 April 2025."}
+                {t.trust?.description || "Based in Hong Kong."}
               </p>
             </motion.div>
           </AnimatedSection>
@@ -460,9 +457,9 @@ export default function Home() {
             {[
               {
                 icon: Shield,
-                title: t.trust?.established || "Established",
-                value: "2025-04-29",
-                description: t.trust?.establishedDesc || "Hong Kong Incorporated",
+                title: language === "ja" ? "拠点" : language === "zh" ? "所在地" : "Based in",
+                value: language === "ja" || language === "zh" ? "香港" : "Hong Kong",
+                description: "Tengcle Limited",
               },
               {
                 icon: Building2,

@@ -11,7 +11,7 @@
 import { useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, useInView, useScroll, useTransform, type Variants, type Easing } from "framer-motion";
-import { ArrowRight, Building2, Globe, Users, Home as HomeIcon, Utensils, Dumbbell, BedDouble } from "lucide-react";
+import { ArrowRight, Building2, Globe, Home as HomeIcon, Utensils, Dumbbell, BedDouble } from "lucide-react";
 import Header from "@/components/jp/Header";
 import Footer from "@/components/jp/Footer";
 import { Button } from "@/components/ui/button";
@@ -82,8 +82,8 @@ function JpHeroSection({
         style={{ y: backgroundY }}
       >
         <img
-          src="/images/hero-japan-corporate.webp"
-          alt="Tokyo Business District"
+          src="/images/hero-japan-tokyo-candidate.webp"
+          alt="Tokyo skyline concept with Tokyo Tower and Mount Fuji at blue hour"
           className="w-full h-[120%] object-cover"
           width="1920"
           height="1080"
@@ -244,12 +244,6 @@ export default function Home() {
       description: t.services.capsuleHotel.description,
       image: "/images/service-capsule-hotel.webp",
     },
-    {
-      icon: Users,
-      title: t.services.recruitment.title,
-      description: t.services.recruitment.description,
-      image: "/images/service-recruitment.webp",
-    },
   ];
 
   return (
@@ -277,7 +271,6 @@ export default function Home() {
                 country: address.country,
                 postalCode: address.postalCode,
               },
-              foundingDate: company.established,
             })
           ]
         }}

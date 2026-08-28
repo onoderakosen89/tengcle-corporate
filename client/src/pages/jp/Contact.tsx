@@ -180,7 +180,7 @@ export default function Contact() {
                     {office.name}
                     {office.isAffiliatedCompany && (
                       <span className="text-xs bg-gold/20 text-gold-dark px-2 py-1 rounded">
-                        {language === "ja" ? "関連会社" : language === "zh" ? "关联公司" : "Affiliated Company"}
+                        {language === "ja" ? "香港地域サイト" : language === "zh" ? "香港地区网站" : "Hong Kong Regional Site"}
                       </span>
                     )}
                   </h3>
