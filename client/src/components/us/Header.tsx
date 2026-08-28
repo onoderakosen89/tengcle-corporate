@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
+import { brandAssets } from "@/lib/brandAssets";
 
 export default function UsHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,8 +50,8 @@ export default function UsHeader() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm py-3"
-          : "bg-transparent py-6"
+          ? "bg-white/95 backdrop-blur-md shadow-sm py-2"
+          : "bg-transparent py-4"
       }`}
     >
       <a
@@ -75,14 +76,13 @@ export default function UsHeader() {
               <img
                 src={
                   isScrolled
-                    ? "/images/tengcle-logo.png"
-                    : "/images/tengcle-logo-white.png"
+                    ? brandAssets.regional.us.black
+                    : brandAssets.regional.us.white
                 }
-                alt="Tengcle"
-                className="w-auto object-contain transition-all duration-300"
-                width="180"
-                height="46"
-                style={{ height: "46px", maxHeight: "46px" }}
+                alt="Tengcle United States"
+                className="h-16 w-auto object-contain transition-all duration-300"
+                width="200"
+                height="64"
               />
             </motion.div>
           </Link>

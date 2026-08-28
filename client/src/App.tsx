@@ -321,12 +321,12 @@ function MainRouter() {
 }
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(
+    () => typeof window !== "undefined" && window.location.pathname === "/"
+  );
   const [hasSeenSplash, setHasSeenSplash] = useState(false);
   const [location] = useLocation();
 
-  // Only show splash on gateway page
-  const isGateway = location === "/";
   const [, region, requestedLanguage] = location.split("/");
   const consentLanguage =
     requestedLanguage === "ja" || requestedLanguage === "zh"
@@ -359,7 +359,7 @@ function App() {
           <ScrollRestoration />
           <GeoRedirect />
           <Toaster />
-          {isGateway && showSplash && !hasSeenSplash && (
+          {showSplash && !hasSeenSplash && (
             <SplashScreen onComplete={handleSplashComplete} />
           )}
           <Suspense fallback={<PageLoader />}>

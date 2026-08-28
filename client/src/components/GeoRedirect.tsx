@@ -15,6 +15,13 @@ export default function GeoRedirect() {
       return;
     }
 
+    // Keep the Global gateway visible when a reviewer explicitly requests it.
+    // This leaves the normal geography-based routing unchanged.
+    if (new URLSearchParams(window.location.search).get("view") === "global") {
+      sessionStorage.setItem("tengcle_geo_redirected", "true");
+      return;
+    }
+
     // Check if user has already been redirected in this session
     const redirected = sessionStorage.getItem("tengcle_geo_redirected");
     if (redirected) {

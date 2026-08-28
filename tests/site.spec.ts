@@ -538,6 +538,75 @@ test("Global home preserves the established UI on mobile and reduced motion", as
   );
 });
 
+test("approved v4 branding preserves the Global intro and regional identities", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+    sessionStorage.setItem("tengcle_geo_redirected", "true");
+  });
+
+  await page.goto("/?view=global");
+  const introLogo = page.getByRole("img", {
+    name: "Tengcle - think into the future",
+  }).first();
+  await expect(introLogo).toBeVisible();
+  await expect(introLogo).toHaveAttribute(
+    "src",
+    "/images/brand/v4/svg/tengcle-primary-tagline-white.svg"
+  );
+  await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 4_000 });
+
+  await page.reload();
+  await expect(
+    page.getByRole("heading", { level: 1, name: /Tengcle Related Companies/ })
+  ).toBeVisible();
+
+  const regionalHeaders = [
+    ["/hk/en/", "Tengcle Hong Kong", "tengcle-regional-hk-black.svg"],
+    ["/jp/ja/", "Tengcle Japan", "tengcle-regional-jp-black.svg"],
+    [
+      "/us/en/",
+      "Tengcle United States",
+      "tengcle-regional-us-white.svg",
+    ],
+  ] as const;
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const [route, accessibleName, assetName] of regionalHeaders) {
+    await page.goto(route);
+    const logo = page.getByRole("img", { name: accessibleName }).first();
+    await expect(logo).toBeVisible();
+    await expect(logo).toHaveAttribute("src", new RegExp(`${assetName}$`));
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow, route).toBeLessThanOrEqual(0);
+  }
+});
+
+test("the Global intro completes even when geography selects a regional home", async ({
+  page,
+}) => {
+  await page.route("https://ipapi.co/json/", async route => {
+    await route.fulfill({
+      contentType: "application/json",
+      body: JSON.stringify({ country_code: "JP" }),
+    });
+  });
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+  });
+
+  await page.goto("/");
+  await expect(page.getByTestId("global-intro")).toBeVisible();
+  await page.waitForTimeout(500);
+  await expect(page.getByTestId("global-intro")).toBeVisible();
+  await expect(page).toHaveURL(/\/jp\/ja\/?$/);
+  await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 4_000 });
+  await expect(page.getByRole("img", { name: "Tengcle Japan" }).first()).toBeVisible();
+});
+
 test("JavaScript replaces the semantic fallback without displaying it", async ({
   page,
 }) => {
