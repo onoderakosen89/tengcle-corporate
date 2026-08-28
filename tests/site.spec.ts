@@ -214,9 +214,10 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
     expect(visibleCopy, `${route} hydrated hierarchy copy`).not.toMatch(
       forbiddenHierarchyPattern
     );
-    expect(visibleCopy, `${route} hydrated registration identifier`).not.toMatch(
-      publicRegistrationIdentifierPattern
-    );
+    expect(
+      visibleCopy,
+      `${route} hydrated registration identifier`
+    ).not.toMatch(publicRegistrationIdentifierPattern);
     expect(
       JSON.stringify(hydratedNodes),
       `${route} hydrated JSON-LD registration identifier`
@@ -300,8 +301,12 @@ test("buyer-intent service pages identify the customer and preserve visible FAQ 
           return graph;
         })
       );
-    expect(structuredNodes.some(node => node?.["@type"] === "Service")).toBe(false);
-    expect(structuredNodes.some(node => node?.["@type"] === "FAQPage")).toBe(false);
+    expect(structuredNodes.some(node => node?.["@type"] === "Service")).toBe(
+      false
+    );
+    expect(structuredNodes.some(node => node?.["@type"] === "FAQPage")).toBe(
+      false
+    );
     const overflow = await page.evaluate(
       () =>
         document.documentElement.scrollWidth -
@@ -598,11 +603,7 @@ test("approved v4 branding preserves the Global intro and regional identities", 
   const regionalHeaders = [
     ["/hk/en/", "Tengcle Hong Kong", "tengcle-regional-hk-black.svg"],
     ["/jp/ja/", "Tengcle Japan", "tengcle-regional-jp-black.svg"],
-    [
-      "/us/en/",
-      "Tengcle United States",
-      "tengcle-regional-us-white.svg",
-    ],
+    ["/us/en/", "Tengcle United States", "tengcle-regional-us-white.svg"],
   ] as const;
 
   await page.setViewportSize({ width: 390, height: 844 });
@@ -612,7 +613,9 @@ test("approved v4 branding preserves the Global intro and regional identities", 
     await expect(logo).toBeVisible();
     await expect(logo).toHaveAttribute("src", new RegExp(`${assetName}$`));
     const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+      () =>
+        document.documentElement.scrollWidth -
+        document.documentElement.clientWidth
     );
     expect(overflow, route).toBeLessThanOrEqual(0);
   }
@@ -656,7 +659,7 @@ test("the Global intro uses the static fallback when media starts too late", asy
   page,
 }) => {
   await page.route("**/videos/tengcle-intro-v4.*", async route => {
-    await new Promise(resolve => setTimeout(resolve, 400));
+    await new Promise(resolve => setTimeout(resolve, 1_800));
     await route.continue().catch(() => undefined);
   });
   await page.addInitScript(() => {
@@ -667,11 +670,11 @@ test("the Global intro uses the static fallback when media starts too late", asy
   const startedAt = Date.now();
   await page.goto("/?view=global");
   await expect(page.getByTestId("global-intro-static")).toBeVisible({
-    timeout: 1_000,
+    timeout: 2_500,
   });
   await expect(page.getByTestId("global-intro-video")).toHaveCount(0);
-  await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 2_000 });
-  expect(Date.now() - startedAt).toBeLessThan(4_000);
+  await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 3_500 });
+  expect(Date.now() - startedAt).toBeLessThan(5_300);
 });
 
 test("the Global intro completes even when geography selects a regional home", async ({
@@ -693,7 +696,9 @@ test("the Global intro completes even when geography selects a regional home", a
   await expect(page.getByTestId("global-intro")).toBeVisible();
   await expect(page).toHaveURL(/\/jp\/ja\/?$/);
   await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 4_000 });
-  await expect(page.getByRole("img", { name: "Tengcle Japan" }).first()).toBeVisible();
+  await expect(
+    page.getByRole("img", { name: "Tengcle Japan" }).first()
+  ).toBeVisible();
 });
 
 test("JavaScript replaces the semantic fallback without displaying it", async ({
@@ -742,7 +747,9 @@ test("contradicted pre-formation US articles are retired behind one-hop Cloudfla
       expect(redirects).toContain(`${from} /us/${language}/about/ 301`);
       const response = await request.get(from, { maxRedirects: 0 });
       if (response.status() === 301) {
-        expect(response.headers().location, from).toBe(`/us/${language}/about/`);
+        expect(response.headers().location, from).toBe(
+          `/us/${language}/about/`
+        );
       } else {
         expect(response.status(), from).toBe(404);
         expect(await response.text(), from).toContain("noindex, nofollow");

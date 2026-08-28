@@ -34,9 +34,10 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   useEffect(() => {
     if (reduceMotion || mediaState !== "loading" || phase !== "playing") return;
 
-    // Starting after this deadline would make a complete 3.003s playback plus
-    // the exit transition exceed the four-second intro budget.
-    const loadTimer = window.setTimeout(() => setMediaState("fallback"), 250);
+    // Cloudflare cold loads can take longer than a quarter-second even for the
+    // small MP4. Allow a complete start before falling back, while keeping the
+    // worst-case intro under roughly 5.3 seconds.
+    const loadTimer = window.setTimeout(() => setMediaState("fallback"), 1_500);
     return () => window.clearTimeout(loadTimer);
   }, [mediaState, phase, reduceMotion]);
 
