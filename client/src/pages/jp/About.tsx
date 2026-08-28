@@ -127,8 +127,8 @@ export default function About() {
                 className="relative overflow-hidden rounded-lg shadow-lg"
               >
                 <img
-                  src="/images/hero-japan-corporate.webp"
-                  alt="株式会社Tengcle Japan"
+                  src="/images/hero-japan-tokyo-candidate.webp"
+                  alt="Tokyo skyline concept with Tokyo Tower and Mount Fuji at blue hour"
                   className="w-full h-80 lg:h-[500px] object-cover"
                   loading="lazy"
                   decoding="async"
