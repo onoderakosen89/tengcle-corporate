@@ -54,7 +54,7 @@ export default function Services() {
       icon: Building2,
       title: t.services.realEstate.title,
       description: t.services.realEstate.description,
-      image: "/images/service-real-estate.webp",
+      image: "/images/candidates/jp-property-management.webp",
       href: `${basePath}/services/property-management`,
       ctaLabel: language === "ja"
         ? "不動産管理の詳細"
@@ -71,7 +71,7 @@ export default function Services() {
       icon: Utensils,
       title: t.services.restaurant.title,
       description: t.services.restaurant.description,
-      image: "/images/service-restaurant.webp",
+      image: "/images/candidates/jp-restaurant.webp",
       features: language === "ja"
         ? ["レストラン・カフェの企画・運営", "店舗開発・内装設計", "メニュー開発", "スタッフ教育・研修"]
         : language === "zh"
@@ -82,7 +82,7 @@ export default function Services() {
       icon: Dumbbell,
       title: t.services.gym.title,
       description: t.services.gym.description,
-      image: "/images/service-gym.webp",
+      image: "/images/candidates/jp-gym.webp",
       features: language === "ja"
         ? ["プライベートジムスペース", "最新トレーニング機器", "清潔な環境", "柔軟な予約システム"]
         : language === "zh"
@@ -93,7 +93,7 @@ export default function Services() {
       icon: BedDouble,
       title: t.services.capsuleHotel.title,
       description: t.services.capsuleHotel.description,
-      image: "/images/service-capsule-hotel.webp",
+      image: "/images/candidates/jp-capsule-accommodation.webp",
       features: language === "ja"
         ? ["快適な客室設計", "快適な睡眠環境", "充実のアメニティ", "利用しやすい料金"]
         : language === "zh"

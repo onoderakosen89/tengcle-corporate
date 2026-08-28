@@ -191,9 +191,9 @@ export default function UsHome() {
         t("service.property.feature4"),
       ],
       isMain: false,
-      image: "/images/us/home/management-960.webp",
+      image: "/images/candidates/us-property-management-960.webp",
       imageSrcSet:
-        "/images/us/home/management-480.webp 480w, /images/us/home/management-960.webp 960w",
+        "/images/candidates/us-property-management-480.webp 480w, /images/candidates/us-property-management-960.webp 960w",
     },
     {
       icon: HomeIcon,
@@ -206,9 +206,9 @@ export default function UsHome() {
         t("service.vacation.feature4"),
       ],
       isMain: false,
-      image: "/images/us/home/vacation-960.webp",
+      image: "/images/candidates/us-vacation-rental-960.webp",
       imageSrcSet:
-        "/images/us/home/vacation-480.webp 480w, /images/us/home/vacation-960.webp 960w",
+        "/images/candidates/us-vacation-rental-480.webp 480w, /images/candidates/us-vacation-rental-960.webp 960w",
     },
   ];
 
@@ -391,7 +391,7 @@ export default function UsHome() {
                 className="relative"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80"
+                  src="/images/candidates/us-property-management-960.webp"
                   alt="Property Management"
                   className="w-full aspect-[4/3] object-cover us-img-hover"
                   loading="lazy"
