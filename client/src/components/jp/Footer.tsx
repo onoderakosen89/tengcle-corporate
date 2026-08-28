@@ -113,14 +113,14 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Group Companies - Important for SEO Sitelinks */}
-          <nav aria-label="Tengcle Group Regional Sites">
+          {/* Regional sites */}
+          <nav aria-label="Tengcle regional sites">
             <h4 className={`text-gold text-sm tracking-wider uppercase mb-6 ${getFontClass()}`}>
               {t.footer.group}
             </h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/hk/en" aria-label="Tengcle Limited - Hong Kong Headquarters">
+                <Link href="/hk/en" aria-label="Tengcle Limited - Hong Kong company">
                   <span className={`text-gray-300 hover:text-white transition-colors text-sm flex items-center gap-2 ${getFontClass()}`}>
                     🇭🇰 {t.footer.hongkong}
                   </span>
@@ -134,9 +134,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/us/en" aria-label="Tengcle Development LLC - US Office">
+                <Link href="/us/en" aria-label="Tengcle Development LLC - United States company">
                   <span className={`text-gray-300 hover:text-white transition-colors text-sm flex items-center gap-2 ${getFontClass()}`}>
-                    🇺🇸 US Office
+                    🇺🇸 United States
                   </span>
                 </Link>
               </li>

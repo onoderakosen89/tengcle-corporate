@@ -76,7 +76,7 @@ export default function Contact() {
       isAffiliatedCompany: true,
     },
     {
-      name: language === "ja" ? "アメリカオフィス" : language === "zh" ? "美国办公室" : "US Office",
+      name: language === "ja" ? "Tengcle Development LLC（米国法人）" : language === "zh" ? "Tengcle Development LLC（美国公司）" : "Tengcle Development LLC (United States)",
       address: "17 Hamilton Ave\nWeehawken, NJ 07086\nUnited States",
       mapUrl: "https://maps.google.com/?q=17+Hamilton+Ave+Weehawken+NJ+07086",
     },
@@ -180,7 +180,7 @@ export default function Contact() {
                     {office.name}
                     {office.isAffiliatedCompany && (
                       <span className="text-xs bg-gold/20 text-gold-dark px-2 py-1 rounded">
-                        {language === "ja" ? "関連会社" : language === "zh" ? "关联公司" : "Affiliated Company"}
+                        {language === "ja" ? "香港地域サイト" : language === "zh" ? "香港地区网站" : "Hong Kong Regional Site"}
                       </span>
                     )}
                   </h3>

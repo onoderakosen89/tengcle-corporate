@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
+import { brandAssets } from "@/lib/brandAssets";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -85,7 +86,7 @@ export default function Header() {
         {language === "ja" ? "本文へ移動" : language === "zh" ? "跳至主要内容" : "Skip to main content"}
       </a>
       <div className="container">
-        <nav className="flex items-center justify-between h-16">
+        <nav className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href={basePath}>
             <motion.div
@@ -94,12 +95,11 @@ export default function Header() {
               transition={{ duration: 0.2 }}
             >
               <img
-                src="/images/tengcle-logo.png"
-                alt="Tengcle - think into the future"
-                className="w-auto object-contain"
-                width="180"
-                height="46"
-                style={{ height: '46px', maxHeight: '46px' }}
+                src={brandAssets.regional.jp.black}
+                alt="Tengcle Japan"
+                className="h-16 w-auto object-contain"
+                width="161"
+                height="64"
               />
             </motion.div>
           </Link>

@@ -1,0 +1,58 @@
+---
+import type { SeoRoute } from "../../shared/seoRouteManifest";
+import { hreflangForRoute } from "../../shared/seoOutput";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import "../styles/global.css";
+
+interface Props {
+  page: SeoRoute;
+  structured: Record<string, unknown>;
+  legalName?: string;
+  cookieIsland?: boolean;
+}
+
+const { page, structured, legalName, cookieIsland = true } = Astro.props;
+const alternates = hreflangForRoute(page);
+---
+
+<!doctype html>
+<html lang={page.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={page.description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <title>{page.title}</title>
+    <link rel="canonical" href={page.canonical} />
+    {alternates.map(alternate => (
+      <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
+    ))}
+    <meta property="og:type" content={page.ogType} />
+    <meta property="og:title" content={page.title} />
+    <meta property="og:description" content={page.description} />
+    <meta property="og:url" content={page.canonical} />
+    <meta property="og:locale" content={page.locale} />
+    <meta property="og:image" content="https://www.tengcle.com/images/og-image.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={page.title} />
+    <meta name="twitter:description" content={page.description} />
+    <meta name="twitter:image" content="https://www.tengcle.com/images/og-image.webp" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <script
+      type="application/ld+json"
+      data-seo-route-structured="true"
+      is:inline
+      set:html={JSON.stringify(structured)}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <SiteHeader legalName={legalName} />
+    <slot />
+    <SiteFooter />
+    {cookieIsland && <div id="cookie-preferences-root"></div>}
+    {cookieIsland && <script src="../scripts/cookie-entry.tsx"></script>}
+  </body>
+</html>

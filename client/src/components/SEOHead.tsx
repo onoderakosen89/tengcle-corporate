@@ -12,6 +12,7 @@ import {
   normalizeTengcleCanonical,
   seoRouteManifest,
 } from "@shared/seoRouteManifest";
+import { structuredData as routeStructuredData } from "@shared/seoOutput";
 
 type StructuredNode = Record<string, unknown>;
 
@@ -62,7 +63,7 @@ export default function SEOHead({
   noindex = false,
   structuredData,
   keywords,
-  author = "Tengcle Group",
+  author = "Tengcle",
   publishedTime,
   modifiedTime,
 }: SEOHeadProps) {
@@ -119,7 +120,7 @@ export default function SEOHead({
     updateMeta("og:image:width", "1200", true);
     updateMeta("og:image:height", "630", true);
     updateMeta("og:locale", resolvedLocale, true);
-    updateMeta("og:site_name", "Tengcle Group", true);
+    updateMeta("og:site_name", "Tengcle", true);
 
     // Update Twitter Card meta tags
     updateMeta("twitter:card", "summary_large_image");
@@ -203,6 +204,8 @@ export default function SEOHead({
     const prerenderScript = document.querySelector<HTMLScriptElement>(
       'script[data-seo-route-structured="true"]'
     );
+    const staticSeoAuthority =
+      document.documentElement.dataset.staticSeoAuthority === "true";
     let prerenderNodes: StructuredNode[] = [];
     if (prerenderScript) {
       try {
@@ -212,10 +215,13 @@ export default function SEOHead({
         const routeWebPage = nodes.find(node =>
           structuredTypes(node).includes("WebPage")
         );
+        const expectedCanonical = staticSeoAuthority
+          ? normalizeTengcleCanonical(window.location.pathname)
+          : normalizedCanonical;
         const matchesCurrentRoute =
           !noindex &&
-          Boolean(normalizedCanonical) &&
-          routeWebPage?.url === normalizedCanonical;
+          Boolean(expectedCanonical) &&
+          routeWebPage?.url === expectedCanonical;
         if (matchesCurrentRoute) {
           prerenderNodes = nodes;
         } else {
@@ -229,16 +235,16 @@ export default function SEOHead({
 
     const runtimeCandidates: StructuredNode[] = [];
     if (prerenderNodes.length === 0 && routeSeo && !noindex) {
-      runtimeCandidates.push({
-        "@type": "WebPage",
-        "@id": `${routeSeo.canonical}#webpage`,
-        url: routeSeo.canonical,
-        name: routeSeo.title,
-        description: routeSeo.description,
-        inLanguage: routeSeo.lang,
-      });
+      runtimeCandidates.push(...structuredNodes(routeStructuredData(routeSeo)));
     }
-    if (structuredData) {
+    // Astro's legacy adapter marks its complete static graph as authoritative.
+    // Keep runtime additions for the existing SPA, but do not let them make
+    // direct-load JSON-LD differ before and after the adapter hydrates.
+    if (
+      structuredData &&
+      !routeSeo &&
+      !(staticSeoAuthority && prerenderNodes.length > 0)
+    ) {
       runtimeCandidates.push(...structuredNodes(structuredData));
     }
 

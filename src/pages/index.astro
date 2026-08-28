@@ -1,0 +1,9 @@
+---
+import LegacyLayout from "../layouts/LegacyLayout.astro";
+import { seoRouteManifest } from "../../shared/seoRouteManifest";
+
+const page = seoRouteManifest.find(route => route.route === "/");
+if (!page) throw new Error("Missing Global home route metadata");
+---
+
+<LegacyLayout page={page} />

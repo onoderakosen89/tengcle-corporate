@@ -1,0 +1,53 @@
+{
+  "kind": "activity",
+  "path": "/activities/property-management/",
+  "lang": "en",
+  "title": "Property Management Activity Structure | Tengcle",
+  "description": "A representative structure for future property-management activity information, without claiming unverified operations or outcomes.",
+  "eyebrow": "Activity · Information structure example",
+  "heading": "Property management — information structure",
+  "intro": "This representative page shows how a future Activity record can state its responsible entity, status, date, and evidence. It does not claim that preparation, operations, or measurable outcomes have been verified for publication.",
+  "updated": "26 August 2026",
+  "evidence": {
+    "publication_state": "internal",
+    "outcome": null,
+    "durability": null,
+    "evidence": [],
+    "tradeoffs": [],
+    "constraints": [
+      "Current operations, scale, and outcomes require dated evidence and disclosure approval."
+    ],
+    "action_stage": "discovery",
+    "status": "future"
+  },
+  "facts": [
+    { "label": "Entity context", "value": "株式会社Tengcle" },
+    { "label": "Location scope", "value": "Japan" },
+    { "label": "Status", "value": "No current activity claimed" },
+    { "label": "Updated", "value": "26 August 2026" }
+  ],
+  "sections": [
+    {
+      "heading": "What is known now",
+      "body": "The legal entity and its formation facts can be stated separately. Current property-management operations, scale, and outcomes remain outside this representative until dated evidence and disclosure approval are connected.",
+      "items": [
+        "Responsible legal entity",
+        "Publication status and updated date",
+        "Evidence and disclosure boundary"
+      ]
+    },
+    {
+      "heading": "Evidence gate",
+      "body": "A future record may describe latent value, beneficiary, intervention, outcome, durability, evidence source and date, tradeoffs, and constraints. Empty outcome fields produce no result badge, number, or implied success.",
+      "items": []
+    }
+  ],
+  "links": [
+    { "label": "About the Japan company", "href": "/companies/japan/" },
+    {
+      "label": "Japan property-management page",
+      "href": "/jp/ja/services/property-management/"
+    },
+    { "label": "Back to Tengcle", "href": "/" }
+  ]
+}

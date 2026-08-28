@@ -56,7 +56,7 @@ export default function About() {
     <div className="min-h-screen bg-white" data-region="hk">
       <SEOHead
         title={language === "ja" ? "会社概要 | Tengcle Limited 香港 - ホテルFF&E" : language === "zh" ? "关于我们 | Tengcle Limited 香港 - 酒店FF&E" : "About Us | Tengcle Limited Hong Kong - Hotel FF&E"}
-        description={language === "ja" ? "Tengcle Limitedの会社情報。香港拠点でホテルFF&E調達、ITソリューションを提供。" : language === "zh" ? "Tengcle Limited公司信息。香港总部，提供酒店FF&E采购、IT解决方案。" : "About Tengcle Limited. Hong Kong-based hotel FF&E procurement & IT solutions provider."}
+        description={language === "ja" ? "香港を拠点に事業を展開するTengcle Limitedの会社情報。" : language === "zh" ? "Tengcle Limited立足香港开展业务。" : "Company information for Tengcle Limited in Hong Kong."}
         keywords={language === "ja" ? "Tengcle Limited, 会社概要, 香港, ホテルFF&E" : language === "zh" ? "Tengcle Limited, 关于我们, 香港, 酒店FF&E" : "Tengcle Limited, about us, Hong Kong, hotel FF&E"}
         canonical={`https://www.tengcle.com/hk/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
@@ -156,33 +156,33 @@ export default function About() {
             {[
               {
                 icon: Shield,
-                title: language === "ja" ? "設立" : language === "zh" ? "成立" : "Established",
-                value: "2025",
-                description: language === "ja" ? "香港法人設立" : language === "zh" ? "香港法人成立" : "Hong Kong Incorporated",
+                title: language === "ja" ? "香港法人" : language === "zh" ? "香港公司" : "Hong Kong Company",
+                value: "Tengcle Limited",
+                description: language === "ja" ? "ホスピタリティ調達・IT・貿易" : language === "zh" ? "酒店采购、信息技术与贸易" : "Hospitality procurement, IT and trade",
               },
               {
                 icon: Building2,
-                title: language === "ja" ? "商業登記" : language === "zh" ? "商业登记" : "Business Registration",
-                value: "78077104",
-                description: language === "ja" ? "香港会社登記所" : language === "zh" ? "香港公司注册处" : "Hong Kong Companies Registry",
+                title: language === "ja" ? "法域" : language === "zh" ? "司法管辖区" : "Jurisdiction",
+                value: language === "ja" ? "香港" : language === "zh" ? "香港" : "Hong Kong",
+                description: "Tengcle Limited",
               },
               {
                 icon: Award,
-                title: language === "ja" ? "代表取締役" : language === "zh" ? "董事" : "Director",
-                value: "Kosen Onodera",
-                description: language === "ja" ? "小野寺 紘宣" : language === "zh" ? "小野寺 紘宣" : "Director & CEO",
+                title: language === "ja" ? "日本地域サイト" : language === "zh" ? "日本地区网站" : "Japan Regional Site",
+                value: "株式会社Tengcle",
+                description: language === "ja" ? "不動産管理・飲食・ウェルネス・宿泊" : language === "zh" ? "房地产管理、餐饮、健康休闲与住宿" : "Property management, dining, wellness and accommodation",
               },
               {
                 icon: Award,
-                title: language === "ja" ? "品質認証" : language === "zh" ? "质量认证" : "Quality Certified",
-                value: "ISO Standards",
-                description: language === "ja" ? "国際品質管理" : language === "zh" ? "国际质量管理" : "International quality management",
+                title: language === "ja" ? "米国地域サイト" : language === "zh" ? "美国地区网站" : "US Regional Site",
+                value: "Tengcle Development LLC",
+                description: language === "ja" ? "不動産開発・管理" : language === "zh" ? "房地产开发与管理" : "Real estate development and property operations",
               },
               {
                 icon: Globe,
-                title: language === "ja" ? "グローバルネットワーク" : language === "zh" ? "全球网络" : "Global Network",
-                value: language === "ja" ? "15カ国以上" : language === "zh" ? "15+国家" : "15+ Countries",
-                description: language === "ja" ? "世界中のサプライヤー関係" : language === "zh" ? "全球供应商关系" : "Supplier relationships worldwide",
+                title: language === "ja" ? "米国の法域" : language === "zh" ? "美国司法管辖区" : "US Jurisdiction",
+                value: language === "ja" ? "ニュージャージー州" : language === "zh" ? "新泽西州" : "New Jersey",
+                description: "Tengcle Development LLC",
               },
             ].map((item) => (
               <AnimatedSection key={item.title}>
@@ -275,9 +275,6 @@ export default function About() {
                 variants={fadeInUp}
                 className="bg-white border border-gray-200 p-8 hover:border-gold/50 transition-all duration-300 relative"
               >
-                <div className="absolute top-4 right-4 bg-gold/10 text-gold text-xs px-2 py-1 rounded">
-                  {language === "ja" ? "2026年1月設立" : language === "zh" ? "2026年1月成立" : "Established January 2026"}
-                </div>
                 <MapPin className="h-8 w-8 text-gold mb-4" />
                 <h3 className={`${getHeadingFontClass()} text-xl text-navy mb-2`}>
                   {t.contact.info.usOffice}

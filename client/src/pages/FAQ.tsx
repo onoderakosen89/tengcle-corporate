@@ -30,11 +30,11 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "What regulatory compliance does Tengcle maintain?",
-      answer: "Tengcle Limited is a fully registered Hong Kong company (BR: 78077104) that maintains the highest standards of corporate governance and regulatory compliance. We adhere to Hong Kong's anti-money laundering regulations and conduct thorough due diligence in all our business operations."
+      answer: "Tengcle Limited conducts its business in accordance with the laws and regulations applicable in Hong Kong and reviews each engagement with appropriate care."
     },
     {
-      question: "Which regions does Tengcle Group operate in?",
-      answer: "Tengcle Group operates globally with offices in three key regions: Hong Kong (Global Headquarters - Tengcle Limited), Japan (株式会社Tengcle - Tokyo), and the United States (Tengcle Development LLC - New Jersey). We serve clients throughout Asia-Pacific, including China, Southeast Asia, and beyond."
+      question: "Which Tengcle regional sites are available?",
+      answer: "This website provides regional sites for Hong Kong, Japan, and the United States, each with local business information and contact details."
     },
     {
       question: "How can I request a quote for hotel FF&E procurement?",
@@ -50,7 +50,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "What quality certifications does Tengcle hold?",
-      answer: "Tengcle maintains international quality standards and works with ISO-certified suppliers. Our Hong Kong office is registered with the Hong Kong Companies Registry (BR: 78077104). We conduct rigorous quality inspections at every stage of the procurement process."
+      answer: "Quality requirements are reviewed for each project, with supplier and product checks tailored to the engagement."
     },
     {
       question: "Can Tengcle handle international shipping and logistics?",
@@ -64,11 +64,11 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcleはどのような法令遵守を行っていますか？",
-      answer: "Tengcle Limitedは香港会社登記所に正式に登録された会社（BR: 78077104）であり、最高水準のコーポレートガバナンスと法令遵守を維持しています。香港のマネーロンダリング防止規制を遵守し、すべての事業運営において徹底したデューデリジェンスを実施しています。"
+      answer: "Tengcle Limitedは、香港で適用される法令に沿って事業を行い、案件ごとに必要な確認を丁寧に進めています。"
     },
     {
-      question: "Tengcle Groupはどの地域で事業を展開していますか？",
-      answer: "Tengcle Groupは、3つの主要地域にオフィスを構えてグローバルに事業を展開しています：香港（グローバル本社 - Tengcle Limited）、日本（株式会社Tengcle - 東京）、アメリカ（Tengcle Development LLC - ニュージャージー）。中国、東南アジアを含むアジア太平洋地域全体のお客様にサービスを提供しています。"
+      question: "このサイトではどの地域の情報を見られますか？",
+      answer: "香港・日本・米国の地域サイトをご覧いただけます。各サイトで、その地域の事業内容と連絡先をご案内しています。"
     },
     {
       question: "ホテルFF&E調達の見積もりを依頼するにはどうすればよいですか？",
@@ -84,7 +84,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcleはどのような品質認証を取得していますか？",
-      answer: "Tengcleは国際品質基準を維持し、ISO認証を取得したサプライヤーと協力しています。香港オフィスは香港会社登記所に登録されています（BR: 78077104）。調達プロセスのすべての段階で厳格な品質検査を実施しています。"
+      answer: "案件ごとに求められる品質条件を確認し、内容に応じてサプライヤーや製品の確認を行います。"
     },
     {
       question: "Tengcleは国際配送と物流を扱えますか？",
@@ -98,11 +98,11 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcle遵守哪些法规？",
-      answer: "Tengcle Limited是在香港公司注册处正式注册的公司（BR: 78077104），保持最高标准的公司治理和法规遵循。我们遵守香港的反洗钱法规，并在所有业务运营中进行彻底的尽职调查。"
+      answer: "Tengcle Limited依据香港适用的法律法规开展业务，并根据每个项目进行必要而审慎的审核。"
     },
     {
-      question: "Tengcle Group在哪些地区运营？",
-      answer: "Tengcle Group在三个主要地区设有办事处，进行全球运营：香港（全球总部 - Tengcle Limited）、日本（株式会社Tengcle - 东京）和美国（Tengcle Development LLC - 新泽西）。我们为包括中国、东南亚在内的整个亚太地区的客户提供服务。"
+      question: "本网站提供哪些地区的信息？",
+      answer: "本网站提供香港、日本和美国的地区网站，各网站分别介绍当地业务与联系方式。"
     },
     {
       question: "如何申请酒店FF&E采购报价？",
@@ -118,7 +118,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "Tengcle持有哪些质量认证？",
-      answer: "Tengcle保持国际质量标准，并与ISO认证的供应商合作。我们的香港办事处在香港公司注册处注册（BR: 78077104）。我们在采购过程的每个阶段进行严格的质量检查。"
+      answer: "我们会根据每个项目确认质量要求，并按项目内容审核供应商与产品。"
     },
     {
       question: "Tengcle能处理国际运输和物流吗？",

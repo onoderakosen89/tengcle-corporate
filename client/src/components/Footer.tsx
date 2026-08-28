@@ -54,11 +54,6 @@ export default function Footer() {
               {t.footer.description}
             </p>
 
-            {/* Licenses */}
-            <div className="flex flex-wrap gap-4 text-xs text-white/50">
-              <span>BR No: 78077104</span>
-              <span>Est. 2025</span>
-            </div>
           </div>
 
           {/* Navigation */}
@@ -121,9 +116,9 @@ export default function Footer() {
               © {new Date().getFullYear()} Tengcle Limited. All rights reserved.
             </p>
 
-            {/* Group Companies - Important for SEO Sitelinks */}
-            <nav aria-label="Tengcle Group Regional Sites" className="flex items-center gap-6">
-              <Link href="/hk/en" aria-label="Tengcle Limited - Hong Kong Headquarters">
+            {/* Regional sites */}
+            <nav aria-label="Tengcle regional sites" className="flex items-center gap-6">
+              <Link href="/hk/en" aria-label="Tengcle Limited - Hong Kong company">
                 <span className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}>
                   <span>🇭🇰 Hong Kong</span>
                 </span>
@@ -133,9 +128,9 @@ export default function Footer() {
                   <span>🇯🇵 {t.footer.japan}</span>
                 </span>
               </Link>
-              <Link href="/us/en" aria-label="Tengcle Development LLC - US Office">
+              <Link href="/us/en" aria-label="Tengcle Development LLC - United States company">
                 <span className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}>
-                  <span>🇺🇸 US Office</span>
+                  <span>🇺🇸 United States</span>
                 </span>
               </Link>
             </nav>

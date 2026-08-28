@@ -1,0 +1,21 @@
+---
+import type { GetStaticPaths } from "astro";
+import LegacyLayout from "../layouts/LegacyLayout.astro";
+import { seoRouteManifest, type SeoRoute } from "../../shared/seoRouteManifest";
+
+export const getStaticPaths = (() =>
+  seoRouteManifest
+    .filter(page => page.route !== "/")
+    .map(page => ({
+      params: { path: page.route.slice(1) },
+      props: { page },
+    }))) satisfies GetStaticPaths;
+
+interface Props {
+  page: SeoRoute;
+}
+
+const { page } = Astro.props;
+---
+
+<LegacyLayout page={page} />

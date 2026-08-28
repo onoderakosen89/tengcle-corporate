@@ -62,9 +62,9 @@ const regionProfiles = {
       zh: "Tengcle Limited | 香港",
     },
     descriptions: {
-      en: "Tengcle Limited is a Hong Kong affiliated company developing hospitality procurement, project coordination, IT, and trade activities.",
-      ja: "Tengcle Limitedは、ホスピタリティ調達、プロジェクト調整、IT、貿易の事業を段階的に展開する香港の関連会社です。",
-      zh: "Tengcle Limited是香港注册的关联公司，正逐步开展酒店采购、项目协调、IT和贸易相关业务。",
+      en: "Tengcle Limited works across hospitality procurement, project coordination, IT, and trade in Hong Kong.",
+      ja: "Tengcle Limitedは香港を拠点に、ホスピタリティ調達、プロジェクト調整、IT、貿易に取り組んでいます。",
+      zh: "Tengcle Limited立足香港，开展酒店采购、项目协调、信息技术和贸易业务。",
     },
     locale: { en: "en_HK", ja: "ja_HK", zh: "zh_HK" },
     htmlLanguage: { en: "en", ja: "ja", zh: "zh-Hans" },
@@ -87,14 +87,14 @@ const regionProfiles = {
   us: {
     company: "Tengcle Development LLC",
     titles: {
-      en: "Tengcle Development LLC | New Jersey Real Estate Activities",
-      ja: "Tengcle Development LLC | ニュージャージー州の不動産事業準備",
-      zh: "Tengcle Development LLC | 新泽西州房地产业务筹备",
+      en: "Tengcle Development LLC | NJ/NY Property Management & Revitalization",
+      ja: "Tengcle Development LLC | NJ/NYの不動産管理・物件再生",
+      zh: "Tengcle Development LLC | 新泽西／纽约物业管理与改造",
     },
     descriptions: {
-      en: "Established in January 2026, Tengcle Development LLC is preparing for staged real estate development, property management, and vacation-rental activities in the NJ/NY area.",
-      ja: "2026年1月に設立されたTengcle Development LLCは、NJ/NY地域での不動産開発・管理・バケーションレンタル事業の本格始動に向けて準備中です。",
-      zh: "Tengcle Development LLC于2026年1月成立，正为NJ/NY地区房地产开发、物业管理和度假租赁业务的分阶段启动做准备。",
+      en: "Based in New Jersey, providing property management, repair coordination, tenant support, and property revitalization. NJ/NY scope is confirmed per property.",
+      ja: "ニュージャージー州を拠点に、不動産管理、修繕手配、テナント対応、物件再生に取り組んでいます。NJ/NYの対応範囲は物件ごとに確認します。",
+      zh: "立足新泽西州，开展物业管理、维修协调、租户支持及物业改造。新泽西／纽约的服务范围按每处物业确认。",
     },
     locale: { en: "en_US", ja: "ja_US", zh: "zh_US" },
     htmlLanguage: { en: "en", ja: "ja", zh: "zh-Hans" },
@@ -112,9 +112,9 @@ const sectionLabels = {
     faq: "Frequently Asked Questions",
     news: "News & Updates",
     privacy: "Privacy Policy",
-    propertyDevelopment: "Property Development",
+    propertyDevelopment: "Property Revitalization",
     propertyManagement: "Property Management",
-    vacationRentals: "Vacation Rentals",
+    vacationRentals: "Short-Stay Operations Planning",
   },
   ja: {
     services: "サービス",
@@ -126,9 +126,9 @@ const sectionLabels = {
     faq: "よくあるご質問",
     news: "ニュース＆お知らせ",
     privacy: "プライバシーポリシー",
-    propertyDevelopment: "不動産開発",
+    propertyDevelopment: "物件再生・価値向上",
     propertyManagement: "不動産管理",
-    vacationRentals: "バケーションレンタル",
+    vacationRentals: "短期滞在の運用設計",
   },
   zh: {
     services: "服务",
@@ -140,9 +140,9 @@ const sectionLabels = {
     faq: "常见问题",
     news: "新闻动态",
     privacy: "隐私政策",
-    propertyDevelopment: "房地产开发",
+    propertyDevelopment: "物业改造与价值提升",
     propertyManagement: "物业管理",
-    vacationRentals: "度假租赁",
+    vacationRentals: "短期住宿运营设计",
   },
 } as const;
 
@@ -153,6 +153,7 @@ const newsArticles: Record<
   ReadonlyArray<{
     id: string;
     datePublished: string;
+    verifiedArticle?: boolean;
     title: LocalizedText;
     description: LocalizedText;
   }>
@@ -209,86 +210,14 @@ const newsArticles: Record<
         zh: "酒店运营业务正式启动",
       },
       description: {
-        en: "Shortly after establishment, Tengcle Limited launches hotel operations business.",
-        ja: "設立直後、Tengcle Limitedはホテル運営事業を開始しました。",
-        zh: "成立后不久，Tengcle Limited启动酒店运营业务。",
-      },
-    },
-    {
-      id: "hk-founding",
-      datePublished: "2025-04-15",
-      title: {
-        en: "Tengcle Limited Established in Hong Kong",
-        ja: "Tengcle Limited 香港で設立",
-        zh: "Tengcle Limited在香港成立",
-      },
-      description: {
-        en: "Tengcle Limited is officially established in Hong Kong as the global headquarters for Tengcle Group, which was founded in Japan in 2021.",
-        ja: "2021年に日本で創業したTengcle Groupのグローバル本社として、Tengcle Limitedが香港で正式に設立されました。",
-        zh: "Tengcle Limited作为2021年在日本创立的Tengcle Group的全球总部，在香港正式成立。",
+        en: "Tengcle Limited launches hotel operations activities.",
+        ja: "Tengcle Limitedはホテル運営事業を開始しました。",
+        zh: "Tengcle Limited启动酒店运营业务。",
       },
     },
   ],
-  jp: [
-    {
-      id: "company-incorporation-2021",
-      datePublished: "2021-10-25",
-      title: {
-        ja: "株式会社Tengcle 設立",
-        en: "Incorporation of Tengcle Co., Ltd.",
-        zh: "株式会社Tengcle成立",
-      },
-      description: {
-        ja: "2021年10月25日、株式会社Tengcleを東京都で設立しました。",
-        en: "株式会社Tengcle was incorporated in Tokyo on 25 October 2021.",
-        zh: "株式会社Tengcle于2021年10月25日在东京成立。",
-      },
-    },
-  ],
-  us: [
-    {
-      id: "property-management-launch-2025",
-      datePublished: "2025-03-01",
-      title: {
-        en: "Full-Scale Property Management Operations Begin",
-        ja: "不動産管理事業を本格始動",
-        zh: "不动产管理业务正式启动",
-      },
-      description: {
-        en: "Tengcle Development LLC begins full-scale property management operations in New Jersey and the New York metro area.",
-        ja: "Tengcle Development LLCは、ニュージャージー州およびニューヨーク都市圏で不動産管理事業を本格的に開始しました。",
-        zh: "Tengcle Development LLC在新泽西州和纽约都市圈正式启动不动产管理业务。",
-      },
-    },
-    {
-      id: "us-founding-2026",
-      datePublished: "2026-01-01",
-      title: {
-        en: "Tengcle Development LLC Established in New Jersey",
-        ja: "Tengcle Development LLC ニュージャージー州にて設立",
-        zh: "Tengcle Development LLC在新泽西州成立",
-      },
-      description: {
-        en: "Tengcle Development LLC was officially registered in Weehawken, New Jersey in January 2026 as the US office of Tengcle Group.",
-        ja: "Tengcle Development LLCは、2026年1月にTengcle Groupの米国拠点としてニュージャージー州ウィーホーケンに正式登記されました。",
-        zh: "Tengcle Development LLC于2026年1月作为Tengcle Group的美国办事处在新泽西州威霍肯正式注册。",
-      },
-    },
-    {
-      id: "group-global-network-2024",
-      datePublished: "2024-12-01",
-      title: {
-        en: "Tengcle Group Establishes Global Three-Location Network",
-        ja: "Tengcle Group グローバル3拠点体制を確立",
-        zh: "Tengcle Group建立全球三地网络",
-      },
-      description: {
-        en: "With the establishment of Tengcle Development LLC, Tengcle Group now operates from three locations.",
-        ja: "Tengcle Development LLCの設立により、Tengcle Groupは3拠点体制となりました。",
-        zh: "随着Tengcle Development LLC的成立，Tengcle Group现已在三地运营。",
-      },
-    },
-  ],
+  jp: [],
+  us: [],
 };
 
 export function canonicalPath(route: string) {
@@ -356,6 +285,7 @@ export interface SeoRoute {
   company: string;
   ogType: "website" | "article";
   datePublished?: string;
+  verifiedArticle?: boolean;
   service?: {
     name: string;
     description: string;
@@ -372,11 +302,10 @@ const staticRoutes: SeoRoute[] = [
     canonical: canonicalUrl("/"),
     lang: "en",
     locale: "en_US",
-    title:
-      "Tengcle Group | Affiliated Companies in Hong Kong, Japan & the United States",
+    title: "Tengcle | Hong Kong, Japan & the United States",
     description:
-      "Tengcle Group presents the activities of affiliated companies in Hong Kong, Japan, and the United States.",
-    company: "Tengcle Group",
+      "Tengcle provides regional business information for Hong Kong, Japan, and the United States.",
+    company: "Tengcle",
     ogType: "website",
   },
   {
@@ -384,9 +313,9 @@ const staticRoutes: SeoRoute[] = [
     canonical: canonicalUrl("/privacy"),
     lang: "en",
     locale: "en_US",
-    title: "Privacy Policy | Tengcle Group",
-    description: "Privacy information for Tengcle Group websites.",
-    company: "Tengcle Group",
+    title: "Privacy Policy | Tengcle",
+    description: "Privacy information for Tengcle websites.",
+    company: "Tengcle",
     ogType: "website",
   },
 ];
@@ -455,8 +384,13 @@ for (const region of Object.keys(regionPageDefinitions) as Region[]) {
         title: `${article.title[language]} | ${profile.company}`,
         description: article.description[language],
         company: profile.company,
-        ogType: "article",
-        datePublished: article.datePublished,
+        ogType: article.verifiedArticle ? "article" : "website",
+        ...(article.verifiedArticle
+          ? {
+              datePublished: article.datePublished,
+              verifiedArticle: true,
+            }
+          : {}),
       });
     }
   }
@@ -464,3 +398,29 @@ for (const region of Object.keys(regionPageDefinitions) as Region[]) {
 
 export const seoRouteManifest = [...staticRoutes, ...regionalRoutes] as const;
 export const publicRoutePaths = seoRouteManifest.map(page => page.route);
+
+export const retiredUsNewsRedirects = supportedLanguages.flatMap(language => [
+  {
+    from: `/us/${language}/news/property-management-launch-2025/`,
+    to: `/us/${language}/about/`,
+  },
+  {
+    from: `/us/${language}/news/group-global-network-2024/`,
+    to: `/us/${language}/about/`,
+  },
+]);
+
+export const retiredFormationNewsRedirects = supportedLanguages.flatMap(language => [
+  {
+    from: `/hk/${language}/news/hk-founding/`,
+    to: `/hk/${language}/about/`,
+  },
+  {
+    from: `/jp/${language}/news/company-incorporation-2021/`,
+    to: `/jp/${language}/about/`,
+  },
+  {
+    from: `/us/${language}/news/us-founding-2026/`,
+    to: `/us/${language}/about/`,
+  },
+]);

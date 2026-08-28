@@ -1,0 +1,35 @@
+{
+  "kind": "company",
+  "path": "/companies/japan/",
+  "lang": "en",
+  "title": "Japan Company | Tengcle",
+  "description": "Company and business information for 株式会社Tengcle in Japan.",
+  "eyebrow": "Tengcle · Japan",
+  "heading": "Japan company",
+  "intro": "株式会社Tengcle works across property management, food and beverage, wellness, and accommodation in Japan.",
+  "masterTagline": "think into the future",
+  "legalName": "株式会社Tengcle",
+  "facts": [
+    { "label": "Legal name", "value": "株式会社Tengcle" },
+    { "label": "Jurisdiction", "value": "Japan" },
+    {
+      "label": "Registered office",
+      "value": "Takanawa 2-19-20, Minato-ku, Tokyo"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Our work in Japan",
+      "body": "Property management is at the center of our work, supported by practical experience in food and beverage, wellness, and accommodation operations.",
+      "items": []
+    }
+  ],
+  "links": [
+    {
+      "label": "Property management activity",
+      "href": "/activities/property-management/"
+    },
+    { "label": "Japan regional site", "href": "/jp/ja/" },
+    { "label": "Back to Tengcle", "href": "/" }
+  ]
+}

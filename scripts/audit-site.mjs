@@ -3,6 +3,7 @@ import path from "node:path";
 import { gzipSync } from "node:zlib";
 
 const root = process.cwd();
+const SITE_ORIGIN = "https://www.tengcle.com";
 const failures = [];
 
 async function walk(directory) {
@@ -20,9 +21,13 @@ function fail(message) {
   failures.push(message);
 }
 
-const sourceFiles = (await walk(path.join(root, "client"))).filter(file =>
-  /\.(?:html|tsx?|xml)$/.test(file)
-);
+const sourceFiles = (
+  await Promise.all(
+    ["client", "src"].map(directory => walk(path.join(root, directory)))
+  )
+)
+  .flat()
+  .filter(file => /\.(?:astro|html|tsx?|xml|json)$/.test(file));
 const forbiddenSourcePatterns = [
   ["retired TCSP claim", /\bTCSP\b/i],
   ["retired LCC claim", /\bLCC\b/],
@@ -56,6 +61,16 @@ for (const file of builtHtml) {
   }
   if (/%VITE_[A-Z0-9_]+%/.test(contents)) {
     fail(`unresolved Vite placeholder in ${path.relative(root, file)}`);
+  }
+  const executableInlineScripts = [
+    ...contents.matchAll(
+      /<script(?![^>]*type=["']application\/ld\+json["'])([^>]*)>([\s\S]*?)<\/script>/gi
+    ),
+  ].filter(match => !/\ssrc=["'][^"']+["']/.test(match[1]) && match[2].trim());
+  if (executableInlineScripts.length) {
+    fail(
+      `inline executable script violates the deployed CSP in ${path.relative(root, file)}`
+    );
   }
   const rawBytes = Buffer.byteLength(contents);
   const gzipBytes = gzipSync(contents).byteLength;
@@ -104,9 +119,6 @@ const expectedStaticRoutes = [
   "jp/ja/services/property-management/index.html",
   "hk/en/services/hotel-ffe-procurement/index.html",
   "us/en/index.html",
-  "hk/en/news/hk-founding/index.html",
-  "jp/ja/news/company-incorporation-2021/index.html",
-  "us/en/news/us-founding-2026/index.html",
 ];
 for (const route of expectedStaticRoutes) {
   try {
@@ -123,8 +135,12 @@ const sitemap = await readFile(
 const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
   match => match[1]
 );
-if (sitemapLocations.length !== 113) {
-  fail(`sitemap route count is ${sitemapLocations.length}; expected 113`);
+const baselineRouteCount = 98;
+const expectedSitemapCount = baselineRouteCount;
+if (sitemapLocations.length !== expectedSitemapCount) {
+  fail(
+    `sitemap route count is ${sitemapLocations.length}; expected the ${expectedSitemapCount}-route public baseline`
+  );
 }
 if (/<link\s/i.test(sitemap)) {
   fail("sitemap contains bare HTML link elements instead of xhtml:link");
@@ -169,6 +185,34 @@ for (const location of sitemapLocations) {
         `${path.relative(root, routeHtmlPath)} is missing its initial title`
       );
     }
+    const mainCount = [...routeHtml.matchAll(/<main(?:\s|>)/gi)].length;
+    if (mainCount !== 1) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} has ${mainCount} main elements; expected 1`
+      );
+    }
+    const h1Count = [...routeHtml.matchAll(/<h1(?:\s|>)/gi)].length;
+    if (h1Count !== 1) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} has ${h1Count} H1 elements; expected 1`
+      );
+    }
+    const visibleText = routeHtml
+      .replace(/<script[\s\S]*?<\/script>/gi, " ")
+      .replace(/<style[\s\S]*?<\/style>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (visibleText.length < 80) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} has insufficient initial body text`
+      );
+    }
+    if (!/<a\s+[^>]*href=["']\/(?!\/)/i.test(routeHtml)) {
+      fail(
+        `${path.relative(root, routeHtmlPath)} has no initial internal link`
+      );
+    }
     if (
       !/<meta\s+name=["']description["']\s+content=["'][^"']+["']/i.test(
         routeHtml
@@ -186,9 +230,7 @@ for (const location of sitemapLocations) {
         `${path.relative(root, routeHtmlPath)} has ${alternateCount} hreflang links; expected ${isRegional ? 4 : 0}`
       );
     }
-    const expectedOgType = /\/news\/[^/]+\/$/.test(url.pathname)
-      ? "article"
-      : "website";
+    const expectedOgType = "website";
     if (
       !new RegExp(
         `<meta\\s+property=["']og:type["']\\s+content=["']${expectedOgType}["']`,
@@ -238,16 +280,13 @@ for (const location of sitemapLocations) {
           `${path.relative(root, routeHtmlPath)} must contain exactly one NewsArticle node`
         );
       }
-      const isBuyerIntentService =
-        /\/(?:jp\/(?:en|ja|zh)\/services\/property-management|hk\/(?:en|ja|zh)\/services\/hotel-ffe-procurement)\/$/.test(
-          url.pathname
-        );
       if (
-        isBuyerIntentService &&
-        (typeCount("Service") !== 1 || typeCount("FAQPage") !== 1)
+        typeCount("Service") !== 0 ||
+        typeCount("FAQPage") !== 0 ||
+        typeCount("LocalBusiness") !== 0
       ) {
         fail(
-          `${path.relative(root, routeHtmlPath)} must contain one Service and one FAQPage node`
+          `${path.relative(root, routeHtmlPath)} contains an unverified Service, FAQPage, or LocalBusiness node`
         );
       }
       if (/"(?:sameAs|alternateName)"\s*:/.test(structuredMatch[1])) {
@@ -283,44 +322,69 @@ if (sitemapAlternates !== regionalSitemapRoutes * 4) {
     `sitemap has ${sitemapAlternates} alternates; expected ${regionalSitemapRoutes * 4}`
   );
 }
+
+for (const retiredExperimentalRoute of [
+  "/companies/japan/",
+  "/activities/property-management/",
+]) {
+  if (sitemapLocations.includes(`${SITE_ORIGIN}${retiredExperimentalRoute}`)) {
+    fail(
+      `sitemap exposes retired experimental route: ${retiredExperimentalRoute}`
+    );
+  }
+}
 for (const expectedRoute of [
   "/hk/ja/privacy/",
   "/jp/en/privacy/",
   "/us/zh/privacy/",
-  "/hk/zh/news/hk-founding/",
-  "/jp/en/news/company-incorporation-2021/",
-  "/us/ja/news/us-founding-2026/",
 ]) {
   if (!sitemapLocations.includes(`https://www.tengcle.com${expectedRoute}`)) {
     fail(`sitemap is missing route: ${expectedRoute}`);
   }
 }
-const usFoundingHtml = await readFile(
-  path.join(
-    outputDirectory,
-    "us",
-    "en",
-    "news",
-    "us-founding-2026",
-    "index.html"
-  ),
+const redirects = await readFile(
+  path.join(outputDirectory, "_redirects"),
   "utf8"
 );
-if (
-  !usFoundingHtml.includes(
-    "<title>Tengcle Development LLC Established in New Jersey | Tengcle Development LLC</title>"
+const redirectLines = redirects
+  .split(/\r?\n/)
+  .map(line => line.trim())
+  .filter(Boolean);
+const languages = ["en", "ja", "zh"];
+const retiredUsArticles = [
+  "property-management-launch-2025",
+  "group-global-network-2024",
+];
+const expectedRedirects = languages.flatMap(language =>
+  retiredUsArticles.map(
+    article =>
+      `/us/${language}/news/${article}/ /us/${language}/about/ 301`
   )
+);
+const expectedFormationRedirects = languages.flatMap(language => [
+  `/hk/${language}/news/hk-founding/ /hk/${language}/about/ 301`,
+  `/jp/${language}/news/company-incorporation-2021/ /jp/${language}/about/ 301`,
+  `/us/${language}/news/us-founding-2026/ /us/${language}/about/ 301`,
+]);
+const allExpectedRedirects = [
+  ...expectedRedirects,
+  ...expectedFormationRedirects,
+];
+if (
+  redirectLines.length !== allExpectedRedirects.length ||
+  allExpectedRedirects.some(line => !redirectLines.includes(line))
 ) {
-  fail("US founding article is missing its article-specific initial title");
+  fail("_redirects must contain all retired article redirects exactly once");
 }
-if (
-  !usFoundingHtml.includes(
-    "Tengcle Development LLC was officially registered in Weehawken"
-  )
-) {
-  fail(
-    "US founding article is missing its article-specific initial description"
-  );
+for (const line of allExpectedRedirects) {
+  const source = line.split(" ")[0];
+  const outputPath = path.join(outputDirectory, source.slice(1), "index.html");
+  try {
+    await access(outputPath);
+    fail(`retired contradicted article is still generated: ${source}`);
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
 }
 const localAssetUrls = [
   ...sitemap.matchAll(
@@ -343,11 +407,94 @@ if (usHomeBytes > 1_000_000) {
   fail(`US Home responsive assets exceed 1 MB: ${usHomeBytes} bytes`);
 }
 
+if (!rootHtml.includes('id="legacy-runtime-root"')) {
+  fail("Global home is not using the legacy React UI adapter");
+}
+if (!rootHtml.includes("https://fonts.googleapis.com/css2?family=Playfair+Display")) {
+  fail("Global home is missing the established UI font stylesheet");
+}
+if (!rootHtml.includes('src="/scripts/legacy-boot.js"')) {
+  fail("Global home is missing the early legacy UI boot script");
+}
+try {
+  await access(path.join(outputDirectory, "scripts", "legacy-boot.js"));
+} catch {
+  fail("Global home references a missing early legacy UI boot script");
+}
+if (
+  !/<script\s+type=["']module["']\s+src=["'][^"']+["']><\/script>/i.test(
+    rootHtml
+  )
+) {
+  fail("Global home is missing the legacy React runtime entry");
+}
+for (const retiredRoute of [
+  "/companies/japan/",
+  "/activities/property-management/",
+]) {
+  const outputPath = path.join(
+    outputDirectory,
+    retiredRoute.slice(1),
+    "index.html"
+  );
+  try {
+    await access(outputPath);
+    fail(`retired experimental route is still generated: ${retiredRoute}`);
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
+}
+
+const rootEntryScripts = [
+  ...rootHtml.matchAll(
+    /<script\s+type=["']module["']\s+src=["']([^"']+)["']/gi
+  ),
+].map(match => match[1]);
+const visitedScripts = new Set();
+async function collectModule(url) {
+  if (visitedScripts.has(url)) return;
+  visitedScripts.add(url);
+  const contents = await readFile(
+    path.join(outputDirectory, url.slice(1)),
+    "utf8"
+  );
+  const imports = [
+    ...contents.matchAll(/(?:from\s*|import\s*)["']([^"']+\.js)["']/g),
+  ].map(match => new URL(match[1], `${SITE_ORIGIN}${url}`).pathname);
+  await Promise.all(imports.map(collectModule));
+}
+await Promise.all(rootEntryScripts.map(collectModule));
+let globalRuntimeJsGzipBytes = 0;
+for (const url of visitedScripts) {
+  const contents = await readFile(path.join(outputDirectory, url.slice(1)));
+  globalRuntimeJsGzipBytes += gzipSync(contents).byteLength;
+}
+if (globalRuntimeJsGzipBytes > 175_000) {
+  fail(
+    `Global legacy runtime JavaScript exceeds 175 KB gzip: ${globalRuntimeJsGzipBytes} bytes`
+  );
+}
+
+const headers = await readFile(path.join(outputDirectory, "_headers"), "utf8");
+for (const header of [
+  "Content-Security-Policy:",
+  "X-Content-Type-Options: nosniff",
+  "X-Frame-Options: SAMEORIGIN",
+  "Strict-Transport-Security:",
+  "Referrer-Policy: strict-origin-when-cross-origin",
+  "Permissions-Policy:",
+]) {
+  if (!headers.includes(header)) fail(`_headers is missing ${header}`);
+}
+if (/script-src[^;]*'unsafe-inline'/i.test(headers)) {
+  fail("_headers must not allow inline executable scripts");
+}
+
 if (failures.length) {
   console.error(failures.map(failure => `- ${failure}`).join("\n"));
   process.exitCode = 1;
 } else {
   console.log(
-    `Site audit passed (${builtHtml.length} HTML files; US Home assets ${usHomeBytes} bytes).`
+    `Site audit passed (${builtHtml.length} HTML files; ${sitemapLocations.length} sitemap routes; Global legacy runtime ${globalRuntimeJsGzipBytes} gzip bytes; US Home assets ${usHomeBytes} bytes).`
   );
 }

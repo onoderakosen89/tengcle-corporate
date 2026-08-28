@@ -176,20 +176,20 @@ export default function Services() {
       description: t.services.dx.description,
       image: "/images/portfolio-it-system.webp",
       features: language === "ja" ? [
-        "Google Apps Scriptによる業務自動化",
-        "ワークフロー最適化・効率化",
-        "カスタムビジネスツール開発",
-        "データ連携・レポート自動化",
+        "LLM・AIを活用した業務支援",
+        "API連携とワークフロー自動化",
+        "業務データの設計・整理",
+        "カスタムツール・レポート開発",
       ] : language === "zh" ? [
-        "Google Apps Script业务自动化",
-        "工作流优化与效率提升",
-        "定制业务工具开发",
-        "数据集成与报表自动化",
+        "运用LLM与AI支持业务",
+        "API集成与工作流自动化",
+        "业务数据设计与整理",
+        "定制工具与报表开发",
       ] : [
-        "Business automation with Google Apps Script",
-        "Workflow optimization and efficiency",
-        "Custom business tool development",
-        "Data integration and automated reporting",
+        "LLM and AI-enabled business support",
+        "API integration and workflow automation",
+        "Business data design and organization",
+        "Custom tools and reporting",
       ],
     },
   ];
@@ -198,8 +198,8 @@ export default function Services() {
     <div className="min-h-screen bg-white" data-region="hk">
       <SEOHead
         title={language === "ja" ? "サービス | Tengcle Limited 香港 - ホテルFF&E・IT" : language === "zh" ? "服务内容 | Tengcle Limited 香港 - 酒店FF&E·IT" : "Services | Tengcle Limited Hong Kong - Hotel FF&E & IT"}
-        description={language === "ja" ? "ホテルFF&E調達、ホテルITソリューション、IPキャラクターグッズ、貿易サービス。" : language === "zh" ? "酒店FF&E采购、酒店IT解决方案、IP角色商品、贸易服务。" : "Hotel FF&E procurement, hotel IT solutions, IP character goods & trading services."}
-        keywords={language === "ja" ? "Tengcle Limited, サービス, ホテルFF&E, ITソリューション" : language === "zh" ? "Tengcle Limited, 服务, 酒店FF&E, IT解决方案" : "Tengcle Limited, services, hotel FF&E, IT solutions"}
+        description={language === "ja" ? "ホテルFF&E調達、ホテルIT、LLM・AI活用、API連携、業務自動化、貿易サービス。" : language === "zh" ? "酒店FF&E采购、酒店IT、LLM与AI应用、API集成、业务自动化及贸易服务。" : "Hotel FF&E procurement, hotel IT, LLM and AI utilization, API integration, business automation, and trading services."}
+        keywords={language === "ja" ? "Tengcle Limited, サービス, ホテルFF&E, LLM, AI活用, API連携, 業務自動化" : language === "zh" ? "Tengcle Limited, 服务, 酒店FF&E, LLM, AI应用, API集成, 业务自动化" : "Tengcle Limited, services, hotel FF&E, LLM, AI, API integration, business automation"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_HK"}
         ogImage="/images/og-image.webp"
         canonical={`https://www.tengcle.com/hk/${language}/services`}

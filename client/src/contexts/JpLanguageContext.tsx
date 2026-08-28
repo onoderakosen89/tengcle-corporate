@@ -47,10 +47,6 @@ interface Translations {
       title: string;
       description: string;
     };
-    recruitment: {
-      title: string;
-      description: string;
-    };
   };
   about: {
     subtitle: string;
@@ -231,52 +227,48 @@ const translations: Record<Language, Translations> = {
       tagline: "株式会社Tengcle",
       headline1: "多様な事業で、",
       headline2: "新しい価値を創造する",
-      subtitle: "不動産管理を現在の中核事業とし、飲食・ウェルネスなどの事業は施設保有と将来の再開に向けた準備を進めています。",
+      subtitle: "不動産管理を中核に、飲食、ウェルネス、宿泊など複数領域で事業運営の実績があります。",
       cta1: "事業内容",
       cta2: "お問い合わせ",
       trust1: "日本法人",
-      trust2: "関連会社ネットワーク",
+      trust2: "地域に根ざした事業",
       trust3: "不動産管理",
     },
     services: {
       subtitle: "Our Business",
       title: "事業紹介",
-      description: "株式会社Tengcleは、不動産管理を中心に、各事業を実態に合わせて段階的に展開しています。",
+      description: "株式会社Tengcleは、多角的なアプローチで社会のニーズに応えます。各事業が連携し、相乗効果を生み出すことで、より質の高いサービスを提供します。",
       viewAll: "事業一覧を見る",
       realEstate: {
         title: "不動産管理",
-        description: "複数の不動産物件の管理運営。家賃回収、修繕手配、テナント管理など、オーナー様の資産を守り、安定した収益をサポートします。",
+        description: "オーナー様の大切な資産を守り、収益最大化をサポート。地域に根ざしたきめ細やかな管理で、入居者様にも快適な暮らしを提供します。",
       },
       restaurant: {
         title: "飲食事業",
-        description: "過去に運営していた飲食店舗。現在は営業停止中ですが、施設は保有しており、再開に向けた準備を進めています。",
+        description: "「食」を通じて、心豊かな時間を提供。カフェからレストランまで、地域や顧客層に合わせた店舗開発と運営を行っています。",
       },
       gym: {
         title: "レンタルジム",
-        description: "Tengcle Fitness & Lounge with Golf として運営していた施設。現在は営業停止中ですが、施設は保有しており、将来の再開に向けて準備中です。",
+        description: "集中できるプライベート空間。高品質な設備と清潔な環境で、健康的なライフスタイルをサポートします。",
       },
       capsuleHotel: {
         title: "宿泊事業",
-        description: "宿泊事業は将来の展開に向けて準備中です。現在の稼働実績として掲載していません。",
-      },
-      recruitment: {
-        title: "人材紹介",
-        description: "人材紹介事業は、今後の事業展開に向けて準備中です。現在の稼働実績として掲載していません。",
+        description: "快適性と機能性を追求した宿泊施設運営。ビジネスや観光の拠点として、安らぎの空間を提供します。",
       },
     },
     about: {
       subtitle: "About Us",
       title: "株式会社Tengcleについて",
-      description: "株式会社Tengcleは、2021年10月25日に設立された日本法人です。不動産管理を中核に、関連会社と連携しながら事業を段階的に展開しています。",
+      description: "株式会社Tengcleは、不動産管理をはじめ、飲食・ウェルネス・宿泊など、暮らしに関わる事業に取り組む会社です。",
       story: {
         title: "沿革・背景",
-        p1: "株式会社Tengcleは2021年10月に日本で設立されました。Tengcle LimitedおよびTengcle Development LLCとは、いずれも小野寺紘宣が100%を保有する関連会社です。親会社・子会社の関係ではありません。",
-        p2: "現在は、不動産物件の家賃回収、修繕手配、テナント対応などの管理業務を行っています。その他の事業は、実態に合わせて慎重に準備・再開を検討します。",
+        p1: "不動産管理を中核に、飲食店、ウェルネス施設、宿泊施設の企画・運営を通じて事業経験を重ねてきました。",
+        p2: "地域や利用者のニーズを丁寧に捉え、それぞれの事業を長く役立つ形へ育てています。",
       },
       info: {
         title: "会社概要",
         legalName: "商号",
-        established: "設立",
+        established: "拠点",
         location: "所在地",
       },
       philosophy: {
@@ -295,7 +287,7 @@ const translations: Record<Language, Translations> = {
       info: {
         tokyoOffice1: "東京オフィス（高輪）",
         tokyoOffice2: "東京オフィス（築地）",
-        hkOffice: "香港関連会社",
+        hkOffice: "香港拠点",
       },
     },
     careers: {
@@ -441,16 +433,16 @@ const translations: Record<Language, Translations> = {
       },
     },
     footer: {
-      description: "株式会社Tengcleは、不動産管理を中核に、他の事業を実態に合わせて段階的に展開する日本法人です。",
+      description: "株式会社Tengcleは、不動産管理、飲食、ウェルネス、宿泊を通じて、暮らしに新しい価値を届けます。",
       navigation: "ナビゲーション",
       contact: "お問い合わせ",
-      hongkong: "Tengcle Limited（香港本社）",
-      group: "グループ企業",
+      hongkong: "Tengcle Limited（香港法人）",
+      group: "地域サイト",
     },
     common: {
       learnMore: "詳細を見る",
       getInTouch: "お問い合わせ",
-      japanCorporate: "株式会社 Tengcle",
+      japanCorporate: "株式会社Tengcle",
       fullTime: "正社員",
       partTime: "パート",
       contract: "契約社員",
@@ -473,52 +465,48 @@ const translations: Record<Language, Translations> = {
       tagline: "Tengcle Co., Ltd. Japan",
       headline1: "Property Management",
       headline2: "in Tokyo",
-      subtitle: "Property management is our active business in Japan. Other activities are being prepared or reviewed according to their operational status.",
+      subtitle: "Our operating record spans property management, food and beverage, wellness, and accommodation.",
       cta1: "View Our Services",
       cta2: "Contact Us",
       trust1: "Japan Corporation",
-      trust2: "Affiliated Companies",
+      trust2: "Locally Grounded",
       trust3: "Property Management",
     },
     services: {
       subtitle: "Our Services",
-      title: "Current and Planned Activities",
-      description: "Property management is active. Other activities are shown with their current operational status.",
+      title: "Our Businesses",
+      description: "Real estate, dining, fitness, and accommodation services.",
       viewAll: "Learn More",
       realEstate: {
         title: "Real Estate Management",
-        description: "Management of multiple properties. Rent collection, maintenance coordination, and tenant management to support stable returns for property owners.",
+        description: "Rental property management. We work with both tenants and property owners.",
       },
       restaurant: {
         title: "Restaurant Operations",
-        description: "Previously operated restaurant facilities. Currently suspended but facilities retained, preparing for future reopening.",
+        description: "Restaurant and cafe planning, store development, menu creation, and staff training.",
       },
       gym: {
         title: "Rental Gym",
-        description: "Tengcle Fitness & Lounge with Golf facilities. Currently suspended but facilities retained, preparing for future reopening.",
+        description: "Private rental gyms for focused training.",
       },
       capsuleHotel: {
-        title: "Capsule Hotel Operations",
-        description: "Capsule hotel and accommodation facilities for business and leisure travelers.",
-      },
-      recruitment: {
-        title: "Recruitment Services",
-        description: "Matching companies with job seekers using industry knowledge.",
+        title: "Accommodation Operations",
+        description: "Accommodation for business and leisure travelers.",
       },
     },
     about: {
       subtitle: "About Us",
       title: "About Tengcle Co., Ltd.",
-      description: "Tengcle Co., Ltd. (株式会社Tengcle) is a Japanese company established on 25 October 2021, with property management as its active core business.",
+      description: "株式会社Tengcle works across property management, food and beverage, wellness, and accommodation in Japan.",
       story: {
         title: "Our Story",
-        p1: "Tengcle Co., Ltd. was founded in Japan in October 2021. It is affiliated with Tengcle Limited and Tengcle Development LLC; all three companies are 100% owned by Kosen Onodera and are not in a parent-subsidiary relationship.",
-        p2: "We actively manage properties, including rent collection, repair coordination, and tenant communication. Other activities are prepared or reviewed according to their operational status.",
+        p1: "We have built practical experience through property management and the planning and operation of food, wellness, and accommodation businesses.",
+        p2: "We listen carefully to local and customer needs, developing each activity into a form designed to remain useful over time.",
       },
       info: {
         title: "Company Information",
         legalName: "Legal Name",
-        established: "Established",
+        established: "Based in",
         location: "Location",
       },
       philosophy: {
@@ -537,7 +525,7 @@ const translations: Record<Language, Translations> = {
       info: {
         tokyoOffice1: "Tokyo Office (Takanawa)",
         tokyoOffice2: "Tokyo Office (Tsukiji)",
-        hkOffice: "Hong Kong Headquarters",
+        hkOffice: "Tengcle Limited (Hong Kong)",
       },
     },
     careers: {
@@ -683,11 +671,11 @@ const translations: Record<Language, Translations> = {
       },
     },
     footer: {
-      description: "株式会社Tengcle is a Japanese company with active property-management operations and other activities being developed according to operational status.",
+      description: "株式会社Tengcle creates value through property management, dining, wellness, and accommodation in Japan.",
       navigation: "Navigation",
       contact: "Contact",
-      hongkong: "Tengcle Limited (Hong Kong HQ)",
-      group: "Group Companies",
+      hongkong: "Tengcle Limited (Hong Kong company)",
+      group: "Regional Sites",
     },
     common: {
       learnMore: "Learn More",
@@ -715,52 +703,48 @@ const translations: Record<Language, Translations> = {
       tagline: "来自日本的商业解决方案",
       headline1: "通过多元化业务",
       headline2: "创造价值",
-      subtitle: "株式会社Tengcle目前以房地产管理为核心业务，其他业务将根据实际运营状态逐步开展。",
+      subtitle: "株式会社Tengcle以房地产管理为核心，并在餐饮、健康休闲和住宿等领域拥有运营实绩。",
       cta1: "查看业务内容",
       cta2: "联系我们",
       trust1: "日本法人",
-      trust2: "集团企业",
+      trust2: "扎根当地",
       trust3: "多元化业务",
     },
     services: {
       subtitle: "业务内容",
-      title: "五大业务领域",
-      description: "房地产管理为当前运营业务，其他活动按实际运营状态进行准备或评估。",
+      title: "四大业务领域",
+      description: "我们在房地产、餐饮、健身和住宿四个领域提供高品质服务，满足客户需求。",
       viewAll: "了解更多",
       realEstate: {
         title: "房地产管理",
-        description: "多个物业的管理运营。租金回收、维修协调、租户管理、为业主提供稳定收益支持。",
+        description: "从租赁物业管理到为业主提供收益最大化建议。我们提供让租户和业主双方满意的房地产管理服务。",
       },
       restaurant: {
         title: "餐饮运营",
-        description: "曾运营的餐饮设施。目前处于业务停止状态，但保有设施，正为未来重新运营做准备。",
+        description: "从餐厅咖啡馆策划到店铺开发、菜单开发、员工培训。全面支持餐饮业务的成功。",
       },
       gym: {
         title: "租赁健身房",
-        description: "Tengcle Fitness & Lounge with Golf 设施。目前处于业务停止状态，但保有设施，正为未来重新运营做准备。",
+        description: "运营可在私密空间专注训练的租赁健身房。以最新设备和清洁环境支持您的健康生活。",
       },
       capsuleHotel: {
-        title: "胶囊酒店运营",
-        description: "胶囊酒店和住宿设施的运营，为商务和観光客人提供住宿。",
-      },
-      recruitment: {
-        title: "人才介绍",
-        description: "实现企业与求职者的最佳匹配。利用行业知识和丰富网络，为双方创造有价值的机会。",
+        title: "住宿运营",
+        description: "运营追求舒适性和功能性的住宿设施。为商务和观光客人提供实惠、高品质的住宿体验。",
       },
     },
     about: {
       subtitle: "公司概要",
       title: "关于Tengcle Co., Ltd.",
-      description: "株式会社Tengcle是一家于2021年10月25日在日本成立的公司，以房地产管理为当前核心业务。",
+      description: "株式会社Tengcle在日本开展房地产管理、餐饮、健康休闲和住宿等与生活相关的业务。",
       story: {
         title: "关于我们",
-        p1: "株式会社Tengcle于2021年10月在日本成立。它与Tengcle Limited和Tengcle Development LLC均为小野寺紘宣100%持有的关联公司，不属于母子公司关系。",
-        p2: "目前我们开展房地产管理，包括租金回收、维修协调和租户沟通；其他活动将根据实际运营状态逐步推进。",
+        p1: "我们以房地产管理为核心，并通过餐饮、健康休闲和住宿设施的策划与运营积累了实践经验。",
+        p2: "我们认真理解当地与使用者的需求，逐步将每项业务培育为能够长期发挥价值的形态。",
       },
       info: {
         title: "公司信息",
         legalName: "法人名称",
-        established: "成立",
+        established: "所在地",
         location: "所在地",
       },
       philosophy: {
@@ -779,7 +763,7 @@ const translations: Record<Language, Translations> = {
       info: {
         tokyoOffice1: "东京办公室（高轮）",
         tokyoOffice2: "东京办公室（筑地）",
-        hkOffice: "香港总部",
+        hkOffice: "Tengcle Limited（香港公司）",
       },
     },
     careers: {
@@ -925,11 +909,11 @@ const translations: Record<Language, Translations> = {
       },
     },
     footer: {
-      description: "Tengcle Co., Ltd. is a Japanese corporation operating five businesses: real estate management, restaurant operations, rental gyms, capsule hotel operations, and recruitment services.",
+      description: "Tengcle Co., Ltd. has operating experience in property management, food and beverage, wellness, and accommodation.",
       navigation: "导航",
       contact: "联系方式",
-      hongkong: "Tengcle Limited（香港总部）",
-      group: "集团企业",
+      hongkong: "Tengcle Limited（香港公司）",
+      group: "地区网站",
     },
     common: {
       learnMore: "了解更多",
@@ -941,7 +925,7 @@ const translations: Record<Language, Translations> = {
     },
     meta: {
       title: "Tengcle Co., Ltd. | Real Estate, F&B & Hospitality in Tokyo Japan",
-      description: "东京港区总部。5大事业：房地产管理、餐饮、租赁健身房、胶囊酒店、人才介绍。",
+      description: "株式会社Tengcle在房地产管理、餐饮、健康休闲和住宿领域拥有运营实绩。",
       keywords: "Tengcle Co., Ltd., Tokyo, real estate, rental gym, capsule hotel, Minato-ku",
     },
   },

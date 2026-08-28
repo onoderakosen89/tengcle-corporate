@@ -1,8 +1,7 @@
 /**
  * Portfolio Page - Clean White Professional Design
  * 
- * Projects displayed without specific country names
- * Uses "Southeast Asia" for location
+ * Project cards use a consistent image treatment without overlay labels.
  */
 
 import { useRef } from "react";
@@ -161,10 +160,6 @@ export default function Portfolio() {
                       className="w-full aspect-[4/3] object-cover"
                       loading="lazy"
                     />
-                    <div className="absolute top-4 left-4 bg-navy text-white px-4 py-2">
-                      <p className={`text-gold text-xs ${getFontClass()}`}>{project.location}</p>
-                    </div>
-
                   </div>
 
                   {/* Content */}

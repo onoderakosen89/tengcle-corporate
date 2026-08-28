@@ -116,7 +116,7 @@ export default function NotFound() {
   return (
     <div className={`min-h-screen ${style.bg} ${style.text} flex items-center justify-center px-4`}>
       <SEOHead
-        title={`${t.subtitle} | Tengcle Group`}
+        title={`${t.subtitle} | Tengcle`}
         description={t.description}
         noindex
       />

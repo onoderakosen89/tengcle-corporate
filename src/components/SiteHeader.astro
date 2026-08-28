@@ -1,0 +1,32 @@
+---
+import BrandLockup from "./BrandLockup.astro";
+
+interface Props {
+  legalName?: string;
+}
+
+const { legalName } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <BrandLockup legalName={legalName} />
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="/#purpose">Our purpose</a>
+      <a href="/#approach">Our approach</a>
+      <a href="/#companies">Companies</a>
+      <a href="/#activities">Activities</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+    <details class="mobile-nav">
+      <summary>Menu</summary>
+      <nav aria-label="Mobile navigation">
+        <a href="/#purpose">Our purpose</a>
+        <a href="/#approach">Our approach</a>
+        <a href="/#companies">Companies</a>
+        <a href="/#activities">Activities</a>
+        <a href="/privacy/">Privacy</a>
+      </nav>
+    </details>
+  </div>
+</header>
