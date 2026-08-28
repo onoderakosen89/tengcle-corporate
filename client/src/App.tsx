@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense, lazy } from "react";
+import { useState, Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Route, Switch, useLocation } from "wouter";
@@ -320,11 +320,24 @@ function MainRouter() {
   return <NotFound />;
 }
 
+function hasSeenSplashThisSession() {
+  if (typeof window === "undefined") return false;
+
+  try {
+    return sessionStorage.getItem("tengcle_splash_seen") === "true";
+  } catch {
+    return false;
+  }
+}
+
 function App() {
+  const [hasSeenSplash, setHasSeenSplash] = useState(hasSeenSplashThisSession);
   const [showSplash, setShowSplash] = useState(
-    () => typeof window !== "undefined" && window.location.pathname === "/"
+    () =>
+      typeof window !== "undefined" &&
+      window.location.pathname === "/" &&
+      !hasSeenSplashThisSession()
   );
-  const [hasSeenSplash, setHasSeenSplash] = useState(false);
   const [location] = useLocation();
 
   const [, region, requestedLanguage] = location.split("/");
@@ -337,19 +350,15 @@ function App() {
       ? `/${region}/${consentLanguage}/privacy`
       : "/privacy";
 
-  useEffect(() => {
-    // Check if user has already seen splash screen in this session
-    const seen = sessionStorage.getItem("tengcle_splash_seen");
-    if (seen) {
-      setShowSplash(false);
-      setHasSeenSplash(true);
-    }
-  }, []);
-
   const handleSplashComplete = () => {
     setShowSplash(false);
     setHasSeenSplash(true);
-    sessionStorage.setItem("tengcle_splash_seen", "true");
+    try {
+      sessionStorage.setItem("tengcle_splash_seen", "true");
+    } catch {
+      // Storage can be blocked by browser privacy settings. The in-memory
+      // state still prevents a replay during this page lifetime.
+    }
   };
 
   return (

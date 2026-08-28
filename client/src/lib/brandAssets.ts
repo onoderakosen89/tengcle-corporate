@@ -1,6 +1,11 @@
 const releaseRoot = "/images/brand/v4/svg";
 
 export const brandAssets = {
+  intro: {
+    mp4: "/videos/tengcle-intro-v4.mp4",
+    poster: "/images/brand/v4/tengcle-intro-v4-poster.png",
+    webm: "/videos/tengcle-intro-v4.webm",
+  },
   primary: {
     black: `${releaseRoot}/tengcle-primary-tagline-black.svg`,
     white: `${releaseRoot}/tengcle-primary-tagline-white.svg`,

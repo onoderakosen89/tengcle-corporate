@@ -541,23 +541,56 @@ test("Global home preserves the established UI on mobile and reduced motion", as
 test("approved v4 branding preserves the Global intro and regional identities", async ({
   page,
 }) => {
+  let introMediaRequests = 0;
+  await page.route("**/videos/tengcle-intro-v4.*", route => {
+    introMediaRequests += 1;
+    return route.continue();
+  });
   await page.addInitScript(() => {
     localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
     sessionStorage.setItem("tengcle_geo_redirected", "true");
   });
 
   await page.goto("/?view=global");
-  const introLogo = page.getByRole("img", {
-    name: "Tengcle - think into the future",
-  }).first();
-  await expect(introLogo).toBeVisible();
-  await expect(introLogo).toHaveAttribute(
+  const introVideo = page.getByTestId("global-intro-video");
+  await expect(introVideo).toBeVisible();
+  await introVideo.evaluate(video => {
+    const state = window as Window & { __tengcleIntroEnded?: boolean };
+    state.__tengcleIntroEnded = false;
+    video.addEventListener(
+      "ended",
+      () => {
+        state.__tengcleIntroEnded = true;
+      },
+      { once: true }
+    );
+  });
+  await expect(introVideo.locator('source[type="video/webm"]')).toHaveAttribute(
     "src",
-    "/images/brand/v4/svg/tengcle-primary-tagline-white.svg"
+    "/videos/tengcle-intro-v4.webm"
+  );
+  await expect(introVideo.locator('source[type="video/mp4"]')).toHaveAttribute(
+    "src",
+    "/videos/tengcle-intro-v4.mp4"
+  );
+  await expect(introVideo).toHaveAttribute(
+    "poster",
+    "/images/brand/v4/tengcle-intro-v4-poster.png"
   );
   await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 4_000 });
+  expect(
+    await page.evaluate(
+      () =>
+        (window as Window & { __tengcleIntroEnded?: boolean })
+          .__tengcleIntroEnded
+    )
+  ).toBe(true);
+  expect(introMediaRequests).toBeGreaterThan(0);
 
+  introMediaRequests = 0;
   await page.reload();
+  await expect(page.getByTestId("global-intro")).toHaveCount(0);
+  expect(introMediaRequests).toBe(0);
   await expect(
     page.getByRole("heading", { level: 1, name: /Tengcle Related Companies/ })
   ).toBeVisible();
@@ -583,6 +616,62 @@ test("approved v4 branding preserves the Global intro and regional identities", 
     );
     expect(overflow, route).toBeLessThanOrEqual(0);
   }
+});
+
+test("the Global intro uses the canonical static lockup for reduced motion", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+    sessionStorage.setItem("tengcle_geo_redirected", "true");
+  });
+
+  await page.goto("/?view=global");
+  await expect(page.getByTestId("global-intro-video")).toHaveCount(0);
+  const staticLogo = page.getByTestId("global-intro-static");
+  await expect(staticLogo).toBeVisible();
+  await expect(staticLogo).toHaveAttribute(
+    "src",
+    "/images/brand/v4/svg/tengcle-primary-tagline-white.svg"
+  );
+  await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 1_500 });
+});
+
+test("the Global intro falls back safely when both video formats fail", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+    sessionStorage.setItem("tengcle_geo_redirected", "true");
+  });
+  await page.route("**/videos/tengcle-intro-v4.*", route => route.abort());
+
+  await page.goto("/?view=global");
+  await expect(page.getByTestId("global-intro-static")).toBeVisible();
+  await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 2_000 });
+});
+
+test("the Global intro uses the static fallback when media starts too late", async ({
+  page,
+}) => {
+  await page.route("**/videos/tengcle-intro-v4.*", async route => {
+    await new Promise(resolve => setTimeout(resolve, 400));
+    await route.continue().catch(() => undefined);
+  });
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+    sessionStorage.setItem("tengcle_geo_redirected", "true");
+  });
+
+  const startedAt = Date.now();
+  await page.goto("/?view=global");
+  await expect(page.getByTestId("global-intro-static")).toBeVisible({
+    timeout: 1_000,
+  });
+  await expect(page.getByTestId("global-intro-video")).toHaveCount(0);
+  await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 2_000 });
+  expect(Date.now() - startedAt).toBeLessThan(4_000);
 });
 
 test("the Global intro completes even when geography selects a regional home", async ({
