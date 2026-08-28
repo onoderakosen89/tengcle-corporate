@@ -42,3 +42,5 @@ See [docs/astro-static-foundation.md](docs/astro-static-foundation.md) for the
 migration boundary, verification gates, and rollback procedure. Brand hierarchy
 and placeholder-logo rules are in
 [docs/brand-implementation-principles.md](docs/brand-implementation-principles.md).
+The narrow legal-fact and retired-route evidence boundary is recorded in
+[docs/verified-public-facts.md](docs/verified-public-facts.md).

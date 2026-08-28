@@ -8,7 +8,7 @@ export const representativeRouteManifest = [
     locale: "en_US",
     title: "Japan Company | Tengcle",
     description:
-      "Verified institutional information for 株式会社Tengcle, a Tengcle related company incorporated in Tokyo in 2021.",
+      "Company and business information for 株式会社Tengcle in Japan.",
     company: "株式会社Tengcle",
     ogType: "website",
   },

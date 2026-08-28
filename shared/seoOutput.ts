@@ -35,7 +35,6 @@ function organizationSchema(page: SeoRoute) {
       "@type": "ImageObject",
       url: `${SITE_ORIGIN}/images/tengcle-logo.png`,
     },
-    foundingDate: profile.established,
     ...(registeredOffice && {
       address: {
         "@type": "PostalAddress",
@@ -85,7 +84,7 @@ export function structuredData(page: SeoRoute) {
   const breadcrumb = breadcrumbSchema(page);
   const graph: Record<string, unknown>[] = [];
 
-  if (page.ogType === "article") {
+  if (page.ogType === "article" && page.verifiedArticle) {
     graph.push({
       "@type": "NewsArticle",
       "@id": `${page.canonical}#article`,
@@ -111,39 +110,9 @@ export function structuredData(page: SeoRoute) {
     ...(breadcrumb && { breadcrumb: { "@id": breadcrumb["@id"] } }),
   });
 
-  if (page.service) {
-    graph.push({
-      "@type": "Service",
-      "@id": `${page.canonical}#service`,
-      name: page.service.name,
-      description: page.service.description,
-      provider: {
-        "@type": "Organization",
-        "@id": `${page.service.providerUrl}#organization`,
-        name: page.service.provider,
-        url: page.service.providerUrl,
-      },
-      areaServed: page.service.areaServed.map(name => ({
-        "@type": "Place",
-        name,
-      })),
-    });
-  }
-  if (page.faqs?.length) {
-    graph.push({
-      "@type": "FAQPage",
-      "@id": `${page.canonical}#faq`,
-      mainEntity: page.faqs.map(faq => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
-    });
-  }
-
   const isEntityPage =
     routeSuffix(page) === "" || routeSuffix(page) === "/about";
-  if (organization && (isEntityPage || page.ogType === "article")) {
+  if (organization && (isEntityPage || page.verifiedArticle)) {
     graph.push(organization);
   }
   if (breadcrumb) graph.push(breadcrumb);
@@ -181,7 +150,6 @@ export function representativeStructuredData(
       "@id": `${page.canonical}#organization`,
       name: "株式会社Tengcle",
       url: page.canonical,
-      foundingDate: "2021-10-25",
       address: {
         "@type": "PostalAddress",
         streetAddress: "2-19-20 Takanawa",

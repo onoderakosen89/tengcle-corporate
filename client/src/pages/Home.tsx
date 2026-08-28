@@ -240,7 +240,7 @@ export default function Home() {
           "@graph": [
             generateOrganizationSchema({
               name: company.legalName,
-              description: "A Hong Kong affiliated company developing hospitality procurement, project coordination, IT, and trade activities.",
+              description: "A Hong Kong company working across hospitality procurement, project coordination, IT, and trade.",
               url: "https://www.tengcle.com/hk/en",
               logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
               email: company.email,
@@ -251,7 +251,6 @@ export default function Home() {
                 country: address.country,
                 postalCode: address.postalCode,
               },
-              foundingDate: company.established,
             })
           ]
         }}
@@ -383,8 +382,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
-                    <span className="text-gold text-xs tracking-wider uppercase">{t.portfolio.project1.location}</span>
-                    <h3 className={`${getHeadingFontClass()} text-xl text-white mt-1`}>{t.portfolio.project1.title}</h3>
+                    <h3 className={`${getHeadingFontClass()} text-xl text-white`}>{t.portfolio.project1.title}</h3>
                   </div>
                 </div>
                 <div className="p-6">
@@ -413,8 +411,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
-                    <span className="text-gold text-xs tracking-wider uppercase">{t.portfolio.project2.location}</span>
-                    <h3 className={`${getHeadingFontClass()} text-xl text-white mt-1`}>{t.portfolio.project2.title}</h3>
+                    <h3 className={`${getHeadingFontClass()} text-xl text-white`}>{t.portfolio.project2.title}</h3>
                   </div>
                 </div>
                 <div className="p-6">
@@ -445,13 +442,13 @@ export default function Home() {
           <AnimatedSection>
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <p className="text-gold text-sm tracking-[0.3em] uppercase mb-4">
-                {t.trust?.subtitle || "Trust & Compliance"}
+                {t.trust?.subtitle || "Company Information"}
               </p>
               <h2 className={`${getHeadingFontClass()} text-4xl md:text-5xl text-white mb-6`}>
-                {t.trust?.title || "Built on Integrity"}
+                {t.trust?.title || "Tengcle Limited"}
               </h2>
               <p className={`text-gray-300 max-w-2xl mx-auto ${getFontClass()}`}>
-                {t.trust?.description || "We prioritize transparent coordination, clear scope definition, and responsible project delivery as our operations develop."}
+                {t.trust?.description || "Based in Hong Kong."}
               </p>
             </motion.div>
           </AnimatedSection>
@@ -460,21 +457,21 @@ export default function Home() {
             {[
               {
                 icon: Shield,
-                title: t.trust?.established || "Established",
-                value: "2025",
-                description: t.trust?.establishedDesc || "Hong Kong Incorporated",
+                title: language === "ja" ? "拠点" : language === "zh" ? "所在地" : "Based in",
+                value: language === "ja" || language === "zh" ? "香港" : "Hong Kong",
+                description: "Tengcle Limited",
               },
               {
                 icon: Building2,
-                title: t.trust?.businessReg || "Business Registration",
-                value: "78077104",
-                description: t.trust?.businessRegDesc || "Hong Kong Companies Registry",
+                title: t.trust?.businessReg || "Jurisdiction",
+                value: "Hong Kong",
+                description: t.trust?.businessRegDesc || "Hong Kong Company",
               },
               {
                 icon: Award,
-                title: t.trust?.director || "Director",
-                value: "Kosen Onodera",
-                description: t.trust?.directorDesc || "Director & CEO",
+                title: t.trust?.director || "Legal Name",
+                value: "Tengcle Limited",
+                description: t.trust?.directorDesc || "Hong Kong Company",
               },
             ].map((item, index) => (
               <AnimatedSection key={index}>

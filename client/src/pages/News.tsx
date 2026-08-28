@@ -61,22 +61,12 @@ const newsArticlesEn: NewsArticle[] = [
   {
     id: "4",
     title: "Hotel Operations Business Commences",
-    excerpt: "Shortly after establishment, Tengcle Limited launches hotel operations business, providing management and operational support for hospitality properties.",
+    excerpt: "Tengcle Limited launches hotel operations activities, providing management and operational support for hospitality properties.",
     date: "2025-05-01",
     category: "Business Launch",
     readTime: "3 min",
     image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=400&fit=crop",
     slug: "hotel-operations-launch"
-  },
-  {
-    id: "5",
-    title: "Tengcle Limited Established in Hong Kong",
-    excerpt: "Tengcle Limited is officially established in Hong Kong as the global headquarters for Tengcle Group, which was founded in Japan in 2021.",
-    date: "2025-04-15",
-    category: "Company Founding",
-    readTime: "4 min",
-    image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=800&h=400&fit=crop",
-    slug: "hk-founding"
   }
 ];
 
@@ -114,22 +104,12 @@ const newsArticlesJa: NewsArticle[] = [
   {
     id: "4",
     title: "ホテル運営事業を開始",
-    excerpt: "設立直後、Tengcle Limitedはホテル運営事業を開始し、ホスピタリティ施設への管理・運営サポートを提供しています。",
+    excerpt: "Tengcle Limitedはホテル運営事業を開始し、ホスピタリティ施設への管理・運営サポートを提供しています。",
     date: "2025-05-01",
     category: "事業開始",
     readTime: "3分",
     image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=400&fit=crop",
     slug: "hotel-operations-launch"
-  },
-  {
-    id: "5",
-    title: "Tengcle Limited 香港で設立",
-    excerpt: "2021年に日本で創業したTengcle Groupのグローバル本社として、Tengcle Limitedが香港で正式に設立されました。",
-    date: "2025-04-15",
-    category: "会社設立",
-    readTime: "4分",
-    image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=800&h=400&fit=crop",
-    slug: "hk-founding"
   }
 ];
 
@@ -167,22 +147,12 @@ const newsArticlesZh: NewsArticle[] = [
   {
     id: "4",
     title: "酒店运营业务正式启动",
-    excerpt: "成立后不久，Tengcle Limited启动酒店运营业务，为酒店物业提供管理和运营支持。",
+    excerpt: "Tengcle Limited启动酒店运营业务，为酒店物业提供管理和运营支持。",
     date: "2025-05-01",
     category: "业务启动",
     readTime: "3分钟",
     image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=400&fit=crop",
     slug: "hotel-operations-launch"
-  },
-  {
-    id: "5",
-    title: "Tengcle Limited在香港成立",
-    excerpt: "Tengcle Limited作为2021年在日本创立的Tengcle Group的全球总部，在香港正式成立。",
-    date: "2025-04-15",
-    category: "公司成立",
-    readTime: "4分钟",
-    image: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=800&h=400&fit=crop",
-    slug: "hk-founding"
   }
 ];
 

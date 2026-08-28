@@ -8,20 +8,13 @@ export interface PostalAddress {
 
 export interface CompanyProfile {
   legalName: string;
-  established: string;
-  representative: string;
   email: string;
   addresses: readonly PostalAddress[];
-  registrationNumber?: string;
-  capital?: string;
 }
 
 export const companyProfiles = {
   hk: {
     legalName: "Tengcle Limited",
-    established: "2025-04-29",
-    registrationNumber: "78077104",
-    representative: "Kosen Onodera",
     email: "info@tengcle.com",
     addresses: [
       {
@@ -35,9 +28,6 @@ export const companyProfiles = {
   },
   jp: {
     legalName: "株式会社Tengcle",
-    established: "2021-10-25",
-    capital: "¥5,142,000",
-    representative: "小野寺 紘宣",
     email: "info@tengcle.com",
     addresses: [
       {
@@ -58,8 +48,6 @@ export const companyProfiles = {
   },
   us: {
     legalName: "Tengcle Development LLC",
-    established: "2026-01-05",
-    representative: "Kosen Onodera",
     email: "us@tengcle.com",
     addresses: [
       {

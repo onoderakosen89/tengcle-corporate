@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { motion, type Easing } from "framer-motion";
 import { Link } from "wouter";
 import { Globe, Building2, ArrowRight } from "lucide-react";
+import { brandAssets } from "@/lib/brandAssets";
 
 const regions = [
   {
@@ -23,9 +24,9 @@ const regions = [
     role: "Hong Kong Company",
     roleJa: "香港法人",
     roleZh: "香港公司",
-    description: "Hospitality Procurement & Project Coordination",
-    descriptionJa: "ホスピタリティ調達・プロジェクト調整",
-    descriptionZh: "酒店采购与项目协调",
+    description: "Hospitality procurement, project coordination, IT and trade",
+    descriptionJa: "ホスピタリティ調達・プロジェクト調整・IT・貿易",
+    descriptionZh: "酒店采购、项目协调、信息技术与贸易",
     flag: "🇭🇰",
     flagImage: "/images/flag-hk.svg",
     path: "/hk/en",
@@ -41,13 +42,13 @@ const regions = [
     name: "Japan",
     nameJa: "日本",
     nameZh: "日本",
-     company: "株式会社 Tengcle",
-    role: "Founding Company",
-    roleJa: "創業法人",
-    roleZh: "创始法人",
-    description: "Property Management & Developing Activities",
-    descriptionJa: "不動産管理・段階的な事業展開",
-    descriptionZh: "房地产管理与阶段性业务发展",
+    company: "株式会社Tengcle",
+    role: "Japan Company",
+    roleJa: "日本法人",
+    roleZh: "日本公司",
+    description: "Property management, dining, wellness and accommodation",
+    descriptionJa: "不動産管理・飲食・ウェルネス・宿泊",
+    descriptionZh: "房地产管理、餐饮、健康休闲与住宿",
     flag: "🇯🇵",
     flagImage: "/images/flag-jp.svg",
     path: "/jp/ja",
@@ -64,12 +65,12 @@ const regions = [
     nameJa: "アメリカ",
     nameZh: "美国",
     company: "Tengcle Development LLC",
-    role: "US Company · Preparatory Stage",
-    roleJa: "米国法人・準備段階",
-    roleZh: "美国公司・筹备阶段",
-    description: "Real Estate Development & Management Preparation",
-    descriptionJa: "不動産開発・管理の準備",
-    descriptionZh: "房地产开发与管理筹备",
+    role: "US Real Estate Operations",
+    roleJa: "米国・不動産運営",
+    roleZh: "美国・房地产运营",
+    description: "New Jersey-based property management and revitalization",
+    descriptionJa: "ニュージャージーを拠点とする不動産管理・物件再生",
+    descriptionZh: "以新泽西为基地的物业管理与改造",
     flag: "🇺🇸",
     flagImage: "/images/flag-us.svg",
     path: "/us/en",
@@ -116,7 +117,7 @@ const seigaihaPattern = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org
 
 export default function GlobalGateway() {
   useEffect(() => {
-    document.title = "Tengcle Group | Affiliated Companies in Hong Kong, Japan & USA";
+    document.title = "Tengcle | Hong Kong, Japan & United States";
     
     // OGP meta tags
     const updateMeta = (name: string, content: string, isProperty = false) => {
@@ -171,9 +172,9 @@ export default function GlobalGateway() {
               className="flex justify-center"
             >
               <img
-                src="/images/tengcle-logo-white.png"
+                src={brandAssets.primary.white}
                 alt="Tengcle - think into the future"
-                className="h-14 md:h-16 w-auto"
+                className="h-16 md:h-20 w-auto"
               />
             </motion.div>
           </div>
@@ -212,18 +213,18 @@ export default function GlobalGateway() {
                 className="font-heading text-3xl md:text-4xl lg:text-5xl mb-5"
               >
                 <span className="text-gold">Tengcle</span>{" "}
-                <span className="text-white/90">Group</span>
+                <span className="text-white/90">Regional Sites</span>
               </motion.h1>
 
               <motion.div variants={fadeInUp} className="space-y-1.5">
                 <p className="text-lg md:text-xl text-white/90 font-light tracking-wide">
-                  Select your region and language
+                  think into the future
                 </p>
                 <p className="text-sm md:text-base text-white/80 font-jp">
-                  地域と言語を選択してください
+                  考える力を、ひとつの目的へ。
                 </p>
                 <p className="text-sm md:text-base text-white/80 font-zh">
-                  选择您的地区和语言
+                  まだ活かされていない価値を、人と社会に長く役立つ形へ育てる。
                 </p>
               </motion.div>
             </motion.div>
@@ -326,7 +327,7 @@ export default function GlobalGateway() {
         <footer className="py-6 md:py-8">
           <div className="container">
             <div className="text-center text-white/30 text-sm">
-              <p>© {new Date().getFullYear()} Tengcle Group. All rights reserved.</p>
+              <p>© {new Date().getFullYear()} Tengcle. All rights reserved.</p>
             </div>
           </div>
         </footer>

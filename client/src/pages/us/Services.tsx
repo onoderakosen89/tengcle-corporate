@@ -22,19 +22,19 @@ const staggerContainer = {
 // Additional translations for new service
 const serviceTranslations = {
   'service.development.title': {
-    en: 'Property Development',
-    ja: '不動産開発',
-    zh: '房地产开发',
+    en: 'Property Revitalization',
+    ja: '物件再生・価値向上',
+    zh: '物业改造与价值提升',
   },
   'service.development.desc': {
-    en: 'Our core business focuses on acquiring distressed or underperforming properties, revitalizing them through strategic renovation, and holding them as long-term income-generating assets.',
-    ja: '私たちの中核事業は、問題を抱えた物件や低パフォーマンス物件を取得し、戦略的な修繕・改修によって再生させ、長期的な収益資産として保有することです。',
-    zh: '我们的核心业务专注于收购困境或低效物业，通过战略性翻新使其焕发新生，并作为长期收益资产持有。',
+    en: 'We assess each property’s condition and operations, then coordinate repairs and practical improvements to strengthen usability, stability, and long-term value.',
+    ja: '物件の状態と運営上の課題を整理し、修繕や実務的な改善を通じて、使いやすさ、安定性、長期的な価値の向上を図ります。',
+    zh: '我们梳理物业现状与运营问题，通过维修和务实改进，提升使用体验、运营稳定性与长期价值。',
   },
   'service.development.feature1': {
-    en: 'Distressed Property Acquisition',
-    ja: '問題物件の取得',
-    zh: '困境物业收购',
+    en: 'Property Assessment',
+    ja: '物件状況の整理',
+    zh: '物业状况评估',
   },
   'service.development.feature2': {
     en: 'Strategic Renovation & Revitalization',
@@ -47,9 +47,9 @@ const serviceTranslations = {
     zh: '价值提升',
   },
   'service.development.feature4': {
-    en: 'Long-term Asset Holding',
-    ja: '長期資産保有',
-    zh: '长期资产持有',
+    en: 'Long-term Value Creation',
+    ja: '長期的な価値形成',
+    zh: '长期价值创造',
   },
   'learn.more': {
     en: 'Learn More',
@@ -120,9 +120,9 @@ export default function UsServices() {
   return (
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
-        title={language === "ja" ? "サービス | Tengcle Development LLC - 不動産開発・管理・民泊" : language === "zh" ? "服务内容 | Tengcle Development LLC - 房地产开发·管理·短租" : "Services | Tengcle Development LLC - Real Estate Development & Management"}
-        description={language === "ja" ? "不動産開発、不動産管理、民泊運用サービス。NJ・ニューヨークエリア。" : language === "zh" ? "房地产开发、物业管理、短租运营服务。新泽西·纽约地区。" : "Real estate development, property management & vacation rental services. NJ & NY metropolitan area."}
-        keywords={language === "ja" ? "Tengcle Development LLC, サービス, 不動産開発, 不動産管理, 民泊" : language === "zh" ? "Tengcle Development LLC, 服务, 房地产开发, 物业管理, 短租" : "Tengcle Development LLC, services, real estate development, property management, vacation rentals"}
+        title={language === "ja" ? "サービス | Tengcle Development LLC - 不動産管理・物件再生" : language === "zh" ? "服务内容 | Tengcle Development LLC - 物业管理与改造" : "Services | Tengcle Development LLC - Property Management & Revitalization"}
+        description={language === "ja" ? "ニュージャージー州を拠点とする不動産管理、修繕調整、テナント対応、物件再生。NJ/NYの対応範囲は物件ごとに確認します。" : language === "zh" ? "立足新泽西州的物业管理、维修协调、租户支持与物业改造。新泽西／纽约的服务范围按每处物业确认。" : "New Jersey-based property management, repair coordination, tenant support, and revitalization. NJ/NY scope is confirmed per property."}
+        keywords={language === "ja" ? "Tengcle Development LLC, 不動産管理, 物件再生, 修繕, NJ" : language === "zh" ? "Tengcle Development LLC, 物业管理, 物业改造, 维修, 新泽西" : "Tengcle Development LLC, property management, property revitalization, repairs, New Jersey"}
         canonical={`https://www.tengcle.com/us/${language}/services`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
         ogImage="/images/og-image.webp"

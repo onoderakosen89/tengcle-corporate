@@ -53,7 +53,7 @@ export default function UsContact() {
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
         title={language === "ja" ? "お問い合わせ | Tengcle Development LLC NJ" : language === "zh" ? "联系我们 | Tengcle Development LLC NJ" : "Contact Us | Tengcle Development LLC New Jersey"}
-        description={language === "ja" ? "Tengcle Development LLCへのお問い合わせ。NJ・Weehawkenオフィス。不動産開発・管理のご相談。" : language === "zh" ? "联系Tengcle Development LLC。新泽西Weehawken办公室。房地产开发、管理咨询。" : "Contact Tengcle Development LLC. Weehawken NJ office. Real estate development & management inquiries."}
+        description={language === "ja" ? "Tengcle Development LLCへのお問い合わせ。不動産管理、修繕調整、物件再生のご相談。" : language === "zh" ? "联系Tengcle Development LLC，咨询物业管理、维修协调与物业改造。" : "Contact Tengcle Development LLC about property management, repair coordination, and property revitalization."}
         keywords={language === "ja" ? "Tengcle Development LLC, お問い合わせ, ニュージャージー, 不動産" : language === "zh" ? "Tengcle Development LLC, 联系我们, 新泽西, 房地产" : "Tengcle Development LLC, contact, New Jersey, Weehawken, real estate"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
         ogImage="/images/og-image.webp"
@@ -172,7 +172,7 @@ export default function UsContact() {
               {/* Group Offices */}
               <motion.div variants={fadeInUp} className="mt-12 pt-8 border-t border-gray-200">
                 <h3 className="font-heading text-lg text-charcoal mb-4">
-                  Tengcle Group Offices
+                  Tengcle Regional Sites
                 </h3>
                 <div className="space-y-4">
                   <Link
@@ -180,7 +180,7 @@ export default function UsContact() {
                     className="flex items-center gap-3 text-slate hover:text-gold transition-colors"
                   >
                     <span>🇭🇰</span>
-                    <span>Hong Kong (Global Headquarters)</span>
+                    <span>Tengcle Limited (Hong Kong)</span>
                   </Link>
                   <Link
                     href="/jp/ja/contact"

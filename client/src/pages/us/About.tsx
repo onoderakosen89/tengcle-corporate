@@ -32,21 +32,21 @@ export default function UsAbout() {
     {
       flag: "🇭🇰",
       name: "Tengcle Limited",
-      role: "Affiliated Company",
+      role: "Regional Site",
       location: "Hong Kong",
       href: "/hk/en",
     },
     {
       flag: "🇯🇵",
       name: "株式会社Tengcle",
-      role: "Affiliated Company",
+      role: "Regional Site",
       location: "Tokyo, Japan",
       href: "/jp/ja",
     },
     {
       flag: "🇺🇸",
       name: "Tengcle Development LLC",
-      role: "Affiliated Company",
+      role: "Regional Site",
       location: "Weehawken, NJ",
       href: basePath,
       current: true,
@@ -57,8 +57,8 @@ export default function UsAbout() {
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
         title={language === "ja" ? "会社概要 | Tengcle Development LLC ニュージャージー州" : language === "zh" ? "关于我们 | Tengcle Development LLC 新泽西州" : "About Us | Tengcle Development LLC, New Jersey"}
-        description={language === "ja" ? "2026年1月に設立されたTengcle Development LLCの会社情報。不動産開発・管理事業の本格始動に向けて準備中です。" : language === "zh" ? "Tengcle Development LLC于2026年1月成立，正为房地产开发和物业管理业务的正式启动做准备。" : "About Tengcle Development LLC, established in January 2026 and preparing for staged real estate development and property-management activities."}
-        keywords={language === "ja" ? "Tengcle Development LLC, 会社概要, ニュージャージー, 不動産開発" : language === "zh" ? "Tengcle Development LLC, 关于我们, 新泽西, 房地产开发" : "Tengcle Development LLC, about us, New Jersey, real estate development"}
+        description={language === "ja" ? "ニュージャージー州を拠点に、不動産管理、修繕調整、テナント対応、物件再生に取り組むTengcle Development LLCの会社情報。" : language === "zh" ? "Tengcle Development LLC立足新泽西州，开展物业管理、维修协调、租户支持与物业改造。" : "Company information for Tengcle Development LLC, focused on property management, repair coordination, tenant support, and revitalization in New Jersey."}
+        keywords={language === "ja" ? "Tengcle Development LLC, 会社概要, ニュージャージー, 不動産管理, 物件再生" : language === "zh" ? "Tengcle Development LLC, 关于我们, 新泽西, 物业管理, 物业改造" : "Tengcle Development LLC, about us, New Jersey, property management, property revitalization"}
         canonical={`https://www.tengcle.com/us/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
         ogImage="/images/og-image.webp"
@@ -79,7 +79,7 @@ export default function UsAbout() {
               },
             }),
             generateBreadcrumbSchema([
-              { name: "Tengcle Group", url: "https://www.tengcle.com/" },
+              { name: "Tengcle", url: "https://www.tengcle.com/" },
               { name: usCompany.legalName, url: `https://www.tengcle.com/us/${language}` },
               { name: t('about.title'), url: `https://www.tengcle.com/us/${language}/about` }
             ])
@@ -141,6 +141,7 @@ export default function UsAbout() {
                     <div>
                       <p className="font-medium text-charcoal">Tengcle Development LLC</p>
                       <p className="text-sm text-slate">{t('company.role')}</p>
+                      <p className="text-sm text-slate">New Jersey company</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -184,7 +185,7 @@ export default function UsAbout() {
         </div>
       </section>
 
-      {/* Tengcle Group */}
+      {/* Regional sites */}
       <section className="py-24 bg-light-gray">
         <div className="container">
           <motion.div
@@ -201,10 +202,10 @@ export default function UsAbout() {
               variants={fadeInUp}
               className="font-heading text-3xl md:text-4xl text-charcoal mb-4"
             >
-              Tengcle Group
+              Tengcle Regional Sites
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-slate max-w-2xl mx-auto">
-              Affiliated companies owned by Kosen Onodera, each operating independently in its jurisdiction
+              Business information and contacts for Hong Kong, Japan, and the United States
             </motion.p>
           </motion.div>
 

@@ -1,6 +1,37 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { readFile, readdir } from "node:fs/promises";
+import { join } from "node:path";
 import { buyerIntentPages } from "../shared/buyerIntentPages";
+import { seoRouteManifest } from "../shared/seoRouteManifest";
+
+const forbiddenHierarchyPattern =
+  /100\s*[%％].{0,40}(?:owned|held|保有|所有|持有)|wholly owned|owned by Kosen|parent[- ]subsidiar|親会社|子会社|親子会社|母子公司|global headquarters|Hong Kong headquarters|Hong Kong HQ|グローバル本社|香港本社|全球总部|香港总部|founding company|founding entity|founding office|創業法人|創業会社|创始法人|创始公司|\bUS office\b|\bU\.S\. office\b|米国オフィス|米国拠点|美国办事处|美国办公室/i;
+const unverifiedLegalBrandPattern = /Tengcle Group/i;
+const unverifiedHkScaleTrustPattern =
+  /ISO Standards|international quality management|15\+ Countries|supplier relationships worldwide|国際品質管理|15カ国以上|世界中のサプライヤー関係|国际质量管理|15\+国家|全球供应商关系|Built on Integrity|誠実な運営|诚信经营/i;
+const publicRegistrationIdentifierPattern = /78077104|0451392806/;
+
+async function publicTextArtifacts(directory: string): Promise<string[]> {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const paths = await Promise.all(
+    entries.map(entry => {
+      const path = join(directory, entry.name);
+      return entry.isDirectory() ? publicTextArtifacts(path) : [path];
+    })
+  );
+  return paths.flat().filter(path => /\.(?:html|js|json|xml)$/i.test(path));
+}
+
+test("generated public HTML, JavaScript, and structured data omit registration identifiers", async () => {
+  const artifacts = await publicTextArtifacts("dist/public");
+  expect(artifacts.length).toBeGreaterThan(100);
+  for (const artifact of artifacts) {
+    expect(await readFile(artifact, "utf8"), artifact).not.toMatch(
+      publicRegistrationIdentifierPattern
+    );
+  }
+});
 
 test("known routes and article routes return route-specific initial HTML", async ({
   request,
@@ -24,9 +55,9 @@ test("known routes and article routes return route-specific initial HTML", async
       "https://www.tengcle.com/us/zh/services/property-development/",
     ],
     [
-      "/us/en/news/us-founding-2026",
+      "/hk/en/news/first-ffe-project-2026",
       "en",
-      "https://www.tengcle.com/us/en/news/us-founding-2026/",
+      "https://www.tengcle.com/hk/en/news/first-ffe-project-2026/",
     ],
   ] as const;
 
@@ -40,23 +71,21 @@ test("known routes and article routes return route-specific initial HTML", async
   }
 });
 
-test("article initial HTML exposes article-specific social and search metadata", async ({
+test("news initial HTML exposes route-specific social and search metadata", async ({
   request,
 }) => {
-  const response = await request.get("/us/en/news/us-founding-2026");
+  const response = await request.get("/hk/en/news/first-ffe-project-2026");
   expect(response.status()).toBe(200);
   const body = await response.text();
   expect(body).toContain(
-    "<title>Tengcle Development LLC Established in New Jersey | Tengcle Development LLC</title>"
+    "<title>First FF&amp;E Project Scheduled for February 2026 | Tengcle Limited</title>"
   );
   expect(body).toContain(
-    'content="Tengcle Development LLC was officially registered in Weehawken, New Jersey in January 2026 as the US office of Tengcle Group."'
+    'content="Tengcle Limited announces its first hotel FF&amp;E procurement project, scheduled for delivery in February 2026."'
   );
-  expect(body).toContain('<meta property="og:type" content="article">');
-  expect(body).toContain(
-    '<meta property="article:published_time" content="2026-01-01">'
-  );
-  expect(body).toContain('"@type":"NewsArticle"');
+  expect(body).toContain('<meta property="og:type" content="website">');
+  expect(body).not.toContain('property="article:published_time"');
+  expect(body).toContain('"@type":"WebPage"');
   expect(body.match(/rel="canonical"/g)).toHaveLength(1);
   expect(body.match(/rel="alternate"/g)).toHaveLength(4);
 });
@@ -73,7 +102,7 @@ test("route manifest metadata remains stable after hydration", async ({
     "/jp/ja",
     "/us/en",
     "/hk/zh/faq",
-    "/us/en/news/us-founding-2026",
+    "/hk/zh/news/first-ffe-project-2026",
   ]) {
     const response = await request.get(route);
     const initialHtml = await response.text();
@@ -85,10 +114,10 @@ test("route manifest metadata remains stable after hydration", async ({
     expect(initialDescription, route).toBeTruthy();
 
     await page.goto(route);
-    await expect(page).toHaveTitle(initialTitle!);
+    await expect(page).toHaveTitle(initialTitle!.replaceAll("&amp;", "&"));
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       "content",
-      initialDescription!
+      initialDescription!.replaceAll("&amp;", "&")
     );
     const webPageNodes = await page
       .locator('script[type="application/ld+json"]')
@@ -123,7 +152,7 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
     sitemap.matchAll(/<loc>(https:\/\/www\.tengcle\.com[^<]+)<\/loc>/g),
     match => match[1]
   );
-  expect(urls).toHaveLength(113);
+  expect(urls).toHaveLength(seoRouteManifest.length);
 
   for (const canonical of urls) {
     const route = new URL(canonical).pathname;
@@ -138,6 +167,21 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
     const initialNodes = initialScripts.flatMap(data =>
       Array.isArray(data["@graph"]) ? data["@graph"] : [data]
     );
+    expect(initialHtml, `${route} initial hierarchy copy`).not.toMatch(
+      forbiddenHierarchyPattern
+    );
+    expect(initialHtml, `${route} initial registration identifier`).not.toMatch(
+      publicRegistrationIdentifierPattern
+    );
+    expect(
+      JSON.stringify(initialNodes),
+      `${route} initial JSON-LD hierarchy copy`
+    ).not.toMatch(forbiddenHierarchyPattern);
+    if (!route.endsWith("/privacy/")) {
+      expect(initialHtml, `${route} initial legal brand copy`).not.toMatch(
+        unverifiedLegalBrandPattern
+      );
+    }
 
     await page.goto(route, { waitUntil: "domcontentloaded" });
     await expect
@@ -165,6 +209,36 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
           return Array.isArray(data["@graph"]) ? data["@graph"] : [data];
         })
       );
+    const visibleCopy = await page.locator("body").innerText();
+    expect(visibleCopy, `${route} hydrated hierarchy copy`).not.toMatch(
+      forbiddenHierarchyPattern
+    );
+    expect(
+      visibleCopy,
+      `${route} hydrated registration identifier`
+    ).not.toMatch(publicRegistrationIdentifierPattern);
+    expect(
+      JSON.stringify(hydratedNodes),
+      `${route} hydrated JSON-LD registration identifier`
+    ).not.toMatch(publicRegistrationIdentifierPattern);
+    expect(
+      JSON.stringify(hydratedNodes),
+      `${route} hydrated JSON-LD hierarchy copy`
+    ).not.toMatch(forbiddenHierarchyPattern);
+    if (!route.endsWith("/privacy/")) {
+      expect(visibleCopy, `${route} hydrated legal brand copy`).not.toMatch(
+        unverifiedLegalBrandPattern
+      );
+      expect(
+        JSON.stringify(hydratedNodes),
+        `${route} hydrated JSON-LD legal brand copy`
+      ).not.toMatch(unverifiedLegalBrandPattern);
+    }
+    if (/^\/hk\/(?:en|ja|zh)(?:\/about)?\/$/.test(route)) {
+      expect(visibleCopy, `${route} hydrated verified HK copy`).not.toMatch(
+        unverifiedHkScaleTrustPattern
+      );
+    }
     const ids = hydratedNodes
       .map(node => node?.["@id"])
       .filter((id): id is string => typeof id === "string");
@@ -226,10 +300,11 @@ test("buyer-intent service pages identify the customer and preserve visible FAQ 
           return graph;
         })
       );
-    const service = structuredNodes.find(node => node?.["@type"] === "Service");
-    expect(service?.description, item.route).toBe(item.lead);
+    expect(structuredNodes.some(node => node?.["@type"] === "Service")).toBe(
+      false
+    );
     expect(structuredNodes.some(node => node?.["@type"] === "FAQPage")).toBe(
-      true
+      false
     );
     const overflow = await page.evaluate(
       () =>
@@ -395,6 +470,7 @@ test("public pages expose semantic content with JavaScript disabled", async ({
 test("Global and regional UIs introduce no new serious or critical axe violations", async ({
   page,
 }) => {
+  test.setTimeout(60_000);
   await page.addInitScript(() => {
     localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
     sessionStorage.setItem("tengcle_geo_redirected", "true");
@@ -440,7 +516,7 @@ test("Global home preserves the established UI on mobile and reduced motion", as
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { level: 1, name: /Tengcle Group/ })
+    page.getByRole("heading", { level: 1, name: /Tengcle Regional Sites/ })
   ).toBeVisible();
   await expect(
     page.getByRole("img", { name: "Tengcle - think into the future" })
@@ -464,6 +540,164 @@ test("Global home preserves the established UI on mobile and reduced motion", as
   expect(state.regions).toEqual(
     expect.arrayContaining(["Hong Kong", "Japan", "United States"])
   );
+});
+
+test("approved v4 branding preserves the Global intro and regional identities", async ({
+  page,
+}) => {
+  let introMediaRequests = 0;
+  await page.route("**/videos/tengcle-intro-v4.*", route => {
+    introMediaRequests += 1;
+    return route.continue();
+  });
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+    sessionStorage.setItem("tengcle_geo_redirected", "true");
+  });
+
+  await page.goto("/?view=global");
+  const introVideo = page.getByTestId("global-intro-video");
+  await expect(introVideo).toBeVisible();
+  await introVideo.evaluate(video => {
+    const state = window as Window & { __tengcleIntroEnded?: boolean };
+    state.__tengcleIntroEnded = false;
+    video.addEventListener(
+      "ended",
+      () => {
+        state.__tengcleIntroEnded = true;
+      },
+      { once: true }
+    );
+  });
+  await expect(introVideo.locator('source[type="video/webm"]')).toHaveAttribute(
+    "src",
+    "/videos/tengcle-intro-v4.webm"
+  );
+  await expect(introVideo.locator('source[type="video/mp4"]')).toHaveAttribute(
+    "src",
+    "/videos/tengcle-intro-v4.mp4"
+  );
+  await expect(introVideo).toHaveAttribute(
+    "poster",
+    "/images/brand/v4/tengcle-intro-v4-poster.png"
+  );
+  await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 4_000 });
+  expect(
+    await page.evaluate(
+      () =>
+        (window as Window & { __tengcleIntroEnded?: boolean })
+          .__tengcleIntroEnded
+    )
+  ).toBe(true);
+  expect(introMediaRequests).toBeGreaterThan(0);
+
+  introMediaRequests = 0;
+  await page.reload();
+  await expect(page.getByTestId("global-intro")).toHaveCount(0);
+  expect(introMediaRequests).toBe(0);
+  await expect(
+    page.getByRole("heading", { level: 1, name: /Tengcle Regional Sites/ })
+  ).toBeVisible();
+
+  const regionalHeaders = [
+    ["/hk/en/", "Tengcle Hong Kong", "tengcle-regional-hk-black.svg"],
+    ["/jp/ja/", "Tengcle Japan", "tengcle-regional-jp-black.svg"],
+    ["/us/en/", "Tengcle United States", "tengcle-regional-us-white.svg"],
+  ] as const;
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const [route, accessibleName, assetName] of regionalHeaders) {
+    await page.goto(route);
+    const logo = page.getByRole("img", { name: accessibleName }).first();
+    await expect(logo).toBeVisible();
+    await expect(logo).toHaveAttribute("src", new RegExp(`${assetName}$`));
+    const overflow = await page.evaluate(
+      () =>
+        document.documentElement.scrollWidth -
+        document.documentElement.clientWidth
+    );
+    expect(overflow, route).toBeLessThanOrEqual(0);
+  }
+});
+
+test("the Global intro uses the canonical static lockup for reduced motion", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+    sessionStorage.setItem("tengcle_geo_redirected", "true");
+  });
+
+  await page.goto("/?view=global");
+  await expect(page.getByTestId("global-intro-video")).toHaveCount(0);
+  const staticLogo = page.getByTestId("global-intro-static");
+  await expect(staticLogo).toBeVisible();
+  await expect(staticLogo).toHaveAttribute(
+    "src",
+    "/images/brand/v4/svg/tengcle-primary-tagline-white.svg"
+  );
+  await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 1_500 });
+});
+
+test("the Global intro falls back safely when both video formats fail", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+    sessionStorage.setItem("tengcle_geo_redirected", "true");
+  });
+  await page.route("**/videos/tengcle-intro-v4.*", route => route.abort());
+
+  await page.goto("/?view=global");
+  await expect(page.getByTestId("global-intro-static")).toBeVisible();
+  await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 2_000 });
+});
+
+test("the Global intro uses the static fallback when media starts too late", async ({
+  page,
+}) => {
+  await page.route("**/videos/tengcle-intro-v4.*", async route => {
+    await new Promise(resolve => setTimeout(resolve, 1_800));
+    await route.continue().catch(() => undefined);
+  });
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+    sessionStorage.setItem("tengcle_geo_redirected", "true");
+  });
+
+  const startedAt = Date.now();
+  await page.goto("/?view=global");
+  await expect(page.getByTestId("global-intro-static")).toBeVisible({
+    timeout: 2_500,
+  });
+  await expect(page.getByTestId("global-intro-video")).toHaveCount(0);
+  await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 3_500 });
+  expect(Date.now() - startedAt).toBeLessThan(5_300);
+});
+
+test("the Global intro completes even when geography selects a regional home", async ({
+  page,
+}) => {
+  await page.route("https://ipapi.co/json/", async route => {
+    await route.fulfill({
+      contentType: "application/json",
+      body: JSON.stringify({ country_code: "JP" }),
+    });
+  });
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+  });
+
+  await page.goto("/");
+  await expect(page.getByTestId("global-intro")).toBeVisible();
+  await page.waitForTimeout(500);
+  await expect(page.getByTestId("global-intro")).toBeVisible();
+  await expect(page).toHaveURL(/\/jp\/ja\/?$/);
+  await expect(page.getByTestId("global-intro")).toBeHidden({ timeout: 4_000 });
+  await expect(
+    page.getByRole("img", { name: "Tengcle Japan" }).first()
+  ).toBeVisible();
 });
 
 test("JavaScript replaces the semantic fallback without displaying it", async ({
@@ -496,6 +730,53 @@ test("retired redesign-only routes are not publicly generated", async ({
     expect(response.headers()["x-robots-tag"], route).toBe("noindex");
     expect(response.headers()["cache-control"], route).toBe("no-store");
     expect(await response.text(), route).toContain("noindex, nofollow");
+  }
+});
+
+test("contradicted pre-formation US articles are retired behind one-hop Cloudflare redirects", async ({
+  request,
+}) => {
+  const redirects = await readFile("dist/public/_redirects", "utf8");
+  for (const language of ["en", "ja", "zh"]) {
+    for (const article of [
+      "property-management-launch-2025",
+      "group-global-network-2024",
+    ]) {
+      const from = `/us/${language}/news/${article}/`;
+      expect(redirects).toContain(`${from} /us/${language}/about/ 301`);
+      const response = await request.get(from, { maxRedirects: 0 });
+      if (response.status() === 301) {
+        expect(response.headers().location, from).toBe(
+          `/us/${language}/about/`
+        );
+      } else {
+        expect(response.status(), from).toBe(404);
+        expect(await response.text(), from).toContain("noindex, nofollow");
+      }
+    }
+  }
+});
+
+test("formation-only articles redirect to the matching regional About page", async ({
+  request,
+}) => {
+  const redirects = await readFile("dist/public/_redirects", "utf8");
+  const retired = [
+    ["hk", "hk-founding"],
+    ["jp", "company-incorporation-2021"],
+    ["us", "us-founding-2026"],
+  ] as const;
+  for (const language of ["en", "ja", "zh"]) {
+    for (const [region, article] of retired) {
+      const from = `/${region}/${language}/news/${article}/`;
+      expect(redirects).toContain(`${from} /${region}/${language}/about/ 301`);
+      const response = await request.get(from, { maxRedirects: 0 });
+      if (response.status() === 301) {
+        expect(response.headers().location, from).toBe(`/${region}/${language}/about/`);
+      } else {
+        expect(response.status(), from).toBe(404);
+      }
+    }
   }
 });
 

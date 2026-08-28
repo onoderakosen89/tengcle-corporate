@@ -119,9 +119,6 @@ const expectedStaticRoutes = [
   "jp/ja/services/property-management/index.html",
   "hk/en/services/hotel-ffe-procurement/index.html",
   "us/en/index.html",
-  "hk/en/news/hk-founding/index.html",
-  "jp/ja/news/company-incorporation-2021/index.html",
-  "us/en/news/us-founding-2026/index.html",
 ];
 for (const route of expectedStaticRoutes) {
   try {
@@ -138,7 +135,7 @@ const sitemap = await readFile(
 const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
   match => match[1]
 );
-const baselineRouteCount = 113;
+const baselineRouteCount = 98;
 const expectedSitemapCount = baselineRouteCount;
 if (sitemapLocations.length !== expectedSitemapCount) {
   fail(
@@ -233,9 +230,7 @@ for (const location of sitemapLocations) {
         `${path.relative(root, routeHtmlPath)} has ${alternateCount} hreflang links; expected ${isRegional ? 4 : 0}`
       );
     }
-    const expectedOgType = /\/news\/[^/]+\/$/.test(url.pathname)
-      ? "article"
-      : "website";
+    const expectedOgType = "website";
     if (
       !new RegExp(
         `<meta\\s+property=["']og:type["']\\s+content=["']${expectedOgType}["']`,
@@ -285,16 +280,13 @@ for (const location of sitemapLocations) {
           `${path.relative(root, routeHtmlPath)} must contain exactly one NewsArticle node`
         );
       }
-      const isBuyerIntentService =
-        /\/(?:jp\/(?:en|ja|zh)\/services\/property-management|hk\/(?:en|ja|zh)\/services\/hotel-ffe-procurement)\/$/.test(
-          url.pathname
-        );
       if (
-        isBuyerIntentService &&
-        (typeCount("Service") !== 1 || typeCount("FAQPage") !== 1)
+        typeCount("Service") !== 0 ||
+        typeCount("FAQPage") !== 0 ||
+        typeCount("LocalBusiness") !== 0
       ) {
         fail(
-          `${path.relative(root, routeHtmlPath)} must contain one Service and one FAQPage node`
+          `${path.relative(root, routeHtmlPath)} contains an unverified Service, FAQPage, or LocalBusiness node`
         );
       }
       if (/"(?:sameAs|alternateName)"\s*:/.test(structuredMatch[1])) {
@@ -345,40 +337,54 @@ for (const expectedRoute of [
   "/hk/ja/privacy/",
   "/jp/en/privacy/",
   "/us/zh/privacy/",
-  "/hk/zh/news/hk-founding/",
-  "/jp/en/news/company-incorporation-2021/",
-  "/us/ja/news/us-founding-2026/",
 ]) {
   if (!sitemapLocations.includes(`https://www.tengcle.com${expectedRoute}`)) {
     fail(`sitemap is missing route: ${expectedRoute}`);
   }
 }
-const usFoundingHtml = await readFile(
-  path.join(
-    outputDirectory,
-    "us",
-    "en",
-    "news",
-    "us-founding-2026",
-    "index.html"
-  ),
+const redirects = await readFile(
+  path.join(outputDirectory, "_redirects"),
   "utf8"
 );
-if (
-  !usFoundingHtml.includes(
-    "<title>Tengcle Development LLC Established in New Jersey | Tengcle Development LLC</title>"
+const redirectLines = redirects
+  .split(/\r?\n/)
+  .map(line => line.trim())
+  .filter(Boolean);
+const languages = ["en", "ja", "zh"];
+const retiredUsArticles = [
+  "property-management-launch-2025",
+  "group-global-network-2024",
+];
+const expectedRedirects = languages.flatMap(language =>
+  retiredUsArticles.map(
+    article =>
+      `/us/${language}/news/${article}/ /us/${language}/about/ 301`
   )
+);
+const expectedFormationRedirects = languages.flatMap(language => [
+  `/hk/${language}/news/hk-founding/ /hk/${language}/about/ 301`,
+  `/jp/${language}/news/company-incorporation-2021/ /jp/${language}/about/ 301`,
+  `/us/${language}/news/us-founding-2026/ /us/${language}/about/ 301`,
+]);
+const allExpectedRedirects = [
+  ...expectedRedirects,
+  ...expectedFormationRedirects,
+];
+if (
+  redirectLines.length !== allExpectedRedirects.length ||
+  allExpectedRedirects.some(line => !redirectLines.includes(line))
 ) {
-  fail("US founding article is missing its article-specific initial title");
+  fail("_redirects must contain all retired article redirects exactly once");
 }
-if (
-  !usFoundingHtml.includes(
-    "Tengcle Development LLC was officially registered in Weehawken"
-  )
-) {
-  fail(
-    "US founding article is missing its article-specific initial description"
-  );
+for (const line of allExpectedRedirects) {
+  const source = line.split(" ")[0];
+  const outputPath = path.join(outputDirectory, source.slice(1), "index.html");
+  try {
+    await access(outputPath);
+    fail(`retired contradicted article is still generated: ${source}`);
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
 }
 const localAssetUrls = [
   ...sitemap.matchAll(

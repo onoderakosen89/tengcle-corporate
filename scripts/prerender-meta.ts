@@ -84,7 +84,6 @@ function organizationSchema(page: SeoRoute) {
       url: `${SITE_ORIGIN}/images/tengcle-logo.png`,
     },
     email: profile.email,
-    foundingDate: profile.established,
     address: addresses.length === 1 ? addresses[0] : addresses,
   };
 }
@@ -101,7 +100,7 @@ function breadcrumbSchema(page: SeoRoute) {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Tengcle Group",
+        name: "Tengcle",
         item: canonicalUrl("/"),
       },
       {
@@ -279,12 +278,12 @@ function renderPage(baseHtml: string, page: SeoRoute) {
 
 function renderNotFoundPage(baseHtml: string) {
   let html = baseHtml.replace(/<html lang="[^"]+">/i, '<html lang="en">');
-  html = replaceTitle(html, "Page Not Found | Tengcle Group");
+  html = replaceTitle(html, "Page Not Found | Tengcle");
   html = setMeta(
     html,
     "name",
     "description",
-    "The requested Tengcle Group page does not exist."
+    "The requested Tengcle page does not exist."
   );
   html = setMeta(html, "name", "robots", "noindex, nofollow");
   html = setMeta(html, "name", "googlebot", "noindex, nofollow");

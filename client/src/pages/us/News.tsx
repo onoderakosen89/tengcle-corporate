@@ -7,7 +7,7 @@
 
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { Calendar, ArrowRight, Building2, Home, MapPin } from "lucide-react";
+import { Calendar, ArrowRight } from "lucide-react";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import Header from "@/components/us/Header";
 import Footer from "@/components/us/Footer";
@@ -30,59 +30,10 @@ interface NewsArticle {
   };
 }
 
-const newsArticles: NewsArticle[] = [
-  {
-    id: "property-management-launch-2025",
-    date: "2025-03",
-    category: "Business Launch",
-    icon: <Home className="w-5 h-5" />,
-    title: {
-      en: "Full-Scale Property Management Operations Begin",
-      ja: "不動産管理事業を本格始動",
-      zh: "不动产管理业务正式启动",
-    },
-    excerpt: {
-      en: "Tengcle Development LLC begins full-scale property management operations in New Jersey and the New York metro area, offering comprehensive services for property owners and investors.",
-      ja: "Tengcle Development LLCは、ニュージャージー州およびニューヨーク都市圏で不動産管理事業を本格的に開始しました。物件オーナーや投資家向けに包括的なサービスを提供します。",
-      zh: "Tengcle Development LLC在新泽西州和纽约都市圈正式启动不动产管理业务，为业主和投资者提供综合服务。",
-    },
-  },
-  {
-    id: "us-founding-2026",
-    date: "2026-01",
-    category: "Company Founding",
-    icon: <Building2 className="w-5 h-5" />,
-    title: {
-      en: "Tengcle Development LLC Established in New Jersey",
-      ja: "Tengcle Development LLC ニュージャージー州にて設立",
-      zh: "Tengcle Development LLC在新泽西州成立",
-    },
-    excerpt: {
-      en: "Tengcle Development LLC was officially registered in Weehawken, New Jersey in January 2026 as the US office of Tengcle Group, marking the group's expansion into the North American market.",
-      ja: "Tengcle Development LLCは、2026年1月にTengcle Groupの米国拠点としてニュージャージー州ウィーホーケンに正式登記されました。グループの北米市場への進出を示すものです。",
-      zh: "Tengcle Development LLC于2026年1月作为Tengcle Group的美国办事处在新泽西州威霍肯正式注册，标志着集团进军北美市场。",
-    },
-  },
-  {
-    id: "group-global-network-2024",
-    date: "2024-12",
-    category: "Group News",
-    icon: <MapPin className="w-5 h-5" />,
-    title: {
-      en: "Tengcle Group Establishes Global Three-Location Network",
-      ja: "Tengcle Group グローバル3拠点体制を確立",
-      zh: "Tengcle Group建立全球三地网络",
-    },
-    excerpt: {
-      en: "With the establishment of Tengcle Development LLC, Tengcle Group now operates from three locations: Tokyo, Hong Kong, and New Jersey, enabling comprehensive global service delivery.",
-      ja: "Tengcle Development LLCの設立により、Tengcle Groupは東京、香港、ニュージャージーの3拠点体制となり、グローバルなサービス提供が可能になりました。",
-      zh: "随着Tengcle Development LLC的成立，Tengcle Group现已在东京、香港和新泽西三地运营，实现全球化服务。",
-    },
-  },
-];
+const newsArticles: NewsArticle[] = [];
 
 export default function News() {
-  const { t, language } = useUsLanguage();
+  const { language } = useUsLanguage();
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "en";
   const basePath = `/us/${pathLang}`;
@@ -107,6 +58,12 @@ export default function News() {
       : language === "zh"
         ? "查看详情"
         : "Read More";
+  const emptyMessage =
+    language === "ja"
+      ? "最新情報は準備中です。"
+      : language === "zh"
+        ? "最新信息正在准备中。"
+        : "Updates are coming soon.";
 
   // Sort by date descending
   const sortedArticles = [...newsArticles].sort(
@@ -153,6 +110,11 @@ export default function News() {
         <section className="py-20">
           <div className="container max-w-4xl">
             <div className="space-y-8">
+              {sortedArticles.length === 0 && (
+                <p className={`text-center text-gray-600 ${getFontClass()}`}>
+                  {emptyMessage}
+                </p>
+              )}
               {sortedArticles.map((article, index) => (
                 <motion.article
                   key={article.id}

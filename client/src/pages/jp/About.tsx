@@ -80,7 +80,7 @@ export default function About() {
               },
             }),
             generateBreadcrumbSchema([
-              { name: "Tengcle Group", url: "https://www.tengcle.com/" },
+              { name: "Tengcle", url: "https://www.tengcle.com/" },
               { name: jpCompany.legalName, url: `https://www.tengcle.com/jp/${language}` },
               { name: t.about.title, url: `https://www.tengcle.com/jp/${language}/about` }
             ])
@@ -190,30 +190,27 @@ export default function About() {
                   </tr>
                   <tr className="border-b border-gray-100">
                     <th className={`text-left py-5 px-6 bg-gray-50 text-navy font-medium ${getFontClass()}`}>
-                      {t.about.info.location}
+                      {language === "ja" ? "登記上の本店" : language === "zh" ? "注册办事处" : "Registered Office"}
                     </th>
                     <td className={`py-5 px-6 text-charcoal ${getFontClass()}`}>
                       {language === "ja" ? (
                         <>
-                          〒108-0074 東京都港区高輪2-19-20<br />
-                          〒104-0045 東京都中央区築地2-12-14
+                          〒108-0074 東京都港区高輪2-19-20
                         </>
                       ) : language === "zh" ? (
                         <>
-                          〒108-0074 东京都港区高轮2-19-20<br />
-                          〒104-0045 东京都中央区筑地2-12-14
+                          〒108-0074 东京都港区高轮2-19-20
                         </>
                       ) : (
                         <>
-                          2-19-20 Takanawa, Minato-ku, Tokyo 108-0074<br />
-                          2-12-14 Tsukiji, Chuo-ku, Tokyo 104-0045
+                          2-19-20 Takanawa, Minato-ku, Tokyo 108-0074
                         </>
                       )}
                     </td>
                   </tr>
                   <tr>
                     <th className={`text-left py-5 px-6 bg-gray-50 text-navy font-medium ${getFontClass()}`}>
-                      {language === "ja" ? "香港関連会社" : language === "zh" ? "香港关联公司" : "Hong Kong Affiliated Company"}
+                      {language === "ja" ? "香港地域サイト" : language === "zh" ? "香港地区网站" : "Hong Kong Regional Site"}
                     </th>
                     <td className={`py-5 px-6 text-charcoal ${getFontClass()}`}>
                       <Link

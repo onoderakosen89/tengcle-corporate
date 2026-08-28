@@ -3,16 +3,15 @@
   "path": "/companies/japan/",
   "lang": "en",
   "title": "Japan Company | Tengcle",
-  "description": "Verified institutional information for 株式会社Tengcle, a Tengcle related company incorporated in Tokyo in 2021.",
-  "eyebrow": "Related company · Japan",
+  "description": "Company and business information for 株式会社Tengcle in Japan.",
+  "eyebrow": "Tengcle · Japan",
   "heading": "Japan company",
-  "intro": "株式会社Tengcle is a Tengcle related company incorporated in Tokyo. This page separates verified institutional facts from activity information that is still being reviewed for publication.",
+  "intro": "株式会社Tengcle works across property management, food and beverage, wellness, and accommodation in Japan.",
   "masterTagline": "think into the future",
   "legalName": "株式会社Tengcle",
   "facts": [
     { "label": "Legal name", "value": "株式会社Tengcle" },
     { "label": "Jurisdiction", "value": "Japan" },
-    { "label": "Formation date", "value": "25 October 2021" },
     {
       "label": "Registered office",
       "value": "Takanawa 2-19-20, Minato-ku, Tokyo"
@@ -20,13 +19,8 @@
   ],
   "sections": [
     {
-      "heading": "Activity evidence review",
-      "body": "Property-management references are undergoing evidence review. This representative does not describe them as a current public focus; any later Activity record must identify the responsible entity and connect its status to dated evidence.",
-      "items": []
-    },
-    {
-      "heading": "Relationship language",
-      "body": "The public site uses the neutral term Tengcle related companies. Each company page identifies the legal entity responsible for its own activity without implying an unverified headquarters or parent-subsidiary hierarchy.",
+      "heading": "Our work in Japan",
+      "body": "Property management is at the center of our work, supported by practical experience in food and beverage, wellness, and accommodation operations.",
       "items": []
     }
   ],
