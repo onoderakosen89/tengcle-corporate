@@ -224,25 +224,25 @@ export default function Home() {
       icon: Building2,
       title: t.services.realEstate.title,
       description: t.services.realEstate.description,
-      image: "/images/service-real-estate.webp",
+      image: "/images/candidates/jp-property-management.webp",
     },
     {
       icon: Utensils,
       title: t.services.restaurant.title,
       description: t.services.restaurant.description,
-      image: "/images/service-restaurant.webp",
+      image: "/images/candidates/jp-restaurant.webp",
     },
     {
       icon: Dumbbell,
       title: t.services.gym.title,
       description: t.services.gym.description,
-      image: "/images/service-gym.webp",
+      image: "/images/candidates/jp-gym.webp",
     },
     {
       icon: BedDouble,
       title: t.services.capsuleHotel.title,
       description: t.services.capsuleHotel.description,
-      image: "/images/service-capsule-hotel.webp",
+      image: "/images/candidates/jp-capsule-accommodation.webp",
     },
   ];
 

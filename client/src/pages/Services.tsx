@@ -108,7 +108,7 @@ export default function Services() {
       icon: Cpu,
       title: t.services.operations.title,
       description: t.services.operations.description,
-      image: "/images/service-it.webp",
+      image: "/images/candidates/hk-hospitality.webp",
       features: language === "ja" ? [
         "Odoo ERP導入・カスタマイズ",
         "API開発・システム連携",
@@ -174,7 +174,7 @@ export default function Services() {
       icon: Zap,
       title: t.services.dx.title,
       description: t.services.dx.description,
-      image: "/images/portfolio-it-system.webp",
+      image: "/images/candidates/hk-dx-operations.webp",
       features: language === "ja" ? [
         "LLM・AIを活用した業務支援",
         "API連携とワークフロー自動化",
