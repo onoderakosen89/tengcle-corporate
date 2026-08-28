@@ -10,12 +10,6 @@ import { motion } from "framer-motion";
 import {
   Calendar,
   ArrowLeft,
-  Building2,
-  Dumbbell,
-  Coffee,
-  Hotel,
-  Users,
-  ArrowRight,
 } from "lucide-react";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
 import Header from "@/components/jp/Header";
@@ -44,41 +38,7 @@ interface NewsArticle {
   };
 }
 
-const newsArticles: NewsArticle[] = [
-  {
-    id: "company-incorporation-2021",
-    date: "2021-10-25",
-    category: "会社設立",
-    icon: <Building2 className="w-5 h-5" />,
-    title: {
-      ja: "株式会社Tengcle 設立",
-      en: "Incorporation of Tengcle Co., Ltd.",
-      zh: "株式会社Tengcle成立",
-    },
-    excerpt: {
-      ja: "2021年10月25日、株式会社Tengcleを東京都で設立しました。",
-      en: "株式会社Tengcle was incorporated in Tokyo on 25 October 2021.",
-      zh: "株式会社Tengcle于2021年10月25日在东京成立。",
-    },
-    content: {
-      ja: [
-        "2021年10月25日、株式会社Tengcleを東京都で設立しました。",
-        "現在は、不動産物件の家賃回収、修繕手配、テナント対応などの不動産管理業務を行っています。",
-        "その他の事業は、実態に合わせて慎重に準備・再開を検討しています。",
-      ],
-      en: [
-        "株式会社Tengcle was incorporated in Tokyo on 25 October 2021.",
-        "Its active operations include property management, such as rent collection, repair coordination, and tenant communication.",
-        "Other activities are being reviewed or prepared in line with their actual operational status.",
-      ],
-      zh: [
-        "株式会社Tengcle于2021年10月25日在东京成立。",
-        "目前的运营包括房地产管理，例如租金回收、维修协调和租户沟通。",
-        "其他活动将根据实际运营状态进行审慎评估或准备。",
-      ],
-    },
-  },
-];
+const newsArticles: NewsArticle[] = [];
 
 export default function NewsArticle() {
   const { language } = useJpLanguage();

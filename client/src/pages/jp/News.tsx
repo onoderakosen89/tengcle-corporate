@@ -7,7 +7,7 @@
 
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { Calendar, ArrowRight, Building2, Dumbbell, Coffee, Hotel, Users } from "lucide-react";
+import { Calendar, ArrowRight } from "lucide-react";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
 import Header from "@/components/jp/Header";
 import Footer from "@/components/jp/Footer";
@@ -30,24 +30,7 @@ interface NewsArticle {
   };
 }
 
-const newsArticles: NewsArticle[] = [
-  {
-    id: "company-incorporation-2021",
-    date: "2021-10-25",
-    category: "会社設立",
-    icon: <Building2 className="w-5 h-5" />,
-    title: {
-      ja: "株式会社Tengcle 設立",
-      en: "Incorporation of Tengcle Co., Ltd.",
-      zh: "株式会社Tengcle成立"
-    },
-    excerpt: {
-      ja: "2021年10月25日、株式会社Tengcleを東京都で設立しました。",
-      en: "株式会社Tengcle was incorporated in Tokyo on 25 October 2021.",
-      zh: "株式会社Tengcle于2021年10月25日在东京成立。"
-    }
-  }
-];
+const newsArticles: NewsArticle[] = [];
 
 export default function News() {
   const { language } = useJpLanguage();
@@ -68,6 +51,11 @@ export default function News() {
       ? "株式会社Tengcle的公司信息"
       : "Company information from 株式会社Tengcle";
   const readMore = language === "ja" ? "詳細を見る" : language === "zh" ? "查看详情" : "Read More";
+  const emptyMessage = language === "ja"
+    ? "最新情報は準備中です。"
+    : language === "zh"
+      ? "最新信息正在准备中。"
+      : "Updates are coming soon.";
 
   // Sort by date descending
   const sortedArticles = [...newsArticles].sort((a, b) =>
@@ -110,6 +98,11 @@ export default function News() {
         <section className="py-20">
           <div className="container max-w-4xl">
             <div className="space-y-8">
+              {sortedArticles.length === 0 && (
+                <p className={`text-center text-gray-600 ${getFontClass()}`}>
+                  {emptyMessage}
+                </p>
+              )}
               {sortedArticles.map((article, index) => (
                 <motion.article
                   key={article.id}

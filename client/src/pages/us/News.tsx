@@ -7,7 +7,7 @@
 
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { Calendar, ArrowRight, Building2 } from "lucide-react";
+import { Calendar, ArrowRight } from "lucide-react";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import Header from "@/components/us/Header";
 import Footer from "@/components/us/Footer";
@@ -30,27 +30,10 @@ interface NewsArticle {
   };
 }
 
-const newsArticles: NewsArticle[] = [
-  {
-    id: "us-founding-2026",
-    date: "2026-01-05",
-    category: "Company Founding",
-    icon: <Building2 className="w-5 h-5" />,
-    title: {
-      en: "Tengcle Development LLC Established in New Jersey",
-      ja: "Tengcle Development LLC ニュージャージー州にて設立",
-      zh: "Tengcle Development LLC在新泽西州成立",
-    },
-    excerpt: {
-      en: "Tengcle Development LLC was formed in New Jersey on 5 January 2026.",
-      ja: "Tengcle Development LLCは2026年1月5日にニュージャージー州で設立されました。",
-      zh: "Tengcle Development LLC于2026年1月5日在新泽西州成立。",
-    },
-  },
-];
+const newsArticles: NewsArticle[] = [];
 
 export default function News() {
-  const { t, language } = useUsLanguage();
+  const { language } = useUsLanguage();
   const [location] = useLocation();
   const pathLang = location.split("/")[2] || "en";
   const basePath = `/us/${pathLang}`;
@@ -75,6 +58,12 @@ export default function News() {
       : language === "zh"
         ? "查看详情"
         : "Read More";
+  const emptyMessage =
+    language === "ja"
+      ? "最新情報は準備中です。"
+      : language === "zh"
+        ? "最新信息正在准备中。"
+        : "Updates are coming soon.";
 
   // Sort by date descending
   const sortedArticles = [...newsArticles].sort(
@@ -121,6 +110,11 @@ export default function News() {
         <section className="py-20">
           <div className="container max-w-4xl">
             <div className="space-y-8">
+              {sortedArticles.length === 0 && (
+                <p className={`text-center text-gray-600 ${getFontClass()}`}>
+                  {emptyMessage}
+                </p>
+              )}
               {sortedArticles.map((article, index) => (
                 <motion.article
                   key={article.id}

@@ -54,11 +54,6 @@ export default function Footer() {
               {t.footer.description}
             </p>
 
-            {/* Licenses */}
-            <div className="flex flex-wrap gap-4 text-xs text-white/50">
-              <span>Incorporated 29 April 2025</span>
-              <span>Est. 2025</span>
-            </div>
           </div>
 
           {/* Navigation */}
@@ -121,8 +116,8 @@ export default function Footer() {
               © {new Date().getFullYear()} Tengcle Limited. All rights reserved.
             </p>
 
-            {/* Group Companies - Important for SEO Sitelinks */}
-            <nav aria-label="Tengcle related company sites" className="flex items-center gap-6">
+            {/* Regional sites */}
+            <nav aria-label="Tengcle regional sites" className="flex items-center gap-6">
               <Link href="/hk/en" aria-label="Tengcle Limited - Hong Kong company">
                 <span className={`flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs ${getFontClass()}`}>
                   <span>🇭🇰 Hong Kong</span>

@@ -3,6 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { buyerIntentPages } from "../shared/buyerIntentPages";
+import { seoRouteManifest } from "../shared/seoRouteManifest";
 
 const forbiddenHierarchyPattern =
   /100\s*[%％].{0,40}(?:owned|held|保有|所有|持有)|wholly owned|owned by Kosen|parent[- ]subsidiar|親会社|子会社|親子会社|母子公司|global headquarters|Hong Kong headquarters|Hong Kong HQ|グローバル本社|香港本社|全球总部|香港总部|founding company|founding entity|founding office|創業法人|創業会社|创始法人|创始公司|\bUS office\b|\bU\.S\. office\b|米国オフィス|米国拠点|美国办事处|美国办公室/i;
@@ -54,9 +55,9 @@ test("known routes and article routes return route-specific initial HTML", async
       "https://www.tengcle.com/us/zh/services/property-development/",
     ],
     [
-      "/us/en/news/us-founding-2026",
+      "/hk/en/news/first-ffe-project-2026",
       "en",
-      "https://www.tengcle.com/us/en/news/us-founding-2026/",
+      "https://www.tengcle.com/hk/en/news/first-ffe-project-2026/",
     ],
   ] as const;
 
@@ -70,23 +71,21 @@ test("known routes and article routes return route-specific initial HTML", async
   }
 });
 
-test("article initial HTML exposes article-specific social and search metadata", async ({
+test("news initial HTML exposes route-specific social and search metadata", async ({
   request,
 }) => {
-  const response = await request.get("/us/en/news/us-founding-2026");
+  const response = await request.get("/hk/en/news/first-ffe-project-2026");
   expect(response.status()).toBe(200);
   const body = await response.text();
   expect(body).toContain(
-    "<title>Tengcle Development LLC Established in New Jersey | Tengcle Development LLC</title>"
+    "<title>First FF&amp;E Project Scheduled for February 2026 | Tengcle Limited</title>"
   );
   expect(body).toContain(
-    'content="Tengcle Development LLC was formed in New Jersey on 5 January 2026."'
+    'content="Tengcle Limited announces its first hotel FF&amp;E procurement project, scheduled for delivery in February 2026."'
   );
-  expect(body).toContain('<meta property="og:type" content="article">');
-  expect(body).toContain(
-    '<meta property="article:published_time" content="2026-01-05">'
-  );
-  expect(body).toContain('"@type":"NewsArticle"');
+  expect(body).toContain('<meta property="og:type" content="website">');
+  expect(body).not.toContain('property="article:published_time"');
+  expect(body).toContain('"@type":"WebPage"');
   expect(body.match(/rel="canonical"/g)).toHaveLength(1);
   expect(body.match(/rel="alternate"/g)).toHaveLength(4);
 });
@@ -103,7 +102,7 @@ test("route manifest metadata remains stable after hydration", async ({
     "/jp/ja",
     "/us/en",
     "/hk/zh/faq",
-    "/us/en/news/us-founding-2026",
+    "/hk/zh/news/first-ffe-project-2026",
   ]) {
     const response = await request.get(route);
     const initialHtml = await response.text();
@@ -115,10 +114,10 @@ test("route manifest metadata remains stable after hydration", async ({
     expect(initialDescription, route).toBeTruthy();
 
     await page.goto(route);
-    await expect(page).toHaveTitle(initialTitle!);
+    await expect(page).toHaveTitle(initialTitle!.replaceAll("&amp;", "&"));
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       "content",
-      initialDescription!
+      initialDescription!.replaceAll("&amp;", "&")
     );
     const webPageNodes = await page
       .locator('script[type="application/ld+json"]')
@@ -153,7 +152,7 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
     sitemap.matchAll(/<loc>(https:\/\/www\.tengcle\.com[^<]+)<\/loc>/g),
     match => match[1]
   );
-  expect(urls).toHaveLength(107);
+  expect(urls).toHaveLength(seoRouteManifest.length);
 
   for (const canonical of urls) {
     const route = new URL(canonical).pathname;
@@ -517,7 +516,7 @@ test("Global home preserves the established UI on mobile and reduced motion", as
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { level: 1, name: /Tengcle Related Companies/ })
+    page.getByRole("heading", { level: 1, name: /Tengcle Regional Sites/ })
   ).toBeVisible();
   await expect(
     page.getByRole("img", { name: "Tengcle - think into the future" })
@@ -597,7 +596,7 @@ test("approved v4 branding preserves the Global intro and regional identities", 
   await expect(page.getByTestId("global-intro")).toHaveCount(0);
   expect(introMediaRequests).toBe(0);
   await expect(
-    page.getByRole("heading", { level: 1, name: /Tengcle Related Companies/ })
+    page.getByRole("heading", { level: 1, name: /Tengcle Regional Sites/ })
   ).toBeVisible();
 
   const regionalHeaders = [
@@ -753,6 +752,29 @@ test("contradicted pre-formation US articles are retired behind one-hop Cloudfla
       } else {
         expect(response.status(), from).toBe(404);
         expect(await response.text(), from).toContain("noindex, nofollow");
+      }
+    }
+  }
+});
+
+test("formation-only articles redirect to the matching regional About page", async ({
+  request,
+}) => {
+  const redirects = await readFile("dist/public/_redirects", "utf8");
+  const retired = [
+    ["hk", "hk-founding"],
+    ["jp", "company-incorporation-2021"],
+    ["us", "us-founding-2026"],
+  ] as const;
+  for (const language of ["en", "ja", "zh"]) {
+    for (const [region, article] of retired) {
+      const from = `/${region}/${language}/news/${article}/`;
+      expect(redirects).toContain(`${from} /${region}/${language}/about/ 301`);
+      const response = await request.get(from, { maxRedirects: 0 });
+      if (response.status() === 301) {
+        expect(response.headers().location, from).toBe(`/${region}/${language}/about/`);
+      } else {
+        expect(response.status(), from).toBe(404);
       }
     }
   }

@@ -229,7 +229,7 @@ export default function UsHome() {
             generateOrganizationSchema({
               name: company.legalName,
               description:
-                "A New Jersey company established in January 2026 and preparing its real estate development and management activities.",
+                "New Jersey-based property management, repair coordination, tenant support, and property revitalization.",
               url: "https://www.tengcle.com/us/en",
               logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
               email: company.email,
@@ -240,7 +240,6 @@ export default function UsHome() {
                 country: address.country,
                 postalCode: address.postalCode,
               },
-              foundingDate: company.established,
             }),
           ],
         }}

@@ -84,7 +84,6 @@ function organizationSchema(page: SeoRoute) {
       url: `${SITE_ORIGIN}/images/tengcle-logo.png`,
     },
     email: profile.email,
-    foundingDate: profile.established,
     address: addresses.length === 1 ? addresses[0] : addresses,
   };
 }

@@ -119,9 +119,6 @@ const expectedStaticRoutes = [
   "jp/ja/services/property-management/index.html",
   "hk/en/services/hotel-ffe-procurement/index.html",
   "us/en/index.html",
-  "hk/en/news/hk-founding/index.html",
-  "jp/ja/news/company-incorporation-2021/index.html",
-  "us/en/news/us-founding-2026/index.html",
 ];
 for (const route of expectedStaticRoutes) {
   try {
@@ -138,7 +135,7 @@ const sitemap = await readFile(
 const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
   match => match[1]
 );
-const baselineRouteCount = 107;
+const baselineRouteCount = 98;
 const expectedSitemapCount = baselineRouteCount;
 if (sitemapLocations.length !== expectedSitemapCount) {
   fail(
@@ -233,11 +230,7 @@ for (const location of sitemapLocations) {
         `${path.relative(root, routeHtmlPath)} has ${alternateCount} hreflang links; expected ${isRegional ? 4 : 0}`
       );
     }
-    const expectedOgType = /\/(?:hk-founding|company-incorporation-2021|us-founding-2026)\/$/.test(
-      url.pathname
-    )
-      ? "article"
-      : "website";
+    const expectedOgType = "website";
     if (
       !new RegExp(
         `<meta\\s+property=["']og:type["']\\s+content=["']${expectedOgType}["']`,
@@ -344,42 +337,11 @@ for (const expectedRoute of [
   "/hk/ja/privacy/",
   "/jp/en/privacy/",
   "/us/zh/privacy/",
-  "/hk/zh/news/hk-founding/",
-  "/jp/en/news/company-incorporation-2021/",
-  "/us/ja/news/us-founding-2026/",
 ]) {
   if (!sitemapLocations.includes(`https://www.tengcle.com${expectedRoute}`)) {
     fail(`sitemap is missing route: ${expectedRoute}`);
   }
 }
-const usFoundingHtml = await readFile(
-  path.join(
-    outputDirectory,
-    "us",
-    "en",
-    "news",
-    "us-founding-2026",
-    "index.html"
-  ),
-  "utf8"
-);
-if (
-  !usFoundingHtml.includes(
-    "<title>Tengcle Development LLC Established in New Jersey | Tengcle Development LLC</title>"
-  )
-) {
-  fail("US founding article is missing its article-specific initial title");
-}
-if (
-  !usFoundingHtml.includes(
-    "Tengcle Development LLC was formed in New Jersey on 5 January 2026"
-  )
-) {
-  fail(
-    "US founding article is missing its article-specific initial description"
-  );
-}
-
 const redirects = await readFile(
   path.join(outputDirectory, "_redirects"),
   "utf8"
@@ -399,13 +361,22 @@ const expectedRedirects = languages.flatMap(language =>
       `/us/${language}/news/${article}/ /us/${language}/about/ 301`
   )
 );
+const expectedFormationRedirects = languages.flatMap(language => [
+  `/hk/${language}/news/hk-founding/ /hk/${language}/about/ 301`,
+  `/jp/${language}/news/company-incorporation-2021/ /jp/${language}/about/ 301`,
+  `/us/${language}/news/us-founding-2026/ /us/${language}/about/ 301`,
+]);
+const allExpectedRedirects = [
+  ...expectedRedirects,
+  ...expectedFormationRedirects,
+];
 if (
-  redirectLines.length !== expectedRedirects.length ||
-  expectedRedirects.some(line => !redirectLines.includes(line))
+  redirectLines.length !== allExpectedRedirects.length ||
+  allExpectedRedirects.some(line => !redirectLines.includes(line))
 ) {
-  fail("_redirects must contain exactly six one-hop retired US article redirects");
+  fail("_redirects must contain all retired article redirects exactly once");
 }
-for (const line of expectedRedirects) {
+for (const line of allExpectedRedirects) {
   const source = line.split(" ")[0];
   const outputPath = path.join(outputDirectory, source.slice(1), "index.html");
   try {

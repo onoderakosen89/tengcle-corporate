@@ -35,7 +35,6 @@ function organizationSchema(page: SeoRoute) {
       "@type": "ImageObject",
       url: `${SITE_ORIGIN}/images/tengcle-logo.png`,
     },
-    foundingDate: profile.established,
     ...(registeredOffice && {
       address: {
         "@type": "PostalAddress",
@@ -151,7 +150,6 @@ export function representativeStructuredData(
       "@id": `${page.canonical}#organization`,
       name: "株式会社Tengcle",
       url: page.canonical,
-      foundingDate: "2021-10-25",
       address: {
         "@type": "PostalAddress",
         streetAddress: "2-19-20 Takanawa",

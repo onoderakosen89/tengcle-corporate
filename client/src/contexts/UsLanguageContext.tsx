@@ -42,19 +42,19 @@ const translations: Translations = {
 
   // Hero Section
   'hero.tagline': {
-    en: 'Building Our US Real Estate Portfolio',
-    ja: '米国不動産ポートフォリオを構築中',
-    zh: '正在构建我们的美国房地产组合',
+    en: 'Real Estate Operations in New Jersey',
+    ja: 'ニュージャージーの不動産運営',
+    zh: '新泽西房地产运营',
   },
   'hero.title': {
-    en: 'Strategic Growth in Real Estate',
-    ja: '不動産での戦略的成長',
-    zh: '房地产的战略性增长',
+    en: 'Strengthening Property Value',
+    ja: '不動産の価値を着実に育てる',
+    zh: '稳步提升物业价值',
   },
   'hero.subtitle': {
-    en: 'Established in January 2026, we are building our presence in New Jersey and the New York metropolitan area. We are preparing to launch property management and vacation rental services.',
-    ja: '2026年1月に設立。ニュージャージー州およびニューヨーク都市圏で、不動産開発・管理サービスの本格始動に向けた準備を進めています。',
-    zh: '成立于2026年1月。我们正在新泽西州和纽约都会区为房地产开发和物业管理服务的正式启动做准备。',
+    en: 'Based in New Jersey, we handle rent collection, repair coordination, tenant matters, and practical improvements that support lasting property value.',
+    ja: 'ニュージャージー州を拠点に、家賃回収、修繕手配、テナント対応を含む不動産管理と、物件価値の向上に取り組んでいます。',
+    zh: '我们立足新泽西州，开展租金收取、维修协调、租户沟通及物业价值提升工作。',
   },
   'hero.cta.services': {
     en: 'Our Services',
@@ -74,26 +74,26 @@ const translations: Translations = {
     zh: '我们的服务',
   },
   'services.subtitle': {
-    en: 'Real estate services for property owners and investors',
-    ja: '不動産オーナー・投資家向けサービス',
-    zh: '为业主和投资者提供服务',
+    en: 'Property operations and value-enhancement services for owners',
+    ja: 'オーナー向けの不動産管理・価値向上支援',
+    zh: '面向业主的物业管理与价值提升服务',
   },
 
   // Service 0: Property Development (Core Business)
   'service.development.title': {
-    en: 'Property Development',
-    ja: '不動産開発',
-    zh: '房地产开发',
+    en: 'Property Revitalization',
+    ja: '物件再生・価値向上',
+    zh: '物业改造与价值提升',
   },
   'service.development.desc': {
-    en: 'We are developing our real estate portfolio in the New Jersey and New York metropolitan area. Our strategy focuses on identifying opportunities, conducting thorough market analysis, and building a diversified portfolio of income-generating properties.',
-    ja: 'ニュージャージー州およびニューヨーク都市圏で不動産ポートフォリオの構築を準備しています。案件探索、市場分析、長期保有方針の検討を段階的に進めています。',
-    zh: '我们正在新泽西和纽约都会地区开发我们的房地产组合。我们的战略专注于识别机会、进行彻底的市场分析，并构建多样化的收益物业组合。',
+    en: 'We assess each property’s condition and operations, then coordinate repairs and practical improvements to strengthen usability, stability, and long-term value.',
+    ja: '物件の状態と運営上の課題を整理し、修繕や実務的な改善を通じて、使いやすさ、安定性、長期的な価値の向上を図ります。',
+    zh: '我们梳理物业现状与运营问题，通过维修和务实改进，提升使用体验、运营稳定性与长期价值。',
   },
   'service.development.feature1': {
-    en: 'Distressed Property Acquisition',
-    ja: '問題物件の取得',
-    zh: '困境物业收购',
+    en: 'Property Assessment',
+    ja: '物件状況の整理',
+    zh: '物业状况评估',
   },
   'service.development.feature2': {
     en: 'Strategic Renovation & Revitalization',
@@ -106,9 +106,9 @@ const translations: Translations = {
     zh: '价值提升',
   },
   'service.development.feature4': {
-    en: 'Long-term Asset Holding',
-    ja: '長期資産保有',
-    zh: '长期资产持有',
+    en: 'Long-term Value Creation',
+    ja: '長期的な価値形成',
+    zh: '长期价值创造',
   },
 
   // Service 1: Property Management
@@ -118,14 +118,14 @@ const translations: Translations = {
     zh: '物业管理',
   },
   'service.property.desc': {
-    en: 'We are building our property management capabilities. Our services will include tenant placement, rent collection, maintenance coordination, and comprehensive financial reporting for residential and commercial assets.',
-    ja: '不動産管理サービスの本格始動に向けて準備中です。入居者募集、家賃回収、修繕調整、収支報告を含むサービスの提供を予定しています。',
-    zh: '我们正在建设我们的物业管理能力。我们的服务将包括租户安置、租金收取、维护协调和全面的财务报告。'
+    en: 'We handle the day-to-day work that keeps properties operating, including rent collection, repair coordination, tenant communication, and owner reporting.',
+    ja: '家賃回収、修繕手配、テナント対応、オーナーへの報告など、物件運営に必要な日常管理を一貫して行います。',
+    zh: '我们统一处理物业日常运营所需的租金收取、维修协调、租户沟通及业主汇报。'
   },
   'service.property.feature1': {
-    en: 'Rigorous Tenant Screening',
-    ja: '厳格な入居者審査',
-    zh: '严格的租户筛选',
+    en: 'Tenant Communication',
+    ja: 'テナント対応',
+    zh: '租户沟通',
   },
   'service.property.feature2': {
     en: 'Rent Collection & Financial Reporting',
@@ -133,9 +133,9 @@ const translations: Translations = {
     zh: '租金收取与财务报告',
   },
   'service.property.feature3': {
-    en: '24/7 Maintenance Coordination',
-    ja: '24時間メンテナンス対応',
-    zh: '24/7 维护协调',
+    en: 'Repair Coordination',
+    ja: '修繕手配',
+    zh: '维修协调',
   },
   'service.property.feature4': {
     en: 'Regular Inspections',
@@ -145,14 +145,14 @@ const translations: Translations = {
 
   // Service 2: Vacation Rentals
   'service.vacation.title': {
-    en: 'Vacation Rental Management',
-    ja: 'バケーションレンタル運用',
-    zh: '度假租赁管理',
+    en: 'Short-Stay Operations Planning',
+    ja: '短期滞在の運用設計',
+    zh: '短期住宿运营设计',
   },
   'service.vacation.desc': {
-    en: 'We are preparing to launch vacation rental management services. Our approach will focus on optimizing short-term rentals through dynamic pricing, professional guest communication, and revenue optimization.',
-    ja: 'バケーションレンタル管理サービスの開始に向けて準備中です。ダイナミックプライシング、ゲスト対応、収益最適化を含む運用方針を検討しています。',
-    zh: '我们正在为度假租赁管理服务的启动做准备，并研究动态定价、专业客户沟通和收益优化等运营方针。',
+    en: 'We design operating plans for short-stay use around each property’s location and characteristics, balancing guest experience with sustainable performance.',
+    ja: '物件の立地や特性に合わせて短期滞在向けの運用方法を設計し、利用体験と持続的な収益性の両立を図ります。',
+    zh: '我们根据物业位置与特点设计短期住宿运营方案，兼顾住客体验与可持续收益。',
   },
   'service.vacation.feature1': {
     en: 'Market Analysis & Strategy',
@@ -162,17 +162,17 @@ const translations: Translations = {
   'service.vacation.feature2': {
     en: 'Operational Planning',
     ja: '運営計画立案',
-    zh: '运营规划与执行'
+    zh: '运营规划'
   },
   'service.vacation.feature3': {
-    en: 'Professional Cleaning & turnover',
-    ja: '専門スタッフによる清掃',
-    zh: '专业清洁与周转',
+    en: 'Cleaning & Turnover Planning',
+    ja: '清掃・入れ替え設計',
+    zh: '清洁与周转规划',
   },
   'service.vacation.feature4': {
-    en: 'Revenue Management',
-    ja: 'レベニューマネジメント',
-    zh: '收益管理',
+    en: 'Pricing & Revenue Planning',
+    ja: '料金・収益計画',
+    zh: '定价与收益规划',
   },
 
   // About Section
@@ -187,9 +187,9 @@ const translations: Translations = {
     zh: '新泽西州公司',
   },
   'about.description': {
-    en: 'Tengcle Development LLC is a New Jersey company and one of the Tengcle related companies. It was formed on 5 January 2026.',
-    ja: 'Tengcle Development LLCは、2026年1月5日に設立されたニュージャージー州法人で、Tengcleの関連会社の一社です。',
-    zh: 'Tengcle Development LLC是于2026年1月5日成立的新泽西州公司，也是Tengcle关联公司之一。',
+    en: 'Tengcle Development LLC is based in New Jersey and improves property operations through day-to-day management, repair coordination, and tenant support.',
+    ja: 'Tengcle Development LLCはニュージャージー州を拠点に、日々の管理、修繕調整、テナント対応を通じて物件の運営と価値向上に取り組んでいます。',
+    zh: 'Tengcle Development LLC立足新泽西州，通过日常管理、维修协调与租户支持推动物业运营与价值提升。',
   },
 
   // Company Info
@@ -272,19 +272,19 @@ const translations: Translations = {
 
   // SEO Meta
   'meta.title': {
-    en: 'Tengcle Development LLC | Real Estate Development & Property Management in NJ/NY',
-    ja: 'Tengcle Development LLC | NJ/NYの不動産開発・管理',
-    zh: 'Tengcle Development LLC | 新泽西/纽约房地产开发与管理',
+    en: 'Tengcle Development LLC | Property Management & Revitalization in NJ/NY',
+    ja: 'Tengcle Development LLC | NJ/NYの不動産管理・物件再生',
+    zh: 'Tengcle Development LLC | 新泽西／纽约物业管理与改造',
   },
   'meta.description': {
-    en: 'A New Jersey company established in January 2026, preparing for staged real estate development, property management, and vacation-rental activities in the NJ/NY area.',
-    ja: '2026年1月に設立されたニュージャージー州法人。NJ/NY地域での不動産開発・管理・バケーションレンタル事業の本格始動に向けて準備中です。',
-    zh: '2026年1月成立的新泽西州公司，正为NJ/NY地区房地产开发、物业管理和度假租赁业务的分阶段启动做准备。',
+    en: 'Based in New Jersey, providing property management, repair coordination, tenant support, and property revitalization. NJ/NY service scope is confirmed per property.',
+    ja: 'ニュージャージー州を拠点に、家賃回収、修繕手配、テナント対応を含む不動産管理と物件再生に取り組んでいます。NJ/NYの対応範囲は物件ごとに確認します。',
+    zh: '立足新泽西州，开展租金收取、维修协调、租户支持及物业改造。新泽西／纽约的服务范围按每处物业确认。',
   },
   'meta.keywords': {
-    en: 'Tengcle Development LLC, NJ real estate, property development, vacation rentals, property management, New Jersey',
-    ja: 'Tengcle Development LLC, NJ不動産, 不動産開発, 民泊運用, 物件管理, ニュージャージー',
-    zh: 'Tengcle Development LLC, 新泽西房地产, 房地产开发, 民宿运营, 物业管理, 新泽西',
+    en: 'Tengcle Development LLC, NJ real estate, property revitalization, short-stay operations planning, property management, New Jersey',
+    ja: 'Tengcle Development LLC, NJ不動産, 不動産管理, 物件再生, 修繕, ニュージャージー',
+    zh: 'Tengcle Development LLC, 新泽西房地产, 物业管理, 物业改造, 维修, 新泽西',
   },
 };
 

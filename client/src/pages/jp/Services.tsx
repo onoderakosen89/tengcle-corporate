@@ -10,7 +10,7 @@
 import { useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, useInView, type Variants, type Easing } from "framer-motion";
-import { ArrowRight, Building2, Utensils, Dumbbell, BedDouble, Users, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Building2, Utensils, Dumbbell, BedDouble, CheckCircle2 } from "lucide-react";
 import Header from "@/components/jp/Header";
 import Footer from "@/components/jp/Footer";
 import { Button } from "@/components/ui/button";
@@ -73,7 +73,7 @@ export default function Services() {
       description: t.services.restaurant.description,
       image: "/images/service-restaurant.webp",
       features: language === "ja"
-        ? ["過去の運営施設を保有", "現在は営業停止中", "再開可能性を検討中", "実態に応じた段階的な準備"]
+        ? ["レストラン・カフェの企画・運営", "店舗開発・内装設計", "メニュー開発", "スタッフ教育・研修"]
         : language === "zh"
           ? ["餐厅咖啡馆策划运营", "店铺开发・室内设计", "菜单开发", "员工教育培训"]
           : ["Restaurant & cafe planning", "Store development & interior design", "Menu development", "Staff training & education"],
@@ -84,7 +84,7 @@ export default function Services() {
       description: t.services.gym.description,
       image: "/images/service-gym.webp",
       features: language === "ja"
-        ? ["Tengcle Fitness & Lounge with Golfの施設", "現在は営業停止中", "施設を保有", "将来の再開に向けて準備中"]
+        ? ["プライベートジムスペース", "最新トレーニング機器", "清潔な環境", "柔軟な予約システム"]
         : language === "zh"
           ? ["私人健身空间", "最新训练设备", "清洁环境", "灵活预约系统"]
           : ["Private gym space", "Latest training equipment", "Clean environment", "Flexible booking system"],
@@ -95,21 +95,10 @@ export default function Services() {
       description: t.services.capsuleHotel.description,
       image: "/images/service-capsule-hotel.webp",
       features: language === "ja"
-        ? ["事業展開を検討中", "現在の稼働実績は未掲載", "実態に応じた計画", "将来の展開に向けた準備"]
+        ? ["快適な客室設計", "快適な睡眠環境", "充実のアメニティ", "利用しやすい料金"]
         : language === "zh"
           ? ["新一代胶囊设计", "舒适睡眠环境", "充实的设施", "实惠的价格"]
           : ["Next-gen capsule design", "Comfortable sleep environment", "Full amenities", "Affordable pricing"],
-    },
-    {
-      icon: Users,
-      title: t.services.recruitment.title,
-      description: t.services.recruitment.description,
-      image: "/images/service-recruitment.webp",
-      features: language === "ja"
-        ? ["事業展開を検討中", "現在の稼働実績は未掲載", "実態に応じた計画", "将来の展開に向けた準備"]
-        : language === "zh"
-          ? ["企业与求职者匹配", "行业专业知识", "职业咨询", "入职后跟进"]
-          : ["Company-candidate matching", "Industry expertise", "Career counseling", "Post-hire follow-up"],
     },
   ];
 
@@ -117,7 +106,7 @@ export default function Services() {
     <div className="min-h-screen bg-white" data-region="jp">
       <SEOHead
         title={language === "ja" ? "事業紹介 | 株式会社Tengcle 東京の不動産管理" : language === "zh" ? "业务介绍 | 株式会社Tengcle 东京的房地产管理" : "Services | 株式会社Tengcle Tokyo Property Management"}
-        description={language === "ja" ? "株式会社Tengcleの不動産管理と、実態に応じて準備・検討している各事業をご紹介します。" : language === "zh" ? "介绍株式会社Tengcle的房地产管理业务及按实际运营状态准备或评估的其他活动。" : "Learn about 株式会社Tengcle's active property-management operations and other activities being prepared or evaluated according to operational status."}
+        description={language === "ja" ? "株式会社Tengcleの不動産管理、飲食、ウェルネス、宿泊における事業実績をご紹介します。" : language === "zh" ? "介绍株式会社Tengcle在房地产管理、餐饮、健康休闲和住宿领域的业务实绩。" : "Explore 株式会社Tengcle's operating experience in property management, food and beverage, wellness, and accommodation."}
         keywords={language === "ja" ? "株式会社Tengcle, 事業紹介, 不動産管理, 家賃回収, 修繕手配" : language === "zh" ? "株式会社Tengcle, 业务介绍, 房地产管理, 租金回收, 维修协调" : "株式会社Tengcle, services, property management, rent collection, repair coordination"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_JP"}
         ogImage="/images/og-image.webp"

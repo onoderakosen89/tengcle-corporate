@@ -217,9 +217,9 @@ const newsArticles: NewsArticle[] = [
       zh: "酒店运营业务正式启动",
     },
     excerpt: {
-      en: "Shortly after establishment, Tengcle Limited launches hotel operations business.",
-      ja: "設立直後、Tengcle Limitedはホテル運営事業を開始しました。",
-      zh: "成立后不久，Tengcle Limited启动酒店运营业务。",
+      en: "Tengcle Limited launches hotel operations activities.",
+      ja: "Tengcle Limitedはホテル運営事業を開始しました。",
+      zh: "Tengcle Limited启动酒店运营业务。",
     },
     content: {
       en: [
@@ -229,13 +229,13 @@ const newsArticles: NewsArticle[] = [
         "By starting with hotel operations, Tengcle Limited established a strong foundation in the hospitality industry, building relationships and expertise that would later support our expansion into FF&E procurement.",
       ],
       ja: [
-        "2025年1月の設立直後、Tengcle Limitedはホテル運営事業を開始し、地域のホスピタリティ施設に管理・運営サポートを提供しています。",
+        "Tengcle Limitedはホテル運営事業を開始し、地域のホスピタリティ施設に管理・運営サポートを提供しています。",
         "当社のホテル運営サービスは、日本でのホスピタリティ関連活動を含む、Tengcle関連の業務を通じて培われた経験を活用しています。",
         "日常業務の監督、スタッフトレーニングと管理、収益最適化、ゲスト体験の向上、品質保証プログラムを含む包括的なホテル管理サービスを提供しています。",
         "ホテル運営から始めることで、Tengcle Limitedはホスピタリティ業界で強固な基盤を確立し、後のFF&E調達への拡大を支える関係性と専門知識を構築しました。",
       ],
       zh: [
-        "在2025年4月成立后不久，Tengcle Limited启动了酒店运营业务为该地区的酒店物业提供管理和运营支持。",
+        "Tengcle Limited启动酒店运营业务，为该地区的酒店物业提供管理和运营支持。",
         "我们的酒店运营服务借鉴Tengcle相关业务中积累的经验，包括在日本开展的酒店相关活动。",
         "我们提供全面的酒店管理服务，包括日常运营监督、员工培训和管理、收入优化、宾客体验提升和质量保证计划。",
         "从酒店运营开始，Tengcle Limited在酒店行业建立了坚实的基础，建立了关系和专业知识，这些后来支持了我们向FF&E采购的扩展。",
@@ -243,47 +243,6 @@ const newsArticles: NewsArticle[] = [
     },
     image:
       "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&h=600&fit=crop",
-  },
-  {
-    id: "hk-founding",
-    slug: "hk-founding",
-    date: "2025-04-29",
-    category: {
-      en: "Company Founding",
-      ja: "会社設立",
-      zh: "公司成立",
-    },
-    readTime: {
-      en: "4 min",
-      ja: "4分",
-      zh: "4分钟",
-    },
-    title: {
-      en: "Tengcle Limited Established in Hong Kong",
-      ja: "Tengcle Limited 香港で設立",
-      zh: "Tengcle Limited在香港成立",
-    },
-    excerpt: {
-      en: "Tengcle Limited was incorporated in Hong Kong on 29 April 2025.",
-      ja: "Tengcle Limitedは2025年4月29日に香港で設立されました。",
-      zh: "Tengcle Limited于2025年4月29日在香港成立。",
-    },
-    content: {
-      en: [
-        "Tengcle Limited was incorporated in Hong Kong on 29 April 2025.",
-        "Tengcle Limited is one of the Tengcle related companies. Each company is a separate legal entity in its jurisdiction.",
-      ],
-      ja: [
-        "Tengcle Limitedは2025年4月29日に香港で設立されました。",
-        "Tengcle LimitedはTengcleの関連会社の一社です。各社は、それぞれの法域における独立した法人です。",
-      ],
-      zh: [
-        "Tengcle Limited于2025年4月29日在香港成立。",
-        "Tengcle Limited是Tengcle关联公司之一。各公司是在其司法管辖区内独立的法律实体。",
-      ],
-    },
-    image:
-      "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=1200&h=600&fit=crop",
   },
 ];
 

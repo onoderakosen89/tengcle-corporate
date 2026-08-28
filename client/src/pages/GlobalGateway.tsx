@@ -24,9 +24,9 @@ const regions = [
     role: "Hong Kong Company",
     roleJa: "香港法人",
     roleZh: "香港公司",
-    description: "Incorporated in Hong Kong · 29 April 2025",
-    descriptionJa: "香港法人・2025年4月29日設立",
-    descriptionZh: "香港公司・2025年4月29日成立",
+    description: "Hospitality procurement, project coordination, IT and trade",
+    descriptionJa: "ホスピタリティ調達・プロジェクト調整・IT・貿易",
+    descriptionZh: "酒店采购、项目协调、信息技术与贸易",
     flag: "🇭🇰",
     flagImage: "/images/flag-hk.svg",
     path: "/hk/en",
@@ -46,9 +46,9 @@ const regions = [
     role: "Japan Company",
     roleJa: "日本法人",
     roleZh: "日本公司",
-    description: "Incorporated 25 October 2021",
-    descriptionJa: "2021年10月25日設立",
-    descriptionZh: "2021年10月25日成立",
+    description: "Property management, dining, wellness and accommodation",
+    descriptionJa: "不動産管理・飲食・ウェルネス・宿泊",
+    descriptionZh: "房地产管理、餐饮、健康休闲与住宿",
     flag: "🇯🇵",
     flagImage: "/images/flag-jp.svg",
     path: "/jp/ja",
@@ -65,12 +65,12 @@ const regions = [
     nameJa: "アメリカ",
     nameZh: "美国",
     company: "Tengcle Development LLC",
-    role: "US Company · Preparatory Stage",
-    roleJa: "米国法人・準備段階",
-    roleZh: "美国公司・筹备阶段",
-    description: "Formed in New Jersey · 5 January 2026",
-    descriptionJa: "ニュージャージー州法人・2026年1月5日設立",
-    descriptionZh: "新泽西州公司・2026年1月5日成立",
+    role: "US Real Estate Operations",
+    roleJa: "米国・不動産運営",
+    roleZh: "美国・房地产运营",
+    description: "New Jersey-based property management and revitalization",
+    descriptionJa: "ニュージャージーを拠点とする不動産管理・物件再生",
+    descriptionZh: "以新泽西为基地的物业管理与改造",
     flag: "🇺🇸",
     flagImage: "/images/flag-us.svg",
     path: "/us/en",
@@ -117,7 +117,7 @@ const seigaihaPattern = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org
 
 export default function GlobalGateway() {
   useEffect(() => {
-    document.title = "Tengcle | Related Companies in Hong Kong, Japan & USA";
+    document.title = "Tengcle | Hong Kong, Japan & United States";
     
     // OGP meta tags
     const updateMeta = (name: string, content: string, isProperty = false) => {
@@ -213,7 +213,7 @@ export default function GlobalGateway() {
                 className="font-heading text-3xl md:text-4xl lg:text-5xl mb-5"
               >
                 <span className="text-gold">Tengcle</span>{" "}
-                <span className="text-white/90">Related Companies</span>
+                <span className="text-white/90">Regional Sites</span>
               </motion.h1>
 
               <motion.div variants={fadeInUp} className="space-y-1.5">
