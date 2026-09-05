@@ -116,13 +116,13 @@ export default function Contact() {
                 </h2>
                 <button
                   onClick={() => {
-                    navigator.clipboard.writeText("info@tengcle.com");
+                    navigator.clipboard.writeText(hkCompany.email);
                     toast.success("Email copied / メールアドレスをコピーしました / 已复制邮箱地址");
                   }}
                   className="text-2xl md:text-3xl text-navy hover:text-gold transition-colors font-heading cursor-pointer"
                   title="Click to copy email"
                 >
-                  info@tengcle.com
+                  {hkCompany.email}
                 </button>
               </motion.div>
             </AnimatedSection>

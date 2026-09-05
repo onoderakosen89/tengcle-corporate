@@ -13,6 +13,7 @@ import JpHeader from "@/components/jp/Header";
 import JpFooter from "@/components/jp/Footer";
 import SEOHead, { generateFAQSchema } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
+import { publicContactEmails } from "@/data/companyProfiles";
 
 interface FAQItem {
   question: string;
@@ -47,7 +48,7 @@ const faqDataJa: FAQItem[] = [
   },
   {
     question: "お問い合わせ方法を教えてください。",
-    answer: "メール（info@tengcle.com）またはお問い合わせフォームからご連絡ください。営業時間内にご返信いたします。"
+    answer: `メール（${publicContactEmails.general.jp}）でご連絡ください。営業時間内にご返信いたします。`
   }
 ];
 
@@ -78,7 +79,7 @@ const faqDataEn: FAQItem[] = [
   },
   {
     question: "How can I contact you?",
-    answer: "Please contact us via email (info@tengcle.com) or through our contact form. We will respond during business hours."
+    answer: `Please contact us by email at ${publicContactEmails.general.jp}. We will respond during business hours.`
   }
 ];
 
@@ -109,7 +110,7 @@ const faqDataZh: FAQItem[] = [
   },
   {
     question: "如何联系你们？",
-    answer: "请通过电子邮件（info@tengcle.com）或联系表格与我们联系。我们将在工作时间内回复。"
+    answer: `请通过电子邮件（${publicContactEmails.general.jp}）与我们联系。我们将在工作时间内回复。`
   }
 ];
 

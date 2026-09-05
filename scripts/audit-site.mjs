@@ -50,6 +50,51 @@ for (const file of sourceFiles) {
   }
 }
 
+const repoScanExcludedDirectories = new Set([
+  ".astro",
+  ".git",
+  "coverage",
+  "dist",
+  "node_modules",
+  "playwright-report",
+  "test-results",
+]);
+async function walkRepoText(directory) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const files = [];
+  for (const entry of entries) {
+    if (entry.isDirectory() && repoScanExcludedDirectories.has(entry.name)) {
+      continue;
+    }
+    const fullPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) files.push(...(await walkRepoText(fullPath)));
+    else if (/\.(?:astro|html|md|mjs|tsx?|xml|json|ya?ml)$/i.test(entry.name)) {
+      files.push(fullPath);
+    }
+  }
+  return files;
+}
+
+const approvedPublicEmails = new Set([
+  "hk@tengcle.com",
+  "jp@tengcle.com",
+  "us@tengcle.com",
+  "careers-jp@tengcle.com",
+  "privacy@tengcle.com",
+]);
+for (const file of await walkRepoText(root)) {
+  if (path.basename(file) === "pnpm-lock.yaml") continue;
+  const contents = await readFile(file, "utf8");
+  const addresses = contents.match(/[A-Z0-9._%+-]+@tengcle\.com/gi) ?? [];
+  for (const address of addresses) {
+    if (!approvedPublicEmails.has(address.toLowerCase())) {
+      fail(
+        `unapproved public Tengcle email ${address}: ${path.relative(root, file)}`
+      );
+    }
+  }
+}
+
 const outputDirectory = path.join(root, "dist", "public");
 const builtHtml = (await walk(outputDirectory)).filter(file =>
   file.endsWith(".html")
