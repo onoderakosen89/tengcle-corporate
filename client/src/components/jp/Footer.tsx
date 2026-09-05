@@ -8,6 +8,7 @@
 import { Link, useLocation } from "wouter";
 import { Mail, MapPin, ExternalLink } from "lucide-react";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
+import { publicContactEmails } from "@/data/companyProfiles";
 
 export default function Footer() {
   const { t, language } = useJpLanguage();
@@ -83,10 +84,10 @@ export default function Footer() {
                 <div>
                   <p className={`text-gray-400 text-xs mb-1 ${getFontClass()}`}>{t.contact.email}</p>
                   <a
-                    href="mailto:info@tengcle.com"
+                    href={`mailto:${publicContactEmails.general.jp}`}
                     className="text-gray-300 hover:text-white transition-colors text-sm"
                   >
-                    info@tengcle.com
+                    {publicContactEmails.general.jp}
                   </a>
                 </div>
               </li>

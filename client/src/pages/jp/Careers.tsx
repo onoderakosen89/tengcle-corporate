@@ -33,6 +33,7 @@ import {
 } from "lucide-react";
 import Header from "@/components/jp/Header";
 import Footer from "@/components/jp/Footer";
+import { publicContactEmails } from "@/data/companyProfiles";
 import { useJpLanguage } from "@/contexts/JpLanguageContext";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
@@ -424,9 +425,9 @@ export default function Careers() {
                 size="lg"
                 className="bg-gold hover:bg-gold-dark text-white"
               >
-                <a href="mailto:careers@tengcle.com">
+                <a href={`mailto:${publicContactEmails.careers.jp}`}>
                   <Mail className="mr-2 h-4 w-4" />
-                  careers@tengcle.com
+                  {publicContactEmails.careers.jp}
                 </a>
               </Button>
               <Button

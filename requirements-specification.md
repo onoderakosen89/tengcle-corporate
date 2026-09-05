@@ -44,7 +44,7 @@ Tengcle Limitedのコーポレートサイトは、以下の目的を達成す�
 | スローガン | think into the future |
 | 商業登記番号（BR No） | 78077104 |
 | TCSPライセンス | TC007820 |
-| メールアドレス | info@tengcle.com |
+| メールアドレス | hk@tengcle.com |
 
 ### 2.2 拠点情報
 

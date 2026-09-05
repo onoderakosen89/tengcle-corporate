@@ -151,13 +151,13 @@ export default function Contact() {
                 <p className={`text-sm text-slate mb-1 ${getFontClass()}`}>{t.contact.email}</p>
                 <button
                   onClick={() => {
-                    navigator.clipboard.writeText("info@tengcle.com");
+                    navigator.clipboard.writeText(jpCompany.email);
                     toast.success("メールアドレスをコピーしました / Email copied");
                   }}
                   className={`text-xl text-navy hover:text-gold transition-colors ${getHeadingFontClass()} cursor-pointer`}
                   title="クリックしてコピー / Click to copy"
                 >
-                  info@tengcle.com
+                  {jpCompany.email}
                 </button>
               </div>
             </motion.div>

@@ -16,6 +16,7 @@ import SEOHead, { generateFAQSchema } from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
+import { publicContactEmails } from "@/data/companyProfiles";
 
 interface FAQItem {
   question: string;
@@ -38,7 +39,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "How can I request a quote for hotel FF&E procurement?",
-      answer: "To request a quote, please visit our Contact page and fill out the inquiry form with details about your project, including property type, room count, timeline, and specific requirements. Our team will respond within 2 business days with a preliminary assessment and next steps."
+      answer: `Please email ${publicContactEmails.general.hk} with details about your project, including property type, room count, timeline, and specific requirements.`
     },
     {
       question: "What is the typical timeline for a hotel FF&E project?",
@@ -72,7 +73,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "ホテルFF&E調達の見積もりを依頼するにはどうすればよいですか？",
-      answer: "見積もりをご依頼いただくには、お問い合わせページにアクセスし、プロジェクトの詳細（物件タイプ、客室数、スケジュール、具体的な要件など）を記入してお問い合わせフォームを送信してください。2営業日以内に予備評価と次のステップについてご連絡いたします。"
+      answer: `物件タイプ、客室数、スケジュール、具体的な要件などのプロジェクト詳細を${publicContactEmails.general.hk}までメールでお送りください。`
     },
     {
       question: "ホテルFF&Eプロジェクトの一般的なスケジュールはどのくらいですか？",
@@ -106,7 +107,7 @@ const faqData: Record<string, FAQItem[]> = {
     },
     {
       question: "如何申请酒店FF&E采购报价？",
-      answer: "要申请报价，请访问我们的联系页面，填写询问表格，包括项目详情（物业类型、房间数量、时间表和具体要求）。我们的团队将在2个工作日内回复初步评估和后续步骤。"
+      answer: `请将物业类型、房间数量、时间表和具体要求等项目详情发送至${publicContactEmails.general.hk}。`
     },
     {
       question: "酒店FF&E项目的典型时间表是多长？",

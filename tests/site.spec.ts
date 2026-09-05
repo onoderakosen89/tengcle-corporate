@@ -11,6 +11,8 @@ const unverifiedLegalBrandPattern = /Tengcle Group/i;
 const unverifiedHkScaleTrustPattern =
   /ISO Standards|international quality management|15\+ Countries|supplier relationships worldwide|国際品質管理|15カ国以上|世界中のサプライヤー関係|国际质量管理|15\+国家|全球供应商关系|Built on Integrity|誠実な運営|诚信经营/i;
 const publicRegistrationIdentifierPattern = /78077104|0451392806/;
+const forbiddenPublicEmailPattern =
+  /(?:jp_info|us_info|hk_info|info|careers|kosen|social-admin|billing)@tengcle\.com/i;
 
 async function publicTextArtifacts(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -177,6 +179,10 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
       JSON.stringify(initialNodes),
       `${route} initial JSON-LD hierarchy copy`
     ).not.toMatch(forbiddenHierarchyPattern);
+    expect(
+      JSON.stringify(initialNodes),
+      `${route} initial JSON-LD legacy public email`
+    ).not.toMatch(forbiddenPublicEmailPattern);
     if (!route.endsWith("/privacy/")) {
       expect(initialHtml, `${route} initial legal brand copy`).not.toMatch(
         unverifiedLegalBrandPattern
@@ -201,6 +207,30 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
       canonical
     );
 
+    const regionalRoute = route.match(/^\/(hk|jp|us)\/(?:en|ja|zh)\//);
+    const isPrivacyRoute = route.endsWith("/privacy/");
+    const expectedGeneralEmail = regionalRoute
+      ? {
+          hk: "hk@tengcle.com",
+          jp: "jp@tengcle.com",
+          us: "us@tengcle.com",
+        }[regionalRoute[1] as "hk" | "jp" | "us"]
+      : null;
+    if (isPrivacyRoute) {
+      await expect(page.locator("body"), `${route} privacy contact`).toContainText(
+        "privacy@tengcle.com"
+      );
+    } else if (expectedGeneralEmail) {
+      await expect(page.locator("body"), `${route} regional contact`).toContainText(
+        expectedGeneralEmail
+      );
+    }
+    if (/^\/jp\/(?:en|ja|zh)\/careers\/$/.test(route)) {
+      await expect(page.locator("body"), `${route} careers contact`).toContainText(
+        "careers-jp@tengcle.com"
+      );
+    }
+
     const hydratedNodes = await page
       .locator('script[type="application/ld+json"]')
       .evaluateAll(scripts =>
@@ -210,6 +240,44 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
         })
       );
     const visibleCopy = await page.locator("body").innerText();
+    const mailtoLinks = await page
+      .locator('a[href^="mailto:"]')
+      .evaluateAll(links => links.map(link => link.getAttribute("href") ?? ""));
+    const allowedRouteEmails = new Set<string>();
+    if (expectedGeneralEmail) allowedRouteEmails.add(expectedGeneralEmail);
+    if (isPrivacyRoute) allowedRouteEmails.add("privacy@tengcle.com");
+    if (/^\/jp\/(?:en|ja|zh)\/careers\/$/.test(route)) {
+      allowedRouteEmails.add("careers-jp@tengcle.com");
+    }
+    const visibleEmails =
+      visibleCopy.match(/[A-Z0-9._%+-]+@tengcle\.com/gi) ?? [];
+    for (const address of visibleEmails) {
+      expect(
+        allowedRouteEmails.has(address.toLowerCase()),
+        `${route} unexpected regional email ${address}`
+      ).toBe(true);
+    }
+    expect(visibleCopy, `${route} legacy public email`).not.toMatch(
+      forbiddenPublicEmailPattern
+    );
+    expect(mailtoLinks.join("\n"), `${route} legacy mailto`).not.toMatch(
+      forbiddenPublicEmailPattern
+    );
+    if (expectedGeneralEmail && !isPrivacyRoute) {
+      expect(mailtoLinks, `${route} regional mailto`).toContain(
+        `mailto:${expectedGeneralEmail}`
+      );
+    }
+    if (/^\/jp\/(?:en|ja|zh)\/careers\/$/.test(route)) {
+      expect(mailtoLinks, `${route} careers mailto`).toContain(
+        "mailto:careers-jp@tengcle.com"
+      );
+    }
+    if (isPrivacyRoute) {
+      expect(mailtoLinks, `${route} privacy mailto`).toContain(
+        "mailto:privacy@tengcle.com"
+      );
+    }
     expect(visibleCopy, `${route} hydrated hierarchy copy`).not.toMatch(
       forbiddenHierarchyPattern
     );
@@ -225,6 +293,10 @@ test("all sitemap routes retain canonical metadata and unique primary schemas af
       JSON.stringify(hydratedNodes),
       `${route} hydrated JSON-LD hierarchy copy`
     ).not.toMatch(forbiddenHierarchyPattern);
+    expect(
+      JSON.stringify(hydratedNodes),
+      `${route} hydrated JSON-LD legacy public email`
+    ).not.toMatch(forbiddenPublicEmailPattern);
     if (!route.endsWith("/privacy/")) {
       expect(visibleCopy, `${route} hydrated legal brand copy`).not.toMatch(
         unverifiedLegalBrandPattern

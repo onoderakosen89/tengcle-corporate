@@ -8,6 +8,7 @@
 import { Link, useLocation } from "wouter";
 import { Mail, MapPin, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { publicContactEmails } from "@/data/companyProfiles";
 
 export default function Footer() {
   const { t, language } = useLanguage();
@@ -85,10 +86,10 @@ export default function Footer() {
                 <div>
                   <p className={`text-white/50 text-xs mb-1 ${getFontClass()}`}>{t.contact.email}</p>
                   <a
-                    href="mailto:info@tengcle.com"
+                    href={`mailto:${publicContactEmails.general.hk}`}
                     className="text-white/90 hover:text-white transition-colors text-sm"
                   >
-                    info@tengcle.com
+                    {publicContactEmails.general.hk}
                   </a>
                 </div>
               </li>
