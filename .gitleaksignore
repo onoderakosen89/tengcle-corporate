@@ -1,0 +1,3 @@
+# Historical documentation example contains the literal placeholder YOUR_API_KEY.
+# Ignore only this finding; new commits and other curl auth headers remain scanned.
+77a41a8fad2bf1a4b5d454085209ea25ffa61dfb:tengcle-syndicate/handoff/CHAIRMAN_CHEATSHEET.md:curl-auth-header:103
