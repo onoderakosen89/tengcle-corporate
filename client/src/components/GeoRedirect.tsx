@@ -1,81 +1,70 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "wouter";
 
-/**
- * GeoRedirect Component
- * Redirects users to region-specific homepage based on their geographic location
- * Uses IP geolocation to determine user's country
- */
+const regionalHomes = new Set(["/hk/en", "/jp/ja", "/us/en"]);
+
 export default function GeoRedirect() {
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
+  const handled = useRef(false);
 
   useEffect(() => {
-    // Only redirect on the root path
-    if (window.location.pathname !== "/") {
-      return;
-    }
-
-    // Keep the Global gateway visible when a reviewer explicitly requests it.
-    // This leaves the normal geography-based routing unchanged.
-    if (new URLSearchParams(window.location.search).get("view") === "global") {
-      sessionStorage.setItem("tengcle_geo_redirected", "true");
-      return;
-    }
-
-    // Check if user has already been redirected in this session
-    const redirected = sessionStorage.getItem("tengcle_geo_redirected");
-    if (redirected) {
-      return;
-    }
-
-    // Fetch user's country from IP geolocation service
-    const detectCountry = async () => {
+    const markHandled = () => {
+      handled.current = true;
       try {
-        // Using ip-api.com (free tier, no API key required)
-        const response = await fetch("https://ipapi.co/json/", {
-          method: "GET",
-          headers: {
-            "Accept": "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch geolocation");
-        }
-
-        const data = await response.json();
-        const countryCode = data.country_code?.toUpperCase();
-
-        // Determine redirect target based on country
-        let redirectTarget = "/"; // Default to global gateway
-
-        if (countryCode === "HK" || countryCode === "SG") {
-          redirectTarget = "/hk/en";
-        } else if (countryCode === "JP") {
-          redirectTarget = "/jp/ja";
-        } else if (countryCode === "US" || countryCode === "CA") {
-          redirectTarget = "/us/en";
-        }
-
-        // Mark as redirected to avoid infinite loops
         sessionStorage.setItem("tengcle_geo_redirected", "true");
-
-        // Only redirect if target is different from current path
-        if (redirectTarget !== "/") {
-          setLocation(redirectTarget);
-        }
-      } catch (error) {
-        // If geolocation fails, just keep user on gateway
-        console.debug("Geolocation detection failed, keeping user on gateway");
-        sessionStorage.setItem("tengcle_geo_redirected", "true");
+      } catch {
+        // The in-memory guard still respects navigation when storage is blocked.
       }
     };
 
-    // Add a small delay to ensure smooth UX
-    const timer = setTimeout(detectCountry, 100);
+    // A chosen page or explicit Global visit wins over automatic selection.
+    // Returning to Global must not override that choice.
+    if (
+      location !== "/" ||
+      new URLSearchParams(window.location.search).get("view") === "global"
+    ) {
+      markHandled();
+      return;
+    }
+    if (handled.current) return;
+    try {
+      if (sessionStorage.getItem("tengcle_geo_redirected")) return;
+    } catch {
+      // Automatic selection can run without browser storage.
+    }
 
-    return () => clearTimeout(timer);
-  }, [setLocation]);
+    const controller = new AbortController();
+    let active = true;
+    let timeout: ReturnType<typeof setTimeout>;
+    const detectRegion = async () => {
+      timeout = setTimeout(() => controller.abort(), 2_500);
+      try {
+        const response = await fetch("/api/region", {
+          signal: controller.signal,
+          cache: "no-store",
+          headers: { Accept: "application/json" },
+        });
+        if (!response.ok) throw new Error("Region selection unavailable");
+        const data = await response.json();
+        if (!active || window.location.pathname !== "/") return;
+        markHandled();
+        if (regionalHomes.has(data?.route)) setLocation(data.route);
+      } catch {
+        // An unavailable/slow endpoint leaves the manual gateway usable.
+        if (active) markHandled();
+      } finally {
+        clearTimeout(timeout);
+      }
+    };
+    const timer = setTimeout(detectRegion, 100);
 
-  return null; // This component doesn't render anything
+    return () => {
+      active = false;
+      clearTimeout(timer);
+      clearTimeout(timeout);
+      controller.abort();
+    };
+  }, [location, setLocation]);
+
+  return null;
 }

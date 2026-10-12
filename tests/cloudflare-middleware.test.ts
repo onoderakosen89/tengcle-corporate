@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { onRequest } from "../functions/_middleware";
+import { onRequestGet as selectRegion } from "../functions/api/region";
 
 describe("Cloudflare Pages response middleware", () => {
   it("marks every 404 response noindex and non-cacheable", async () => {
@@ -28,5 +29,39 @@ describe("Cloudflare Pages response middleware", () => {
     expect(response).toBe(staticResponse);
     expect(response.headers.get("X-Robots-Tag")).toBeNull();
     expect(response.headers.get("X-Content-Type-Options")).toBe("nosniff");
+  });
+});
+
+describe("Cloudflare region selection", () => {
+  it.each([
+    ["HK", "/hk/en"],
+    ["SG", "/hk/en"],
+    ["JP", "/jp/ja"],
+    ["US", "/us/en"],
+    ["CA", "/us/en"],
+    ["DE", "/"],
+    ["XX", "/"],
+    [null, "/"],
+    [undefined, "/"],
+  ])(
+    "uses edge country %s to select %s without exposing location",
+    async (country, route) => {
+      const request = Object.assign(
+        new Request("https://www.tengcle.com/api/region"),
+        { cf: { country } }
+      );
+      const response = selectRegion({ request });
+      expect(await response.json()).toEqual({ route });
+      expect(response.headers.get("Cache-Control")).toBe("private, no-store");
+      expect(response.headers.get("X-Content-Type-Options")).toBe("nosniff");
+      expect(response.headers.get("X-Robots-Tag")).toBe("noindex");
+    }
+  );
+
+  it("does not use a client-supplied country header when edge data is missing", async () => {
+    const request = new Request("https://www.tengcle.com/api/region", {
+      headers: { "CF-IPCountry": "JP" },
+    });
+    expect(await selectRegion({ request }).json()).toEqual({ route: "/" });
   });
 });
