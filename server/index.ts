@@ -2,6 +2,7 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { allStaticRoutes } from "../shared/seoOutput";
+import { onRequestGet as selectRegion } from "../functions/api/region";
 
 const knownRoutes = new Set(allStaticRoutes.map(page => page.route));
 
@@ -11,6 +12,14 @@ async function startServer() {
 
   // Serve static files from dist/public in production
   const staticPath = path.resolve(process.cwd(), "dist", "public");
+
+  // The local harness has no Cloudflare country metadata and uses Global.
+  app.get("/api/region", async (_req, res) => {
+    const response = selectRegion({
+      request: new Request("http://localhost/api/region"),
+    });
+    res.set(Object.fromEntries(response.headers)).send(await response.text());
+  });
 
   app.use(express.static(staticPath, { redirect: false }));
 

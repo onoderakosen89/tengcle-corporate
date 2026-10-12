@@ -751,10 +751,10 @@ test("the Global intro uses the static fallback when media starts too late", asy
 test("the Global intro completes even when geography selects a regional home", async ({
   page,
 }) => {
-  await page.route("https://ipapi.co/json/", async route => {
+  await page.route("**/api/region", async route => {
     await route.fulfill({
       contentType: "application/json",
-      body: JSON.stringify({ country_code: "JP" }),
+      body: JSON.stringify({ route: "/jp/ja" }),
     });
   });
   await page.addInitScript(() => {
@@ -770,6 +770,193 @@ test("the Global intro completes even when geography selects a regional home", a
   await expect(
     page.getByRole("img", { name: "Tengcle Japan" }).first()
   ).toBeVisible();
+});
+
+for (const target of ["/hk/en", "/us/en"]) {
+  test(`same-origin region selection automatically opens ${target}`, async ({
+    page,
+  }) => {
+    const externalLocationRequests: string[] = [];
+    page.on("request", request => {
+      if (request.url().includes("ipapi.co"))
+        externalLocationRequests.push(request.url());
+    });
+    await page.route("**/api/region", route =>
+      route.fulfill({ json: { route: target } })
+    );
+    await page.addInitScript(() => {
+      localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+      sessionStorage.setItem("tengcle_splash_seen", "true");
+    });
+    await page.goto("/");
+    await expect(page).toHaveURL(new RegExp(`${target}/?$`));
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    expect(externalLocationRequests).toEqual([]);
+  });
+}
+
+for (const failure of ["http", "json", "network", "timeout", "unknown"]) {
+  test(`region selection ${failure} failure keeps manual selection usable`, async ({
+    page,
+  }) => {
+    await page.route("**/api/region", async route => {
+      if (failure === "network") return route.abort();
+      if (failure === "timeout") {
+        await new Promise(resolve => setTimeout(resolve, 3_000));
+        return route
+          .fulfill({ json: { route: "/jp/ja" } })
+          .catch(() => undefined);
+      }
+      return route.fulfill(
+        failure === "http"
+          ? { status: 503, body: "unavailable" }
+          : failure === "json"
+            ? { contentType: "application/json", body: "not JSON" }
+            : { json: { route: "https://example.invalid/" } }
+      );
+    });
+    await page.addInitScript(() => {
+      localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+      sessionStorage.setItem("tengcle_splash_seen", "true");
+    });
+    await page.goto("/");
+    await expect
+      .poll(() =>
+        page.evaluate(() => sessionStorage.getItem("tengcle_geo_redirected"))
+      )
+      .toBe("true");
+    await expect(page).toHaveURL(/\/$/);
+    await page
+      .getByRole("link", {
+        name: "Visit 株式会社Tengcle website in 中文",
+        exact: true,
+      })
+      .click();
+    await expect(page).toHaveURL(/\/jp\/zh\/?$/);
+  });
+}
+
+test("manual selection wins over a pending automatic response and return to Global", async ({
+  page,
+}) => {
+  let release!: () => void;
+  const pending = new Promise<void>(resolve => {
+    release = resolve;
+  });
+  let requests = 0;
+  await page.route("**/api/region", async route => {
+    requests++;
+    await pending;
+    await route.fulfill({ json: { route: "/jp/ja" } }).catch(() => undefined);
+  });
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+    sessionStorage.setItem("tengcle_splash_seen", "true");
+  });
+  await page.goto("/");
+  await expect.poll(() => requests).toBe(1);
+  await page
+    .getByRole("link", {
+      name: "Visit Tengcle Development LLC website in English",
+      exact: true,
+    })
+    .click();
+  release();
+  await expect(page).toHaveURL(/\/us\/en\/?$/);
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await page.goto("/");
+  await expect(
+    page.getByRole("heading", { name: "Tengcle Regional Sites" })
+  ).toBeVisible();
+  expect(requests).toBe(1);
+});
+
+test("direct regional visits and explicit Global keep their chosen language and page", async ({
+  page,
+}) => {
+  let requests = 0;
+  await page.route("**/api/region", route => {
+    requests++;
+    return route.fulfill({ json: { route: "/us/en" } });
+  });
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+    sessionStorage.setItem("tengcle_splash_seen", "true");
+  });
+  await page.goto("/jp/zh/");
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await page.goto("/");
+  await expect(
+    page.getByRole("heading", { name: "Tengcle Regional Sites" })
+  ).toBeVisible();
+  await page.goto("/?view=global");
+  await expect(
+    page.getByRole("heading", { name: "Tengcle Regional Sites" })
+  ).toBeVisible();
+  expect(requests).toBe(0);
+});
+
+test("an explicit first Global visit does not start region detection", async ({
+  page,
+}) => {
+  let requests = 0;
+  await page.route("**/api/region", route => {
+    requests++;
+    return route.fulfill({ json: { route: "/jp/ja" } });
+  });
+  await page.addInitScript(() =>
+    sessionStorage.setItem("tengcle_splash_seen", "true")
+  );
+  await page.goto("/?view=global");
+  await expect(
+    page.getByRole("heading", { name: "Tengcle Regional Sites" })
+  ).toBeVisible();
+  await expect
+    .poll(() =>
+      page.evaluate(() => sessionStorage.getItem("tengcle_geo_redirected"))
+    )
+    .toBe("true");
+  expect(requests).toBe(0);
+});
+
+test("blocked session storage still allows selection and a manual return to Global", async ({
+  page,
+}) => {
+  let requests = 0;
+  await page.route("**/api/region", route => {
+    requests++;
+    return route.fulfill({ json: { route: "/hk/en" } });
+  });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.addInitScript(() => {
+    localStorage.setItem("tengcle-cookie-consent", "accepted-necessary");
+    Object.defineProperty(window, "sessionStorage", {
+      get() {
+        throw new DOMException("Storage blocked", "SecurityError");
+      },
+    });
+  });
+  await page.goto("/");
+  await expect(page).toHaveURL(/\/hk\/en\/?$/);
+  await page.getByRole("link", { name: "Global", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Tengcle Regional Sites" })
+  ).toBeVisible();
+  expect(requests).toBe(1);
+});
+
+test("region endpoint returns only a private non-cacheable home path", async ({
+  request,
+}) => {
+  const response = await request.get("/api/region");
+  expect(response.status()).toBe(200);
+  const data = await response.json();
+  expect(Object.keys(data)).toEqual(["route"]);
+  expect(["/", "/hk/en", "/jp/ja", "/us/en"]).toContain(data.route);
+  expect(response.headers()["cache-control"]).toBe("private, no-store");
+  expect(response.headers()["x-content-type-options"]).toBe("nosniff");
+  expect(response.headers()["x-robots-tag"]).toBe("noindex");
+  expect(response.headers()["set-cookie"]).toBeUndefined();
 });
 
 test("JavaScript replaces the semantic fallback without displaying it", async ({
