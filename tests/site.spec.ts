@@ -1039,6 +1039,29 @@ test("formation-only articles redirect to the matching regional About page", asy
   }
 });
 
+test("bare regional paths redirect to the default language home", async ({
+  request,
+}) => {
+  const redirects = await readFile("dist/public/_redirects", "utf8");
+  const homes = [
+    ["us", "en"],
+    ["jp", "ja"],
+    ["hk", "en"],
+  ] as const;
+  for (const [region, language] of homes) {
+    for (const from of [`/${region}`, `/${region}/`]) {
+      const to = `/${region}/${language}/`;
+      expect(redirects).toContain(`${from} ${to} 301`);
+      const response = await request.get(from, { maxRedirects: 0 });
+      if (response.status() === 301) {
+        expect(response.headers().location, from).toBe(to);
+      } else {
+        expect(response.status(), from).toBe(404);
+      }
+    }
+  }
+});
+
 test("analytics remains unloaded until explicit all-cookie consent", async ({
   page,
 }) => {
