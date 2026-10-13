@@ -411,22 +411,30 @@ const expectedFormationRedirects = languages.flatMap(language => [
   `/jp/${language}/news/company-incorporation-2021/ /jp/${language}/about/ 301`,
   `/us/${language}/news/us-founding-2026/ /us/${language}/about/ 301`,
 ]);
+const regionDefaultHomes = { us: "en", jp: "ja", hk: "en" };
+const expectedRegionRootRedirects = Object.entries(regionDefaultHomes).flatMap(
+  ([region, language]) => [
+    `/${region} /${region}/${language}/ 301`,
+    `/${region}/ /${region}/${language}/ 301`,
+  ]
+);
 const allExpectedRedirects = [
   ...expectedRedirects,
   ...expectedFormationRedirects,
+  ...expectedRegionRootRedirects,
 ];
 if (
   redirectLines.length !== allExpectedRedirects.length ||
   allExpectedRedirects.some(line => !redirectLines.includes(line))
 ) {
-  fail("_redirects must contain all retired article redirects exactly once");
+  fail("_redirects must contain every expected redirect exactly once");
 }
 for (const line of allExpectedRedirects) {
   const source = line.split(" ")[0];
   const outputPath = path.join(outputDirectory, source.slice(1), "index.html");
   try {
     await access(outputPath);
-    fail(`retired contradicted article is still generated: ${source}`);
+    fail(`redirect source is still generated: ${source}`);
   } catch (error) {
     if (error?.code !== "ENOENT") throw error;
   }
