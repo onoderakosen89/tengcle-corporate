@@ -350,6 +350,33 @@ export default function UsHome() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
+
+            {language === "en" && (
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="mt-12 bg-white p-8 max-w-3xl mx-auto border-l-4 border-gold"
+                data-testid="pipetector-pilot-card"
+              >
+                <h3 className="font-heading text-xl text-charcoal mb-2">
+                  NMR Pipetector — US pilot
+                </h3>
+                <p className="text-slate text-sm mb-4">
+                  A pilot program for rust in closed-loop chilled- and
+                  hot-water (HVAC) piping in New Jersey and New York.
+                </p>
+                <a
+                  href="https://pipetector.tengcle.com/en/"
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-2 text-purple us-link-hover"
+                >
+                  Learn more
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </motion.div>
+            )}
           </div>
         </section>
 
