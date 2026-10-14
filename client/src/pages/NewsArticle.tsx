@@ -101,7 +101,7 @@ const newsArticles: NewsArticle[] = [
       ],
     },
     image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=600&fit=crop",
+      "/images/news/first-ffe-project-2026.webp",
   },
   {
     id: "odoo-erp-launch",
@@ -148,7 +148,7 @@ const newsArticles: NewsArticle[] = [
       ],
     },
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=600&fit=crop",
+      "/images/news/odoo-erp-launch.webp",
   },
   {
     id: "expansion-preparation",
@@ -195,7 +195,7 @@ const newsArticles: NewsArticle[] = [
       ],
     },
     image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=600&fit=crop",
+      "/images/news/expansion-preparation.webp",
   },
   {
     id: "hotel-operations-launch",
@@ -242,7 +242,7 @@ const newsArticles: NewsArticle[] = [
       ],
     },
     image:
-      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&h=600&fit=crop",
+      "/images/news/hotel-operations-launch.webp",
   },
 ];
 

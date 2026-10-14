@@ -35,7 +35,7 @@ const newsArticlesEn: NewsArticle[] = [
     date: "2025-12-15",
     category: "Project Announcement",
     readTime: "3 min",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop",
+    image: "/images/news/first-ffe-project-2026.webp",
     slug: "first-ffe-project-2026"
   },
   {
@@ -45,7 +45,7 @@ const newsArticlesEn: NewsArticle[] = [
     date: "2025-10-01",
     category: "Service Launch",
     readTime: "3 min",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
+    image: "/images/news/odoo-erp-launch.webp",
     slug: "odoo-erp-launch"
   },
   {
@@ -55,7 +55,7 @@ const newsArticlesEn: NewsArticle[] = [
     date: "2025-06-01",
     category: "Company News",
     readTime: "2 min",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=400&fit=crop",
+    image: "/images/news/expansion-preparation.webp",
     slug: "expansion-preparation"
   },
   {
@@ -65,7 +65,7 @@ const newsArticlesEn: NewsArticle[] = [
     date: "2025-05-01",
     category: "Business Launch",
     readTime: "3 min",
-    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=400&fit=crop",
+    image: "/images/news/hotel-operations-launch.webp",
     slug: "hotel-operations-launch"
   }
 ];
@@ -78,7 +78,7 @@ const newsArticlesJa: NewsArticle[] = [
     date: "2025-12-15",
     category: "プロジェクト発表",
     readTime: "3分",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop",
+    image: "/images/news/first-ffe-project-2026.webp",
     slug: "first-ffe-project-2026"
   },
   {
@@ -88,7 +88,7 @@ const newsArticlesJa: NewsArticle[] = [
     date: "2025-10-01",
     category: "サービス開始",
     readTime: "3分",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
+    image: "/images/news/odoo-erp-launch.webp",
     slug: "odoo-erp-launch"
   },
   {
@@ -98,7 +98,7 @@ const newsArticlesJa: NewsArticle[] = [
     date: "2025-06-01",
     category: "会社ニュース",
     readTime: "2分",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=400&fit=crop",
+    image: "/images/news/expansion-preparation.webp",
     slug: "expansion-preparation"
   },
   {
@@ -108,7 +108,7 @@ const newsArticlesJa: NewsArticle[] = [
     date: "2025-05-01",
     category: "事業開始",
     readTime: "3分",
-    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=400&fit=crop",
+    image: "/images/news/hotel-operations-launch.webp",
     slug: "hotel-operations-launch"
   }
 ];
@@ -121,7 +121,7 @@ const newsArticlesZh: NewsArticle[] = [
     date: "2025-12-15",
     category: "项目公告",
     readTime: "3分钟",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop",
+    image: "/images/news/first-ffe-project-2026.webp",
     slug: "first-ffe-project-2026"
   },
   {
@@ -131,7 +131,7 @@ const newsArticlesZh: NewsArticle[] = [
     date: "2025-10-01",
     category: "服务启动",
     readTime: "3分钟",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
+    image: "/images/news/odoo-erp-launch.webp",
     slug: "odoo-erp-launch"
   },
   {
@@ -141,7 +141,7 @@ const newsArticlesZh: NewsArticle[] = [
     date: "2025-06-01",
     category: "公司新闻",
     readTime: "2分钟",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=400&fit=crop",
+    image: "/images/news/expansion-preparation.webp",
     slug: "expansion-preparation"
   },
   {
@@ -151,7 +151,7 @@ const newsArticlesZh: NewsArticle[] = [
     date: "2025-05-01",
     category: "业务启动",
     readTime: "3分钟",
-    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=400&fit=crop",
+    image: "/images/news/hotel-operations-launch.webp",
     slug: "hotel-operations-launch"
   }
 ];
