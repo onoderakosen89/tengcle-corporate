@@ -113,7 +113,7 @@ export default function About() {
             <AnimatedSection>
               <motion.div variants={fadeInUp}>
                 <img
-                  src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/ZvQoaRTgnNAeAzbl.jpg"
+                  src="/images/about/our-journey.webp"
                   alt="Tengcle Team"
                   className="w-full aspect-[4/3] object-cover"
                   loading="lazy"

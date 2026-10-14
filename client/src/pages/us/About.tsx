@@ -175,7 +175,7 @@ export default function UsAbout() {
               transition={{ duration: 0.6 }}
             >
               <img
-                src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80"
+                src="/images/us/company-skyline.webp"
                 alt="New York City"
                 className="w-full aspect-[4/3] object-cover shadow-lg"
                 loading="lazy"

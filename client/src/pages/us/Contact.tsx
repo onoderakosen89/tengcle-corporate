@@ -202,7 +202,7 @@ export default function UsContact() {
             >
               <div className="bg-light-gray p-8 h-full">
                 <img
-                  src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80"
+                  src="/images/us/company-skyline.webp"
                   alt="New York City Skyline"
                   className="w-full aspect-[4/3] object-cover mb-6"
                   loading="lazy"

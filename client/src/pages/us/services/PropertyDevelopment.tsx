@@ -238,10 +238,10 @@ export default function PropertyDevelopment() {
   const basePath = `/us/${language}`;
 
   const processSteps = [
-    { icon: Target, titleKey: 'process.step1.title', descKey: 'process.step1.desc', number: '01', image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/JyvIiupKWGWYYjXj.jpg' },
-    { icon: Wrench, titleKey: 'process.step2.title', descKey: 'process.step2.desc', number: '02', image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/iSHpTibbdsSiqYyM.jpg' },
-    { icon: TrendingUp, titleKey: 'process.step3.title', descKey: 'process.step3.desc', number: '03', image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/VannFrxRhuqxZmar.jpg' },
-    { icon: Building2, titleKey: 'process.step4.title', descKey: 'process.step4.desc', number: '04', image: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/fMylsTVnZmPjTihz.jpg' },
+    { icon: Target, titleKey: 'process.step1.title', descKey: 'process.step1.desc', number: '01', image: '/images/us/services/pd-assessment.webp' },
+    { icon: Wrench, titleKey: 'process.step2.title', descKey: 'process.step2.desc', number: '02', image: '/images/us/services/pd-renovation.webp' },
+    { icon: TrendingUp, titleKey: 'process.step3.title', descKey: 'process.step3.desc', number: '03', image: '/images/us/services/pd-value-enhancement.webp' },
+    { icon: Building2, titleKey: 'process.step4.title', descKey: 'process.step4.desc', number: '04', image: '/images/us/services/pd-stable-operations.webp' },
   ];
 
   const benefits = [
@@ -271,7 +271,7 @@ export default function PropertyDevelopment() {
             style={{ y: backgroundY }}
           >
             <img
-              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/WaMxaejDVBiYfcRk.jpg"
+              src="/images/us/services/pd-property-revitalization-banner.webp"
               alt="Property Revitalization - Before and After"
               className="w-full h-[120%] object-cover opacity-40"
             />

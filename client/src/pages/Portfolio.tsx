@@ -52,7 +52,7 @@ export default function Portfolio() {
       title: t.portfolio.project1.title,
       location: t.portfolio.project1.location,
       description: t.portfolio.project1.description,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/kDSQyJQNxKSMhfOs.jpg",
+      image: "/images/portfolio/hotel-management-services.webp",
       scope: language === "ja" ? [
         "本館全面改装",
         "別館内装工事一式",
@@ -83,7 +83,7 @@ export default function Portfolio() {
       title: t.portfolio.project2.title,
       location: t.portfolio.project2.location,
       description: t.portfolio.project2.description,
-      image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663066460611/KgGsTahuYpprkouF.jpg",
+      image: "/images/portfolio/supplier-coordination.webp",
       scope: language === "ja" ? [
         "Odoo ERP導入",
         "高度なカスタマイズ（API、フィールド追加）",
