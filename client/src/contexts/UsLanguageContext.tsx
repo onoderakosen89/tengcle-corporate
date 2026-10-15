@@ -25,9 +25,14 @@ const translations: Translations = {
     zh: '首页',
   },
   'nav.services': {
-    en: 'Services',
-    ja: '事業内容',
-    zh: '服务',
+    en: 'Businesses',
+    ja: '事業',
+    zh: '业务',
+  },
+  'nav.pipetector': {
+    en: 'NMR Pipetector',
+    ja: 'NMR Pipetector',
+    zh: 'NMR Pipetector',
   },
   'nav.about': {
     en: 'About',
@@ -272,9 +277,9 @@ const translations: Translations = {
 
   // SEO Meta
   'meta.title': {
-    en: 'Tengcle Development LLC | Property Management & Revitalization in NJ/NY',
-    ja: 'Tengcle Development LLC | NJ/NYの不動産管理・物件再生',
-    zh: 'Tengcle Development LLC | 新泽西／纽约物业管理与改造',
+    en: 'Tengcle Development LLC | Building Revitalization & NMR Pipetector in NJ/NY',
+    ja: 'Tengcle Development LLC | NJ/NYの建物の再生と管理・配管の赤錆対策',
+    zh: 'Tengcle Development LLC | 新泽西／纽约建筑再生与管理、管道防锈',
   },
   'meta.description': {
     en: 'Based in New Jersey, providing property management, repair coordination, tenant support, and property revitalization. NJ/NY service scope is confirmed per property.',

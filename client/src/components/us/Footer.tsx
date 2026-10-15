@@ -1,6 +1,7 @@
 import { Link, useLocation } from "wouter";
-import { Mail, MapPin, Globe } from "lucide-react";
+import { Mail, MapPin, Globe, ExternalLink } from "lucide-react";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
+import { PIPETECTOR_URL, usBusinessCopy, usCopy } from "@/data/usBusinesses";
 
 export default function UsFooter() {
   const [location] = useLocation();
@@ -9,15 +10,15 @@ export default function UsFooter() {
   const currentYear = new Date().getFullYear();
 
   const faqLabel = language === "ja" ? "よくある質問" : language === "zh" ? "常见问题" : "FAQ";
-  const newsLabel = language === "ja" ? "ニュース" : language === "zh" ? "新闻动态" : "News";
+  const externalNote = usCopy(usBusinessCopy.nav.externalNote, language);
 
   const navLinks = [
-    { href: basePath, label: t('nav.home') },
-    { href: `${basePath}/services`, label: t('nav.services') },
-    { href: `${basePath}/about`, label: t('nav.about') },
-    { href: `${basePath}/contact`, label: t('nav.contact') },
-    { href: `${basePath}/news`, label: newsLabel },
-    { href: `${basePath}/faq`, label: faqLabel },
+    { href: basePath, label: t('nav.home'), external: false },
+    { href: `${basePath}/services`, label: t('nav.services'), external: false },
+    { href: `${basePath}/about`, label: t('nav.about'), external: false },
+    { href: `${basePath}/contact`, label: t('nav.contact'), external: false },
+    { href: PIPETECTOR_URL, label: t('nav.pipetector'), external: true },
+    { href: `${basePath}/faq`, label: faqLabel, external: false },
   ];
 
   const groupSites = [
@@ -67,12 +68,25 @@ export default function UsFooter() {
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-300 text-sm hover:text-gold transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener"
+                      className="inline-flex items-center gap-1 text-gray-300 text-sm hover:text-gold transition-colors"
+                    >
+                      {link.label}
+                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                      <span className="sr-only">({externalNote})</span>
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-gray-300 text-sm hover:text-gold transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

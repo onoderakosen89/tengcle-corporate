@@ -9,23 +9,17 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, type Easing } from "framer-motion";
-import { Link, useLocation } from "wouter";
-import {
-  Building2,
-  Home as HomeIcon,
-  Key,
-  Shield,
-  ArrowRight,
-  CheckCircle,
-  TrendingUp,
-} from "lucide-react";
+import { Link } from "wouter";
+import { Shield, ArrowRight, ExternalLink } from "lucide-react";
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import SEOHead, {
   generateOrganizationSchema,
 } from "@/components/SEOHead";
+import GroupCompanyCards from "@/components/us/GroupCompanyCards";
 import { companyProfiles } from "@/data/companyProfiles";
+import { PIPETECTOR_URL, usBusinessCopy, usCopy } from "@/data/usBusinesses";
 
 // Animation variants - USA: Bold & Dynamic
 const easeAmerican: Easing = [0.4, 0, 0.2, 1];
@@ -50,11 +44,12 @@ const staggerContainer = {
 // Hero Section with Parallax Effect - Bold American Style
 function UsHeroSection({
   basePath,
-  t,
+  language,
 }: {
   basePath: string;
-  t: (key: string) => string;
+  language: "en" | "ja" | "zh";
 }) {
+  const hero = usBusinessCopy.hero;
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -106,33 +101,37 @@ function UsHeroSection({
             variants={fadeInUp}
             className="text-gold text-sm tracking-widest uppercase mb-4"
           >
-            {t("hero.tagline")}
+            {usCopy(hero.tagline, language)}
           </motion.p>
           <motion.h1
             variants={fadeInUp}
             className="font-heading text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight"
           >
-            {t("hero.title")}
+            {usCopy<readonly string[]>(hero.titleLines, language).map(line => (
+              <span key={line} className="block">
+                {line}
+              </span>
+            ))}
           </motion.h1>
           <motion.p
             variants={fadeInUp}
             className="text-xl text-gray-300 mb-8 leading-relaxed"
           >
-            {t("hero.subtitle")}
+            {usCopy(hero.subtitle, language)}
           </motion.p>
           <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
             <Link
               href={`${basePath}/services`}
               className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-purple-deep font-medium us-btn-hover"
             >
-              {t("hero.cta.services")}
+              {usCopy(hero.ctaBusinesses, language)}
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href={`${basePath}/contact`}
               className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white us-btn-hover"
             >
-              {t("hero.cta.contact")}
+              {usCopy(hero.ctaContact, language)}
             </Link>
           </motion.div>
         </motion.div>
@@ -159,64 +158,48 @@ function UsHeroSection({
 
 export default function UsHome() {
   const { language, t } = useUsLanguage();
-  const [location] = useLocation();
   const basePath = `/us/${language}`;
   const company = companyProfiles.us;
   const address = company.addresses[0];
 
-  const services = [
+  const biz = usBusinessCopy.businesses;
+  const businesses = [
     {
-      icon: TrendingUp,
-      title: t("service.development.title"),
-      description: t("service.development.desc"),
-      features: [
-        t("service.development.feature1"),
-        t("service.development.feature2"),
-        t("service.development.feature3"),
-        t("service.development.feature4"),
-      ],
-      isMain: true,
-      image: "/images/us/home/development-960.webp",
-      imageSrcSet:
-        "/images/us/home/development-480.webp 480w, /images/us/home/development-960.webp 960w",
-    },
-    {
-      icon: Building2,
-      title: t("service.property.title"),
-      description: t("service.property.desc"),
-      features: [
-        t("service.property.feature1"),
-        t("service.property.feature2"),
-        t("service.property.feature3"),
-        t("service.property.feature4"),
-      ],
-      isMain: false,
+      key: "building",
+      name: usCopy(biz.building.name, language),
+      description: usCopy(biz.building.desc, language),
+      buttonLabel: usCopy(biz.building.button, language),
+      alt: usCopy(biz.building.alt, language),
       image: "/images/candidates/us-property-management-960.webp",
       imageSrcSet:
         "/images/candidates/us-property-management-480.webp 480w, /images/candidates/us-property-management-960.webp 960w",
+      width: 960,
+      height: 640,
+      href: `${basePath}/services`,
+      external: false,
     },
     {
-      icon: HomeIcon,
-      title: t("service.vacation.title"),
-      description: t("service.vacation.desc"),
-      features: [
-        t("service.vacation.feature1"),
-        t("service.vacation.feature2"),
-        t("service.vacation.feature3"),
-        t("service.vacation.feature4"),
-      ],
-      isMain: false,
-      image: "/images/candidates/us-vacation-rental-960.webp",
+      key: "pipetector",
+      name: usCopy(biz.pipe.name, language),
+      description: usCopy(biz.pipe.desc, language),
+      buttonLabel: usCopy(biz.pipe.button, language),
+      alt: usCopy(biz.pipe.alt, language),
+      image: "/images/us/home/pipetector-960.webp",
       imageSrcSet:
-        "/images/candidates/us-vacation-rental-480.webp 480w, /images/candidates/us-vacation-rental-960.webp 960w",
+        "/images/us/home/pipetector-480.webp 480w, /images/us/home/pipetector-960.webp 960w",
+      width: 960,
+      height: 720,
+      href: PIPETECTOR_URL,
+      external: true,
     },
   ];
+  const externalNote = usCopy(usBusinessCopy.nav.externalNote, language);
 
   return (
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
         title={t("meta.title")}
-        description={t("meta.description")}
+        description={usCopy(usBusinessCopy.meta.homeDescription, language)}
         canonical={`https://www.tengcle.com/us/${language}`}
         locale={
           language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"
@@ -229,7 +212,7 @@ export default function UsHome() {
             generateOrganizationSchema({
               name: company.legalName,
               description:
-                "New Jersey-based property management, repair coordination, tenant support, and property revitalization.",
+                "New Jersey-based revitalization and management of older apartment buildings, and pilot trials of the NMR Pipetector rust-control device.",
               url: "https://www.tengcle.com/us/en",
               logo: "https://www.tengcle.com/images/tengcle-logo-white.png",
               email: company.email,
@@ -248,10 +231,10 @@ export default function UsHome() {
 
       <main id="main-content" tabIndex={-1}>
         {/* Hero Section with Parallax */}
-        <UsHeroSection basePath={basePath} t={t} />
+        <UsHeroSection basePath={basePath} language={language} />
 
-        {/* Services Overview */}
-        <section className="py-24 bg-light-gray">
+        {/* Businesses */}
+        <section className="py-24 bg-light-gray" id="businesses">
           <div className="container">
             <motion.div
               initial="hidden"
@@ -262,16 +245,10 @@ export default function UsHome() {
             >
               <motion.h2
                 variants={fadeInUp}
-                className="font-heading text-3xl md:text-4xl text-charcoal mb-4"
+                className="font-heading text-3xl md:text-4xl text-charcoal"
               >
-                {t("services.title")}
+                {usCopy(biz.title, language)}
               </motion.h2>
-              <motion.p
-                variants={fadeInUp}
-                className="text-slate max-w-2xl mx-auto"
-              >
-                {t("services.subtitle")}
-              </motion.p>
             </motion.div>
 
             <motion.div
@@ -279,154 +256,107 @@ export default function UsHome() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={staggerContainer}
-              className="grid md:grid-cols-3 gap-8"
+              className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"
             >
-              {services.map((service, index) => (
+              {businesses.map(item => (
                 <motion.div
-                  key={index}
+                  key={item.key}
                   variants={fadeInUp}
-                  className={`bg-white overflow-hidden us-card-hover ${service.isMain ? "ring-2 ring-gold/30" : ""}`}
+                  className="bg-white overflow-hidden us-card-hover flex flex-col"
+                  data-testid={`business-card-${item.key}`}
                 >
-                  {/* Service Image */}
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative aspect-[3/2] overflow-hidden bg-white">
                     <img
-                      src={service.image}
-                      srcSet={service.imageSrcSet}
-                      sizes="(min-width: 768px) 33vw, 100vw"
-                      alt={service.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      src={item.image}
+                      srcSet={item.imageSrcSet}
+                      sizes="(min-width: 1024px) 512px, (min-width: 768px) 45vw, 100vw"
+                      alt={item.alt}
+                      className="w-full h-full object-cover"
                       loading="lazy"
                       decoding="async"
-                      width="960"
-                      height="536"
+                      width={item.width}
+                      height={item.height}
                     />
-                    {service.isMain && (
-                      <span className="absolute top-4 right-4 px-3 py-1 bg-gold text-purple-deep text-xs font-bold rounded-full shadow-lg">
-                        {language === "ja"
-                          ? "メイン事業"
-                          : language === "zh"
-                            ? "核心业务"
-                            : "Core Business"}
-                      </span>
-                    )}
                   </div>
-                  <div className="p-8">
-                    <div className="flex items-center gap-3 mb-4">
-                      <service.icon className="w-10 h-10 text-gold" />
-                      <h3 className="font-heading text-xl text-charcoal">
-                        {service.title}
-                      </h3>
-                    </div>
-                    <p className="text-slate mb-6 text-sm">
-                      {service.description}
+                  <div className="p-8 flex flex-col flex-1">
+                    <h3 className="font-heading text-xl text-charcoal mb-4">
+                      {item.name}
+                    </h3>
+                    <p className="text-slate text-sm leading-relaxed mb-8">
+                      {item.description}
                     </p>
-                    <ul className="space-y-2">
-                      {service.features.map((feature, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-center gap-2 text-sm text-charcoal"
-                        >
-                          <CheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
+                    {item.external ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener"
+                        className="mt-auto self-start inline-flex items-center gap-2 px-6 py-3 bg-gold text-purple-deep font-medium us-btn-hover"
+                        data-testid="pipetector-pilot-card"
+                      >
+                        {item.buttonLabel}
+                        <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                        <span className="sr-only">({externalNote})</span>
+                      </a>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="mt-auto self-start inline-flex items-center gap-2 px-6 py-3 bg-gold text-purple-deep font-medium us-btn-hover"
+                      >
+                        {item.buttonLabel}
+                        <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                      </Link>
+                    )}
                   </div>
                 </motion.div>
               ))}
             </motion.div>
+          </div>
+        </section>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+        {/* Group companies */}
+        <section className="py-24" id="group">
+          <div className="container">
+            <motion.h2
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mt-12"
+              className="font-heading text-3xl md:text-4xl text-charcoal text-center mb-12"
             >
-              <Link
-                href={`${basePath}/services`}
-                className="inline-flex items-center gap-2 text-purple us-link-hover"
-              >
-                {t("hero.cta.services")}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </motion.div>
-
-            {language === "en" && (
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="mt-12 bg-white p-8 max-w-3xl mx-auto border-l-4 border-gold"
-                data-testid="pipetector-pilot-card"
-              >
-                <h3 className="font-heading text-xl text-charcoal mb-2">
-                  NMR Pipetector — US pilot
-                </h3>
-                <p className="text-slate text-sm mb-4">
-                  A pilot program for rust in closed-loop chilled- and
-                  hot-water (HVAC) piping in New Jersey and New York.
-                </p>
-                <a
-                  href="https://pipetector.tengcle.com/en/"
-                  target="_blank"
-                  rel="noopener"
-                  className="inline-flex items-center gap-2 text-purple us-link-hover"
-                >
-                  Learn more
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </motion.div>
-            )}
+              {usCopy(usBusinessCopy.group.title, language)}
+            </motion.h2>
+            <GroupCompanyCards language={language} />
           </div>
         </section>
 
         {/* About Section */}
-        <section className="py-24">
+        <section className="py-24 bg-light-gray">
           <div className="container">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <p className="text-gold text-sm tracking-widest uppercase mb-4">
-                  {t("about.subtitle")}
-                </p>
-                <h2 className="font-heading text-3xl md:text-4xl text-charcoal mb-6">
-                  {t("about.title")}
-                </h2>
-                <p className="text-slate leading-relaxed mb-8">
-                  {t("about.description")}
-                </p>
-                <div className="flex items-center gap-4">
-                  <Shield className="w-8 h-8 text-gold" />
-                  <div>
-                    <p className="font-medium text-charcoal">
-                      Tengcle Development LLC
-                    </p>
-                    <p className="text-sm text-slate">{t("company.role")}</p>
-                  </div>
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="max-w-3xl mx-auto text-center"
+            >
+              <p className="text-gold text-sm tracking-widest uppercase mb-4">
+                {t("about.subtitle")}
+              </p>
+              <h2 className="font-heading text-3xl md:text-4xl text-charcoal mb-6">
+                {t("about.title")}
+              </h2>
+              <p className="text-slate leading-relaxed mb-8">
+                {usCopy(usBusinessCopy.about.desc, language)}
+              </p>
+              <div className="inline-flex items-center gap-4 text-left">
+                <Shield className="w-8 h-8 text-gold" />
+                <div>
+                  <p className="font-medium text-charcoal">
+                    Tengcle Development LLC
+                  </p>
+                  <p className="text-sm text-slate">{t("company.role")}</p>
                 </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="relative"
-              >
-                <img
-                  src="/images/candidates/us-property-management-960.webp"
-                  alt="Property Management"
-                  className="w-full aspect-[4/3] object-cover us-img-hover"
-                  loading="lazy"
-                  width="800"
-                  height="600"
-                />
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -440,12 +370,11 @@ export default function UsHome() {
               className="text-center max-w-2xl mx-auto"
             >
               <h2 className="font-heading text-3xl md:text-4xl text-white mb-4">
-                {t("cta.title")}
+                {usCopy(usBusinessCopy.contact.title, language)}
               </h2>
-              <p className="text-gray-300 mb-8">{t("cta.subtitle")}</p>
               <Link
                 href={`${basePath}/contact`}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-purple-deep font-medium us-btn-hover"
+                className="mt-8 inline-flex items-center gap-2 px-8 py-4 bg-gold text-purple-deep font-medium us-btn-hover"
               >
                 {t("cta.button")}
                 <ArrowRight className="w-4 h-4" />

@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import { brandAssets } from "@/lib/brandAssets";
+import { PIPETECTOR_URL, usBusinessCopy, usCopy } from "@/data/usBusinesses";
 
 export default function UsHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,11 +22,13 @@ export default function UsHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const externalNote = usCopy(usBusinessCopy.nav.externalNote, language);
   const navItems = [
-    { href: basePath, label: t("nav.home") },
-    { href: `${basePath}/services`, label: t("nav.services") },
-    { href: `${basePath}/about`, label: t("nav.about") },
-    { href: `${basePath}/contact`, label: t("nav.contact") },
+    { href: basePath, label: t("nav.home"), external: false },
+    { href: `${basePath}/services`, label: t("nav.services"), external: false },
+    { href: PIPETECTOR_URL, label: t("nav.pipetector"), external: true },
+    { href: `${basePath}/about`, label: t("nav.about"), external: false },
+    { href: `${basePath}/contact`, label: t("nav.contact"), external: false },
   ];
 
   const languages = [
@@ -96,14 +99,29 @@ export default function UsHeader() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Link
-                  href={item.href}
-                  className={`text-sm tracking-wide transition-colors duration-300 hover:text-gold ${
-                    isScrolled ? "text-charcoal" : "text-white"
-                  }`}
-                >
-                  {item.label}
-                </Link>
+                {item.external ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener"
+                    className={`inline-flex items-center gap-1 text-sm tracking-wide transition-colors duration-300 hover:text-gold ${
+                      isScrolled ? "text-charcoal" : "text-white"
+                    }`}
+                  >
+                    {item.label}
+                    <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                    <span className="sr-only">({externalNote})</span>
+                  </a>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={`text-sm tracking-wide transition-colors duration-300 hover:text-gold ${
+                      isScrolled ? "text-charcoal" : "text-white"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </motion.div>
             ))}
 
@@ -179,16 +197,31 @@ export default function UsHeader() {
               className="lg:hidden overflow-hidden bg-white mt-4 shadow-lg"
             >
               <div className="py-4 space-y-1">
-                {navItems.map(item => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-4 py-3 text-charcoal hover:bg-light-gray hover:text-gold transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                {navItems.map(item =>
+                  item.external ? (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center gap-2 px-4 py-3 text-charcoal hover:bg-light-gray hover:text-gold transition-colors"
+                    >
+                      {item.label}
+                      <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span className="sr-only">({externalNote})</span>
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block px-4 py-3 text-charcoal hover:bg-light-gray hover:text-gold transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                )}
                 <div className="border-t border-gray-100 mt-2 pt-2 px-4">
                   <p className="text-xs text-gray-400 mb-2">Language</p>
                   <div className="flex gap-2">
