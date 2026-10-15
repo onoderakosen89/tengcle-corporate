@@ -185,8 +185,8 @@ export default function UsServices() {
               </motion.div>
               <motion.div variants={fadeInUp} className="lg:order-1">
                 <img
-                  src="/images/us/home/pipetector-960.webp"
-                  srcSet="/images/us/home/pipetector-480.webp 480w, /images/us/home/pipetector-960.webp 960w"
+                  src="/images/us/home/pipetector-device-960.webp"
+                  srcSet="/images/us/home/pipetector-device-480.webp 480w, /images/us/home/pipetector-device-960.webp 960w"
                   sizes="(min-width: 1024px) 560px, 100vw"
                   alt={usCopy(biz.pipe.alt, language)}
                   className="w-full aspect-[4/3] object-cover shadow-lg bg-white"

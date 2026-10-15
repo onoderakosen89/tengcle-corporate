@@ -184,9 +184,9 @@ export default function UsHome() {
       description: usCopy(biz.pipe.desc, language),
       buttonLabel: usCopy(biz.pipe.button, language),
       alt: usCopy(biz.pipe.alt, language),
-      image: "/images/us/home/pipetector-960.webp",
+      image: "/images/us/home/pipetector-device-960.webp",
       imageSrcSet:
-        "/images/us/home/pipetector-480.webp 480w, /images/us/home/pipetector-960.webp 960w",
+        "/images/us/home/pipetector-device-480.webp 480w, /images/us/home/pipetector-device-960.webp 960w",
       width: 960,
       height: 720,
       href: PIPETECTOR_URL,
