@@ -190,9 +190,9 @@ const pageTranslations = {
     zh: '立足新泽西州的租金收取、维修协调、租户沟通与业主汇报。新泽西／纽约的服务范围按每处物业确认。',
   },
   'meta.keywords': {
-    en: 'property management, NJ property management, dormitory management, office rental, residential rental, Tengcle Development LLC',
-    ja: '不動産管理, NJ不動産管理, 寮管理, オフィス賃貸, 住宅賃貸, Tengcle Development LLC',
-    zh: '物业管理, NJ物业管理, 宿舍管理, 办公租赁, 住宅租赁, Tengcle Development LLC',
+    en: 'property management, NJ property management, apartment building management, long-term rental, Tengcle Development LLC',
+    ja: '不動産管理, NJ不動産管理, 集合住宅の管理, 長期賃貸, Tengcle Development LLC',
+    zh: '物业管理, NJ物业管理, 公寓楼管理, 长期租赁, Tengcle Development LLC',
   },
 };
 
