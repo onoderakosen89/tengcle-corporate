@@ -87,14 +87,14 @@ const regionProfiles = {
   us: {
     company: "Tengcle Development LLC",
     titles: {
-      en: "Tengcle Development LLC | NJ/NY Property Management & Revitalization",
-      ja: "Tengcle Development LLC | NJ/NYの不動産管理・物件再生",
-      zh: "Tengcle Development LLC | 新泽西／纽约物业管理与改造",
+      en: "Tengcle Development LLC | Building Revitalization & NMR Pipetector in NJ/NY",
+      ja: "Tengcle Development LLC | NJ/NYの建物の再生と管理・配管の赤錆対策",
+      zh: "Tengcle Development LLC | 新泽西／纽约建筑再生与管理、管道防锈",
     },
     descriptions: {
-      en: "Based in New Jersey, providing property management, repair coordination, tenant support, and property revitalization. NJ/NY scope is confirmed per property.",
-      ja: "ニュージャージー州を拠点に、不動産管理、修繕手配、テナント対応、物件再生に取り組んでいます。NJ/NYの対応範囲は物件ごとに確認します。",
-      zh: "立足新泽西州，开展物业管理、维修协调、租户支持及物业改造。新泽西／纽约的服务范围按每处物业确认。",
+      en: "Tengcle Development LLC revitalizes and manages older apartment buildings in New Jersey and accepts applications for NMR Pipetector pilot trials on HVAC water piping in New Jersey and New York.",
+      ja: "Tengcle Development LLC は、ニュージャージーの古い集合住宅の再生と管理に取り組み、NJ/NYで NMR Pipetector の先行試験の申し込みを受け付けています。",
+      zh: "Tengcle Development LLC 在新泽西州从事老旧公寓楼的再生与管理，并在新泽西州和纽约受理 NMR Pipetector 试点测试申请。",
     },
     locale: { en: "en_US", ja: "ja_US", zh: "zh_US" },
     htmlLanguage: { en: "en", ja: "ja", zh: "zh-Hans" },
@@ -320,6 +320,20 @@ const staticRoutes: SeoRoute[] = [
   },
 ];
 
+// The US "services" page is presented as the businesses page.
+const usBusinessesPage = {
+  title: {
+    en: "Businesses | Tengcle Development LLC - Building Revitalization & NMR Pipetector",
+    ja: "事業 | Tengcle Development LLC - 建物の再生と管理・配管の赤錆対策",
+    zh: "业务 | Tengcle Development LLC - 建筑再生与管理、管道防锈",
+  },
+  description: {
+    en: "Tengcle Development LLC's businesses in the United States: revitalizing and managing older apartment buildings in New Jersey, and pilot trials of the NMR Pipetector rust-control device for HVAC water piping.",
+    ja: "Tengcle Development LLC の米国の事業。ニュージャージーの古い集合住宅の再生と管理、冷暖房の冷温水配管向け赤錆対策装置 NMR Pipetector の先行試験。",
+    zh: "Tengcle Development LLC 在美国的业务：新泽西州老旧公寓楼的再生与管理，以及面向暖通冷热水管道的防锈装置 NMR Pipetector 的试点测试。",
+  },
+} as const;
+
 const regionalRoutes: SeoRoute[] = [];
 for (const region of Object.keys(regionPageDefinitions) as Region[]) {
   const profile = regionProfiles[region];
@@ -345,10 +359,16 @@ for (const region of Object.keys(regionPageDefinitions) as Region[]) {
         locale: profile.locale[language],
         title:
           buyerIntentCopy?.title ??
-          (isHome ? profile.titles[language] : `${label} | ${profile.company}`),
+          (region === "us" && page.key === "services"
+            ? usBusinessesPage.title[language]
+            : isHome
+              ? profile.titles[language]
+              : `${label} | ${profile.company}`),
         description:
           buyerIntentCopy?.description ??
-          (isHome
+          (region === "us" && page.key === "services"
+            ? usBusinessesPage.description[language]
+            : isHome
             ? profile.descriptions[language]
             : sectionDescription(
                 language,

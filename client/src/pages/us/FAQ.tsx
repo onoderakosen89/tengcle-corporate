@@ -8,7 +8,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, HelpCircle, ArrowLeft, Mail } from "lucide-react";
+import { ChevronDown, Mail } from "lucide-react";
 import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import SEOHead, { generateFAQSchema } from "@/components/SEOHead";
@@ -126,6 +126,16 @@ const faqDataZh: FAQItem[] = [
   }
 ];
 
+const heroFadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+const heroStagger = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+};
+
 function FAQAccordion({ items, language }: { items: FAQItem[]; language: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -240,34 +250,38 @@ export default function UsFAQ() {
 
       <UsHeader />
 
-      <main className="pt-20">
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
-        <section className="relative py-20 bg-purple overflow-hidden">
+        <section className="relative pt-32 pb-20 bg-purple-deep overflow-hidden">
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }} />
+            <div className="absolute inset-0 pattern-seigaiha" />
           </div>
-
-          <div className="container relative">
-            <Link href={basePath}>
-              <Button variant="ghost" className="mb-6 text-white/80 hover:text-white hover:bg-white/10">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                <span className={fontClass}>{t.backToHome}</span>
-              </Button>
-            </Link>
-
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center">
-                <HelpCircle className="h-6 w-6 text-gold" />
-              </div>
-              <h1 className={`text-4xl md:text-5xl font-heading text-white ${fontClass}`}>
+          <div className="container relative z-10">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={heroStagger}
+              className="max-w-3xl"
+            >
+              <motion.p
+                variants={heroFadeInUp}
+                className="text-gold text-sm tracking-widest uppercase mb-4"
+              >
+                Tengcle Development LLC
+              </motion.p>
+              <motion.h1
+                variants={heroFadeInUp}
+                className={`font-heading text-4xl md:text-5xl text-white mb-6 ${fontClass}`}
+              >
                 {t.title}
-              </h1>
-            </div>
-            <p className={`text-white/80 text-lg max-w-2xl ${fontClass}`}>
-              {t.subtitle}
-            </p>
+              </motion.h1>
+              <motion.p
+                variants={heroFadeInUp}
+                className={`text-xl text-gray-300 ${fontClass}`}
+              >
+                {t.subtitle}
+              </motion.p>
+            </motion.div>
           </div>
         </section>
 
