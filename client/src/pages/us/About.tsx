@@ -5,6 +5,8 @@ import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import SEOHead, { generateBreadcrumbSchema, generateOrganizationSchema } from "@/components/SEOHead";
+import GroupCompanyCards from "@/components/us/GroupCompanyCards";
+import { usBusinessCopy, usCopy } from "@/data/usBusinesses";
 import { companyProfiles } from "@/data/companyProfiles";
 
 const usCompany = companyProfiles.us;
@@ -28,30 +30,15 @@ export default function UsAbout() {
   const [location] = useLocation();
   const basePath = `/us/${language}`;
 
-  const groupOffices = [
-    {
-      flag: "🇭🇰",
-      name: "Tengcle Limited",
-      role: "Regional Site",
-      location: "Hong Kong",
-      href: "/hk/en",
+  const companyInfoCopy = {
+    heading: { en: "Company Information", ja: "会社情報", zh: "公司信息" },
+    entity: {
+      en: "New Jersey company",
+      ja: "ニュージャージー州の法人",
+      zh: "新泽西州公司",
     },
-    {
-      flag: "🇯🇵",
-      name: "株式会社Tengcle",
-      role: "Regional Site",
-      location: "Tokyo, Japan",
-      href: "/jp/ja",
-    },
-    {
-      flag: "🇺🇸",
-      name: "Tengcle Development LLC",
-      role: "Regional Site",
-      location: "Weehawken, NJ",
-      href: basePath,
-      current: true,
-    },
-  ];
+  };
+  const aboutDescription = usCopy(usBusinessCopy.about.desc, language);
 
   return (
     <div className="min-h-screen bg-white" data-region="us">
@@ -67,7 +54,7 @@ export default function UsAbout() {
           "@graph": [
             generateOrganizationSchema({
               name: usCompany.legalName,
-              description: t('about.description'),
+              description: aboutDescription,
               url: "https://www.tengcle.com/us/en",
               email: usCompany.email,
               address: {
@@ -131,17 +118,17 @@ export default function UsAbout() {
                 {t('company.name')}
               </h2>
               <p className="text-slate leading-relaxed mb-6">
-                {t('about.description')}
+                {aboutDescription}
               </p>
               <div className="bg-light-gray p-6 mb-6">
-                <h3 className="font-heading text-lg text-charcoal mb-4">Company Information</h3>
+                <h3 className="font-heading text-lg text-charcoal mb-4">{usCopy(companyInfoCopy.heading, language)}</h3>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <Building2 className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="font-medium text-charcoal">Tengcle Development LLC</p>
                       <p className="text-sm text-slate">{t('company.role')}</p>
-                      <p className="text-sm text-slate">New Jersey company</p>
+                      <p className="text-sm text-slate">{usCopy(companyInfoCopy.entity, language)}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -185,66 +172,13 @@ export default function UsAbout() {
         </div>
       </section>
 
-      {/* Regional sites */}
+      {/* Group companies */}
       <section className="py-24 bg-light-gray">
         <div className="container">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="text-center mb-16"
-          >
-            <motion.div variants={fadeInUp} className="flex justify-center mb-4">
-              <Globe className="w-12 h-12 text-gold" />
-            </motion.div>
-            <motion.h2
-              variants={fadeInUp}
-              className="font-heading text-3xl md:text-4xl text-charcoal mb-4"
-            >
-              Tengcle Regional Sites
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="text-slate max-w-2xl mx-auto">
-              Business information and contacts for Hong Kong, Japan, and the United States
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {groupOffices.map((office, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-              >
-                <Link
-                  href={office.href}
-                  className={`block p-8 transition-all ${office.current
-                    ? "bg-purple text-white"
-                    : "bg-white hover:shadow-lg"
-                    }`}
-                >
-                  <span className="text-4xl mb-4 block">{office.flag}</span>
-                  <h3 className={`font-heading text-xl mb-2 ${office.current ? "text-white" : "text-charcoal"
-                    }`}>
-                    {office.name}
-                  </h3>
-                  <p className={`text-sm mb-2 ${office.current ? "text-gold" : "text-gold"
-                    }`}>
-                    {office.role}
-                  </p>
-                  <p className={`text-sm ${office.current ? "text-gray-300" : "text-slate"
-                    }`}>
-                    {office.location}
-                  </p>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
+          <h2 className="font-heading text-3xl md:text-4xl text-charcoal text-center mb-12">
+            {usCopy(usBusinessCopy.group.title, language)}
+          </h2>
+          <GroupCompanyCards language={language} />
         </div>
       </section>
 

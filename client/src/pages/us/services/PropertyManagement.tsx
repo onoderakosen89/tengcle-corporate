@@ -13,7 +13,6 @@ import { Link } from "wouter";
 import { 
   Building2, 
   Users, 
-  ClipboardCheck, 
   Wrench, 
   ArrowRight, 
   CheckCircle,
@@ -26,6 +25,7 @@ import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import SEOHead from "@/components/SEOHead";
+import { usBusinessCopy, usCopy } from "@/data/usBusinesses";
 
 const easeAmerican: Easing = [0.4, 0, 0.2, 1];
 
@@ -50,9 +50,9 @@ const pageTranslations = {
     zh: '物业管理',
   },
   'page.subtitle': {
-    en: 'Professional Long-term Rental Management',
-    ja: 'プロフェッショナルな長期賃貸管理',
-    zh: '专业的长期租赁管理',
+    en: 'Long-term rental management for older apartment buildings',
+    ja: '古い集合住宅の、長期賃貸の管理',
+    zh: '老旧公寓楼的长期租赁管理',
   },
   'page.description': {
     en: 'Based in New Jersey, we provide hands-on property management covering rent collection, repair coordination, tenant communication, and owner reporting.',
@@ -115,39 +115,19 @@ const pageTranslations = {
     zh: '整理租金、维修、租户事项与待决问题，让业主清晰掌握物业状况。',
   },
   'property.title': {
-    en: 'Properties We Can Support',
-    ja: '対応可能な物件用途',
-    zh: '可支持的物业用途',
-  },
-  'property.dormitory': {
-    en: 'Dormitories & Student Housing',
-    ja: '寮・学生住宅',
-    zh: '宿舍与学生公寓',
-  },
-  'property.dormitory.desc': {
-    en: 'Managed housing for students and young professionals with shared amenities.',
-    ja: '共用設備を備えた学生・若手社会人向け管理住宅。',
-    zh: '为学生和年轻专业人士提供共享设施的管理住房。',
-  },
-  'property.office': {
-    en: 'Commercial Office Spaces',
-    ja: '商業オフィススペース',
-    zh: '商业办公空间',
-  },
-  'property.office.desc': {
-    en: 'Professional office environments for businesses of all sizes.',
-    ja: 'あらゆる規模のビジネス向けプロフェッショナルなオフィス環境。',
-    zh: '为各种规模企业提供专业办公环境。',
+    en: 'Properties we manage',
+    ja: '対応する物件',
+    zh: '我们管理的物业',
   },
   'property.residential': {
-    en: 'Long-term Residential Rentals',
-    ja: '長期賃貸住宅',
-    zh: '长期住宅租赁',
+    en: 'Older apartment buildings (long-term rentals)',
+    ja: '古い集合住宅（長期賃貸）',
+    zh: '老旧公寓楼（长期租赁）',
   },
   'property.residential.desc': {
-    en: 'Quality apartments and houses for families and individuals seeking stable housing.',
-    ja: '安定した住居を求める家族や個人向けの高品質アパート・戸建て。',
-    zh: '为寻求稳定住房的家庭和个人提供优质公寓和房屋。',
+    en: 'We manage older apartment buildings used for long-term rentals.',
+    ja: '古い集合住宅の長期賃貸を管理しています。',
+    zh: '我们管理用于长期租赁的老旧公寓楼。',
   },
   'features.title': {
     en: 'Why Choose Our Management',
@@ -210,9 +190,9 @@ const pageTranslations = {
     zh: '立足新泽西州的租金收取、维修协调、租户沟通与业主汇报。新泽西／纽约的服务范围按每处物业确认。',
   },
   'meta.keywords': {
-    en: 'property management, NJ property management, dormitory management, office rental, residential rental, Tengcle Development LLC',
-    ja: '不動産管理, NJ不動産管理, 寮管理, オフィス賃貸, 住宅賃貸, Tengcle Development LLC',
-    zh: '物业管理, NJ物业管理, 宿舍管理, 办公租赁, 住宅租赁, Tengcle Development LLC',
+    en: 'property management, NJ property management, apartment building management, long-term rental, Tengcle Development LLC',
+    ja: '不動産管理, NJ不動産管理, 集合住宅の管理, 長期賃貸, Tengcle Development LLC',
+    zh: '物业管理, NJ物业管理, 公寓楼管理, 长期租赁, Tengcle Development LLC',
   },
 };
 
@@ -245,8 +225,6 @@ export default function PropertyManagement() {
   ];
 
   const propertyTypes = [
-    { titleKey: 'property.dormitory', descKey: 'property.dormitory.desc', icon: Building2 },
-    { titleKey: 'property.office', descKey: 'property.office.desc', icon: ClipboardCheck },
     { titleKey: 'property.residential', descKey: 'property.residential.desc', icon: Building2 },
   ];
 
@@ -296,7 +274,7 @@ export default function PropertyManagement() {
                   {globalT('nav.services')}
                 </Link>
                 <span className="text-gold/50">/</span>
-                <span className="text-gold">{t('page.title')}</span>
+                <span className="text-gold">{usCopy(usBusinessCopy.businesses.building.name, language)}</span>
               </motion.div>
               <motion.h1
                 variants={fadeInUp}
@@ -419,7 +397,7 @@ export default function PropertyManagement() {
               </motion.h2>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid max-w-md mx-auto gap-8">
               {propertyTypes.map((type, index) => (
                 <motion.div
                   key={index}

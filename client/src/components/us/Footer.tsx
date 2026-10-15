@@ -42,7 +42,7 @@ export default function UsFooter() {
               />
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed mb-6 max-w-md">
-              {t('about.description').substring(0, 150)}...
+              {t('about.description')}
             </p>
             <div className="space-y-3">
               <div className="flex items-start gap-3 text-sm">
