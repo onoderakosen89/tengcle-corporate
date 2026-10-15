@@ -44,7 +44,7 @@ export default function UsAbout() {
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
         title={language === "ja" ? "会社概要 | Tengcle Development LLC ニュージャージー州" : language === "zh" ? "关于我们 | Tengcle Development LLC 新泽西州" : "About Us | Tengcle Development LLC, New Jersey"}
-        description={language === "ja" ? "ニュージャージー州を拠点に、不動産管理、修繕調整、テナント対応、物件再生に取り組むTengcle Development LLCの会社情報。" : language === "zh" ? "Tengcle Development LLC立足新泽西州，开展物业管理、维修协调、租户支持与物业改造。" : "Company information for Tengcle Development LLC, focused on property management, repair coordination, tenant support, and revitalization in New Jersey."}
+        description={language === "ja" ? "ニュージャージー州を拠点に、古い建物の再生と管理に取り組み、NMR Pipetector の先行試験の申し込みを受け付ける Tengcle Development LLC の会社情報。" : language === "zh" ? "Tengcle Development LLC 公司信息：以新泽西州为据点，从事老旧建筑的再生与管理，并受理 NMR Pipetector 试点测试申请。" : "Company information for Tengcle Development LLC, based in New Jersey: revitalizing and managing older buildings and accepting applications for NMR Pipetector pilot trials."}
         keywords={language === "ja" ? "Tengcle Development LLC, 会社概要, ニュージャージー, 不動産管理, 物件再生" : language === "zh" ? "Tengcle Development LLC, 关于我们, 新泽西, 物业管理, 物业改造" : "Tengcle Development LLC, about us, New Jersey, property management, property revitalization"}
         canonical={`https://www.tengcle.com/us/${language}/about`}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}

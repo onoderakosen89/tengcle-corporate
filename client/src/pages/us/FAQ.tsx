@@ -241,7 +241,7 @@ export default function UsFAQ() {
       contactText: "Our team is here to help. Contact us for personalized assistance.",
       contactButton: "Contact Us",
       metaTitle: "FAQ | Tengcle Development LLC - NJ/NY Real Estate",
-      metaDescription: "FAQ about Tengcle Development LLC property management, repair coordination, revitalization, and short-stay operating design in NJ/NY.",
+      metaDescription: "FAQ about Tengcle Development LLC: revitalizing and managing older apartment buildings in New Jersey, short-term rental planning, and NMR Pipetector pilot trials.",
       metaKeywords: "Tengcle Development LLC, FAQ, property management, property revitalization, New Jersey"
     },
     ja: {
@@ -252,7 +252,7 @@ export default function UsFAQ() {
       contactText: "私たちのチームがお手伝いします。お気軽にお問い合わせください。",
       contactButton: "お問い合わせ",
       metaTitle: "よくある質問 | Tengcle Development LLC NJ/NY",
-      metaDescription: "Tengcle Development LLCのNJ/NY不動産管理、修繕調整、物件再生、短期滞在運用に関するFAQ。",
+      metaDescription: "Tengcle Development LLCのよくある質問。ニュージャージーの古い集合住宅の再生と管理、短期滞在の運営計画、NMR Pipetector の先行試験について。",
       metaKeywords: "Tengcle Development LLC, FAQ, 不動産管理, 物件再生, 修繕, NJ"
     },
     zh: {
@@ -263,7 +263,7 @@ export default function UsFAQ() {
       contactText: "我们的团队随时为您提供帮助。请联系我们获取个性化协助。",
       contactButton: "联系我们",
       metaTitle: "常见问题 | Tengcle Development LLC NJ/NY",
-      metaDescription: "Tengcle Development LLC在新泽西／纽约地区的物业管理、维修协调、物业改造与短期住宿运营相关FAQ。",
+      metaDescription: "Tengcle Development LLC 常见问题：新泽西州老旧公寓楼的再生与管理、短租运营规划，以及 NMR Pipetector 试点测试。",
       metaKeywords: "Tengcle Development LLC, FAQ, 物业管理, 物业改造, 维修, 新泽西"
     }
   };
