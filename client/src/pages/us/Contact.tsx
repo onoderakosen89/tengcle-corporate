@@ -121,7 +121,7 @@ export default function UsContact() {
     <div className="min-h-screen bg-white" data-region="us">
       <SEOHead
         title={language === "ja" ? "お問い合わせ | Tengcle Development LLC NJ" : language === "zh" ? "联系我们 | Tengcle Development LLC NJ" : "Contact Us | Tengcle Development LLC New Jersey"}
-        description={language === "ja" ? "Tengcle Development LLCへのお問い合わせ。不動産管理、修繕調整、物件再生のご相談。" : language === "zh" ? "联系Tengcle Development LLC，咨询物业管理、维修协调与物业改造。" : "Contact Tengcle Development LLC about property management, repair coordination, and property revitalization."}
+        description={language === "ja" ? "Tengcle Development LLCへのお問い合わせ。お住まいの方のご連絡、建物の管理と再生のご相談、NMR Pipetector の先行試験のご案内。" : language === "zh" ? "联系 Tengcle Development LLC：住户联络、建筑管理与再生咨询，以及 NMR Pipetector 试点测试。" : "Contact Tengcle Development LLC: residents of our buildings, building management and revitalization inquiries, and NMR Pipetector pilot trials."}
         keywords={language === "ja" ? "Tengcle Development LLC, お問い合わせ, ニュージャージー, 不動産" : language === "zh" ? "Tengcle Development LLC, 联系我们, 新泽西, 房地产" : "Tengcle Development LLC, contact, New Jersey, Weehawken, real estate"}
         locale={language === "ja" ? "ja_JP" : language === "zh" ? "zh_CN" : "en_US"}
         ogImage="/images/og-image.webp"

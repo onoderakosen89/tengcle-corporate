@@ -6,8 +6,7 @@
  * - Focus on hands-on property improvement and value creation
  */
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform, type Easing } from "framer-motion";
+import { motion, type Easing } from "framer-motion";
 import { Link } from "wouter";
 import { 
   Building2, 
@@ -208,15 +207,6 @@ const pageTranslations = {
 
 export default function PropertyDevelopment() {
   const { language, t: globalT } = useUsLanguage();
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
   // Local translation function
   const t = (key: string) => {
     const translation = pageTranslations[key as keyof typeof pageTranslations];
@@ -256,23 +246,8 @@ export default function PropertyDevelopment() {
       
       <main className="bg-white">
         {/* Hero Section */}
-        <section ref={heroRef} className="relative min-h-[70vh] flex items-center bg-purple-deep overflow-hidden">
-          <motion.div
-            className="absolute inset-0"
-            style={{ y: backgroundY }}
-          >
-            <img
-              src="/images/us/services/pd-property-revitalization-banner.webp"
-              alt="Property Revitalization - Before and After"
-              className="w-full h-[120%] object-cover opacity-40"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-deep/80 via-purple-deep/60 to-transparent" />
-          </motion.div>
-
-          <motion.div
-            className="container relative z-10 pt-32 pb-20"
-            style={{ opacity }}
-          >
+        <section className="relative pt-32 pb-20 bg-purple-deep overflow-hidden">
+          <div className="container relative z-10">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -305,7 +280,7 @@ export default function PropertyDevelopment() {
                 {t('page.description')}
               </motion.p>
             </motion.div>
-          </motion.div>
+          </div>
         </section>
 
         {/* Vision Section */}

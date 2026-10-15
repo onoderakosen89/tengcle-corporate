@@ -282,14 +282,14 @@ const translations: Translations = {
     zh: 'Tengcle Development LLC | 新泽西／纽约建筑再生与管理、管道防锈',
   },
   'meta.description': {
-    en: 'Based in New Jersey, providing property management, repair coordination, tenant support, and property revitalization. NJ/NY service scope is confirmed per property.',
-    ja: 'ニュージャージー州を拠点に、家賃回収、修繕手配、テナント対応を含む不動産管理と物件再生に取り組んでいます。NJ/NYの対応範囲は物件ごとに確認します。',
-    zh: '立足新泽西州，开展租金收取、维修协调、租户支持及物业改造。新泽西／纽约的服务范围按每处物业确认。',
+    en: 'Tengcle Development LLC revitalizes and manages older apartment buildings in New Jersey and accepts applications for NMR Pipetector pilot trials on HVAC water piping in New Jersey and New York.',
+    ja: 'Tengcle Development LLC は、ニュージャージーの古い集合住宅の再生と管理に取り組み、NJ/NYで NMR Pipetector の先行試験の申し込みを受け付けています。',
+    zh: 'Tengcle Development LLC 在新泽西州从事老旧公寓楼的再生与管理，并在新泽西州和纽约受理 NMR Pipetector 试点测试申请。',
   },
   'meta.keywords': {
-    en: 'Tengcle Development LLC, NJ real estate, property revitalization, short-stay operations planning, property management, New Jersey',
-    ja: 'Tengcle Development LLC, NJ不動産, 不動産管理, 物件再生, 修繕, ニュージャージー',
-    zh: 'Tengcle Development LLC, 新泽西房地产, 物业管理, 物业改造, 维修, 新泽西',
+    en: 'Tengcle Development LLC, New Jersey, older apartment buildings, building revitalization, property management, NMR Pipetector',
+    ja: 'Tengcle Development LLC, ニュージャージー, 古い集合住宅, 建物の再生, 不動産管理, NMR Pipetector',
+    zh: 'Tengcle Development LLC, 新泽西, 老旧公寓楼, 建筑再生, 物业管理, NMR Pipetector',
   },
 };
 
