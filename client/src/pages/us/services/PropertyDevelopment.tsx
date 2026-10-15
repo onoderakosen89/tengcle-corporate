@@ -25,6 +25,7 @@ import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import SEOHead from "@/components/SEOHead";
+import { usBusinessCopy, usCopy } from "@/data/usBusinesses";
 
 const easeAmerican: Easing = [0.4, 0, 0.2, 1];
 
@@ -164,24 +165,14 @@ const pageTranslations = {
     zh: '可支持的物业',
   },
   'target.item1': {
-    en: 'Residential properties requiring repair or operational improvement',
-    ja: '修繕が必要な住宅物件',
-    zh: '需要维修或运营改善的住宅物业',
+    en: 'Older apartment buildings used for long-term rentals that need repairs',
+    ja: '修繕が必要な古い集合住宅（長期賃貸）',
+    zh: '需要修缮的老旧公寓楼（长期租赁）',
   },
   'target.item2': {
-    en: 'Underperforming multi-family buildings',
-    ja: '低パフォーマンスの集合住宅',
-    zh: '低效的多户型建筑',
-  },
-  'target.item3': {
-    en: 'Commercial spaces with revitalization potential',
-    ja: '再生ポテンシャルのある商業スペース',
-    zh: '具有复兴潜力的商业空间',
-  },
-  'target.item4': {
-    en: 'Properties suitable for short-term rental conversion',
-    ja: '短期賃貸への転換に適した物件',
-    zh: '适合转换为短租的物业',
+    en: 'Long-term rental apartment buildings with signs of wear or vacant units',
+    ja: '傷みや空室が目立つ集合住宅（長期賃貸）',
+    zh: '有明显损坏或较多空置住房的公寓楼（长期租赁）',
   },
   'cta.title': {
     en: 'Partner With Us',
@@ -293,7 +284,7 @@ export default function PropertyDevelopment() {
                   {globalT('nav.services')}
                 </Link>
                 <span className="text-gold/50">/</span>
-                <span className="text-gold">{t('page.title')}</span>
+                <span className="text-gold">{usCopy(usBusinessCopy.businesses.building.name, language)}</span>
               </motion.div>
               <motion.h1
                 variants={fadeInUp}
@@ -469,7 +460,7 @@ export default function PropertyDevelopment() {
                 {t('target.title')}
               </motion.h2>
               <div className="grid md:grid-cols-2 gap-4">
-                {['target.item1', 'target.item2', 'target.item3', 'target.item4'].map((key, index) => (
+                {['target.item1', 'target.item2'].map((key, index) => (
                   <motion.div
                     key={index}
                     variants={fadeInUp}

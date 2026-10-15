@@ -26,6 +26,7 @@ import UsHeader from "@/components/us/Header";
 import UsFooter from "@/components/us/Footer";
 import { useUsLanguage } from "@/contexts/UsLanguageContext";
 import SEOHead from "@/components/SEOHead";
+import { usBusinessCopy, usCopy } from "@/data/usBusinesses";
 
 const easeAmerican: Easing = [0.4, 0, 0.2, 1];
 
@@ -85,9 +86,9 @@ const pageTranslations = {
     zh: '规划照片、说明、信息结构与发布渠道，清晰呈现物业特点。',
   },
   'service2.title': {
-    en: 'Dynamic Pricing',
-    ja: 'ダイナミックプライシング',
-    zh: '动态定价',
+    en: 'Pricing Strategy',
+    ja: '料金の決め方',
+    zh: '定价策略',
   },
   'service2.desc': {
     en: 'Build pricing rules around demand, seasonality, local events, operating costs, and the property’s positioning.',
@@ -225,9 +226,9 @@ const pageTranslations = {
     zh: '问题升级与物业保护规划',
   },
   'cta.title': {
-    en: 'Unlock Your Property\'s Potential',
-    ja: '物件のポテンシャルを解放',
-    zh: '释放您物业的潜力',
+    en: 'Discuss your short-term rental plans with us',
+    ja: '短期滞在の運営計画についてご相談ください',
+    zh: '欢迎咨询短租运营规划',
   },
   'cta.description': {
     en: 'Contact us to discuss whether short-stay use fits your property and what operating structure it would require.',
@@ -339,7 +340,7 @@ export default function VacationRentals() {
                   {globalT('nav.services')}
                 </Link>
                 <span className="text-gold/50">/</span>
-                <span className="text-gold">{t('page.title')}</span>
+                <span className="text-gold">{usCopy(usBusinessCopy.businesses.building.name, language)}</span>
               </motion.div>
               <motion.h1
                 variants={fadeInUp}

@@ -192,9 +192,9 @@ const translations: Translations = {
     zh: '新泽西州公司',
   },
   'about.description': {
-    en: 'Tengcle Development LLC is based in New Jersey and improves property operations through day-to-day management, repair coordination, and tenant support.',
-    ja: 'Tengcle Development LLCはニュージャージー州を拠点に、日々の管理、修繕調整、テナント対応を通じて物件の運営と価値向上に取り組んでいます。',
-    zh: 'Tengcle Development LLC立足新泽西州，通过日常管理、维修协调与租户支持推动物业运营与价值提升。',
+    en: 'Tengcle Development LLC is based in New Jersey, where we revitalize and manage older buildings. We also accept applications for pilot trials of NMR Pipetector.',
+    ja: 'Tengcle Development LLC は、ニュージャージーを拠点に、古い建物の再生と管理に取り組む会社です。NMR Pipetector の先行試験の申し込みも受け付けています。',
+    zh: 'Tengcle Development LLC 以新泽西州为据点，致力于老旧建筑的再生与管理，同时受理 NMR Pipetector 的试点测试申请。',
   },
 
   // Company Info
@@ -265,9 +265,9 @@ const translations: Translations = {
     zh: '让我们开始吧',
   },
   'cta.subtitle': {
-    en: 'Contact us to discuss your property management needs',
-    ja: '不動産管理のご相談はお気軽にどうぞ',
-    zh: '联系我们讨论您的物业管理需求',
+    en: "Questions about managing or revitalizing a building, or about the NMR Pipetector pilot? We'd be glad to hear from you.",
+    ja: '建物の管理と再生、配管の先行試験のご相談は、お気軽にどうぞ。',
+    zh: '如需咨询建筑的管理与再生，或 NMR Pipetector 试点测试，欢迎随时联系我们。',
   },
   'cta.button': {
     en: 'Contact Us',
